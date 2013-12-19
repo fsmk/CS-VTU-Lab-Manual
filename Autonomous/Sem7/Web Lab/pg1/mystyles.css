@@ -1,0 +1,39 @@
+p,table,li 
+{ 
+	font-family: "lucida calligraphy", "comic sans", "sans serif"; 
+	margin-left: 5pt; 
+} 
+p { word-spacing: 5px;} 
+body { background-color:rgb(200,255,205);} 
+
+p, li, td { font-size: 75%;} 
+td { padding: 0.5cm ;} 
+th 
+{ 
+	text-align: center; 
+	font-size: 85%; 
+}
+
+h1,h2,h3,hr 
+{ 
+	text-align: center;
+	color: #483d8b;
+} 
+
+table 
+{ 
+	border-style: outset; 
+	background: rgb(100,255,255); 
+}
+
+li { list-style-type: lower-roman;} 
+
+span
+{ 
+	text-align: center; 
+	color: white; 
+	background-color: blue;
+	font-size:29pt; 
+	font-style: italic; 
+	font-weight: bold; 
+}

@@ -1,0 +1,12 @@
+<?xml version = "1.0" ?> 
+
+<?xml-stylesheet type = "text/xsl" href = "p6b.xsl" ?> 
+
+<vtu>
+	<usn>1BI07IS402</usn>
+	<name>Keerthi Kumar</name>
+	<college>AIT</college>
+	<branch>ISE</branch>
+	<yoj>2006</yoj>
+	<email>keerthikumar@yahoo.co.in</email> 
+</vtu>

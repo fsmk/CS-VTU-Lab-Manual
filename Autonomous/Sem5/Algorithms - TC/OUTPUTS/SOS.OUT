@@ -1,0 +1,85 @@
+SUBSET SOLUTION
+Entering sumofsubset() with k = 1 element : 1
+1 temporarily added.
+Currently accepted elements :
+
+Accepting new element...
+1
+1  is NOT equal to the desired sum d =  8
+Possibly the rest of the items may add up to the desired sum.
+Calling sos() with k+1...
+Entering sumofsubset() with k = 2 element : 3
+3 temporarily added.
+Currently accepted elements :
+1 
+Accepting new element...
+3
+Rejecting our assumption the 'k'th item.
+Calling sos() to see if rest of items can add up to the desired sum.
+Entering sumofsubset() with k = 3 element : 5
+5 temporarily added.
+Currently accepted elements :
+1 
+Accepting new element...
+5
+Rejecting our assumption the 'k'th item.
+Calling sos() to see if rest of items can add up to the desired sum.
+Entering sumofsubset() with k = 4 element : 7
+7 temporarily added.
+Currently accepted elements :
+1 
+Accepting new element...
+7
+1 7  is equal to the desired sum d =  8
+Hence solution is complete.
+ Now displaying it...
+Subset Solution={ 1 7 }
+Rejecting our assumption the 'k'th item.
+Calling sos() to see if rest of items can add up to the desired sum.
+Entering sumofsubset() with k = 2 element : 3
+3 temporarily added.
+Currently accepted elements :
+
+Accepting new element...
+3
+3  is NOT equal to the desired sum d =  8
+Possibly the rest of the items may add up to the desired sum.
+Calling sos() with k+1...
+Entering sumofsubset() with k = 3 element : 5
+5 temporarily added.
+Currently accepted elements :
+3 
+Accepting new element...
+5
+3 5  is equal to the desired sum d =  8
+Hence solution is complete.
+ Now displaying it...
+Subset Solution={ 3 5 }
+Rejecting our assumption the 'k'th item.
+Calling sos() to see if rest of items can add up to the desired sum.
+Entering sumofsubset() with k = 3 element : 5
+5 temporarily added.
+Currently accepted elements :
+5 
+Accepting new element...
+5
+Rejecting our assumption the 'k'th item.
+Calling sos() to see if rest of items can add up to the desired sum.
+Entering sumofsubset() with k = 4 element : 7
+7 temporarily added.
+Currently accepted elements :
+7 
+Accepting new element...
+7
+Rejecting our assumption the 'k'th item.
+Calling sos() to see if rest of items can add up to the desired sum.
+Entering sumofsubset() with k = 5 element : 8
+8 temporarily added.
+Currently accepted elements :
+
+Accepting new element...
+8
+8  is equal to the desired sum d =  8
+Hence solution is complete.
+ Now displaying it...
+Subset Solution={ 8 }

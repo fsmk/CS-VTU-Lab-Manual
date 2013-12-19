@@ -1,0 +1,161 @@
+
+ Enter no of Queens:
+Solution of 4 Queen Problem
+
+
+Trying row no : 1 cell no : 1
+(1,1) accepted. The Queen can be placed at at this position.
+
+Trying row no : 2 cell no : 1
+(2,1) rejected.
+Trying row no : 2 cell no : 2
+(2,2) rejected.
+Trying row no : 2 cell no : 3
+(2,3) accepted. The Queen can be placed at at this position.
+
+Trying row no : 3 cell no : 1
+(3,1) rejected.
+Trying row no : 3 cell no : 2
+(3,2) rejected.
+Trying row no : 3 cell no : 3
+(3,3) rejected.
+Trying row no : 3 cell no : 4
+(3,4) rejected.
+Trying row no : 2 cell no : 4
+(2,4) accepted. The Queen can be placed at at this position.
+
+Trying row no : 3 cell no : 1
+(3,1) rejected.
+Trying row no : 3 cell no : 2
+(3,2) accepted. The Queen can be placed at at this position.
+
+Trying row no : 4 cell no : 1
+(4,1) rejected.
+Trying row no : 4 cell no : 2
+(4,2) rejected.
+Trying row no : 4 cell no : 3
+(4,3) rejected.
+Trying row no : 4 cell no : 4
+(4,4) rejected.
+Trying row no : 3 cell no : 3
+(3,3) rejected.
+Trying row no : 3 cell no : 4
+(3,4) rejected.
+Trying row no : 1 cell no : 2
+(1,2) accepted. The Queen can be placed at at this position.
+
+Trying row no : 2 cell no : 1
+(2,1) rejected.
+Trying row no : 2 cell no : 2
+(2,2) rejected.
+Trying row no : 2 cell no : 3
+(2,3) rejected.
+Trying row no : 2 cell no : 4
+(2,4) accepted. The Queen can be placed at at this position.
+
+Trying row no : 3 cell no : 1
+(3,1) accepted. The Queen can be placed at at this position.
+
+Trying row no : 4 cell no : 1
+(4,1) rejected.
+Trying row no : 4 cell no : 2
+(4,2) rejected.
+Trying row no : 4 cell no : 3
+(4,3) accepted. The Queen can be placed at at this position.
+X Q X X 
+
+X X X Q 
+
+Q X X X 
+
+X X Q X 
+
+
+
+Trying row no : 4 cell no : 4
+(4,4) rejected.
+Trying row no : 3 cell no : 2
+(3,2) rejected.
+Trying row no : 3 cell no : 3
+(3,3) rejected.
+Trying row no : 3 cell no : 4
+(3,4) rejected.
+Trying row no : 1 cell no : 3
+(1,3) accepted. The Queen can be placed at at this position.
+
+Trying row no : 2 cell no : 1
+(2,1) accepted. The Queen can be placed at at this position.
+
+Trying row no : 3 cell no : 1
+(3,1) rejected.
+Trying row no : 3 cell no : 2
+(3,2) rejected.
+Trying row no : 3 cell no : 3
+(3,3) rejected.
+Trying row no : 3 cell no : 4
+(3,4) accepted. The Queen can be placed at at this position.
+
+Trying row no : 4 cell no : 1
+(4,1) rejected.
+Trying row no : 4 cell no : 2
+(4,2) accepted. The Queen can be placed at at this position.
+X X Q X 
+
+Q X X X 
+
+X X X Q 
+
+X Q X X 
+
+
+
+Trying row no : 4 cell no : 3
+(4,3) rejected.
+Trying row no : 4 cell no : 4
+(4,4) rejected.
+Trying row no : 2 cell no : 2
+(2,2) rejected.
+Trying row no : 2 cell no : 3
+(2,3) rejected.
+Trying row no : 2 cell no : 4
+(2,4) rejected.
+Trying row no : 1 cell no : 4
+(1,4) accepted. The Queen can be placed at at this position.
+
+Trying row no : 2 cell no : 1
+(2,1) accepted. The Queen can be placed at at this position.
+
+Trying row no : 3 cell no : 1
+(3,1) rejected.
+Trying row no : 3 cell no : 2
+(3,2) rejected.
+Trying row no : 3 cell no : 3
+(3,3) accepted. The Queen can be placed at at this position.
+
+Trying row no : 4 cell no : 1
+(4,1) rejected.
+Trying row no : 4 cell no : 2
+(4,2) rejected.
+Trying row no : 4 cell no : 3
+(4,3) rejected.
+Trying row no : 4 cell no : 4
+(4,4) rejected.
+Trying row no : 3 cell no : 4
+(3,4) rejected.
+Trying row no : 2 cell no : 2
+(2,2) accepted. The Queen can be placed at at this position.
+
+Trying row no : 3 cell no : 1
+(3,1) rejected.
+Trying row no : 3 cell no : 2
+(3,2) rejected.
+Trying row no : 3 cell no : 3
+(3,3) rejected.
+Trying row no : 3 cell no : 4
+(3,4) rejected.
+Trying row no : 2 cell no : 3
+(2,3) rejected.
+Trying row no : 2 cell no : 4
+(2,4) rejected.
+ 
+Total number of Solutions=2

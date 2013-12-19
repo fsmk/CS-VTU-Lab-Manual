@@ -1,0 +1,60 @@
+<html>
+<head>
+<script type="text/javascript">
+function formValidator() {
+	var usn = document.getElementById('req1');
+	var sem = document.getElementById('req2');
+	var retUsn =  usnCorrect(usn);
+	var retSem = semCorrect(sem);
+	if(retSem && retUsn) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+function semCorrect(elem2) {
+	var alphaexp2=/^[1-8]$/;
+	if(elem2.value.length == 0){
+		alert("Please enter the input");
+		elem2.focus();
+		return false;
+	}
+	else if(!elem2.value.match(alphaexp2)) {
+		alert("The sem should have a value in the range 1-8");
+		elem2.focus();
+		return false;
+	}
+	else{ 
+		alert("SEMESTER is correct");
+		return true;
+	}
+}
+
+function usnCorrect(elem1) {
+	var alphaexp1 = /[1-4][A-Za-z][A-Za-z][0-9][0-9][A-Za-z][A-Za-z][0-9][0-9][0-9]$/;
+	if(elem1.value.length == 0){
+		alert("Please enter the input");
+		elem1.focus();
+		return false;
+	}
+	else if(!elem1.value.match(alphaexp1)) {
+		alert("Enter the input in DAADAADDD format");
+		elem1.focus();
+		return false;
+	}
+	else {
+		alert("USN is correct");
+		return true;
+	}
+}
+</script>
+</head>
+<body>
+<form onsubmit="return formValidator()">
+Enter the USN<input type="text"id='req1'/><br/>Enter semester<input type="text"id="req2"/><br/>
+<input type="submit"value="check field"/>
+</form>
+</body>
+</html>

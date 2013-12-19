@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>Stack</title>
+<script type="text/javascript">
+var toplayer = "a3";
+var origpos;
+function toTop(totop,pos)
+{
+	var newtop = document.getElementById(totop).style;
+	newtop.zIndex = "10";
+	toplayer = document.getElementById(totop).id;
+	origpos = pos;
+}
+function moveback()
+{
+	document.getElementById(toplayer).style.zIndex=origpos;
+}
+</script>
+
+<!-- We are making a simple style sheet of each paragraph, initializing all the zindex to 0, assigning different colors and relative positions to each of them -->
+
+<style type="text/css">
+#a1 { position:absolute; top:10px; left:10px; z-index:0; background-color:#FF0000 }
+#a2 { position:absolute; top:50px; left:100px; z-index:0; background-color:#0000FF}
+#a3 { position:absolute; top:100px; left:200px; z-index:0; background-color:#FFFF00}
+</style>
+</head>
+<body>
+
+	<!--
+	The body contains the 3 paragraphs, everytime the mouse is placed over a particular paragraph, the “toTop()” function is called and that para rises to the top -->
+
+
+	<p id="a1" onmouseover="toTop('a1','1')" onmouseout="moveback();">	
+	11111111111111111111111111111111111111111111111<br />
+	11111111111111111111111111111111111111111111111<br />
+	11111111111111111111111111111111111111111111111<br />
+	11111111111111111111111111111111111111111111111<br />
+	11111111111111111111111111111111111111111111111<br />
+	11111111111111111111111111111111111111111111111<br />
+	</p>
+	<p id="a2" onmouseover="toTop('a2','2')" onmouseout="moveback();">
+	22222222222222222222222222222222222222222222222<br />
+	22222222222222222222222222222222222222222222222<br />
+	22222222222222222222222222222222222222222222222<br />
+	22222222222222222222222222222222222222222222222<br />
+	22222222222222222222222222222222222222222222222<br />
+	22222222222222222222222222222222222222222222222<br />
+	</p>
+	<p id="a3" onmouseover="toTop('a3','3')" onmouseout="moveback();">
+	33333333333333333333333333333333333333333333333<br />
+	33333333333333333333333333333333333333333333333<br />
+	33333333333333333333333333333333333333333333333<br />
+	33333333333333333333333333333333333333333333333<br />
+	33333333333333333333333333333333333333333333333<br />
+	33333333333333333333333333333333333333333333333<br />
+	</p>
+</body>
+</html>
