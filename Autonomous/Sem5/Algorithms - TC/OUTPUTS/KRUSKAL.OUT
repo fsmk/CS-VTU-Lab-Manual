@@ -1,0 +1,67 @@
+Creating the adjacency matrix :
+Done.
+Randomly inserting infinity edges...
+Waiting : 5 4 3 2 1 Done
+Matrix :
+90	99	72	58	
+9999	32	52	22	
+90	69	55	77	
+4	19	57	44	
+
+
+Searching minimum edge :
+min : -16333
+u : 2	v : 0
+i : 2	j : 0
+i not equal to j i.e. theres no cycle formation.
+
+Searching minimum edge :
+min : 32
+u : 2	v : 2
+i : 0	j : 0
+Addition of edge <2,2> creates a cycle.Skipping...
+
+Searching minimum edge :
+min : 52
+u : 2	v : 3
+i : 0	j : 3
+i not equal to j i.e. theres no cycle formation.
+
+Searching minimum edge :
+min : 55
+u : 3	v : 3
+i : 0	j : 0
+Addition of edge <3,3> creates a cycle.Skipping...
+
+Searching minimum edge :
+min : 72
+u : 1	v : 3
+i : 1	j : 0
+i not equal to j i.e. theres no cycle formation.
+
+Searching minimum edge :
+min : 90
+u : 1	v : 1
+i : 0	j : 0
+Addition of edge <1,1> creates a cycle.Skipping...
+
+Searching minimum edge :
+min : 99
+u : 1	v : 2
+i : 0	j : 0
+Addition of edge <1,2> creates a cycle.Skipping...
+
+Searching minimum edge :
+min : 3190
+u : 0	v : 3
+i : 0	j : 0
+Addition of edge <0,3> creates a cycle.Skipping...
+
+Searching minimum edge :
+min : 9999
+u : 0	v : 3
+MST exists and its Cost=-16209
+Edges of MST are shown below
+<2,0>
+<2,3>
+<1,3>

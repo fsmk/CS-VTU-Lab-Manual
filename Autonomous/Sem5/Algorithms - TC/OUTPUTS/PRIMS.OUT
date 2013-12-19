@@ -1,0 +1,33 @@
+Creating the adjacency matrix :
+Done.
+Randomly inserting infinity edges...
+Waiting : 5 4 3 2 1 Done
+Matrix :
+11	24	80	57	
+0	9999	73	57	
+9999	27	73	74	
+90	8	70	11	
+
+Initialising lowcost[]...
+24  80  57  
+Marking all nodes as visited...
+Initialising the output tree...
+Finding the least cost edge...
+<1,2> Cost : 24
+Finding new least-cost edges from the new vertex...
+One found :<2,3> with cost -> 73
+Low cost contents :
+9999  73  57  
+Finding the least cost edge...
+<1,4> Cost : 57
+Finding new least-cost edges from the new vertex...
+One found :<4,3> with cost -> 70
+Low cost contents :
+9999  70  9999  
+Finding the least cost edge...
+<4,3> Cost : 70
+Finding new least-cost edges from the new vertex...
+Low cost contents :
+9999  9999  9999  
+
+Spanning tree exists and MST cost=151

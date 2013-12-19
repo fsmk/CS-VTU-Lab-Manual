@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl" href="p6a.xsl" ?>
+<vtu>
+	<student>
+		<usn> 1DA10IS031 </usn>
+		<name> Jane Doe </name>
+		<age> 21 </age>
+	</student>
+	<student>
+		<usn> 1DA10IS041 </usn>
+		<name> John Doe </name>
+		<age> 22 </age>
+	</student>
+	<student>
+		<usn> 1DA10IS034 </usn>
+		<name> Jeery Doe </name>
+		<age> 21 </age>
+	</student>
+</vtu>

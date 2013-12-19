@@ -1,0 +1,27 @@
+<html>
+<head>
+<script type="text/javascript">
+function disp(num) {
+	var alphaexp = /^[0-9]+$/;
+	if(!num.value.match(alphaexp)) {
+		alert("Input must have only numbers");
+		return false;
+	}
+	var rn = 0, n = Number(num.value);
+	while(n != 0)
+	{
+		r = n % 10;
+		n = Math.floor(n/10);
+		rn = rn * 10 + r;
+	}
+	alert("The " + num.value + " in reverse is " + rn);
+}
+</script>
+</head>
+<body>
+<form>
+Enter the number<input type="text" name="number"/>
+<input type="button"value="click me"onclick="disp(number)"/>
+</form>
+</body>
+</html>

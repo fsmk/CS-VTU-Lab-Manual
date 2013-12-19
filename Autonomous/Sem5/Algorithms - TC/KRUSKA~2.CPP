@@ -1,0 +1,107 @@
+#include <iostream.h>
+#include <conio.h>
+#include <iomanip.h>
+#define MAX 10
+
+//function to find the root of of given vertex
+int find(int v,int p[])
+{
+	while (p[v]!=v)
+	v=p[v];
+	return v;
+}
+
+// function to merge 2 trees into single tree
+void union_ij(int i,int j,int p[])
+{
+	if (i<j)
+	p[j]=i;
+	else
+	p[i]=j;
+}
+
+void min_span_tree(int n,int c[MAX][MAX])
+{ 
+	int count,i,j,p[MAX],min,u,v,k,t[MAX][2],cost;
+	count=0;// Edges selected so far initialized to zero
+	cost=0;//
+	k=0;   //Points to the first Selected Edge of MST
+	for(i=0;i<n;i++)
+	p[i]=i;//Create forest with n vertices
+	// Selection of  n-1 Edges for MST
+	while(count<n)
+	{
+		min=9999;
+		for (i=0;i<n;i++)
+		{
+			for (j=0;j<n;j++)
+			{
+				if (c[i][j]<min)
+				{
+					min=c[i][j];
+					u=i;
+					v=j;
+				}
+			}
+		}
+		if (min==9999) break;    //No more edges to select
+		else
+		cout << "Edge " << u <<"," << v << " selected with weight " <<min<<".\n";
+		i=find(u,p);//Find root for vertex u
+		j=find(v,p);//Find root for vertex v
+		if (i!=j)
+		{
+			t[k][0]=u;
+			t[k][1]=v;
+			k++;
+			count++;//Update no of edges selected
+			cost=cost+min;//Update cost of MST
+			p[v]=u;//union_ij(u,v,p);//Merge 2 trees with roots i and j
+			cout << "One edge found" << u << "-" << v << "\n";
+
+		}
+		else
+		{
+			cout << "Root of egde " << u <<","<<v<<" is the same : "<<i;
+		}
+		c[u][v]=c[v][u]=9999;//Delete the edge <u,v>by storing big value
+	}
+
+	if (count==n-1)
+	{
+		cout<<"MST Exists and its Cost="<<cost<<endl;
+		cout <<"Edges of MST are shown below"<<endl;
+		for( k=0;k<n-1;k++)
+		{
+			cout<<"<"<<t[k][0]<<","<<t[k][1]<<">"<<endl;
+		}
+	}
+	else
+	{
+		cout<<"Spanning Tree does not Exists"<<endl;
+	}
+}
+
+void main()
+{
+	int u,v,m,n,c[MAX][MAX];
+	cout<<"Enter Number of nodes"<<endl;
+	cin>>n;
+	cout<<"Enter Number of Edges"<<endl;
+	cin>>m;
+	for (int i=0;i<n;i++)
+	{
+		for (int j=0;j<n;j++)
+		{
+			c[i][j]=9999;
+		}
+	}
+	for (i=1;i<=m;i++)
+	{  
+		cout<<"Enter "<< i <<"Edge <u,v,cost> "<<endl;
+		cin>>u;cin>>v;cin>>c[u][v];
+		c[v][u]=c[u][v];
+	}
+	min_span_tree(n,c) ;
+	getch();
+}
