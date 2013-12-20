@@ -1,0 +1,31 @@
+<html>
+<head>
+</head>
+<body>
+<script type="text/javascript">
+var fib1 = 0, fib2 = 1, fib;
+
+var num = prompt("Enter a number", " ");
+if(num != null && num > 0){
+	document.write("<h1>" + num + " fibonacci numbers are <br> </h1>");
+
+	if(num == 1){
+		document.write("<p>" + fib1 + "</p>");
+	}
+	else {
+		document.write("<p>" + fib1 + "</p><p>" + fib2 + "</p>");
+	}
+
+	for(i = 3; i <= num; ++i){
+		fib = fib1 + fib2;
+		document.write("<p>" + fib + "</p>");
+		fib1 = fib2;
+		fib2 = fib;
+	}
+}
+else {
+	alert("No proper input");
+}
+</script>
+</body>
+</html>	
