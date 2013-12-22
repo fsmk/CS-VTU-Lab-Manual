@@ -1,10 +1,7 @@
-CS-VTU-Lab-Manual
-=================
+# CS-VTU-Lab-Manual
 
 Fossalized Lab Manual for CS.
 
-This project consists of Autonomous and VTU Lab manual for CSE.
-=======
-## Lab Manual with programs ported to Free and Open Source Software
+This repository is a collection programs ported to Free and Open Source Software which can also serve as a manual for CSE students studying under VTU and Autonomous institutions.
 
-A part of Doc-a-thon, an initiative by [Free software Movement Karnataka](http://fsmk.org/)
+An initiative by [Free software Movement Karnataka](http://fsmk.org/)
