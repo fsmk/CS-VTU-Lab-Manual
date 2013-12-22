@@ -1,10 +1,9 @@
 /******************************************************************************
-* File                : bfs.c
-* Description        : Program to sort an array using Merge Sort
-* Author                : Manas Jayanth (prometheansacrifice)
-* Compiler        : g++ (gcc compiler 4.6.3, Ubuntu 12.04)
-* Date                : 20 December 2013
+* File                : Bfs.cpp
 * Description         : Checks if a given node is reachable using BFS technique
+* Author              : Manas Jayanth (prometheansacrifice)
+* Compiler            : g++ (gcc compiler 4.6.3, Ubuntu 12.04)
+* Date                : 20 December 2013
 ******************************************************************************/
 #include <iostream>
 #define MAX 10
