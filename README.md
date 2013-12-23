@@ -1,6 +1,6 @@
 # CS-VTU-Lab-Manual
 
-![FSMK Logo](http://static3.wikia.nocookie.net/__cb20120610113026/fsmk/images/c/c6/FSMK_Logo.png)
+![FSMK Logo](http://upload.wikimedia.org/wikipedia/en/thumb/d/dd/Free_Software_Movement_Logo.png/220px-Free_Software_Movement_Logo.png)
 
 Fossalized Lab Manual for CS.
 
