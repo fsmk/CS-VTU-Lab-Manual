@@ -1,3 +1,10 @@
+/******************************************************************************
+* File                : p1.cpp
+* Description         : Program to find sum of subset using back tracking
+* Author              : Manas Jayanth (prometheansacrifice)
+* Compiler            : g++ (gcc compiler 4.6.3, Ubuntu 12.04)
+* Date                : 23 December 2013
+******************************************************************************/
 #include <iostream>
 #include <cstring>
 #include <fstream>
@@ -41,7 +48,7 @@ int main()
 					break;
 				x=strlen(s1);
 				for(i=x-1;i>=0;i--)
-f2<<s1[i];
+                    f2<<s1[i];
 				f2<<endl;
 			}
 				f1.close();
