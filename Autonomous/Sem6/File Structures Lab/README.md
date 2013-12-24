@@ -2,7 +2,7 @@
 
 File structure programs written in C++
 
-## Instruction for the programs
+## Instructions for the programs
 
 All the programs are to be compiled with `g++`. Simple command to compile them is as follows
 
