@@ -5,7 +5,7 @@ Data members: Employee_Number (an integer), Employee_Name (a string of character
 Basic_Salary (an integer) , All_Allowances(an integer), IT (an integer), Net_Salary (an integer). 
 Member functions: to read the data of an employee, to calculate Net_Salary and to print the values of all the data members. 
 (All_Allowances = 123% of Basic; Income Tax (IT) = 30% of the gross salary (= basic_Salary _ All_Allowance); 
-Net_Salary = Basic_Salary + All_Allowances – IT)
+Net_Salary = Basic_Salary + All_Allowances ï¿½ IT)
 */
 #include<iostream>
 
