@@ -1,3 +1,5 @@
+//This code is written by Abhiram at the labs of PESIT, BSC. Feel free to use it for educational purposes.
+
 /*PROGRAM 6
 Design, develop, and execute a program in C++ to create a class called STRING and implement the 
 following operations. Display the results after every operation by overloading the operator << 
