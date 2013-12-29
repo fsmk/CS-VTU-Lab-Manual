@@ -1,0 +1,509 @@
+Program 1: Error detecting code using CRC-CCITT (16- bits)
+Sender Program
+
+#include<stdio.h>
+#include<stdlib.h>
+#define GR1 0x0810	//G = 0x11021
+
+static int R=0;
+
+void updateCRC(int x)
+{
+	int i, x_msb;
+	for(i=7;i >= 0;i--) 
+	{
+		x_msb = (x >> i) & 1; 		/* k = msb of x*/
+		R = (R & 0x8000)?( ((R ^ GR1) << 1) + (x_msb ^ 1) ):((R << 1) + x_msb);
+		R &= 0xffff;
+}	}
+
+int main(int argc, char** argv)
+{
+	int c;
+	FILE *fp;
+	if(argc = =1)
+		printf("Usage:#%s filename\n\n",argv[0]), 	exit(0);
+	if( (fp = fopen(argv[1],"r+")) == NULL)
+		printf("Error: Cannot open '%s' file.\n\n",argv[1]),	exit(0);
+	while ((c=getc(fp)) != EOF)
+		updateCRC(c);
+	updateCRC(0);
+	updateCRC(0);	
+	putc(((R >> 8) & 0x0ff), fp);		//append CRC to file
+	putc((R & 0x0ff), fp);
+	fclose(fp);
+	printf("\nMessage Transmited Successfully...\n");	
+} 
+
+Receiver Program
+
+#include<stdio.h>
+#include<stdlib.h>
+#define GR1 0x0810	//G = 0x11021
+
+static int R=0;
+
+void updateCRC(int x)
+{
+	int i, x_msb;
+	for(i=7;i >= 0;i--) 
+	{
+		x_msb = (x >> i) & 1; 		/* k = msb of x*/
+		R = (R & 0x8000)?( ((R ^ GR1) << 1) + (x_msb ^ 1) ):((R << 1) + x_msb);
+		R &= 0xffff;
+}	}
+
+int main(int argc, char** argv)
+{	
+int c;
+	FILE *fp;
+	if(argc = =1)
+		printf("Usage:#%s filename\n\n",argv[0]), 	exit(0);
+	if( (fp = fopen(argv[1],"r")) == NULL)
+		printf("Error: Cannot open '%s' file.\n\n",argv[1]),	exit(1);
+	printf("Message Received...\n");
+	while ((c=getc(fp)) != EOF)
+		updateCRC(c);
+	printf("\nCRC Computed : %s",R==0? "No errors detected...\n":"Error in Transmission...\n");
+	fclose(fp);
+}
+ 
+ Program 2: Distance Vector Algorithm to find suitable path for transmission. 
+#include<stdio.h>
+int n, e, dist[20][20], graph[20][20];
+
+void initialize()
+{	int i, j;
+	for(i = 1; I <= 20; i++)
+		for(j = 1;  j <= 20;  j++) 	dist[i][j] = graph[i][j] = 0;
+}
+void getgraph()
+{	int i, strt, end;
+	printf("Enter no. of Routers & Edges in the graph:");
+	scanf("%d%d", &n, &e);
+	while(e-- > 0)
+	{	printf("Enter start router --> end router\n");
+		scanf("%d%d",&strt, &end);
+		graph[strt][end] = graph[end][strt] = 1;
+}	}
+void gettable(int src)
+{	int i, j;
+	printf("\nEnter details of Source router %d\n",src);
+	printf("Enter distance from Source router to Adjacent routers...\n");
+	for(i=1; i <= n; i++) 
+		if(graph[src][i] == 1) 
+			printf("%d to %d :", src, i),
+			scanf("%d", &dist[src][i]);
+	printf("\nEnter the routing table details of Adjacent routers...\n");
+	for(i = 1; i <= n; i++)
+		if(graph[src][i] == 1)
+		{	printf("Enter the details of routing table of router %d\n", i);
+			for(j = 1; j <= n; j++)
+			{	if(i == j) continue;
+				printf("Distance from router %d to %d :", i, j);
+				scanf("%d", &dist[i][j]);
+}		}	}
+void process(int src, int dest)
+{	int min=32765, i, delay, via;
+	for(i = 1; i <= n; i++)
+		if(graph[src][i] == 1)
+		{	delay = dist[src][i] + dist[i][dest];
+			if(delay < min)
+				min = delay,	via = i;
+		}	
+	printf("\nSuitable path from source router %d to destination router %d "
+			"is through router %d with delay %d units\n",src, dest, via, min);
+}
+main()
+{	int src, dest;
+	initialize();
+	getgraph();
+	printf("\nEnter the Source & Destination router\n");
+	scanf("%d%d",&src, &dest);
+	gettable(src);
+	process(src, dest); 
+}
+ 
+Program 3: Using TCP/IP sockets, a client-server program to make client sending the file name & the server to send back the contents of the requested file if present.
+
+Client Program
+
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+//include<sys/socket.h>			//for sockaddr
+//include<netinet/in.h>			//for sockaddr_in 
+#include<sys/fcntl.h>				//for O_RDONLY
+#include<netdb.h>				
+#define SERVER_PORT 5000
+#define BUF_SIZE 4096
+
+int main(int argc, char *argv[])
+{	int c,s,bytes;
+	char buf[BUF_SIZE],fname[255];
+	struct hostent *h;
+	struct sockaddr_in soc;
+	
+	if(argc!=3)	
+		printf("Usage: #%s filename IPaddress\n\n",argv[1]),exit(1);
+
+	h=gethostbyname(argv[2]);		//get server address
+	if(!h)	 printf("\nError: gethostbyname failed"),	exit(0);
+
+	memset(&soc,0,sizeof(soc));		//allocate memory for 'soc'
+	soc.sin_family = AF_INET;			//assign values
+	memcpy(&soc.sin_addr.s_addr, h->h_addr, h->h_length);
+	soc.sin_port = htons(SERVER_PORT);
+	
+	s = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+	if(s<0) printf("\nError: socket creation failed"),	exit(0);
+	printf("\nSocket created for communication...");
+
+	c = connect(s, (struct sockaddr*) &soc, sizeof(soc));
+	if(c<0) printf("\nError: connection to server failed"),	exit(0);
+	printf("\nConnected to Server...");
+	
+	if(!write(s, argv[1], 255)) 
+		printf("\nError: Failed to write to socket"),exit(0);
+	else 
+	{	printf("\nFilename transmitted to the server..."
+			"\ndata received from the server...\n\n");
+	}
+	while(bytes=read(s, buf, BUF_SIZE))
+		write(1, buf, bytes);
+}
+ 
+
+Server Program
+
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+//include<sys/socket.h>			//for sockaddr
+//include<netinet/in.h>			//for sockaddr_in 
+#include<sys/fcntl.h>				//for O_RDONLY
+#include<netdb.h>				
+#define SERVER_PORT 5000
+#define BUF_SIZE 4096
+
+int main()
+{	int 	s, b, l, fd, sa, bytes, on = 1;
+ 	char 	buf[BUF_SIZE], fname[255];
+	struct sockaddr_in 	soc;	
+ 	memset(&soc, 0, sizeof(soc));		//reset soc structure
+	soc.sin_family = AF_INET;			//assign values
+ 	soc.sin_addr.s_addr = htonl(INADDR_ANY);
+ 	soc.sin_port = htons(SERVER_PORT);
+ 	s = socket(AF_INET,SOCK_STREAM,IPPROTO_TCP);
+ 	if(s<0) 		printf("Error: socket creation failed"), exit(0);
+ 	setsockopt(s, SOL_SOCKET, SO_REUSEADDR, (char*)&on, sizeof(on));
+	b = bind(s, (struct sockaddr*)&soc, sizeof(soc));
+ 	if(b<0) 	printf("Error: bind failed"), exit(0);
+ 	listen(s, 5);					//listen soc for any request
+            while(1)
+ 	{	printf("\nWaiting for request...\n");
+		sa = accept(s, 0, 0);			//create a socket for comnucn
+		if(sa < 0) printf("Error:accept failed");
+		printf("\nRequest received...");
+
+		memset(fname, 0, sizeof(fname));
+   		read(sa, fname, BUF_SIZE);		//read file name from soc
+		printf("\nrequested filename: %s", fname);
+		fd = open(fname, O_RDONLY);	//open file to READ 
+   		if(fd < 0)
+		{	printf("\nError message sent to client...\n");
+			write(sa, "could not open requested file", 40);
+		}
+		else {
+   		while(bytes = read(fd, buf, BUF_SIZE))
+ 			write(sa, buf, bytes);		//write the contents to soc
+		printf("\nFile Transmitted to Client...\n");
+		close(fd);
+		}
+   		close(sa);
+}	}
+ 
+Program 4(a): Using FIFO as IPC channel, a client-server program to make client sending the file name & the server to send back the contents of the requested file if present.
+ 
+Client Program
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<sys/stat.h>		//for S_IFIFO
+#define FIFO1 "fifo1"
+#define FIFO2 "fifo2"
+#define MAXBUF 1024
+#define PERMS 0666
+
+main(int argc,char **argv)
+{	int readfd, writefd, n;
+	char buff[MAXBUF];
+
+	if(argc!=2)	printf("\nUsage:#%s filename",argv[0]);
+		
+	if( (writefd = open(FIFO1,1)) < 0)			 //FIFO1 for writing
+		printf("client:can't open write fifo\n"),exit(0);
+	if( (readfd = open(FIFO2,0)) < 0)			//FIFO2 for reading
+	    printf("client:can't open read fifo\n"),exit(0);
+	
+	if(write(writefd, argv[1], 255)<0)			//write file name to FIFO file
+	 	printf("client error:filename write error\n"),exit(0);
+	
+	while( (n=read(readfd, buff, MAXBUF)) > 0)	//read contents of file from
+		if(write(1,buff,n)!=n)				//FIFO file sent by server	
+			printf("client:message write error\n"),exit(0);	
+		
+	close(readfd);
+	close(writefd);
+	if(unlink(FIFO1)<0)					//unlink all FIFO's
+	    printf("client:can't unlink\n"),exit(0);
+	if(unlink(FIFO2)<0)
+	    printf("client:can't unlink\n"),exit(0);
+}
+ 
+
+Server Program
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<sys/stat.h>		//for S_IFIFO
+#define FIFO1 "fifo1"
+#define FIFO2 "fifo2"
+#define MAXBUF 1024
+#define PERMS 0666
+
+main()
+{	int f1, f2, n, fd;
+	char buff[MAXBUF],fname[255];
+
+	if( mkfifo(FIFO1, S_IFIFO|PERMS) < 0 )
+		printf("Error:can't create %s\n",FIFO1), 	
+exit(0);
+	if( mkfifo(FIFO2,S_IFIFO|PERMS) < 0 )
+		unlink(FIFO1),	
+printf("Error:can't create %s\n",FIFO2),	
+exit(0);
+
+	if( (f1=open(FIFO1,0))<0)				//open FIFO files
+		printf("Server Error:can't open %s for reading\n",FIFO1),
+		unlink(FIFO1),unlink(FIFO2),exit(0);
+	if( (f2=open(FIFO2,1))<0)
+		printf("Server Error:can't open %s for writing\n"FIFO2),
+		unlink(FIFO1),unlink(FIFO2),exit(0);	
+
+	if((n=read(f1,fname,255))<=0)			//read filename from FIFO 
+		printf("server:filename read error");		//file sent by client
+	printf("Filename read from client:%s\n",fname);
+
+	if( (fd=open(fname,0)) <0 )				//open the file sent by client
+		write(f2,"error:can't open file",50),		
+		printf("%s\n","error:can't open file");
+	else
+		while( (n=read(fd,buff,MAXBUF)) >0 )	//read contents of file 
+			if(write(f2,buff,n)!=n)			//write it to FIFO file
+				printf("server:data write error");	
+	printf("Response sent to client...\n");
+		
+	close(f1);
+	close(f2);
+}
+ 
+Program 4(b): Using Message Queue as IPC channel, a client-server program to make client sending the file name & the server to send back the contents of the requested file if present.
+
+Header File
+#include<sys/ipc.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#define MAXMESGDATA (4096-16)
+#define MKEY1 1234L
+#define MKEY2 1235L
+#define PERMS 0666
+
+typedef struct
+{	int msg_len;
+	long msg_type;
+	char msg_data[MAXMESGDATA];
+}Msg;
+
+msg_send(uint id,Msg *msgptr)
+{	if( msgsnd(id,(char*)&(msgptr->msg_type),msgptr->msg_len,0)<0 )
+		printf("msgsnd error"),	exit(0);
+}
+
+msg_recv(uint id,Msg *msgptr)
+{	int n=msgrcv(id,(char *)&(msgptr->msg_type),MAXMESGDATA,msgptr->msg_type,0);
+	msgptr->msg_data[n]='\0';
+	if((msgptr->msg_len=n)<0)
+		printf("msgrcv error"),exit(0);
+	return(n);
+}
+
+Client Program
+
+#include "prog6-msgq_header.h"
+Msg msg;
+
+client(uint rid,uint wid)
+{	printf("Enter the file name:");
+	if(fgets(msg.msg_data, MAXMESGDATA, stdin)==NULL)
+		printf("client:filename read error\n"),
+exit(0);
+	msg.msg_len=strlen(msg.msg_data)-1;
+	msg.msg_type=1L;
+	msg_send(wid, &msg);
+	int n;
+	while( (n=msg_recv(rid, &msg) ) > 0)
+		if(write(1, msg.msg_data, n) != n)
+			printf("client:data write error\n"),  exit(0);
+}
+
+ 
+main()
+{	uint rid,wid;
+	if( (wid = msgget(MKEY1,0)) < 0)
+	    	printf("client:can't get msgget que1\n"),  exit(0);
+	if( (rid = msgget(MKEY2,0)) < 0)
+		printf("client:can't get msgget que2\n"),  exit(0);
+	client(rid,wid);
+	if(msgctl(rid, IPC_RMID, (struct msqid_ds *)0) < 0)
+		printf("\nclient:can't RMID message que1");
+	if(msgctl(wid, IPC_RMID, (struct msqid_ds *)0) < 0)
+		printf("\nclient:can't RMID message que2");
+}
+
+SERVER PROGRAM
+
+#include "prog6-msgq_header.h"
+Msg msg;
+
+server(uint rid,uint wid)
+{	int n,fd;
+	msg.msg_type=1L;
+	if((n=msg_recv(rid,&msg))<=0)
+		printf("server:filename read error");
+
+	if( (fd=open(msg.msg_data,0)) <0 )
+	{	strcpy(msg.msg_data,"error:can't open file");
+		msg.msg_len=strlen(msg.msg_data);
+		msg_send(wid,&msg);
+	}
+	else
+	{	while( (n=read(fd,msg.msg_data,MAXMESGDATA)) >0 )
+			msg.msg_len=n,
+			msg_send(wid,&msg);
+		close(fd);
+		if(n<0) 	printf("server:data read error"),exit(0);
+	}
+	msg.msg_len=0;
+	msg_send(wid,&msg);
+}
+
+main()
+{	uint  rid,wid;
+	if( (rid=msgget(MKEY1,PERMS|IPC_CREAT)) <0 )
+	    	printf("server:can't get msg que1\n"),exit(0);
+	if( (wid=msgget(MKEY2,PERMS|IPC_CREAT)) <0 )
+		printf("server:can't get msg que2\n"),exit(0);
+	server(rid,wid);
+} 
+Program 5: Simple RSA algorithm to Encrypt & Decrypt the data.
+
+#include<stdio.h>
+#include<fcntl.h>
+#define MAX 100
+#define MSGFILE "a.txt"
+uint gcd(uint x, uint y)
+{	return y==0? x:gcd(y,x%y);	}
+uint rsa(uint txt, uint ed, uint n)
+{	uint i=1,rem=1;
+	while(i++<=ed)	
+		rem=(rem*txt)%n;
+	return rem;
+}
+short prime(uint no)
+{	uint i;
+	for(i=2; i<=no/2; i++)
+		if(no%i==0) return 0;
+	return 1;
+}
+int main()
+{ 	char	msg[MAX];
+ 	uint 	pt[MAX], ct[MAX], p, q, n, z, e, d, i, len;
+	FILE 	*fd;
+	do{
+	printf("\nEnter 2 large prime numbers (p & q):\n");
+	scanf("%d %d", &p, &q);	
+	}while(!prime(p) || !prime(q));
+	n = p * q;
+	z = (p - 1) * (q - 1);
+	do
+	{	printf("\nEnter a prime number for encryption (e) relative to %d(z):",z);
+		scanf("%d",&e);
+	}while(!prime(e) || e>n || gcd(e,z)!=1); 
+	for(d = 2; d < z; d++)				//calculate decryptio key 'd'
+		if((e*d)%z == 1)
+			break;
+	printf("Enter the Message\n");			//get message from owner.
+	len=read(1,msg,MAX)-1;
+	for(i = 0; i < len; i++)				//store it in plain text array
+		pt[i]=msg[i];
+	printf("\nPrivate Key Pair(e, n) = (%d, %d)\n”
+“Public Key Pair (d, n) = (%d, %d)\n\n", e, n, d, n);		
+	printf("\nCipher Text=");
+	for(i = 0; i < len; i++)				//convert plain to cipher text
+		printf("%d ", ct[i] = rsa(pt[i], e, n));
+	printf("\n\nPlain Text=");	
+	for(i = 0; i < len; i++)				//convert cipher to plain text
+		printf("%c",rsa(ct[i],d,n));
+	printf("\n\n"); 
+}
+ 
+Program 6: Program for congestion control using Leaky Bucket algorithm.
+
+#include<stdio.h>
+#define NOF_PACKETS 10
+
+int rand(int a)
+{	int 	rn = (random()%10)%a;
+	return 	rn == 0 ? 1 : rn;
+}
+
+int main()
+{	int packet_sz[NOF_PACKETS],i,clk,b_size,o_rate,p_sz_rm=0,p_sz,p_time,op;
+	for(i=0;i<NOF_PACKETS;++i)	
+		packet_sz[i]=rand(6)*10;
+	for(i=0;i<NOF_PACKETS;++i)
+		printf("packet[%d]:%d bytes\t",i,packet_sz[i]);
+	printf("\nEnter the Output rate:");
+	scanf("%d",&o_rate);
+	printf("Enter the Bucket Size:");
+	scanf("%d",&b_size);
+	for(i=0; i<NOF_PACKETS; ++i)
+	{	if( (packet_sz[i] + p_sz_rm) > b_size)
+			if(packet_sz[i] > b_size)
+				printf("\n\nIncomming packet size (%dbytes) is Greater than bucket capacity (%dbytes)-PACKET REJECTED",packet_sz[i],b_size);
+			else
+				printf("\n\nBucket capacity exceeded-PACKETS REJECTED!!");
+		else
+		{	p_sz_rm += packet_sz[i];
+			printf("\n\nIncomming Packet size: %d",packet_sz[i]);
+			printf("\nBytes remaining to Transmit: %d",p_sz_rm);
+			p_time = rand(4)*10;
+			printf("\nTime left for transmission: %d units",p_time);
+			for(clk=10; clk<=p_time; clk+=10)
+			{	sleep(1);
+				if(p_sz_rm)
+				{	if(p_sz_rm <= o_rate)
+						op = p_sz_rm,	p_sz_rm = 0;	
+					else
+						op = o_rate, 	p_sz_rm -= o_rate;
+					printf("\n  Packet of size %d Transmitted",op);
+					printf("----Bytes Remaining to Transmit: %d",p_sz_rm);
+				}
+				else
+				{
+					printf("\nTime left for transmission: %d units",p_time-clk);
+					printf("\n  No packets to transmit!!");
+
+}	}	}	}	}
