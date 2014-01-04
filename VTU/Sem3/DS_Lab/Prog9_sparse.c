@@ -1,3 +1,12 @@
+//This code is written by Abhiram at the labs of PESIT, BSC. Feel free to use it for educational purposes.
+
+
+/*PROGRAM 9
+Design, develop, and execute a program in C to read a sparse matrix of integer values and 
+to search the sparse matrix for an element specified by the user. Print the result of the search 
+appropriately. Use the triple <row, column, value> to represent an element in the sparse 
+matrix. */
+
 #include <stdio.h>
 struct sparse
 	{
