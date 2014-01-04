@@ -12,7 +12,7 @@ INSERT INTO COURSE VALUES('103','Microprocessors','Computer Science');
 INSERT INTO COURSE VALUES('104','System Software','Computer Science');
 INSERT INTO COURSE VALUES('105','Database Systems','Computer Science');
 INSERT INTO COURSE VALUES('201','Electronic Circuits','Electronics');
-INSERT INTO COURSE VALUES('202','Signals n Systems','Electronics');
+INSERT INTO COURSE VALUES('202','Signals and Systems','Electronics');
 INSERT INTO COURSE VALUES('203','Communication Media','Electronics');
 INSERT INTO COURSE VALUES('301','Biochemistry','Biotechnolgy');
 
@@ -29,7 +29,7 @@ INSERT INTO ENROL VALUES('EC2002','101','7','80');
 INSERT INTO ENROL VALUES('BT3001','301','5','75');
 
 INSERT INTO TEXT VALUES('1011','Let Us C','BPB Publications','Y.Kantekar');
-INSERT INTO TEXT VALUES('1012','Prgmming in ANSI-C','Tata McGraw Hill','E.BalguruSwamy');
+INSERT INTO TEXT VALUES('1012','Programming in ANSI-C','Tata McGraw Hill','E.BalguruSwamy');
 INSERT INTO TEXT VALUES('1021','Data Structures Using C  ','Pearson Education','Tenenbaum');
 INSERT INTO TEXT VALUES('1031','The Intel Microprocessors','Pearson Education','B.B. Brey');
 INSERT INTO TEXT VALUES('1041','System Software-Concepts ','Pearson Education','L.L. Beck');
