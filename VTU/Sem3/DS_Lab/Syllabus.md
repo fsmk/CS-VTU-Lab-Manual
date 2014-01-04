@@ -12,8 +12,8 @@ and / (divide).
 3. Design, develop, and execute a program in C to evaluate a valid postfix 
 expression using stack. Assume that the postfix expression is read as a 
 single line consisting of non-negative single digit operands and binary 
-arithmetic operators. The arithmetic operators are +(add), - (subtract), 
-* (multiply) and / (divide).
+arithmetic operators. The arithmetic operators are +(add), - (subtract), * 
+(multiply) and / (divide).
 4. Design, develop, and execute a program in C to simulate the working 
 of a queue of integers using an array. Provide the following operations:
 a. Insert
