@@ -1,0 +1,1376 @@
+Design, develop, and execute the following programs using LEX:
+1.	a) Program to count the number of characters, words, spaces and lines in a given input file.
+%{ 
+	/* 1a.l Lex Program to count Chars, Words, Spaces, Lines in a given input file */
+	int wc = 0, cc = 0, lc = 0, bc=0;
+              char infile[25];
+%}
+word [^ \t\n]+
+eol \n
+%%
+{word}	 	{wc++; cc+=yyleng;}
+{eol} 		{lc++; cc++; }
+[ ]		{bc++; cc++; }
+[\t]		{bc+=8; cc++;}
+.	 	{cc++;}
+%%
+main()
+{
+printf(" Read the Input File Name \n ");
+scanf(“%s”,infile);
+                             yyin=fopen(infile,"r");      /*   OR   printf(" Read the Text ( Cntrl+D to terminate )\n ");   without file */
+yylex();
+fclose(yyin);
+printf(" No. of Chars: %d\n No. of Words: %d\n No.of Lines: %d\n No. of  Blanks: %d\n",cc,wc,lc,bc); }
+
+			OR
+%{
+                 int wc = 0, cc = 0, lc = 0, bc=0;
+                char infile[25];
+	%}
+%%
+\n 		{lc++,cc++;}
+[^ \t\n]+ 	{wc++,cc+=yyleng;}
+"  " 		{bc++,cc++;}
+.		 {cc++;}
+%%
+
+
+int main()
+{
+printf(" Read the Input File Name \n ");
+scanf(“%s”,infile);
+                             yyin=fopen(infile,"r");      /*   OR   printf(" Read the Text ( Cntrl+D to terminate )\n ");   without file */
+yylex();
+fclose(yyin);
+printf(" No. of Chars: %d\n No. of Words: %d\n No.of Lines: %d\n No. of  Blanks: %d\n",cc,wc,lc,bc); }
+}
+
+
+     b) Program to count the numbers of comment lines in a given C program. Also   eliminate them and copy the      
+          resulting  Program into separate file.
+%{
+ /*1b.l Program to count the numbers of comment lines in a given C program, and Eliminate them */
+int cc=0;
+%}
+%x CMNT 
+%%
+"/*"    		{BEGIN CMNT; cc++;}
+<CMNT>. 	;
+<CMNT>\n	;
+<CMNT>"*/"	{BEGIN 0; }
+%%
+main(int argc, char *argv[])
+{
+if(argc !=3 )
+ { printf(" Usage: %s <src file> <dst file>\n",argv[0]);
+   return;
+ }
+yyin=fopen(argv[1],"r");
+yyout=fopen(argv[2],"w");
+yylex();
+printf(" No. of Comment Lines: %d\n",cc);
+}
+OR
+%{
+int cc=0;
+%}
+%x CMNTML CMNTSL
+%%
+"/*"			{BEGIN CMNTML;cc++;}
+<CMNTML>.		;
+<CMNTML>\n 		;
+<CMNTML>"*/" 	{BEGIN 0;}
+"//" 			{BEGIN CMNTSL;cc++;}
+<CMNTSL>.		 ;
+<CMNTSL>\n 		{BEGIN 0;}
+%%
+main(int argc,char *argv[])
+{
+if(argc!=3)
+{
+printf("usage:%s<src file><dst file>\n",argv[0]);
+return;
+}
+yyin=fopen(argv[1],"r");
+yyout=fopen(argv[2],"w");
+yylex();
+printf("No.of comment lines:%d\n",cc);
+}
+
+2.	 a) Program to recognize a valid arithmetic expression and to recognize the identifiers and operators present.  
+          Print  them separately.
+%{
+/*2a.l  Program to recognize a valid arithmetic expression and to recognize identifiers and operators */
+int a[]={0,0,0,0},i,valid=1,opnd=0;
+%}
+%x OPER
+%%
+[a-zA-Z0-9]+ { BEGIN OPER; opnd++;}
+<OPER>"+" { if(valid) { valid=0;i=0;} else ext();}
+<OPER>"-" { if(valid) { valid=0;i=1;} else ext();}
+<OPER>"*" { if(valid) { valid=0;i=2;} else ext();}
+<OPER>"/" { if(valid) { valid=0;i=3;} else ext();}
+<OPER>[a-zA-Z0-9]+ { opnd++; if(valid==0) { valid=1; a[i]++;} else ext();}
+<OPER>"\n" { if(valid==0) ext();  else return 0;}
+.\n ext();
+%%
+ext()
+{  printf(" Invalid Expression \n"); exit(0); }
+main()
+{
+printf(" Type the arithmetic Expression \n");
+yylex();
+printf(" Valid Arithmetic Expression \n");
+printf(" No. of Operands/Identifiers : %d \n ",opnd);
+printf(" No. of Additions : %d \n No. of Subtractions : %d \n",a[0],a[1]);
+printf(" No. of Multiplications : %d \n No. of Divisions : %d \n",a[2],a[3]);
+}
+
+
+
+
+      b) Program to recognize whether a given sentence is simple or compound.
+
+%{
+        /* Program to recognize whether a given sentence is simple or compound.*/
+%}
+ws [ \n\t]+
+%%
+{ws}"and"{ws} |
+{ws}"AND"{ws} |
+{ws}"or"{ws} |
+{ws}"OR"{ws}  |
+{ws}"but"{ws} |
+{ws}"BUT"{ws} |
+{ws}"because"{ws} |
+{ws}"nevertheles"{ws} {printf("compound sentence\n"); exit(0);}
+. ;
+\n return 0;
+%%
+main()
+{
+printf("type the sentence\n");
+yylex();
+printf("simple sentence\n");
+}
+
+
+
+
+OR
+%{
+%}
+%%
+[aA][nN][dD]|[oO][rR]|[nN][oO][tT]|[bB][uU][tT] { printf("compound sentence\n"); 
+                                                        exit(0);}
+.	 ;
+\n return 0;
+%%
+main()
+{
+printf("type the sentence\n");
+yylex();
+printf("simple sentence\n");
+}
+
+
+
+
+
+
+
+
+3.	Program to recognize and count the number of identifiers in a given input file.
+
+%{
+/* 3.l Lex Program to Recognize and count the Identifiers in a given input file ( C Program)  */
+int idc=0;
+%}
+WS [ \t\n]*
+ID [_a-zA-Z][_a-zA-Z0-9]*
+DECLN "int"|"float"|"char"|"short"|"long"|"unsigned"
+%x DEFN
+%%
+{DECLN}  {BEGIN DEFN;}
+<DEFN>{WS}{ID}{WS}\,	idc++;
+<DEFN>{WS}{ID}{WS}\;	idc++;
+<*>\n	;
+<*>.	;
+%%
+main(int argc, char **argv)
+{
+if(argc==2)
+{
+yyin=fopen(argv[1],"r");
+yylex();
+printf(" Total No. of Identifiers : %d\n",idc);
+}
+else
+printf(" Usage : %s <file> \n\n",argv[0]);
+}
+
+Design, develop, and execute the following programs using YACC:
+4.	a) Program to recognize a valid arithmetic expression that uses operators +, -, * and /.
+
+Lex Part
+%{
+/* 4a.l */
+#include "y.tab.h"
+%}
+%%
+[0-9]+(\.[0-9]+)?     	{ return NUM;}
+[a-zA-Z][_a-zA-Z0-9]* 	{ return ID; }
+[\t] 			;
+\n 			return 0;
+. 			return yytext[0];
+%%
+
+Yacc Part
+
+%{
+/* 4a.y Yacc Program to check the validity of an arithmetic Expression*/
+#include<stdio.h>
+%}
+%token NUM ID
+%left '+' '-'
+%left '*' '/'
+%%
+e : e '+' e
+|   e '-' e
+|   e '*' e
+|   e '/' e
+|   '('e')'
+| NUM
+| ID         ;
+%%
+main()
+{
+printf(" Type the Expression & Press Enter key\n");
+yyparse();
+printf(" Valid Expression \n");
+}
+yyerror()
+{
+printf(" Invalid Expresion!!!!\n");
+exit(0);
+}
+
+
+
+
+
+
+
+
+
+
+     b) Program to recognize a valid variable, which starts with a letter, followed by any number of letters or   
+         digits.
+
+Lex part
+%{
+/* 4b.l */
+#include "y.tab.h"
+%}
+%%
+[a-z] return L;
+[0-9] return D;
+%%
+
+Yacc part
+%{
+/* 4b.y Yacc Program to recognize a variable (Letter followed by any number of Letters or Digits )
+%}
+%token L D 
+%%
+var : L E  { printf(" Valid Variable \n"); return 0;}
+E: E L       ;
+|E D        ;
+|              ;
+%%
+main()
+{ printf(" Type the Variable \n");   yyparse();  }
+yyerror()
+{  printf(" Invalid variable !!!\n");  exit(0); }
+
+5.	a) Program to evaluate an arithmetic expression involving operators +, -, * and /.
+
+Lex Part
+
+%{
+/* 5a.l */
+#include<stdlib.h>
+#include "y.tab.h"
+extern int yylval;
+%}
+%%
+[0-9]+  	   	{  yylval=atoi(yytext);      return NUM;    }
+[\t] 		;
+\n 		return 0;
+. 		return yytext[0];
+%%
+
+
+
+
+
+
+
+Yacc Part
+
+%{
+#include <stdio.h>
+/* 5a.y Yacc Program to evaluate a valid arithmetic Expression*/
+%}
+%token NUM 
+%left '+' '-'
+%left '*' '/'
+%%
+expr : e { printf(" Result : %d\n",$1); return 0;};
+e : e '+' e {$$=$1+$3;}
+|   e '-' e {$$=$1-$3;}
+|   e '*' e {$$=$1*$3;}
+|   e '/' e {$$=$1/$3;}
+|   '('e')' {$$=$2;}
+| NUM       {$$=$1;};
+%%
+main()
+{
+printf(" Type the Expression & Press Enter key\n");  yyparse();
+printf(" Valid Expression \n");
+}
+yyerror()
+{ printf(" Invalid Expresion!!!!\n");  exit(0);  }
+
+     b) Program to recognize strings ‘aaab’, ‘abbb’, ‘ab’ and ‘a’  using  the  grammar  (anbn, n>= 0).
+                            Lex Part
+%{
+/* 5b.l*/
+#include "y.tab.h"
+%}
+%%
+a 	return A;
+b 	return B;
+. 	return yytext[0];
+\n 	return yytext[0];
+%%
+
+Yacc part
+/* 5b.y Program for the grammar  AnBn where n≥0 */
+%token A B
+%%
+str: s '\n' {  return 0;}
+s : A s B   ;
+ |  ;
+%%
+main()
+{
+printf(" Type the String ?\n");
+if(!yyparse())
+ printf(" Valid String\n ");  }
+int yyerror()
+{
+printf("  Invalid String.\n");  exit(0);
+ }
+6.	Program to recognize the grammar (anb, n>= 10).
+
+Lex Part
+
+%{
+/* 6.l */
+#include "y.tab.h"
+%}
+%%
+a 	return A;
+b 	return B;
+. 	return yytext[0];
+\n 	return yytext[0];
+%%
+
+Yacc part
+
+%{
+/* 6.y Yacc program to recognize the grammar AnB where n ≥ 10 */
+%}
+%token A B
+%%
+str: s '\n' {  return 0;}
+s : x B  ;
+x : A A A A A A A A A A T ;
+T: T A
+| ;
+%%
+main()
+{
+printf(" Type the String ? \n");  
+ if(!yyparse()) 
+     printf(" Valid String\n ");
+}
+int yyerror()
+{ 
+  printf("  Invalid String.\n");
+ exit(0);  
+		|}
+
+PART – B
+UNIX PROGRAMMING
+7)a. Non-recursive shell script that accepts any number of arguments and prints them in the Reverse order. (For example, if the script is named arguments, then executing arguments A B C should produce C B A on the standard output).
+#! /bin/sh
+# Program to reverse the input arguments
+     if test $# -eq 0
+      then   
+      	echo "Not enough arguments to be displayed"
+      else
+      	echo "number of arguments are:$#"
+      	echo "the arguments passed is $*"
+      	echo "the reverse of it is"
+      	c=$#
+      	while [ $c -ne 0 ]
+      	do
+      	eval echo \$$c
+      	c=`expr $c - 1`
+     	done
+     	echo "End of the program"
+    fi
+exit 0
+or
+#! /bin/sh
+#program to reverse command line arguments
+      if test $# -eq 0
+      then   
+      	echo "Not enough arguments to be displayed"
+      else
+	for actstr in $*
+	do
+		rev=`echo $actstr $rev`
+	done
+	echo $rev
+       fi
+       exit 0
+
+
+OUTPUT
+[root@localhost]# sh 7a1.sh A B C
+number of arguments are:3
+the arguments passed is A B C
+the reverse of it is
+C
+B
+A
+End of the program
+
+7) b. C program that creates a child process to read commands from the standard input and execute them(a minimal implementation of a shell -like program). You can assume that no arguments will be passed to the commands to be executed.
+#include<stdio.h>
+#include<unistd.h>
+int main()
+{
+        int x,ch;
+        char cmd[20];
+        int pid=fork();
+        if(pid==0) /* child process execution */
+        {
+                printf("\n Child process");
+                do
+                {
+                        printf("\n Enter the command:");
+                        scanf("%s",&cmd);
+                        system(cmd);
+                        printf("\n Enter 1 to continue or 0 to exit:");
+                        scanf("%d",&ch);
+                }while(ch!=0);
+        }
+     else/* parent execution*/
+        wait(); /* Block the parent until the completion of the child*/
+}
+
+OUTPUT
+[root@localhost]# cc 7b.c
+[root@localhost]# ./a.out
+
+ Child process
+ Enter the command:date
+Thu May 07 13:17:32 IST 2009
+
+ Enter 1 to continue or 0 to exit:1
+
+ Enter the command:ls
+1a.sh  2a.sh  3a.sh  4a.sh  5a.sh  6a.sh  7a.sh  1b.c   2b.c   3b.c   4b.c   5b.c   6b.c   7b.c   a.out  cc    
+
+ Enter 1 to continue or 0 to exit:1
+
+  Enter the command:who
+root     :0           Sep 10 12:54
+root     pts/1        Sep 10 12:55 (:0.0)
+
+ Enter 1 to continue or 0 to exit:1
+
+ Enter the command:ps
+  PID TTY          TIME CMD
+ 3620 pts/1    00:00:00 bash
+ 3705 pts/1    00:00:00 a.out
+ 3706 pts/1    00:00:00 a.out
+ 3711 pts/1    00:00:00 ps
+
+ Enter 1 to continue or 0 to exit:1
+
+ Enter the command:pwd
+/root/hema/unix
+
+ Enter 1 to continue or 0 to exit:0
+[root@localhost]# 
+
+8)a. Shell script that accepts two filenames as arguments, checks if the permissions for these files are identical and if the permissions are identical, outputs the common permissions, otherwise outputs each filename followed by its permissions.
+
+#! /bin/sh
+#program to check file permission
+if [ $# -ne 2 ]
+then
+echo “execution is sh 2a.sh first_file second_file”
+exit 2
+fi
+#permission of first file
+p1=`ls -l $1 | cut -d " " -f 1`
+#permission of second file
+	p2=`ls -l $2| cut -d " " -f 1`
+  	if test  $p1 =  $p2
+	then
+		echo "The permissions are same"
+		echo $p1
+	else
+		echo "The permissions are different"
+		echo "Filename: $1   permission: $p1 "
+		echo "Filename: $2   permission: $p2 "
+	fi
+exit 0
+
+OUTPUT
+[root@localhost]# sh 8a.sh aaa tem
+The permissions are different
+Filename: aaa   permission: drwxr-xr-x
+Filename: tem   permission: -rw-r--r--
+
+[root@localhost]# sh 8a.sh tem temp
+The permissions are same
+-rw-r—r—
+
+
+8) b. C program to create a file with 16 bytes of arbitrary data from the beginning and another 16 bytes of arbitrary data from an offset of 48. Display the file contents to demonstrate how the hole in file is handled.
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<fcntl.h>
+#include<sys/stat.h>
+#include<sys/types.h>
+// program to create a file with 16 bytes of arbitrary data from
+// beginning and another 16 byte at the end
+int main()
+{
+	char buf1[]="abcdefghijklmnop";
+	char buf2[]="ABCDEFGHIJKLMNOP";
+	int fd;
+// creating file new.dat
+	fd=open("new.dat",O_WRONLY|O_CREAT,0777);
+//writing 16 bytes of data
+        	write(fd,&buf1,16);
+	// offset of 48
+	lseek(fd,48,SEEK_SET);
+	// writing 16 bytes of data
+	write(fd,&buf2,16);
+	close(fd);
+	printf("contends of file are\n");
+	system("od -c new.dat");
+	exit(0);
+}
+
+OUTPUT
+[root@localhost]# cc 8b.c
+[root@localhost]# ./a.out
+0000000   a   b   c   d   e   f   g   h   i   j   k   l   m   n   o   p
+0000020  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0
+*
+0000060   A   B   C   D   E   F   G   H   I   J   K   L   M   N   O   P
+0000100
+9)a. Shell script that accepts file names specified as arguments and creates a shell script that contains this file as well as the code to recreate these files. Thus if the script generated by your script is executed, it would recreate the original files(This is same as the “bundle” script described by Brain W.Kernighan and Rob Pike in “The Unix Programming Environment” , Prentice – hall India).
+#! /bin/sh
+#program to create a bundle script
+if [ $# -eq 0 ]
+then
+        echo "no arguments passed"
+        exit 1
+fi
+        echo "  ">cr.sh
+        for i in $*
+        do
+                echo "echo "code to recreate the file $i"">>cr.sh
+                echo "cat $i<<endf">>cr.sh
+                cat $i>> cr.sh
+                echo "endf">>cr.sh
+                echo "echo "creation done"">>cr.sh
+                done
+        exit 0
+OUTPUT
+[root@localhost]# cat >f1<<endf
+RNSIT
+endf
+[root@localhost]# cat >f2<<endf
+BANGALORE
+endf
+[root@localhost]# sh 9a.sh f1 f2
+[root@localhost]# vi cs.sh
+echo code to recreate the file f1 cat f1<<endf RNSIT endf echo creation done echo code to recreate the file f2 cat f2<<endf BANGALORE endf echo creation done 
+
+9) b. C program to do the following: Using fork() create a child parent and then exits. the parent process waits for its child to finish(by executing the wait()) and prints its own process-id and the id of its child process and then exits.
+#include<stdlib.h>
+#include<stdio.h>
+#include<unistd.h>
+int main()
+{
+        int child;
+        child=fork();
+        if(child==0)  /*child process execution*/
+        {
+                printf("\n Child process");
+                printf("\n My PID=%d",getpid());
+                printf("\n My parent PID=%d",getppid());
+                exit(0);
+        }
+        else
+        {   /* parent process execution*/
+        wait();
+        printf("\n\n Parent process");
+        printf("\n my PID=%d",getpid());
+        printf("\n My Child PID=%d\n",child);
+        }
+}
+OUTPUT
+[root@localhost]# cc 9b.c
+[root@localhost]# ./a.out
+
+ Child process
+ My PID=3902
+ My parent PID=3901
+
+ Parent process
+ my PID=3901
+ My Child PID=3902
+
+
+Operating System Programs
+ 10: Design, develop and execute a program in C/C++ to simulate the working of Shortest Remaining time and Round Robin Scheduling algorithms. Experiment with different Quantum sizes for the Round Robin algorithm. In all cases, determine the average turn Around  time. Input can be read from keyboard or from a file.   
+
+#include<stdio.h>
+struct proc
+{
+	int id;
+	int arrival;
+	int burst;
+	int rem;
+	int wait;
+	int finish;
+	int turnaround;
+	float ratio;
+}process[10];  //structure to hold the process information
+struct proc temp;
+int no;
+
+int chkprocess(int);
+int nextprocess();
+ void roundrobin(int, int, int[], int[]);
+ void srtf(int);
+
+main()
+{
+  	int n,tq,choice;       
+  	int bt[10],st[10],i,j,k;
+for(; ;)
+{
+printf("Enter the choice  \n");
+printf(" 1. Round Robin\n 2. SRT\n 3. Exit \n");
+scanf("%d",&choice);
+switch(choice)
+{
+case 1:
+printf("Round Robin scheduling algorithm\n");
+printf("Enter number of processes:\n");
+  scanf("%d",&n);
+  printf("Enter burst time for sequences:");
+  for(i=0;i<n;i++)
+   {
+     scanf("%d",&bt[i]);
+     st[i]=bt[i];	//service time
+   }
+   printf("Enter time quantum:");
+   scanf("%d",&tq);
+   roundrobin(n,tq,st,bt);
+   break;
+
+case 2: 
+	printf("\n \n ---SHORTEST REMAINING TIME NEXT---\n \n ");
+	printf("\n \n Enter the number of processes: ");
+	scanf("%d", &n);
+	srtf(n);
+break;
+
+case 3: exit(0);
+}// end of switch
+}// end of for
+}//end of main()
+
+void  roundrobin(int n,int tq,int st[],int bt[])
+ {    		    
+int time=0;
+  	int tat[10],wt[10],i,count=0,swt=0,stat=0,temp1,sq=0,j,k;
+  	float awt=0.0,atat=0.0;
+ 	while(1)
+   	{
+     		for(i=0,count=0;i<n;i++)
+     		{
+       temp1=tq;
+       if(st[i]==0) // when service time of a process equals zero  then 
+  //count value is incremented 
+       {                                      
+	 count++;
+	 continue;
+       }
+       if(st[i]>tq) // when service time of a process greater than time 
+//quantum then time
+		st[i]=st[i]-tq;     //quantum value subtracted from service time
+       else
+	if(st[i]>=0)              
+	{
+	  	temp1=st[i];      // temp1 stores the service time of a process
+	  	st[i]=0;               // making service time equals 0
+	}
+	sq=sq+temp1;      // utilizing temp1 value to calculate turnaround time
+	tat[i]=sq;               // turn around time
+     }  //end of for
+     if(n==count)      // it indicates all processes  have completed their task because the count value 
+     break;                       // incremented when service time equals 0
+   } //end of while
+
+   for(i=0;i<n;i++)       // to calculate the wait time and turnaround time of each process
+   {       
+    wt[i]=tat[i]-bt[i];     // waiting time calculated from the turnaround time - burst time
+    swt=swt+wt[i];       // summation of  wait time 
+    stat=stat+tat[i];      // summation of turnaround time
+   }
+   awt=(float)swt/n;          // average wait time
+   atat=(float)stat/n;         // average turnaround time
+   printf("Process_no	Burst time	Wait time	Turn around time\n");
+   for(i=0;i<n;i++)
+    printf("%d\t\t%d\t\t%d\t\t%d\n",i+1,bt[i],wt[i],tat[i]);
+    printf("Avg wait time is %f\n Avg turn around time is %f\n",awt,atat);
+ }// end of Round Robin
+
+
+int chkprocess(int s)         // function to check process remaining time is zero or not
+{
+	int i;
+	for(i = 1; i <= s; i++)
+	{
+		if(process[i].rem != 0)
+			return 1;
+	}
+	return 0;
+} // end of chkprocess    
+           
+int nextprocess()        // function to identify the next process to be executed
+{
+	int min, l, i;
+	min = 32000;   //any limit assumed
+	for(i = 1; i <= no; i++)
+	{
+		if( process[i].rem!=0 && process[i].rem < min)
+		{
+			min = process[i].rem;
+			l = i;
+		}
+	}
+	return l;
+}  // end of nextprocess
+
+void srtf(int n)
+{
+int i,j,k,time=0;
+float tavg,wavg;
+for(i = 1; i <= n; i++)
+	{
+		process[i].id = i;
+		printf("\n\nEnter the arrival time for process %d: ", i);
+		scanf("%d", &(process[i].arrival));
+		printf("Enter the burst time for process %d: ", i);
+		scanf("%d", &(process[i].burst));
+		process[i].rem = process[i].burst;
+	 }
+	for(i = 1; i <= n; i++)
+	{
+		for(j = i + 1; j <= n; j++)
+		{
+			if(process[i].arrival > process[j].arrival)   //  sort  arrival time of a process
+			{
+				temp = process[i];
+				process[i] = process[j];
+				process[j] = temp;
+			}
+		}
+	}
+
+	no = 0;
+	j = 1;
+       while(chkprocess(n) == 1)
+	{
+		if(process[no + 1].arrival == time)
+		{
+			no++;
+			if(process[j].rem==0)          
+			    process[j].finish=time;
+			j = nextprocess(); 
+		}
+		if(process[j].rem != 0)             // to calculate the waiting time of  a process
+		{
+			process[j].rem--;
+			for(i = 1; i <= no; i++)
+			{
+				if(i != j && process[i].rem != 0)
+					process[i].wait++;             
+			}
+		}
+             	else
+		{
+
+			process[j].finish = time;
+			j=nextprocess();
+			time--;
+			k=j;
+		}
+
+		time++;
+	}
+process[k].finish = time;
+
+	printf("\n\n\t\t\t---SHORTEST REMAINING TIME FIRST---");
+	printf("\n\n Process  Arrival  Burst   Waiting  Finishing turnaround  Tr/Tb \n");
+	printf("%5s %9s %7s %10s %8s %9s\n\n", "id", "time", "time", "time", "time", "time");
+	      for(i = 1; i <= n; i++)
+	       {
+                      process[i].turnaround = process[i].wait + process[i].burst; // calc of turnaround 
+	          process[i].ratio = (float)process[i].turnaround / (float)process[i].burst;        
+
+                     printf("%5d %8d %7d  %8d %10d %9d %10.1f ", process[i].id, process[i].arrival,
+	        process[i].burst, process[i].wait, process[i].finish,  process[i].turnaround,    
+                    process[i].ratio);
+	        tavg=tavg+ process[i].turnaround;    //summation of turnaround time
+	        wavg=wavg+process[i].wait;             // summation of waiting time
+                    printf("\n\n");
+	}
+
+	tavg=tavg/n;        // average turnaround time
+	wavg=wavg/n;     // average wait time
+            printf("tavg=%f\t wavg=%f\n",tavg,wavg);
+   }// end of srtf
+
+
+
+OUTPUT:
+Enter the choice
+ 1) Round Robin 2) SRT
+ 3) Exit
+1
+Round Robin scheduling algorithm
+**********************************
+Enter number of processes:3
+Enter burst time for sequences:24
+3
+3
+
+Enter time quantum:4
+Process_no      Burst time      Wait time       Turnaround time
+        1                    24                     6                  30
+        2                    3                       4                  7
+        3                    3                        7               10
+Avg  wait time is 5.666667 
+Avg  turnaround time is 15.666667
+Enter the choice
+ 1) Round Robin 2) SRT
+ 3) Exit
+2
+ ---SHORTEST REMAINING TIME NEXT---
+ Enter the number of processes: 4
+Enter the arrival time for process 1: 0
+Enter the burst time for process 1: 8
+Enter the arrival time for process 2: 1
+Enter the burst time for process 2: 4
+Enter the arrival time for process 3: 2
+Enter the burst time for process 3: 9
+Enter the arrival time for process 4: 3
+Enter the burst time for process 4: 5
+1             24              6               30
+2               3               4               7
+3               3               7               10
+ ---SHORTEST REMAINING TIME FIRST---
+ Enter the number of processes: 4
+Enter the arrival time for process 1: 0
+Enter the burst time for process 1: 8
+Enter the arrival time for process 2: 1
+Enter the burst time for process 2: 4
+Enter the arrival time for process 3: 2
+Enter the burst time for process 3: 9
+Enter the arrival time for process 4: 3
+Enter the burst time for process 4: 5
+                      ---SHORTEST REMAINING TIME NEXT---
+
+ Process  Arrival  Burst   Waiting  Finishing turnaround  Tr/Tb
+   id      time    time       time     time      time     time
+    1        0       	8        	   9         17         17        2.1
+    2        1       	4             0          5          4          1.0
+    3        2       	9            15         26        24        2.7
+    4        3        5            2          10         7         1.4
+
+tavg=13.000000   
+wavg=6.500000
+Using OpenMP 
+11: Design develop and run a multi-threaded program to generate and print  Fibonacci series. One thread has to generate the numbers up to the specified limit and Another thread has to print them. Ensure proper synchronization.
+
+
+	# include<stdio.h>	
+	# include<omp.h>
+	# include<stdlib.h>
+
+	int MAX;
+	
+int Fibonacci(int n)
+	{
+    		int x, y;
+    		if (n < 2)
+        		return n;
+    		else 
+    		{
+        		x = Fibonacci(n - 1);
+        		y = Fibonacci(n - 2);
+        		return (x + y);
+    		}
+	}
+
+	int FibonacciTask(int n)
+	{
+    		int x, y;
+    		if (n < 2)
+        			return n;
+    		else 
+		{
+			x = Fibonacci(n - 1);
+			y = Fibonacci(n - 2);
+		   	return (x + y);
+    		}
+	}
+	/* random number generation upto 24 */
+	int random_num()
+	{
+	    int temp;
+		temp = rand();
+		temp = temp%24;
+		MAX = temp;
+		return(MAX);
+	}
+
+	int main(int argc, char * argv[])
+	{
+    	
+		int FibNumber[25] = {0};
+    		int j, temp,tmp,id,i = 0;
+		int n, tid, nthreads;
+
+		printf("Please Enter the number Range :");
+		scanf("%d",&n);
+		printf("\n");
+		omp_set_num_threads(2);
+		
+		//Parallel region
+		# pragma omp parallel
+		{
+			printf("The number of threads are %d\n",omp_get_num_threads());
+    			# pragma omp for private (tid, tmp, FibNumber)
+        	for(j = 1;  j<=n; j++)
+        	{
+        		tmp = random_num();
+        		/* Get thread number */
+    		/* tid = omp_get_thread_num(); 
+    		    printf("The number of threads are %d\n",omp_get_num_threads());
+    			   	printf("The thread id  is = %d\n", tid); */
+        		/* The critical section here will enable, not more then one
+        		   thread to execute in this section (synchronization) */  
+        		# pragma omp critical
+		{
+		 	/* Get thread number */
+    			/* tid = omp_get_thread_num();
+    			printf("********************* inside critical section
+******************\n");
+    			printf("The thread id is  = %d\n", tid); */
+    			for(i = 1; i <= tmp; i++)
+				FibNumber[i] = FibonacciTask(i);
+        	        		printf("The number value is %d:",tmp); 
+    			for(i = 1; i <= tmp; i++)
+        				printf("%d \t", FibNumber[i]);
+			printf("\n\n");
+		}
+	}
+	}	
+	}
+
+lease Enter the number Range : 7
+The number value is 7:1 	1 	2 	3 	5 	8 	13 	
+
+The number value is 22:1 	1 	2 	3 	5 	8 	13 	21 	34 	55 	89 	144 	233 	377 	610 	987 	1597 	2584 	4181 	6765 	10946 	17711 	
+
+The number value is 9:1 	1 	2 	3 	5 	8 	13 	21 	34 	
+
+The number value is 19:1 	1 	2 	3 	5 	8 	13 	21 	34 	55 	89 	144 	233 	377 	610 	987 	1597 	2584 	4181 	
+
+The number value is 17:1 	1 	2 	3 	5 	8 	13 	21 	34 	55 	89 	144 	233 	377 	610 	987 	1597 	
+
+The number value is 7:1 	1 	2 	3 	5 	8 	13 	
+
+The number value is 10:1 	1 	2 	3 	5 	8 	13 	21 	34 	55 	
+
+
+
+
+
+
+12: Design, develop and run a program to implement the Banker’s Algorithm. Demonstrate its Working with different data values.
+#include<stdio.h>
+struct process
+
+{
+int all[6],max[6],need[6],finished,request[6];
+}p[10];
+int avail[6],sseq[10],ss=0,check1=0,check2=0,n,pid,work[6];
+int nor,nori;
+int main()
+{
+int safeseq(void);
+int ch,i=0,j=0,k,pid,ch1;
+int violationcheck=0,waitcheck=0;
+do
+{
+printf("\n\n\t 1. Input");
+printf("\n\n\t 2. New Request");
+printf("\n\n\t 3. Safe State or Not");
+printf("\n\n\t 4. print");
+printf("\n\n\t 5. Exit");
+printf("\n\n\t Enter ur choice :");
+scanf("%d",&ch);
+switch(ch)
+{
+case 1:
+printf("\n\n\t Enter number of processes : ");
+scanf("%d",&n);
+printf("\n\n\t Enter the Number of Resources : ");
+scanf("%d",&nor);
+printf("\n\n\t Enter the Available Resouces : ");
+for(j=0;j<n;j++)
+{
+for(k=0;k<nor;k++)
+
+{
+if(j==0)
+{
+printf("\n\n\t For Resource type %d : ",k);
+scanf("%d",&avail[k]);
+}
+p[j].max[k]=0;
+p[j].all[k]=0;
+p[j].need[k]=0;
+p[j].finished=0;
+p[j].request[k]=0;
+}
+}
+for(i=0;i<n;i++)
+{
+printf("\n\n\t Enter Max and Allocated resources for P %d : ",i);
+ for(j=0;j<nor;j++)
+{
+printf("\n\n\t Enter the Max of resource %d : ",j);
+scanf("%d",&p[i].max[j]);
+printf("\n\n\t Allocation of resource %d    :",j);
+scanf("%d",&p[i].all[j]);
+if(p[i].all[j]>p[i].max[j])
+{
+printf("\n\n\t Allocation should be less < or == max");
+j--;
+}
+else
+p[i].need[j]=p[i].max[j]-p[i].all[j];
+avail[j]=avail[j]-p[i].all[j];
+}
+}
+break;
+case 2:
+violationcheck=0;
+waitcheck=0;
+printf("\n\n\t Requesting process id :");
+scanf("%d",&pid);
+for(j=0;j<nor;j++)
+{
+printf("\n\n\t Number of Request for resource %d :",j);
+  scanf("%d",&p[pid].request[j]);
+if(p[pid].request[j]>p[pid].need[j])
+violationcheck=1;
+if(p[pid].request[j]>avail[j])
+waitcheck=1;
+}
+if (violationcheck==1)
+printf("\n\n\t The Process Exceeds it’s Max Need: Terminated");
+else if(waitcheck==1)
+printf("\n\n\t Lack of Resourcess : Process State – Wait");
+else
+{
+for(j=0;j<nor;j++)
+{
+avail[j]=avail[j]-p[pid].request[j];
+p[pid].all[j]=p[pid].all[j]+p[pid].request[j];
+p[pid].need[j]=p[pid].need[j]-p[pid].request[j];
+}
+ch1=safeseq();
+if(ch1==0)
+{
+for(j=0;j<nor;j++)
+{
+avail[j]=avail[j]+p[pid].request[j];
+p[pid].all[j]=p[pid].all[j]-p[pid].request[j];
+p[pid].need[j]=p[pid].need[j]+p[pid].request[j];
+}
+}
+else if(ch1==1)
+printf("\n\n\t Request Committed ");
+}
+break;
+case 3:
+if(safeseq()==1)
+printf("\n\n\t The System is in safe state ");
+else
+printf("\n\n\t The System is Not in safe state ");
+break;
+case 4:
+printf("\n\n\t Number of processes : %d",n);
+printf("\n\n\t Number of Resources : %d",nor);
+printf("\n\n\t Pid \t   Max \t   Allocated \t Need ");
+for(i=0;i<n;i++)
+{
+printf("\n\n\t  P%d : ",i);
+for(j=0;j<nor;j++)
+printf(" %d",p[i].max[j]);
+printf("\t");
+for(j=0;j<nor;j++)
+printf("%d",p[i].all[j]);
+printf("\t");
+for(j=0;j<nor;j++)
+printf("%d",p[i].need[j]);
+}
+printf("\n\n\t Available :");
+for(i=0;i<nor;i++)
+printf("%d",avail[i]);
+break;
+case 5:
+break;
+}
+//getch();
+}while(ch!=5);
+}
+
+int safeseq()
+{
+int tj,tk,i,j,k;
+ss=0;
+for(j=0;j<nor;j++)
+work[j]=avail[j];
+for(j=0;j<n;j++)
+p[j].finished=0;
+for( tk=0;tk<nor;tk++)
+{
+for(j=0;j<n;j++)
+{
+if(p[j].finished==0)
+{
+check1=0;
+for(k=0;k<nor;k++)
+if(p[j].need[k]<=work[k])
+check1++;
+if(check1==nor)
+{
+for(k=0;k<nor;k++)
+{
+work[k]=work[k]+p[j].all[k];
+p[j].finished=1;
+}
+sseq[ss]=j;
+ss++;
+}
+}
+}
+}
+check2=0;
+for(i=0;i<n;i++)
+if(p[i].finished==1)
+check2++;
+printf("\n\n\t");
+if(check2>=n)
+{
+printf("\n\n\t The system is in safe state");
+for( tj=0;tj<n;tj++)
+printf("P%d,",sseq[tj]);
+return 1;
+}
+else
+printf("\n\n\t The system is Not in safe state");
+return 0;
+}
+
+$ ./os12
+
+	 1. Input
+	 2. New Request
+	 3. Safe State or Not
+	 4. print
+	 5. Exit
+	 Enter ur choice :1
+	
+ 	 Enter number of processes : 5
+	 Enter the Number of Resources : 3
+	 Enter the Available Resouces : 
+ For Resource type 0 : 10
+	 For Resource type 1 : 5
+ For Resource type 2 : 7
+
+	 Enter Max and Allocated resources for P 0 : 
+
+	 Enter the Max of resource 0 : 7
+
+	 Allocation of resource 0    :0
+
+	 Enter the Max of resource 1 : 5
+
+	 Allocation of resource 1    :1
+
+	 Enter the Max of resource 2 : 3
+
+	 Allocation of resource 2    :0
+
+	 Enter Max and Allocated resources for P 1 : 
+
+	 Enter the Max of resource 0 : 3
+
+	 Allocation of resource 0    :2
+
+	 Enter the Max of resource 1 : 2
+
+	 Allocation of resource 1    :0
+
+	 Enter the Max of resource 2 : 2
+
+	 Allocation of resource 2    :0
+
+	 Enter Max and Allocated resources for P 2 : 
+
+	 Enter the Max of resource 0 : 9
+
+	 Allocation of resource 0    :3
+
+	 Enter the Max of resource 1 : 0
+
+	 Allocation of resource 1    :0
+
+
+	 Enter the Max of resource 2 : 2
+
+	 Allocation of resource 2    :2
+
+	 Enter Max and Allocated resources for P 3 : 
+
+	 Enter the Max of resource 0 : 2
+
+	 Allocation of resource 0    :2
+
+	 Enter the Max of resource 1 : 2
+
+	 Allocation of resource 1    :1
+
+	 Enter the Max of resource 2 : 2
+
+	 Allocation of resource 2    :1
+
+	 Enter Max and Allocated resources for P 4 : 
+
+	 Enter the Max of resource 0 : 4
+
+	 Allocation of resource 0    :0
+
+	 Enter the Max of resource 1 : 3
+
+	 Allocation of resource 1    :0
+
+	 Enter the Max of resource 2 : 3
+
+	 Allocation of resource 2    :2
+
+	 1. Input
+
+	 2. New Request
+
+	 3. Safe State or Not
+
+	 4. print
+
+	 5. Exit
+
+	 Enter ur choice :3
+
+	 The system is in safe stateP1,P3,P4,P0,P2,
+
+	 The System is in safe state 
+
+	 1. Input
+
+	 2. New Request
+
+	 3. Safe State or Not
+
+	 4. print
+
+	 5. Exit
+
+	 Enter ur choice :2
+
+	 Requesting process id :1
+
+	 Number of Request for resource 0 :1
+
+	 Number of Request for resource 1 :0
+
+	 Number of Request for resource 2 :2
+	
+	 The system is in safe stateP1,P3,P4,P0,P2,
+
+ Request Committed 
+	 1. Input
+	 2. New Request
+	 3. Safe State or Not
+	 4. print
+	 5. Exit
+
+	 Enter ur choice :2
+
+	 Requesting process id :2
+
+	 Number of Request for resource 0 :2
+
+	 Number of Request for resource 1 :2
+
+	 Number of Request for resource 2 :3
+
+	 The Process Exceeds it�s Max Need: Terminated
+
+
+
+--------------------------------------------------------	END	---------------------------------------------------------------------
