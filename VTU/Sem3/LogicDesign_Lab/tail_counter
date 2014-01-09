@@ -1,0 +1,10 @@
+module tail(clk,reset,q)
+input clk,reset;
+output [3:0] q;
+reg [3:0]q;
+always @(posedge clk or posedge reset)
+if(reset==1)
+q=4'b0000;
+else 
+q={q[3:0],~q[3]};
+end module
