@@ -1,5 +1,4 @@
 /* Recursive subdivision of tetrahedron to form 3D Sierpinski gasket */
-//tetra_vtu.cpp 
 
 #include <stdlib.h>
 #include <stdio.h>
