@@ -1,5 +1,4 @@
 //Cylinder and Parallelepiped by extruding Circle and Quadrilateral
-//cyl_pp_vtu.cpp
 #include <GL/glut.h>
 #include <math.h>
 #include <stdio.h>
