@@ -1,4 +1,3 @@
-// rect_mesh_vtu.cpp
 // Rectangular Mesh using set of points f(i,j)=f(xi,yi) where xi=x0+i*dx, yi=y0+j*dy 
 #include <stdlib.h> // standard definitions
 #include <GL/glut.h> // GLUT
