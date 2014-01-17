@@ -10,8 +10,8 @@
 ## Code: liangBasky.c
 	#include<stdio.h>
 	#include<GL/glut.h>
-	double xmin=50,xmax=100,ymax=100,ymin=50;	//box coordinate before clipping
-	double xvmin=200,yvmin=200,xvmax=300,yvmax=300;		//box coordinate after clipping
+	double xmin=50,xmax=100,ymax=100,ymin=50;	//window boundary
+	double xvmin=200,yvmin=200,xvmax=300,yvmax=300;		//viewport boundary
 	#define true 1
 	#define false 0
 	int cliptest(double p,double q,double *t1,double *t2)
@@ -22,7 +22,7 @@
 			if(t>*t1)
 				*t1=t;
 			if(t>*t2)
-				return false;
+				return false;	//line portion is outside
 		}
 		else if(p>0.0)
 		{
@@ -33,17 +33,17 @@
 		}
 		else if(p==0.0)
 				if(q<0.0)
-					return false;
+					return false;	//line portion is outside
 		return true;
 	}
 
 	void liang(double x0,double y0,double x1,double y1)
 	{
 		double dx=x1-x0,dy=y1-y0,tc=0.0,t1=1.0;
-		if(cliptest(-dx,x0-xmin,&tc,&t1))
-			if(cliptest(dx,xmax-x0,&tc,&t1))
-				if(cliptest(-dy,y0-ymin,&tc,&t1))
-					if(cliptest(dy,ymax-y0,&tc,&t1))
+		if(cliptest(-dx,x0-xmin,&tc,&t1))	//inside test wrt left edge
+			if(cliptest(dx,xmax-x0,&tc,&t1))	//inside test wrt Right edge
+				if(cliptest(-dy,y0-ymin,&tc,&t1))	//inside test wrt Bottom edge
+					if(cliptest(dy,ymax-y0,&tc,&t1))	//inside test wrt Top edge
 					{
 						if(t1<1.0)
 						{
@@ -62,6 +62,7 @@
 						double vy0=yvmin+(y0-ymin)*sy;
   						double vx1=xvmin+(x1-xmin)*sx;
   						double vy1=yvmin+(y1-ymin)*sy;
+						//draw red coloured viewport
   						glColor3f(1.0,0.0,0.0);
 						glBegin(GL_LINE_LOOP);		//draw a box to show clipped line.
 							glVertex2f(xvmin,yvmin);
