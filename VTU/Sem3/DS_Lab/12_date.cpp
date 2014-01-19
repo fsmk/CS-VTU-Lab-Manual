@@ -1,5 +1,3 @@
-//This code is written by Abhiram at the labs of PESIT, BSC. Feel free to use it for educational purposes.
-
 /*Write a C++ program to create a class called DATE. Accept two valid  dates of the
 form dd/mm/yy. Implement the following operations by overloading the operators + and -.
 After each operation ,display the result by overloading the << operator.

@@ -1,7 +1,4 @@
-//This code is written by Abhiram at the labs of PESIT, BSC. Feel free to use it for educational purposes.
-
-/*PROGRAM 8
-Design, develop, and execute a program in C++ to create a class called LIST (linked list)
+/*Design, develop, and execute a program in C++ to create a class called LIST (linked list)
 with member functions to insert an element at the front of the list as well as to delete an
 element from the front of the list. Demonstrate all the functions after creating a list object. */
 
@@ -27,7 +24,7 @@ int main()
     list obj;
     while(1)
     {
-        cout<<"\nWelcome\n1-Insert at front\n2-Delete at front\n3-Display\nAnyother to exit\nChoice:";
+        cout<<"\nEnter your choice\n1-Insert at front\n2-Delete at front\n3-Display\nAnyother to exit\n";
         cin>>a;
         switch(a)
         {
@@ -81,7 +78,8 @@ void list::display()
     else
     {
         for(temp=header;temp!=NULL;temp=temp->link)
-            cout<<" "<<temp->info;
+            cout<<temp->info<<" ";
+	cout<<"\n";
     }
 
 }

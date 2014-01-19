@@ -9,7 +9,7 @@ integers using an array. Provide the following operations:
 */
 
 #include<stdio.h>
-#include<process.h>
+#include<stdlib.h>
 void add(int,int[]);                                                               
 void del(int[]);                                                                       
 void display(int[]);                                                                   
@@ -20,7 +20,7 @@ void main()
     int ch,el;
     do{
 
-   		printf("\t\tMENU:\n\t\t1.Add an element\n\t\t2.Delete an element\n\t\t3.Display Queue\n\t\tAnother to Exit\n");
+   		printf("\nMENU:\n\n1.Add an element\n2.Delete an element\n3.Display Queue\nAny other number to Exit\n");
    		scanf("%d",&ch);
    		switch(ch)
 		{
@@ -49,7 +49,7 @@ void del(int q[10])
     if(front<rear)
 	{
 		printf("\nElement deleted is %d",q[++front]);
-            q[front]=NULL;
+            	q[front]=NULL;
 	}
     else
 		printf("\nQueue underflow");
@@ -57,8 +57,11 @@ void del(int q[10])
 void display(int q[10])
 {
 
-    int temp=front;
-    printf("QUEUE: ");
-    while(temp<rear)
+	int temp=front;
+	printf("QUEUE: ");
+	while(temp<rear)
+	{
 		printf("%d ",q[++temp]);
+	}
+	printf("\n");
 }
