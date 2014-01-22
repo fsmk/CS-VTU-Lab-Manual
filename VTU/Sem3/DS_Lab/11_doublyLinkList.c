@@ -1,7 +1,4 @@
-//This code is written by Abhiram at the labs of PESIT, BSC. Feel free to use it for educational purposes.
-
-/*
-Write a C program to support the following opearations on a doubly linked list where
+/*Write a C program to support the following opearations on a doubly linked list where
 each
 node consists of integers.
 a. Create a doubly linked list by adding each node at the front.
@@ -33,13 +30,7 @@ int main()
         int ch;
         while(1)
         {
-                printf("\nChoices:");
-                printf("\n\t1-Insert");
-                printf("\n\t2-Insert left");
-                printf("\n\t3-Delete node");
-                printf("\n\t4-Display");
-                printf("\n\t5-Exit");
-                printf("\nEnter your choice: ");
+                printf("\nChoices:\n\t1-Insert\n\t2-Insert left\n\t3-Delete node\n\t4-Display\n\t5-Exit\nEnter your choice: ");
                 scanf("%d",&ch);
                 switch(ch)
                 {

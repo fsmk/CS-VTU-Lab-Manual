@@ -145,11 +145,11 @@ int main()
         temp->link=NULL;
         insert(header2,temp);
     }
-    printf("\nThe first polynomial is");
+    printf("\nThe first polynomial is\n");
     display(header1);
-    printf("\nThe second polynomial is");
+    printf("\nThe second polynomial is\n");
     display(header2);
-    printf("\nThe resultant addition polynomial is");
+    printf("\nThe resultant addition polynomial is\n");
     cadd(header1,header2,header3,m,n);
     display(header3);
     return 0;

@@ -1,5 +1,3 @@
-//This code is written by Abhiram at the labs of PESIT, BSC. Feel free to use it for educational purposes.
-
 /*Write a C++ program to create a class called OCTAL which has the characteristics of
 an  octal  number.  Implement  the  following  operations  by  writing  an  appropriate
 constructor and an overloaded operator +.
