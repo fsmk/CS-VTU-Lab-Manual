@@ -1,7 +1,13 @@
 ## Aim:
 ### Program to display a set of values {fij} as a rectangular mesh.
 
-## Algorithm 
+## Algorithm :
+###Define two variables maxx and maxy for the sides of the rectangular mesh.
+###Define dx,dy and also define two arrays x and y.
+###Under init() , we call glLoadIdentity() to start over from the origin.
+###In the display function , you run for loops that update the arrays with (x[i],y[j]) positions.
+###Display the rectangular mesh by passing GL_LINE_LOOP to glBegin as a parameter.
+
 
 ## Code: rectMesh.c
 	#include<stdio.h>
