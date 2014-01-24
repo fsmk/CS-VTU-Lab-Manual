@@ -1,3 +1,5 @@
+##Aim:
+
 /* Write a C/C++ program that creates a zombie and then calls system to execute the ps
     command to verify that the process is zombie. */
 #include<stdio.h>
