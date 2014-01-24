@@ -1,0 +1,66 @@
+#AIM: 
+ Implement All-Pairs Shortest Paths Problem using Floyd's algorithm. 
+Parallelize this algorithm, implement it using OpenMP and determine the 
+speed-up achieved.
+
+##DESCRIPTION:
+
+
+##ALGORITHM:
+
+
+
+##CODE:
+<pre>#include&lt;stdio.h> 
+#include&lt;stdlib.h> 
+#include&lt;sys/time.h> 
+#include&lt;omp.h> 
+
+int min(int,int); 
+int main() 
+{ 
+	int n,k,i,j,c[10][10]; 
+	int tid; 
+	omp_set_num_threads(0); 
+	{ 
+		tid=omp_get_thread_num(); 
+		printf("Enter the number of nodes:"); 
+		scanf("%d",&n); 
+		printf("Enter the cost matrix:\n"); 
+		for(i=0;i&lt;n;i++) 
+		for(j=0;j&lt;n;j++) 
+		      scanf("%d",&c[i][j]); 
+		for(k=0;k&lt;n;k++) 
+		{
+    			for(i=0;i&lt;n;i++) 
+			   	for(j=0;j&lt;n;j++) 
+		       			c[i][j]=min(c[i][j],c[i][k]+c[k][j]); 
+		} 
+		printf("\n All pairs shortest path\n"); 
+		for(i=0;i&lt;n;i++) 
+		{
+		       for(j=0;j&lt;n;j++) 
+			printf("%d\t",c[i][j]); 
+	 	       printf("\n"); 
+		} 
+	} 
+	return 0; 
+} 
+
+int min(int a,int b) 
+{ 
+  return(a&lt;b?a:b); 
+}</pre>
+
+
+##OUTPUT:
+<pre>Enter the number of nodes:3 
+Enter the cost matrix: 
+5 6 7 
+8 9 1 
+2 3 4 
+
+ All pairs shortest path 
+5	6	7
+3	4	1
+2	3	4</pre>
