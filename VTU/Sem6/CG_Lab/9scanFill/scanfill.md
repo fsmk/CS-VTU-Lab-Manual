@@ -3,7 +3,8 @@
 
 ## Algorithm:
 
-For each scan line:
+For each scan line
+
 1. Find the intersections of the scan line with all edges of the polygon.
 2. Sort the intersections by increasing x-coordinate.
 3. Fill in all pixels between pairs of intersections.
