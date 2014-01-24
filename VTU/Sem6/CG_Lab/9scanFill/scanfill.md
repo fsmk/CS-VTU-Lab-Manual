@@ -1,15 +1,15 @@
 ## Aim:
 ### Program to fill any given polygon using scan-line area filling algorithm.
 
-## Algorithm
-For each scan line:
-1. Find the intersections of the scan line with
-all edges of the polygon.
-2. Sort the intersections by increasing xcoordinate.
-3. Fill in all pixels between pairs of
-intersections.
+## Algorithm:
 
-## Code : scanFill.c
+For each scan line:
+1. Find the intersections of the scan line with all edges of the polygon.
+2. Sort the intersections by increasing x-coordinate.
+3. Fill in all pixels between pairs of intersections.
+
+## Code : 
+    //scanFill.c
 	#define BLACK 0
 	#include<stdlib.h>
 	#include<stdio.h>
@@ -116,4 +116,14 @@ intersections.
 		glutMainLoop();
 	}
 
+##Output:
 
+*Commands for execution:-*
+
+* Open a terminal and Change directory to the file location in both the terminals.
+* compile as gcc -lGLU -lGL -lglut scanfill.c -o scanfill
+* If no errors, run as ./scanfill.
+
+*Screenshots:-*
+
+![ScreenShot of Output](scanfill.png)
