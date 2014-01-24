@@ -1,0 +1,41 @@
+## Program 7: Write a Perl program to display a digital clock which displays the current time of the server.
+***
+
+### Tags used:
+     'Refresh:1' - used to dislay the refreshed time every second
+     localtime() - uses the current time.
+
+### Code: 
+*7.html*
+
+     <html>
+     	<form action="http://localhost/cgi-bin/7.pl">
+     		<center>
+     			<input type=submit value=Click_to_display_time>
+     		</center>
+     	</form>
+     </html>  
+
+*7.pl*
+
+     #!/usr/bin/perl
+     use CGI':standard';
+     #refresh the display every second
+     print "Refresh:1\n";
+     print "Content-type:text/html\n\n";
+     	($s,$m,$h)=localtime(time);
+     print br "The current server time is $h:$m:$s";
+     print br "In words,the time is- $h hours, $m minutes and $s seconds";
+     
+### Output:
+*Steps for checking output-*
+
+* Save the .html file in the folder `/var/www/html`
+* Save the .pl files in the folder `/var/www/cgi-bin`
+* Change the file permission of the perl file by running the command `sudo chmod 777 7.pl`
+* Open a browser and in the address bar type `localhost/html/7.html`
+* Click the button `Click_to_display_time` to view the current time of the server.
+
+### Screenshot:
+
+![output_1](7.png)
