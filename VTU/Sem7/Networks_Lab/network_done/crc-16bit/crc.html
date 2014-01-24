@@ -1,0 +1,96 @@
+<h2>Aim:</h2>
+
+<h3>Write a program for Error Detection using CRC-CCITT(16 bits)</h3>
+
+<h2>Description:</h2>
+
+<blockquote>
+  <p>The cyclic redundancy check, or CRC, is a technique for detecting <br />
+errors in digital data, but not for making corrections when errors are detected. It is used primarily in data transmission. </p>
+
+<p>In the CRC method, a certain number of check bits, often called a checksum, are appended to the message being transmitted. The receiver can determine whether or not the check bits agree with the data, to ascertain with a certain degree of probability whether or not an error occurred in transmission.</p>
+
+<p>If an error occurred, the receiver sends a “negative acknowledgement” (NAK) back to the sender, requesting that the message be retransmitted.
+The technique is also sometimes applied to data storage devices, such as a disk drive. In this situation each block on the disk would have check bits, and the hardware might automatically initiate a reread of the block when an error is detected, or it might report the error to software. The material that follows speaks in terms of a “sender” and a “receiver” of a “message,” but it should be understood that it applies to storage writing and reading as well.</p>
+</blockquote>
+
+<h2>Algorithm</h2>
+
+<ol>
+<li>Start</li>
+<li>Enter the message to be transmitted</li>
+<li>Append the message with 16(since it is 16-bit CRC) 0`s (i.e. if you input 5 digit message, the appeneded message should be 21-bits.)</li>
+<li>XOR appended message and transmit it.(Here, you compare with an already exisitng string such as <code>10001000000100001</code> and replace the bits the same way XOR operation works)</li>
+<li>Verify the message that is received is the same as the one sent.</li>
+<li>End </li>
+</ol>
+
+<h2>Code:</h2>
+
+<p><code></p>
+
+<pre><code>#include&lt;iostream&gt;/*includes input, output streams for C++ programs*/
+#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;/*helps in accessing string modifying functions*/
+using namespace std;
+int crc(char *input,char *output,const char *gp,int mode)
+{
+int j,k;
+strcpy(output,input);/*copy contents of input to output*/
+if(mode)/*if mode == 1, then continue. 1 is interpreted as boolean value `TRUE`*/
+{
+    for(j=1; j&lt;strlen(gp); j++) 
+        strcat(output,"0");/*append output with 0`s depending on the length of gp. here it is 17*/
+}
+for(j=0; j&lt;strlen(input); j++)/*This is XOR operation using iteration and comparison*/
+    if(*(output+j) == '1')
+        for(k=0; k&lt;strlen(gp); k++)
+        {
+            if (((*(output+j+k) =='0') &amp;&amp; (gp[k] == '0') || (*(output+j+k) == '1') &amp;&amp; (gp[k] == '1'))) 
+                *(output+j+k)='0';
+            else
+                *(output+j+k)='1';
+        }
+for(j=0; j&lt;strlen(output); j++)
+    if(output[j] == '1')
+        return 1;
+return 0;
+</code></pre>
+
+<p>}</p>
+
+<pre><code>int main()
+{
+    char input[50],output[50],recv[50];
+    const char gp[18]="10001000000100001";
+    cout&lt;&lt;"\nEnter the input message in binary\n";
+    cin&gt;&gt;input;
+    crc(input,output,gp,1);
+    cout&lt;&lt;"\nThe transmitted message is: "&lt;&lt;input&lt;&lt;output+strlen(input)&lt;&lt;"\n";
+    cout&lt;&lt;"\n\nEnter the recevied message in binary \n";
+    cin&gt;&gt;recv;
+    if(!crc(recv,output,gp,0))
+        cout&lt;&lt;"\nNo error in data\n";
+    else
+        cout&lt;&lt;"\nError in data transmission has occurred\n";
+
+    return 0;
+}
+</code></pre>
+
+<p></code></p>
+
+<h3>Output:</h3>
+
+<p><em>Commands for execution:-</em></p>
+
+<ul>
+<li>Open a terminal.</li>
+<li>Change directory to the file location.</li>
+<li>Run g++ <em>filename.cpp</em> </li>
+<li>If there are no errors, run ./a.out</li>
+</ul>
+
+<p><em>Screenshots:-</em></p>
+
+<p><img src="crc.png" alt="ScreenShot of output" title="" /></p>
