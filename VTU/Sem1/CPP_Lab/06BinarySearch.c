@@ -45,22 +45,24 @@ int main(void)
 		if(iKey == iaArr[iMid])	/*KEY ELEMENT FOUND*/
 		{
 			iPos = iMid;
-			iFound = 1;
-			break;
+			printf("\nKey element %d found at position %d\n",iKey,iPos+1);
+			return 0;
 		}
-		else if(iKey < iaArr[iMid])	/*KEY ELEMENT IS IN 1ST HALF*/
-			iHigh = iMid - 1;
-		else	/*KEY ELEMENT IS IN 2ND HALF*/
-			iLow = iMid +1;
+		else
+		{
+			if(iKey < iaArr[iMid])	/*KEY ELEMENT IS IN 1ST HALF*/
+				iHigh = iMid - 1;
+			else	/*KEY ELEMENT IS IN 2ND HALF*/
+				iLow = iMid +1;
+		}
+
 	}
 
 
-	if(iFound)
-		printf("\nKey element %d found at position %d\n",iKey,iPos+1);
-	else
-		printf("\nKey element not found\n");
+	printf("\nKey element not found\n");
 
 	return 0;
 }
+
 
 
