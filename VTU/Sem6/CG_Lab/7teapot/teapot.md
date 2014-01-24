@@ -1,12 +1,14 @@
 ## Aim: 
-### Program, using OpenGL functions, to draw a simple shaded scene consisting of a tea pot on a table. Define suitably the position and properties of the light source along with the properties of the properties of the surfaces of the solid object used in the scene.
+##### Program, using OpenGL functions, to draw a simple shaded scene consisting of a tea pot on a table. Define suitably the position and properties of the light source along with the properties of the properties of the surfaces of the solid object used in the scene.
 
-## Algorithm
+## Algorithm:
+
 1. Use function glutSolidCube() to draw wall and table 
 2. Use the same function to draw 4 cubes and then scale it in downward direction to make it look like tablelegs
 3. glutSolidTeapot() is used to draw teapot
 
-## Code teapot.c
+## Code:
+     //teapot.c
 	#include<stdio.h>
 	#include<GL/glut.h>
 	void wall(double thickness)
