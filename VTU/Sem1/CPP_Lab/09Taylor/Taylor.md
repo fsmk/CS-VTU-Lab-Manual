@@ -10,7 +10,7 @@
 5. Calculate num/den 6. Repeat step 2,3,4 till the value is less than FLT_EPSILON
 7. Stop.
 
-##Propgram: Taylor.c
+##Program: Taylor.c
 
 	#include<stdio.h>
 	#include<float.h>
@@ -50,7 +50,7 @@
 
 ##Output:
 
-###gcc –lm Taylorseries.c
+###gcc –lm Taylor.c
 ###./a.out
 
     Value of exp(0.5) after evaluation = 1.648721
