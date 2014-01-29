@@ -469,9 +469,7 @@ ctrl+l.
 
 ###Resources
 
-* For more videos on Mysql 
-
-		http://files.spoken-tutorial.org/disc-source/php-mysql-english-hindi.zip
+* Please go through the video tutorials on MySQL developed and released by **Spoken Tutorial Project**, an initiative of National Mission on Education through ICT, Government of India, to promote IT literacy through Open Source Software. Students can go through these video tutorials to get better understanding of the subject. The tutorials for MySQL can be downloaded from [here](http://files.spoken-tutorial.org/disc-source/php-mysql-english-hindi.zip). More info about the project can be found [here](http://spoken-tutorial.org/).
 
 * The MySQL Handbook is also available in the mysql-doc-5.0 package. To install the package enter the following in a terminal: 
 	*<b>sudo apt-get install mysql-doc-5.0</b>*
