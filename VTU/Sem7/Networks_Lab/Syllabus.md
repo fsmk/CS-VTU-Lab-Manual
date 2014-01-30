@@ -1,9 +1,10 @@
-Lab Programs list for Networks Lab as specified by VTU for 7th Semester 
-students:
+##Lab Programs list for Networks Lab as specified by VTU for 7th Semester students:
 
-PART A – Simulation Exercises
+###PART A – Simulation Exercises
+
 The following experiments shall be conducted using either NS228/OPNET or 
 any other suitable simulator.
+
 1. Simulate a three nodes point – to – point network with duplex links 
 between them. Set the queue size and vary the bandwidth and find the 
 number of packets dropped.
@@ -28,8 +29,11 @@ and plot congestion window for different source / destination.
 simulation and determine the performance with respect to transmission of
 packets.
 
-PART-B
+###PART-B
+
 Implement the following in C/C++:
+
+<!-- Currently this numbering will start again from 1 as markdown doesnt support beginning numbering from some arbitary number.-->
 7. Write a program for error detecting code using CRC-CCITT (16- bits).
 
 8. Write a program for distance vector algorithm to find suitable path for
