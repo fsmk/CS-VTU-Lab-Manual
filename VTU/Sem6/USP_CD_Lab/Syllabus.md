@@ -1,11 +1,11 @@
 ##Lab Programs list for Unix Systems Programming and Compiler Design Lab as specified by VTU for 6th Semester students:
 
 1. Write a C/C++ POSIX compliant program to check the following limits:
-(i) No. of clock ticks
-(ii) Max. no. of child processes
-(iii) Max. path length
-(iv) Max. no. of characters in a file name
-(v) Max. no. of open files/ process
+  1. No. of clock ticks
+  2. Max. no. of child processes
+  3. Max. path length
+  4. Max. no. of characters in a file name
+  5. Max. no. of open files/ process
 2. Write a C/C++ POSIX compliant program that prints the POSIX defined 
 configuration options supported on any given system using feature test 
 macros.
@@ -17,9 +17,10 @@ region.
 4. Write a C/C++ program which demonstrates interprocess communication 
 between a reader process and a writer process. Use mkfifo, open, read, 
 write and close APIs in your program.
-5. a) Write a C/C++ program that outputs the contents of its Environment 
+5. 
+  1. Write a C/C++ program that outputs the contents of its Environment 
 list.
-b) Write a C / C++ program to emulate the unix ln command 
+  2. Write a C / C++ program to emulate the unix ln command 
 6. Write a C/C++ program to illustrate the race condition.
 7. Write a C/C++ program that creates a zombie and then calls system to 
 execute the ps command to verify that the process is zombie.
