@@ -1,5 +1,4 @@
-##Lab Programs list for Unix Systems Programming and Compiler Design Lab as 
-specified by VTU for 6th Semester students:
+##Lab Programs list for Unix Systems Programming and Compiler Design Lab as specified by VTU for 6th Semester students:
 
 1. Write a C/C++ POSIX compliant program to check the following limits:
 (i) No. of clock ticks
