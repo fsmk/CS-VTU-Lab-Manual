@@ -1,4 +1,4 @@
-Lab Programs list for Unix Systems Programming and Compiler Design Lab as 
+##Lab Programs list for Unix Systems Programming and Compiler Design Lab as 
 specified by VTU for 6th Semester students:
 
 1. Write a C/C++ POSIX compliant program to check the following limits:
@@ -28,8 +28,6 @@ execute the ps command to verify that the process is zombie.
 9. Write a C/C++ program to implement the system function.
 10. Write a C/C++ program to set up a real-time clock interval timer using 
 the alarm API. 
-
-List of Experiments for Compiler Design: 
 11. Write a C program to implement the syntax-directed definition of “if E 
 then S1” and “if E then S1 else S2”. (Refer Fig. 8.23 in the text book 
 prescribed for 06CS62 Compiler Design, Alfred V Aho, Ravi Sethi, and 
