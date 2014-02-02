@@ -3,41 +3,48 @@ Semester students:
 
 1. Develop and demonstrate a XHTML file that includes Javascript script 
 for the following problems:
-a) Input: A number n obtained using prompt
-Output: The first n Fibonacci numbers
-b) Input: A number n obtained using prompt
-Output: A table of numbers from 1 to n and their squares using alert
-2. a) Develop and demonstrate, using Javascript script, a XHTML document
+  1. Input: A number n obtained using prompt 
+  
+     Output: The first n Fibonacci numbers
+  2. Input: A number n obtained using prompt
+  
+     Output: A table of numbers from 1 to n and their squares using alert
+2. 
+  1. Develop and demonstrate, using Javascript script, a XHTML document
 that collects the USN ( the valid format is: A digit from 1 to 4 followed
 by two upper-case characters followed by two digits followed by two
 upper-case characters followed by three digits; no embedded spaces 
 allowed) of the user. Event handler must be included for the form element 
 that collects this information to validate the input. Messages in the 
 alert windows must be produced when errors are detected.
-b) Modify the above program to get the current semester also (restricted 
+  2. Modify the above program to get the current semester also (restricted 
 to be a number from 1 to 8)
-3. a) Develop and demonstrate, using Javascript script, a XHTML document 
+3. 
+  1. Develop and demonstrate, using Javascript script, a XHTML document 
 that contains three short paragraphs of text, stacked on top of each other,
 with only enough of each showing so that the mouse cursor can be placed
 over some part of them. When the cursor is placed over the exposed part of 
 any paragraph, it should rise to the top to become completely visible.
-b) Modify the above document so that when a paragraph is moved from the 
+  2. Modify the above document so that when a paragraph is moved from the 
 top stacking position, it returns to its original position rather than to
 the bottom.
-4. a) Design an XML document to store information about a student in an 
+4. 
+  1. Design an XML document to store information about a student in an 
 engineering college affiliated to VTU. The information must include USN, 
 Name, Name of the College, Brach, Year of Joining, and e-mail id. Make up 
 sample data for 3 students. Create a CSS style sheet and use it to display 
 the document.
-b) Create an XSLT style sheet for one student element of the above document 
+  2. Create an XSLT style sheet for one student element of the above document 
 and use it to create a display of that element.
-5. a) Write a Perl program to display various Server Information like Server
+5. 
+  1. Write a Perl program to display various Server Information like Server
 Name, Server Software, Server protocol, CGI Revision etc.
-b) Write a Perl program to accept UNIX command from a HTML form and to 
+  2. Write a Perl program to accept UNIX command from a HTML form and to 
 display the output of the command executed.
-6. a) Write a Perl program to accept the User Name and display a greeting 
+6. 
+  1. Write a Perl program to accept the User Name and display a greeting 
 message randomly chosen from a list of 4 greeting messages.
-b) Write a Perl program to keep track of the number of visitors visiting
+  2. Write a Perl program to keep track of the number of visitors visiting
 the web page and to display this count of visitors, with proper headings.
 7. Write a Perl program to display a digital clock which displays the 
 current time of the server.
