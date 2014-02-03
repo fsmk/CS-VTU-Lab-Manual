@@ -1,19 +1,24 @@
-#PROGRAM 5
-###DESCRIPTION:The following relations keep track of a banking enterprise. 
+##PROGRAM 5
+###DESCRIPTION:
+The following relations keep track of a banking enterprise. 
   
-<pre>   BRANCH(branch-name:string, branch-city:string, assets:real) 
-        ACCOUNT(accno:int, branch-name:string, balance:real) 
-        DEPOSITOR(customer-name:string, accno:int) 
-        CUSTOMER(customer-name:string, customer-street:string, customer-city:string)    
-        LOAN(loan-number:int, branch-name:string, amount:real) 
-        BORROWER(customer-name:string, loan-number:int) </pre>
+* BRANCH(branch-name:string, branch-city:string, assets:real) 
+* ACCOUNT(accno:int, branch-name:string, balance:real) 
+* DEPOSITOR(customer-name:string, accno:int) 
+* CUSTOMER(customer-name:string, customer-street:string, customer-city:string)    
+* LOAN(loan-number:int, branch-name:string, amount:real) 
+* BORROWER(customer-name:string, loan-number:int) 
 
-<pre>Write each of the following queries in SQL.  
-   i. Create the above tables by properly specifying the primary keys and the foreign keys 
-   ii. Enter at least five tuples for each relation.</pre>
+##Queries:
+
+Write each of the following queries in SQL.  
+
+1. Create the above tables by properly specifying the primary keys and the foreign keys 
+2. Enter at least five tuples for each relation.
 
 
-## Create:
+##Create:
+
 <pre>CREATE TABLE BRANCH
      ( branch_name VARCHAR(15),
        branch_city VARCHAR(15),
@@ -62,6 +67,7 @@
 
 
 ##INSERTIONS:
+
 <pre>mysql> insert into branch values
     -> 		("b1","c1",10000),
     -> 		("b2","c2",20000),
