@@ -36,12 +36,12 @@ The central idea of the program is to develop a code which can count all the sin
 
 ###OUTPUT:
 <pre>
-/a.out 11.c r.txt
+./a.out 11.c r.txt
 Number of comments is 3
 </pre>
 
 ###cat r.txt
-	<pre>
+
 	#include<stdio.h>
 	#include<omp.h>
 	int main()
@@ -64,5 +64,5 @@ Number of comments is 3
 
    	return 0;
 	}
-	</pre>
+
 
