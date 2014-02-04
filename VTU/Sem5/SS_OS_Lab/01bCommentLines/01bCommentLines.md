@@ -6,34 +6,34 @@ The central idea of the program is to develop a code which can count all the sin
 
 ###CODE:
 
-<pre>%{
-#include&lt;stdio.h>
-int c=0;
-%}
-%x COMMENT
-%%
-"//".* {c++;}
-"/*".* {BEGIN COMMENT;}
-<COMMENT>. ;
-<COMMENT>\n ;
-<COMMENT>"*/" {BEGIN 0;c++;}
-%%
-int main(int argc,char **argv)
-{
-	if(argc!=3)
+	%{
+	#include<stdio.h>
+	int c=0;
+	%}
+	%x COMMENT
+    	%%
+    	"//".* {c++;}
+    	"/*".* {BEGIN COMMENT;}
+    	<COMMENT>. ;
+    	<COMMENT>\n ;
+    	<COMMENT>"*/" {BEGIN 0;c++;}
+    	%%
+	int main(int argc,char **argv)
 	{
-		printf("No file\n");
-		return 0;
+		if(argc!=3)
+		{
+			printf("No file\n");
+			return 0;
+		}
+		else
+		{
+			yyin=fopen(argv[1],"r");
+			yyout=fopen(argv[2],"w");
+			yylex();
+			printf("Number of comments is %d\n",c);
+		}
 	}
-	else
-	{
-		yyin=fopen(argv[1],"r");
-		yyout=fopen(argv[2],"w");
-		yylex();
-		printf("Number of comments is %d\n",c);
-	}
-}
-</pre>
+
 ###OUTPUT:
 <pre>
 /a.out 11.c r.txt
@@ -41,29 +41,28 @@ Number of comments is 3
 </pre>
 
 ###cat r.txt
-<pre>
-`#`include&lt;stdio.h>
-`#`include&lt;omp.h>
-int main()
-{
-   int n,a[100],i;
-       #pragma omp single
-    	  for(i=2;i&lt;n;i++)
-    	  {
-           	a[i]=a[i-2]+a[i-1];
-     		printf("id of thread involved in the computation of fib no %d is=%d\n",i+1,omp_get_thread_num());
-   	  }
-          #pragma omp barrier
-          #pragma omp single
-    	 {
-       		printf("the elements of fib series are\n");
-       		for(i=0;i&lt;n;i++)
-       		printf("%d,id of the thread displaying this no is =  %d\n",a[i],omp_get_thread_num());
-   	 }
-   }
+	<pre>
+	#include<stdio.h>
+	#include<omp.h>
+	int main()
+	{
+	   	int n,a[100],i;
+	       	#pragma omp single
+	    	for(i=2;i<n;i++)
+	    	{
+	        	a[i]=a[i-2]+a[i-1];
+	     		printf("id of thread involved in the computation of fib no %d is=%d\n",i+1,omp_get_thread_num());
+	   	}
+	        #pragma omp barrier
+	        #pragma omp single
+	    	{
+	       		printf("the elements of fib series are\n");
+	       		for(i=0;i<n;i++)
+	       		printf("%d,id of the thread displaying this no is =  %d\n",a[i],omp_get_thread_num());
+	   	}
+   	}
 
-   return 0;
-
-}
-</pre>
+   	return 0;
+	}
+	</pre>
 
