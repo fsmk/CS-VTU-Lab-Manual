@@ -106,7 +106,7 @@ go to step 11.
 ## Output:
 
 Run the following commands in your terminal:<br>
-####gcc –lm roots.c<br>
+####gcc roots.c -lm<br>
 ####./a.out<br>
 Enter the coefficients of a,b,c<br>
        1 -4 4<br>
