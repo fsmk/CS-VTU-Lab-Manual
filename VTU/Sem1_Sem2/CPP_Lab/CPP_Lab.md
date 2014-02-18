@@ -3,7 +3,6 @@
 
 
 
-
 ## Aim:
 ### Design, develop and execute a program in C to find and output all the roots of a given quadratic equation, for nonzero coefficients.
 
@@ -78,7 +77,7 @@ go to step 11.
           else if(desc>0)  
           {             
           
-            //Computation for distinct roots
+            //Computatio-ln for distinct roots
          	x1=(-b+sqrt(desc))/(2*a);  
         	x2=(-b-sqrt(desc))/(2*a);    
         	
@@ -112,7 +111,7 @@ go to step 11.
 ## Output:
 
 Run the following commands in your terminal:<br>
-####gcc –lm roots.c<br>
+####gcc roots.c -lm<br>
 ####./a.out<br>
 Enter the coefficients of a,b,c<br>
        1 -4 4<br>
