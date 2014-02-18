@@ -114,14 +114,14 @@ Roots are equal and the they are<br>
 Root1 = 2.000000 and Root2 = 2.000000<br>
 
 
-####gcc –lm roots.c<br>
+####gcc roots.c -lm<br>
 ####./a.out<br>
 Enter the coefficients of a,b,c<br>
 1 -5 6<br>
 The Roots are Real and distinct, they are<br>
 Root1 = 3.000000 and Root2 = 2.000000<br>
 
-####gcc –lm roots.c<br>
+####gcc roots.c -lm<br>
 ####./a.out<br>
 Enter the coefficients of a,b,c<br>
  	1 3 3<br>
