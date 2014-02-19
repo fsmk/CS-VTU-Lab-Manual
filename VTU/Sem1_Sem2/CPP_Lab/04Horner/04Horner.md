@@ -47,36 +47,31 @@
 10. Stop
 
 ##Program: polynomial.c
-	#include<stdio.h>
-	#include<stdlib.h>
-	#include<math.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
 
-	int main(void)
-	{
-		int deg,i,Arr[10];
-		float x,Sum=0;
-		printf("\nEnter the degree of the polynomial and value
-  			of x\n");
-		scanf("%d%f",&deg,&x); //taking input value of degree 
-												and x //
-		printf("\nEnter the coefficients in descending order 			of degree\n");
-		for(i=0;i<=deg;i++)
-		{
-			scanf("%d",&Arr[i]);
-		}    // taking co-efficient value polynomial //
+int main(void)
+{
+    int deg,i,Arr[10];
+    float x,Sum=0;
+    printf("\nEnter the degree of the polynomial and value of x\n");
+    scanf("%d%f",&deg,&x); //taking input value of degree and x //
+    printf("\nEnter the coefficients in descending order of degree\n");
+    for(i=0;i<=deg;i++)
+    {
+        scanf("%d",&Arr[i]);
+    }    // taking co-efficient value polynomial //
 
-		for(i=deg;i>0;i--)
-		{
-			Sum=(Sum + Arr[i])*x;
-		}   //evaluating polynomial using Horner’s method//
-		Sum = Sum + Arr[0]; //adding sum to higher degree co-
-		efficient //
-		printf("\nValue of polynomial after 
-		evaluation=%g\n",Sum);
-		//printing the result//
-		return 0;
-	}
-
+    for(i=deg;i>0;i--)
+    {
+        Sum=(Sum + Arr[i])*x;
+    }   //evaluating polynomial using Horner’s method//
+    Sum = Sum + Arr[0]; //adding sum to higher degree co-efficient //
+    printf("\nValue of polynomial after evaluation=%g\n",Sum);
+    //printing the result//
+    return 0;
+}
 ## Output:
 
 Run the following commands in your terminal:<br>
@@ -86,7 +81,7 @@ Run the following commands in your terminal:<br>
 	1:	Enter the degree of the polynomial and value of x
 		5
 		2
-		Enter the coefficients in reverse order
+		Enter the coefficients in descending order of degree
 		6 5 4 3 2 1
 		Value of polynomial after evaluation=120.000000
 
@@ -97,6 +92,6 @@ Run the following commands in your terminal:<br>
 
 	2: 	Enter the degree of the polynomial and value of x
 		4 1
-		Enter the coefficients in reverse order
+		Enter the coefficients in descending order of degree
 		1 2 3 4 5
 		Value of polynomial after evaluation=15.000000
