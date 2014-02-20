@@ -82,7 +82,7 @@
 		}
 
 		if(f==1)
-  			printf("Key element %d is found at	%d\n",key,mid);      
+  			printf("Key element %d is found at position %d\n",key,mid+1);      
 			//prints when key element found along with	its position//
 		else
 			printf("Key element %d is not found\n",key);
