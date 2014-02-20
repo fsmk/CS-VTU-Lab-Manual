@@ -24,48 +24,48 @@
 	#include<stdio.h>
 	void main()
 	{
-		int n,i,j,a[10],b[10],temp;
-		for(i=0;i<10;i++)
-		{
-			//for removing junk values in the array //
-			a[i]=0;
-			b[i]=0;	
-		}
+	    int n,i,j,a[10],b[10],temp;
+	    for(i=0;i<10;i++)
+	    {
+	        //for removing junk values in the array //
+	        a[i]=0;
+	        b[i]=0; 
+	    }
 	
-		printf("\nEnter no of elements\n"); 
-			scanf("%d",&n); //input for size of the array 		//
-		printf("\nEnter the elements\n"); 
-		for(i=0;i<n;i++) 
-			scanf("%d",&a[i]); // taking array elements //
-		for(i=0;i<n;i++)
-		{
-			b[i]=a[i];           //storing copy of array 			to an another array //
-		}	
-		//Sorting array using BUBBLESORT method //
-		for(i=0;i<n;i++) 
-		{ 
-			for(j=i+1;j<n;j++) 
-			{ 
-				if(a[i] > a[j]) 
-				{ 
-					temp = a[i]; 
-					a[i] = a[j]; 
-					a[j] = temp; 
-				} 
-			} 
-		}
-		printf("The given array of elements is \n");
-		for(i=0;i<n;i++)
-		{
-			printf("%d\t",b[i]); //prints the input array 				//
-		}
-		printf("\nThe sorted array of given array is\n");
-		for(i=0;i<n;i++)
-		{
-			printf("%d\t",a[i]); //prints the sorted 					array // 
-		}
-		printf("\n");
-	} 	
+	    printf("\nEnter no of elements\n"); 
+	        scanf("%d",&n); //input for size of the array //
+	    printf("\nEnter the elements\n"); 
+	    for(i=0;i<n;i++) 
+	        scanf("%d",&a[i]); // taking array elements //
+	    for(i=0;i<n;i++)
+	    {
+	        b[i]=a[i];           //storing copy of array to an another array //
+	    }   
+	    //Sorting array using BUBBLESORT method //
+	    for(i=0;i<n;i++) 
+	    { 
+	        for(j=i+1;j<n;j++) 
+	        { 
+	            if(a[i] > a[j]) 
+	            { 
+	                temp = a[i]; 
+	                a[i] = a[j]; 
+	                a[j] = temp; 
+	            } 
+	        } 
+	    }
+	    printf("The given array of elements is \n");
+	    for(i=0;i<n;i++)
+	    {
+	        printf("%d\t",b[i]); //prints the input array//
+	    }
+	    printf("\nThe sorted array of given array is\n");
+	    for(i=0;i<n;i++)
+	    {
+	        printf("%d\t",a[i]); //prints the sorted array // 
+	    }
+	    printf("\n");
+	}   
 
 ## Output:
 
