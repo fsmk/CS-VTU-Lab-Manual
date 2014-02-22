@@ -11,7 +11,7 @@
 4. Call rightrot function.
 5. righrot function;
 	
-	 For i=0 to n-1
+	 from i=0 to n-1
 	
 			When x mod 2 = 0
 					Right shift once.
