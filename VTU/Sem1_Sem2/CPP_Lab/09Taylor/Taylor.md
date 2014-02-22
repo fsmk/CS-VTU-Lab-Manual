@@ -1,6 +1,8 @@
 ##Aim:
 ###Design, develop and execute a program in C to calculate the approximate value of exp (0.5) using the Taylor Series expansion for the exponential function. Use the terms in the expansion until the last term is less than the machine epsilon defines as FLT_EPSILON in the header file <float.h>. Print the value returned by the Mathematical function exp ( ) also.
 
+##Summary:
+
 ##Algorithm:
 1. Start
 2. Taylor’s series expansion
