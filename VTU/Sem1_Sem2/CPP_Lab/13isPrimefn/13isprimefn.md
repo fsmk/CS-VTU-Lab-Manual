@@ -19,7 +19,6 @@
 ##Program: isprime.c
 	#include<stdio.h>
 	#include<stdlib.h>
-	#include<math.h>
 	
 	int isPrime(int);
 
@@ -47,12 +46,12 @@
 	        if(x==1)  //Executes if the given value is 1//
 	        {
 	              printf("\n1 is neither prime nor composite\n");
-				exit(0);
+		      exit(0);
 	        }
 	        for(i = 2; i<x ;i++)
 	        {
 	                if(x % i==0)// Checks for divisibility//
-	                     return 0;
+	                return 0;
 	        }
 	        return 1;
 	}
@@ -60,14 +59,14 @@
 
 Run the following commands in your terminal:<br>
 
-###gcc –lm isprime.c
+###gcc isprime.c
 ###./a.out
 
 	Enter the value to be checked
 	1
 	1 is neither prime nor composite
 
-###gcc –lm isprime.c
+###gcc isprime.c
 ###./a.out
 
 	Enter the value to be checked
@@ -77,7 +76,7 @@ Run the following commands in your terminal:<br>
 
 
 
-###gcc –lm isprime.c
+###gcc isprime.c
 ###./a.out
 
 	Enter the value to be checked
