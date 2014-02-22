@@ -1,5 +1,5 @@
 ##Aim:
-###Design and develop a function matchany (s1,s2) which returns the first location in the string s1 where any character from the string s2 occurs,   or – 1 if s1 contains no character from s2. Do not use the standard library function which does a similar job! Invoke the function matchany (s1. s2) from the main for different strings and print both the strings and the return value from the function matchany (s1,s2).
+###Design and develop a function matchany (s1,s2) which returns the first location in the string s1 where any character from the string s2 occurs,   or – 1 if s1 contains no character from s2. Do not use the standard library function which does a similar job! Invoke the function matchany (s1,s2) from the main for different strings and print both the strings and the return value from the function matchany (s1,s2).
 
 ##Summary:
 	
@@ -14,45 +14,46 @@
 5. When match found return the position of character in first string,else 			exit.                                                                                                          
 6. Stop
 	
-##Program: Matchany.c
+##Program: matchany.c
 
 	#include<stdio.h>
 	#include<string.h>
 	int matchany(char *,char *);
 	void main()
 	{
-		char a[100],b[100];
-		int f;
-		printf("Enter the first string\n");
-	  	scanf("%s",a);
-		printf("Enter the second string\n");
-	  	scanf("%s",b);
+	    char a[100],b[100];
+	    int f;
+	    printf("Enter the first string\n");
+	    scanf("%s",a);
+	    printf("Enter the second string\n");
+	    scanf("%s",b);
 	
-    	f=matchany(a,b);//calling a function //
+	    f=matchany(a,b);//calling a function //
 	
-    	printf("The First string is\n %s\n",a);  //printing two
-		printf("The Second string is\n %s\n",b);     strings //
-
-
-	if(f==-1)  // executes when string does not match //
-		printf("Character did not match\n");
-	else 
-			printf("The character %c of the second string is found at position %d of first string\n",a[f],f+1);
-  		//prints the matching string with its position //
+	    //printing two strings //
+	    printf("The First string is\n %s\n",a);  
+	    printf("The Second string is\n %s\n",b);     
+	
+	
+	    if(f==-1)  // executes when string does not match //
+	     printf("Character did not match\n");
+	    else     //prints the matching string with its position //
+	     printf("The character %c of the second string is found at position %d of first string\n",b[f],f+1);
+	
 	}
-
+	
 	int matchany(char *a,char *b)   // function to find a match  pattern in string //
 	{
 		int i,j;
 		for(i=0;i<strlen(a);i++)
-	{		
-		for(j=0;j<strlen(b);j++)
-		{		
+		{       
+		    for(j=0;j<strlen(b);j++)
+		    {       
 			if(a[i]==b[j])
-			return i;	
+			return i;   
+		    }
 		}
-	}
-	return -1;
+		return -1;
 	}
 
 
@@ -85,4 +86,4 @@
            The Second string is
            machine
 
-           The character m of the second string is found at position 3 of first string
+           The character c of the second string is found at position 1 of first string
