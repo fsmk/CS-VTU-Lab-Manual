@@ -7,13 +7,13 @@
     
 ##Algorithm
 1. Start.
-2. Input the order of first matrix   matrix1[][]       mxn  (m-rows,n-coloumns).
-3. Input the order of second matrix  matrix2[][]     pxq  (m-rows,n-coloumns).
+2. Input the order of first matrix   matrix1[ ][ ]       mxn  (m-rows,n-coloumns).
+3. Input the order of second matrix  matrix2[ ][ ]     pxq  (m-rows,n-coloumns).
 4. When n not equal to p, print a error message and   go to step 8.
 5. When n=p, perform matrix multiplication, go to step 6.
 6. From i=0 to i<m, j=0 to j<q, k=0 to j<p
 		Do    prod[i][j] =Prod[i][j]+ matrix1[i][k] * matrix2[k][j];  
-7. Print matrix  prod[][].
+7. Print matrix  prod[ ][ ].
 8. Stop.
   
 ##Program: Matrixmul.c
@@ -22,66 +22,74 @@
 	{
 		int i,j,k,matrix1[10][10],matrix2[10][10];
 		int m,n,p,q,Prod[10][10];
+	
 		printf("Enter the order of the matrix1\n");
 		scanf("%d%d",&m,&n); 
 		printf("Enter the order of the matrix2\n");
 		scanf("%d%d",&p,&q);
-	//If matrices are not suitable for computation print an   error message //
-		If(n!=p)
+	
+		//If matrices are not suitable for computation print an   error message //
+		if(n!=p)
 		{
-		printf("Matrix multiplication is not computable for the given matrices\n");
+			printf("Matrix multiplication is not computable for the given matrices\n");
 		}	
-	else
-	{
-		printf("\nEnter the elements of Matrix 1\n"); 
-		for(i=0;i<m;i++) 
-			for(j=0;j<n;j++) 
- 	scanf("%d",&matrix1[i][j]); //taking elements of matrix1//
-		printf("\nEnter the elements of Matrix 2\n"); 
-		for(i=0;i<p;i++) 
-			for(j=0;j<q;j++) 
-	scanf("%d",&matrix2[i][j]); //taking elements of matrix2//
-		for(i=0;i<p;i++)
-        		for(j=0;j<q;j++)
-               			Prod[i][j]=0;
-		//To find product and print it if matrices are suitable for computation.//
-		if(n==p)
+		else
 		{
+	
+			printf("\nEnter the elements of Matrix 1\n"); 
+		
+			for(i=0;i<m;i++) 
+				for(j=0;j<n;j++) 
+				//taking elements of matrix1//
+			 	scanf("%d",&matrix1[i][j]); 
+		
+			printf("\nEnter the elements of Matrix 2\n"); 
+			for(i=0;i<p;i++) 
+				for(j=0;j<q;j++) 
+				//taking elements of matrix2//
+				scanf("%d",&matrix2[i][j]); 
+	
+			for(i=0;i<p;i++)
+				for(j=0;j<q;j++)
+		  		Prod[i][j]=0;
+	
+			//To find product and print it if matrices are suitable for computation.//
+	
 			for(i=0;i<m;i++) 
 			{ 
-		 	for(j=0;j<q;j++) 
-		 	{ 
-		  	for(k=0;k<p;k++) 
-		   	{ 
-				Prod[i][j] =Prod[i][j]+ matrix1[i][k] * matrix2[k][j];  // computing product of matrices //
-				} 
-		 	} 
-		} 
-       	printf("\nMatrix 1\n"); 
+		 		for(j=0;j<q;j++) 
+			 	{ 
+				  	for(k=0;k<p;k++) 
+				   	{ 
+						// computing product of matrices //
+						Prod[i][j] =Prod[i][j]+ matrix1[i][k] * matrix2[k][j];  
+					} 
+			 	} 
+			} 
+		       	//prints matrix1 //
+			printf("\nMatrix 1\n"); 
 			for(i=0;i<m;i++) 
 			{ 
-		 	for(j=0;j<n;j++) 
-		 	{ 
-		  	printf("%d\t",matrix1[i][j]); //prints matrix1 //
-		 	} 
+			 	for(j=0;j<n;j++) 
+			 	{ 
+				  	printf("%d\t",matrix1[i][j]); 
+		 		} 
 				printf("\n"); 
 			} 
-			printf("\n"); 
-
-		printf("\nMatrix 2\n"); 
+		
+			//prints matrix2 //
+			printf("\nMatrix 2\n"); 
 			for(i=0;i<p;i++) 
 			{ 
-		 	for(j=0;j<q;j++) 
-		 	{ 
-		  	printf("%d\t",matrix2[i][j]); //prints matrix2 //
-		 	} 
+			 	for(j=0;j<q;j++) 
+		 		{ 
+				  	printf("%d\t",matrix2[i][j]); 
+			 	} 
 				printf("\n"); 
 			} 
-			printf("\n"); 
-
-		
-	printf("\nThe Product matrix is  \n"); 
+			
 			//to print the product matrix //
+			printf("\nThe Product matrix is  \n"); 
 			for(i=0;i<m;i++) 
 			{ 
 				for(j=0;j<q;j++) 
@@ -90,10 +98,10 @@
 				} 
 				printf("\n"); 
 			} 
-			printf("\n"); 
-		}
 	
-	} 
+		}
+		
+	}
 
 ##Output:
 
