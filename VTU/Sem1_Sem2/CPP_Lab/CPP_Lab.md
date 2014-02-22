@@ -3,6 +3,7 @@
 
 
 
+
 ## Aim:
 ### Design, develop and execute a program in C to find and output all the roots of a given quadratic equation, for nonzero coefficients.
 
@@ -77,7 +78,7 @@ go to step 11.
           else if(desc>0)  
           {             
           
-            //Computatio-ln for distinct roots
+            //Computation for distinct roots
          	x1=(-b+sqrt(desc))/(2*a);  
         	x2=(-b-sqrt(desc))/(2*a);    
         	
@@ -119,14 +120,14 @@ Roots are equal and the they are<br>
 Root1 = 2.000000 and Root2 = 2.000000<br>
 
 
-####gcc –lm roots.c<br>
+####gcc roots.c -lm<br>
 ####./a.out<br>
 Enter the coefficients of a,b,c<br>
 1 -5 6<br>
 The Roots are Real and distinct, they are<br>
 Root1 = 3.000000 and Root2 = 2.000000<br>
 
-####gcc –lm roots.c<br>
+####gcc roots.c -lm<br>
 ####./a.out<br>
 Enter the coefficients of a,b,c<br>
  	1 3 3<br>
@@ -385,36 +386,33 @@ Run the following commands in your terminal:<br>
 10. Stop
 
 ##Program: polynomial.c
+	
 	#include<stdio.h>
 	#include<stdlib.h>
 	#include<math.h>
-
+	
 	int main(void)
 	{
-		int deg,i,Arr[10];
-		float x,Sum=0;
-		printf("\nEnter the degree of the polynomial and value
-  			of x\n");
-		scanf("%d%f",&deg,&x); //taking input value of degree 
-												and x //
-		printf("\nEnter the coefficients in descending order 			of degree\n");
-		for(i=0;i<=deg;i++)
-		{
-			scanf("%d",&Arr[i]);
-		}    // taking co-efficient value polynomial //
-
-		for(i=deg;i>0;i--)
-		{
-			Sum=(Sum + Arr[i])*x;
-		}   //evaluating polynomial using Horner’s method//
-		Sum = Sum + Arr[0]; //adding sum to higher degree co-
-		efficient //
-		printf("\nValue of polynomial after 
-		evaluation=%g\n",Sum);
-		//printing the result//
-		return 0;
+	    int deg,i,Arr[10];
+	    float x,Sum=0;
+	    printf("\nEnter the degree of the polynomial and value of x\n");
+	    scanf("%d%f",&deg,&x); //taking input value of degree and x //
+	    printf("\nEnter the coefficients in descending order of degree\n");
+	    for(i=0;i<=deg;i++)
+	    {
+	        scanf("%d",&Arr[i]);
+	    }    // taking co-efficient value polynomial //
+	
+	    for(i=deg;i>0;i--)
+	    {
+	        Sum=(Sum + Arr[i])*x;
+	    }   //evaluating polynomial using Horner’s method//
+	    Sum = Sum + Arr[0]; //adding sum to higher degree co-efficient //
+	    printf("\nValue of polynomial after evaluation=%g\n",Sum);
+	    //printing the result//
+	    return 0;
 	}
-
+	
 ## Output:
 
 Run the following commands in your terminal:<br>
@@ -424,7 +422,7 @@ Run the following commands in your terminal:<br>
 	1:	Enter the degree of the polynomial and value of x
 		5
 		2
-		Enter the coefficients in reverse order
+		Enter the coefficients in descending order of degree
 		6 5 4 3 2 1
 		Value of polynomial after evaluation=120.000000
 
@@ -435,9 +433,10 @@ Run the following commands in your terminal:<br>
 
 	2: 	Enter the degree of the polynomial and value of x
 		4 1
-		Enter the coefficients in reverse order
+		Enter the coefficients in descending order of degree
 		1 2 3 4 5
 		Value of polynomial after evaluation=15.000000
+
 
 
 
@@ -447,7 +446,7 @@ Run the following commands in your terminal:<br>
 ###Design, develop and execute a program in C to copy its input to its output,    replacing each string of one or more blanks by a single blank.
 
 ##Summary:
->The program introduces concept of Character comparision and also white space characters like ‘\t’ and null characters like ‘\0’ To find and replace all multiple blanks, with a single blank in the string, we will start from second character as current character in the input string and compare it with the previous character and if only both are not spaces, then the current character will stored in the destination string. We will continue this till we reach the end of the input string which is denoted by null character, ‘\0’.
+>The program introduces concept of character comparision and also white space characters like ‘\t’ and null characters like ‘\0’. To find and replace all multiple blanks, with a single blank in the string, we will start from second character as current character in the input string and compare it with the previous character and if only both are not spaces, then the current character will stored in the destination string. We will continue this till we reach the end of the input string which is denoted by null character, ‘\0’.
 
 ##Algorithm:
 1. Start
@@ -464,32 +463,39 @@ Run the following commands in your terminal:<br>
 7. Stop
 
 ##Program: space.c
+
 	#include<stdio.h>
 	#include<string.h>
 	int main()
 	{
-		  char c[50];
-		  int i,inspace=0;
-		  printf("Enter the string with spaces\n");
-		  gets(c);   // taking the input string //
-		  printf("\n String with only one space\n");
-
+	      char c[50];
+	      int i,inspace=0;
+	      printf("Enter the string with spaces\n");
+	      gets(c);   // taking the input string //
+	      printf("\n String with only one space\n");
+	
 	      for(i=0;i<strlen(c);i++)
 	      {
-	           if(c[i]==' ')// Checks for blank spaces//
-         	     {
-              		if(inspace==0)
-                		{ //replaces multiple space with single 			space// 
-	            	 inspace=1;  //change the value of inspace//
-                 		 printf("%c",c[i]);
-                		}
-            	 }
-           	else	  //prints the text//                         
-			  printf("%c",c[i]);
+			if(c[i]==' ')// Checks for blank spaces//
+			{
+				if(inspace==0)
+				{ 
+					//replaces multiple space with single space// 
+					inspace=1;  //change the value of inspace//
+					printf("%c",c[i]);
+				}
+			}
+			else//prints the text//
+			{	
+				inspace=0;//change the value of inspace//
+				printf("%c",c[i]);
+			}
 	        }
-		 Printf(“\n”);
-         return 0;
+	     	
+		printf("\n");
+		return 0;
 	}
+	
 ## Output:
 
 Run the following commands in your terminal:<br>
@@ -592,7 +598,7 @@ Run the following commands in your terminal:<br>
 		}
 
 		if(f==1)
-  			printf("Key element %d is found at	%d\n",key,mid);      
+  			printf("Key element %d is found at position %d\n",key,mid+1);      
 			//prints when key element found along with	its position//
 		else
 			printf("Key element %d is not found\n",key);
@@ -658,48 +664,48 @@ Run the following commands in your terminal:<br>
 	#include<stdio.h>
 	void main()
 	{
-		int n,i,j,a[10],b[10],temp;
-		for(i=0;i<10;i++)
-		{
-			//for removing junk values in the array //
-			a[i]=0;
-			b[i]=0;	
-		}
+	    int n,i,j,a[10],b[10],temp;
+	    for(i=0;i<10;i++)
+	    {
+	        //for removing junk values in the array //
+	        a[i]=0;
+	        b[i]=0; 
+	    }
 	
-		printf("\nEnter no of elements\n"); 
-			scanf("%d",&n); //input for size of the array 		//
-		printf("\nEnter the elements\n"); 
-		for(i=0;i<n;i++) 
-			scanf("%d",&a[i]); // taking array elements //
-		for(i=0;i<n;i++)
-		{
-			b[i]=a[i];           //storing copy of array 			to an another array //
-		}	
-		//Sorting array using BUBBLESORT method //
-		for(i=0;i<n;i++) 
-		{ 
-			for(j=i+1;j<n;j++) 
-			{ 
-				if(a[i] > a[j]) 
-				{ 
-					temp = a[i]; 
-					a[i] = a[j]; 
-					a[j] = temp; 
-				} 
-			} 
-		}
-		printf("The given array of elements is \n");
-		for(i=0;i<n;i++)
-		{
-			printf("%d\t",b[i]); //prints the input array 				//
-		}
-		printf("\nThe sorted array of given array is\n");
-		for(i=0;i<n;i++)
-		{
-			printf("%d\t",a[i]); //prints the sorted 					array // 
-		}
-		printf("\n");
-	} 	
+	    printf("\nEnter no of elements\n"); 
+	        scanf("%d",&n); //input for size of the array //
+	    printf("\nEnter the elements\n"); 
+	    for(i=0;i<n;i++) 
+	        scanf("%d",&a[i]); // taking array elements //
+	    for(i=0;i<n;i++)
+	    {
+	        b[i]=a[i];           //storing copy of array to an another array //
+	    }   
+	    //Sorting array using BUBBLESORT method //
+	    for(i=0;i<n;i++) 
+	    { 
+	        for(j=i+1;j<n;j++) 
+	        { 
+	            if(a[i] > a[j]) 
+	            { 
+	                temp = a[i]; 
+	                a[i] = a[j]; 
+	                a[j] = temp; 
+	            } 
+	        } 
+	    }
+	    printf("The given array of elements is \n");
+	    for(i=0;i<n;i++)
+	    {
+	        printf("%d\t",b[i]); //prints the input array//
+	    }
+	    printf("\nThe sorted array of given array is\n");
+	    for(i=0;i<n;i++)
+	    {
+	        printf("%d\t",a[i]); //prints the sorted array // 
+	    }
+	    printf("\n");
+	}   
 
 ## Output:
 
@@ -745,8 +751,53 @@ The Sorted array of the given array is
 
 
 
+## Aim:
+### Design, develop and execute a program in C to compute and print the word length on the host machine.
+
+## Summary:  
+>
+## Algorithm:
+1. Start.
+  
+## Program: wordlength.c
+
+	#include<stdio.h>
+	#include<stdlib.h>
+
+	int main(void)
+	{
+
+		int iLen=0;
+		unsigned int i=~0;
+
+		for(i = 1; i != 0; i = i << 1)
+		{
+
+			iLen++;
+		}
+
+		printf("\n\nThe Word length of the host machine is %d\n\n", iLen);
+		return 0;
+	}
+
+
+## Output:
+
+Run the following commands in your terminal:<br>
+####gcc wordlength.c -
+####./a.out
+
+The Word length of the host machine is 32
+
+
+
+
+
+
 ##Aim:
 ###Design, develop and execute a program in C to calculate the approximate value of exp (0.5) using the Taylor Series expansion for the exponential function. Use the terms in the expansion until the last term is less than the machine epsilon defines as FLT_EPSILON in the header file <float.h>. Print the value returned by the Mathematical function exp ( ) also.
+
+##Summary:
 
 ##Algorithm:
 1. Start
@@ -818,13 +869,13 @@ The Sorted array of the given array is
     
 ##Algorithm
 1. Start.
-2. Input the order of first matrix   matrix1[][]       mxn  (m-rows,n-coloumns).
-3. Input the order of second matrix  matrix2[][]     pxq  (m-rows,n-coloumns).
+2. Input the order of first matrix   matrix1[ ][ ]       mxn  (m-rows,n-coloumns).
+3. Input the order of second matrix  matrix2[ ][ ]     pxq  (m-rows,n-coloumns).
 4. When n not equal to p, print a error message and   go to step 8.
 5. When n=p, perform matrix multiplication, go to step 6.
 6. From i=0 to i<m, j=0 to j<q, k=0 to j<p
 		Do    prod[i][j] =Prod[i][j]+ matrix1[i][k] * matrix2[k][j];  
-7. Print matrix  prod[][].
+7. Print matrix  prod[ ][ ].
 8. Stop.
   
 ##Program: Matrixmul.c
@@ -833,66 +884,74 @@ The Sorted array of the given array is
 	{
 		int i,j,k,matrix1[10][10],matrix2[10][10];
 		int m,n,p,q,Prod[10][10];
+	
 		printf("Enter the order of the matrix1\n");
 		scanf("%d%d",&m,&n); 
 		printf("Enter the order of the matrix2\n");
 		scanf("%d%d",&p,&q);
-	//If matrices are not suitable for computation print an   error message //
-		If(n!=p)
+	
+		//If matrices are not suitable for computation print an   error message //
+		if(n!=p)
 		{
-		printf("Matrix multiplication is not computable for the given matrices\n");
+			printf("Matrix multiplication is not computable for the given matrices\n");
 		}	
-	else
-	{
-		printf("\nEnter the elements of Matrix 1\n"); 
-		for(i=0;i<m;i++) 
-			for(j=0;j<n;j++) 
- 	scanf("%d",&matrix1[i][j]); //taking elements of matrix1//
-		printf("\nEnter the elements of Matrix 2\n"); 
-		for(i=0;i<p;i++) 
-			for(j=0;j<q;j++) 
-	scanf("%d",&matrix2[i][j]); //taking elements of matrix2//
-		for(i=0;i<p;i++)
-        		for(j=0;j<q;j++)
-               			Prod[i][j]=0;
-		//To find product and print it if matrices are suitable for computation.//
-		if(n==p)
+		else
 		{
+	
+			printf("\nEnter the elements of Matrix 1\n"); 
+		
+			for(i=0;i<m;i++) 
+				for(j=0;j<n;j++) 
+				//taking elements of matrix1//
+			 	scanf("%d",&matrix1[i][j]); 
+		
+			printf("\nEnter the elements of Matrix 2\n"); 
+			for(i=0;i<p;i++) 
+				for(j=0;j<q;j++) 
+				//taking elements of matrix2//
+				scanf("%d",&matrix2[i][j]); 
+	
+			for(i=0;i<p;i++)
+				for(j=0;j<q;j++)
+		  		Prod[i][j]=0;
+	
+			//To find product and print it if matrices are suitable for computation.//
+	
 			for(i=0;i<m;i++) 
 			{ 
-		 	for(j=0;j<q;j++) 
-		 	{ 
-		  	for(k=0;k<p;k++) 
-		   	{ 
-				Prod[i][j] =Prod[i][j]+ matrix1[i][k] * matrix2[k][j];  // computing product of matrices //
-				} 
-		 	} 
-		} 
-       	printf("\nMatrix 1\n"); 
+		 		for(j=0;j<q;j++) 
+			 	{ 
+				  	for(k=0;k<p;k++) 
+				   	{ 
+						// computing product of matrices //
+						Prod[i][j] =Prod[i][j]+ matrix1[i][k] * matrix2[k][j];  
+					} 
+			 	} 
+			} 
+		       	//prints matrix1 //
+			printf("\nMatrix 1\n"); 
 			for(i=0;i<m;i++) 
 			{ 
-		 	for(j=0;j<n;j++) 
-		 	{ 
-		  	printf("%d\t",matrix1[i][j]); //prints matrix1 //
-		 	} 
+			 	for(j=0;j<n;j++) 
+			 	{ 
+				  	printf("%d\t",matrix1[i][j]); 
+		 		} 
 				printf("\n"); 
 			} 
-			printf("\n"); 
-
-		printf("\nMatrix 2\n"); 
+		
+			//prints matrix2 //
+			printf("\nMatrix 2\n"); 
 			for(i=0;i<p;i++) 
 			{ 
-		 	for(j=0;j<q;j++) 
-		 	{ 
-		  	printf("%d\t",matrix2[i][j]); //prints matrix2 //
-		 	} 
+			 	for(j=0;j<q;j++) 
+		 		{ 
+				  	printf("%d\t",matrix2[i][j]); 
+			 	} 
 				printf("\n"); 
 			} 
-			printf("\n"); 
-
-		
-	printf("\nThe Product matrix is  \n"); 
+			
 			//to print the product matrix //
+			printf("\nThe Product matrix is  \n"); 
 			for(i=0;i<m;i++) 
 			{ 
 				for(j=0;j<q;j++) 
@@ -901,10 +960,10 @@ The Sorted array of the given array is
 				} 
 				printf("\n"); 
 			} 
-			printf("\n"); 
-		}
 	
-	} 
+		}
+		
+	}
 
 ##Output:
 
@@ -952,6 +1011,7 @@ The Sorted array of the given array is
 
 
 
+
 ##Aim:
 ###Design, develop and execute a parallel program in C to add, elementwise, two one dimensional arrays A and B of N integer elements and to store the result in another one dimensional array C of N integer elements.
 
@@ -960,7 +1020,7 @@ The Sorted array of the given array is
 
 ##Algorithm:
 1. Start.
-2. Take input size of the arrays a[] and b[].
+2. Take input size of the arrays a[ ] and b[ ].
 3. Input the elements to these arrays.
 4. Set the number of threads.
 5. Until size of reaches maxlength -1    
@@ -970,53 +1030,56 @@ The Sorted array of the given array is
 7. Print the resultant array.
 8. stop.  
 
-##Program: matrixadd.c
+##Program: parallelprog.c
 	#include<stdio.h>
 	#include<stdlib.h>
 	#include<omp.h>
-
+	
 	int main()
 	{
-		int a[20],b[20],add[20],i,n;
+	    int a[20],b[20],add[20],i,n;
 	
-		printf("Enter the array size\n");
-		 scanf("%d",&n); // input for size of the array //
-
-		printf("Enter elements of array A\n");
-		 for(i=0;i<n;i++)
-		  scanf("%d",&a[i]); //taking elements of array A //
-
-		printf("Enter elements of array B\n");
-		 for(i=0;i<n;i++)
-		  scanf("%d",&b[i]); //taking elements of array B //
-		printf("Array elements are\n");
-		printf("\tArray A    Array B\n");
-	 
-		for(i=0;i<n;i++)
-		   printf("\ta[%d]=%d\t\tb[5d]=%d\n",i,a[i]i,b[i]);
-		   printf("Computing result...\n");
-		    //parallel function to perform array addition //
-		
-		omp_set_num_threads(5);
-		#pragma omp parallel for private(i)
-		for(i=0;i<n;i++)
-		 {
-			int tid=omp_get_thread_num();
-			add[i]=a[i]+b[i]; // adding array A and B //
-			printf("RES[%d]=%d\t, thread_id=%d",i,add[i],tid);
-		 }
-		 
-		printf("Resultant array is\n");
-   	
-		for(i=0;i<n;i++)
-		     printf("%d\n",add[i]);//printing resultant array 			//
- 
-		return 0;
+	    printf("Enter the array size\n");
+	    scanf("%d",&n); // input for size of the array //
+	
+	    printf("Enter elements of array A\n");
+	    for(i=0;i<n;i++)
+	    scanf("%d",&a[i]); //taking elements of array A //
+	
+	    printf("Enter elements of array B\n");
+	     for(i=0;i<n;i++)
+	      scanf("%d",&b[i]); //taking elements of array B //
+	    
+	    printf("Array elements are\n");
+	
+	    printf("\tArray A\t\tArray B\n");
+	
+	    for(i=0;i<n;i++)
+	       printf("\ta[%d]=%d\t\tb[%d]=%d\n",i,a[i],i,b[i]);
+	       printf("\nComputing Sum...\n");
+	
+	    //parallel function to perform array addition //
+	
+	    omp_set_num_threads(5);
+	    #pragma omp parallel for private(i)
+	    for(i=0;i<n;i++)
+	     {
+	        int tid=omp_get_thread_num();
+	        add[i]=a[i]+b[i]; // adding array A and B //
+	        printf("\nRES[%d]=%d, thread_id=%d",i,add[i],tid);
+	     }
+	
+	    printf("\n\nResultant array is\n");
+	
+	    for(i=0;i<n;i++)
+	         printf("%d\n",add[i]);//printing resultant array           //
+	
+	    return 0;
 	}
 ## Output:
 
 Run the following commands in your terminal:<br>
-###gcc matrixadd.c –fopenmp
+###gcc parallelprog.c –fopenmp
 ###./a.out
 
 	Enter the array size
@@ -1066,7 +1129,7 @@ Run the following commands in your terminal:<br>
 4. Call rightrot function.
 5. righrot function;
 	
-	 For i=0 to n-1
+	 from i=0 to n-1
 	
 			When x mod 2 = 0
 					Right shift once.
@@ -1081,9 +1144,10 @@ Run the following commands in your terminal:<br>
 
 ##Program: rightrot.c
 	#include<stdio.h>
-
-	unsigned 	int right_rot(unsigned int x,int n)
-	{               // function performing right rotate //
+	
+       // function performing right rotate //
+	unsigned int right_rot(unsigned int x,int n)
+	{        
 	        int i;
 	        for(i=1;i<=n;i++)
 	        {
@@ -1129,9 +1193,9 @@ Run the following commands in your terminal:<br>
 
 	Enter an integer <=65535
 	4
-	Rotate 28 how many times
+	Rotate 4 how many times
 	3
-	Right_rot(4,3)=32772
+	Right_rot(4,3)=32768
 
 
 
@@ -1159,7 +1223,6 @@ Run the following commands in your terminal:<br>
 ##Program: isprime.c
 	#include<stdio.h>
 	#include<stdlib.h>
-	#include<math.h>
 	
 	int isPrime(int);
 
@@ -1187,12 +1250,12 @@ Run the following commands in your terminal:<br>
 	        if(x==1)  //Executes if the given value is 1//
 	        {
 	              printf("\n1 is neither prime nor composite\n");
-				exit(0);
+		      exit(0);
 	        }
 	        for(i = 2; i<x ;i++)
 	        {
 	                if(x % i==0)// Checks for divisibility//
-	                     return 0;
+	                return 0;
 	        }
 	        return 1;
 	}
@@ -1200,14 +1263,14 @@ Run the following commands in your terminal:<br>
 
 Run the following commands in your terminal:<br>
 
-###gcc –lm isprime.c
+###gcc isprime.c
 ###./a.out
 
 	Enter the value to be checked
 	1
 	1 is neither prime nor composite
 
-###gcc –lm isprime.c
+###gcc isprime.c
 ###./a.out
 
 	Enter the value to be checked
@@ -1217,7 +1280,7 @@ Run the following commands in your terminal:<br>
 
 
 
-###gcc –lm isprime.c
+###gcc isprime.c
 ###./a.out
 
 	Enter the value to be checked
@@ -1251,44 +1314,45 @@ Run the following commands in your terminal:<br>
 	#include<omp.h>
 	#include<stdio.h>
 	#include<math.h>
+	
 	int main(void)
-
+	
 	{   
-		int a[200];
-		int n,i,k;
-
-		printf("Enter the value of n:\n");
-		scanf("%d",&n);  // Input value//
-
-		for(i=2;i<=n;i++)
-		{
-			a[i]=i;  //Storing the number into array upto n//
-		}
-
-		omp_set_num_threads(5); //Setting up threads//
-		for(k=2;k<=sqrt(n);k++)
-		{
-        		if(a[k]!=0)
-              		{
-				#pragma omp parallel for private(i)
-				for(i=k*k;i<=n;i=i+k)  //Assigning 0 	to multiples// 
-				{
-		printf("\nThread id=%d makes %d position   
-          zero",omp_get_thread_num(),i);				
-					a[i]=0;
-				}	
-        		}
-		}	
-		printf("\nPrime numbers are \n");
-		for(i=2;i<=n;i++)
-		{
-			if(a[i]>0)
-		printf("%d\t",a[i]); //Printing prime numbers//
-		}
-		printf("\n");
-		return 0;
+	    int a[200];
+	    int n,i,k;
+	
+	    printf("Enter the value of n:\n");
+	    scanf("%d",&n);  // Input value//
+	
+	    for(i=2;i<=n;i++)
+	    {
+	        a[i]=i;  //Storing the number into array upto n//
+	    }
+	
+	    omp_set_num_threads(5); //Setting up threads//
+	    for(k=2;k<=sqrt(n);k++)
+	    {
+	            if(a[k]!=0)
+	            {
+			#pragma omp parallel for private(i)
+			for(i=k*k;i<=n;i=i+k)  //Assigning 0 to multiples// 
+			{
+		          printf("\nThread id=%d makes %d position zero",omp_get_thread_num(),i);                
+	  	          a[i]=0;
+		        }   
+	            }
+	    }   
+	    printf("\nPrime numbers are \n");
+	    for(i=2;i<=n;i++)
+	    {
+	        if(a[i]>0)
+	 		printf("%d\t",a[i]); //Printing prime numbers//
+	    }
+	
+	    printf("\n");
+	
+	    return 0;
 	}
-
 
 ##Output:
 
@@ -1367,54 +1431,54 @@ Run the following commands in your terminal:<br>
 
 
 ##Program:reversestring.c
+
 	#include<stdio.h>
 	#include<string.h>
 	void reverses(char *);
-
+	
 	void main()
 	{
-		char a[100];
-
-		printf("Enter the string to be reversed\n");
-		scanf("%s",a); // reading string //
-
-		printf("The original string is %s\n",a);
-		reverses(a); //calling a function //
-
-		printf("The reversed string is %s\n",a);
+	    char a[100];
+	
+	    printf("Enter the string to be reversed\n");
+	    scanf("%s",a); // reading string //
+	
+	    printf("The original string is %s\n",a);
+	    reverses(a); //calling a function //
+	
+	    printf("The reversed string is %s\n",a);
 	}
-
+	
 	void reverses(char *a) // function to reverse a string //
 	{
-   	char temp;
-   	int i,j;
-
-   	i=0; //initializing i to start bit of string //
-   	j=strlen(a)-1; //initializing j to last bit of string //
-
-       
-	while(i<j)
-        	{    //reversing the string //
-	        	temp=a[i];
-		 		a[i]=a[j];
-		 		a[j]=temp;
-		 		i++;
-		 		j--;
-        	}
+		char temp;
+		int i,j;
+	
+		i=0; //initializing i to start bit of string //
+		j=strlen(a)-1; //initializing j to last bit of string //
+	
+	
+		while(i<j)
+		{    //reversing the string //
+		    temp=a[i];
+		    a[i]=a[j];
+		    a[j]=temp;
+		    i++;
+		    j--;
+		}
 	}
-
 ##Output:
 
 ###gcc reversestring.c
 ###./a.out 
 
     1. Enter the string to be reversed
-       Munitalp
+       fsmk
 
        The original string is 
-       Munitalp
+       fsmk
 
-       The reversed string is platinum
+       The reversed string is kmsf
 
 
 
@@ -1423,7 +1487,7 @@ Run the following commands in your terminal:<br>
 
 
 ##Aim:
-###Design and develop a function matchany (s1,s2) which returns the first location in the string s1 where any character from the string s2 occurs,   or – 1 if s1 contains no character from s2. Do not use the standard library function which does a similar job! Invoke the function matchany (s1. s2) from the main for different strings and print both the strings and the return value from the function matchany (s1,s2).
+###Design and develop a function matchany (s1,s2) which returns the first location in the string s1 where any character from the string s2 occurs,   or – 1 if s1 contains no character from s2. Do not use the standard library function which does a similar job! Invoke the function matchany (s1,s2) from the main for different strings and print both the strings and the return value from the function matchany (s1,s2).
 
 ##Summary:
 	
@@ -1438,45 +1502,46 @@ Run the following commands in your terminal:<br>
 5. When match found return the position of character in first string,else 			exit.                                                                                                          
 6. Stop
 	
-##Program: Matchany.c
+##Program: matchany.c
 
 	#include<stdio.h>
 	#include<string.h>
 	int matchany(char *,char *);
 	void main()
 	{
-		char a[100],b[100];
-		int f;
-		printf("Enter the first string\n");
-	  	scanf("%s",a);
-		printf("Enter the second string\n");
-	  	scanf("%s",b);
+	    char a[100],b[100];
+	    int f;
+	    printf("Enter the first string\n");
+	    scanf("%s",a);
+	    printf("Enter the second string\n");
+	    scanf("%s",b);
 	
-    	f=matchany(a,b);//calling a function //
+	    f=matchany(a,b);//calling a function //
 	
-    	printf("The First string is\n %s\n",a);  //printing two
-		printf("The Second string is\n %s\n",b);     strings //
-
-
-	if(f==-1)  // executes when string does not match //
-		printf("Character did not match\n");
-	else 
-			printf("The character %c of the second string is found at position %d of first string\n",a[f],f+1);
-  		//prints the matching string with its position //
+	    //printing two strings //
+	    printf("The First string is\n %s\n",a);  
+	    printf("The Second string is\n %s\n",b);     
+	
+	
+	    if(f==-1)  // executes when string does not match //
+	     printf("Character did not match\n");
+	    else     //prints the matching string with its position //
+	     printf("The character %c of the second string is found at position %d of first string\n",b[f],f+1);
+	
 	}
-
+	
 	int matchany(char *a,char *b)   // function to find a match  pattern in string //
 	{
 		int i,j;
 		for(i=0;i<strlen(a);i++)
-	{		
-		for(j=0;j<strlen(b);j++)
-		{		
+		{       
+		    for(j=0;j<strlen(b);j++)
+		    {       
 			if(a[i]==b[j])
-			return i;	
+			return i;   
+		    }
 		}
-	}
-	return -1;
+		return -1;
 	}
 
 
@@ -1509,4 +1574,4 @@ Run the following commands in your terminal:<br>
            The Second string is
            machine
 
-           The character m of the second string is found at position 3 of first string
+           The character c of the second string is found at position 1 of first string
