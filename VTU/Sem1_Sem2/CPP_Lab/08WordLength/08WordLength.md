@@ -31,7 +31,7 @@
 ## Output:
 
 Run the following commands in your terminal:<br>
-####gcc wordlength.c -
+####gcc wordlength.c
 ####./a.out
 
 The Word length of the host machine is 32
