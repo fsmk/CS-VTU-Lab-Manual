@@ -11,7 +11,7 @@
 4. Call rightrot function.
 5. righrot function;
 	
-	 For i=0 to n-1
+	 for i=0 to n-1
 	
 			When x mod 2 = 0
 					Right shift once.
@@ -26,9 +26,10 @@
 
 ##Program: rightrot.c
 	#include<stdio.h>
-
-	unsigned 	int right_rot(unsigned int x,int n)
-	{               // function performing right rotate //
+	
+       // function performing right rotate //
+	unsigned int right_rot(unsigned int x,int n)
+	{        
 	        int i;
 	        for(i=1;i<=n;i++)
 	        {
