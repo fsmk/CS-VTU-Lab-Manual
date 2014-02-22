@@ -2,6 +2,22 @@
 ###Design, develop and execute a program in C to calculate the approximate value of exp (0.5) using the Taylor Series expansion for the exponential function. Use the terms in the expansion until the last term is less than the machine epsilon defines as FLT_EPSILON in the header file <float.h>. Print the value returned by the Mathematical function exp ( ) also.
 
 ##Summary:
+>In mathematics, a Taylor series is a representation of a function as an infinite sum of terms that are calculated from the values of the function's derivatives at a single point.		
+
+>Exponential formula:
+
+>Sigma (n=0 to infinity) of ((x^n)/n!)
+>where ^ = power , ! = factorial
+
+>(x^0)/0! + (x^1)/1! + (x^2)/2! + ....
+
+
+>Now obviously we cannot go on till infinity expanding this equation. we have to stop somewhere to get aproximate acceptable answer.
+We define this termination condition with the fact that our computer has a minimum limit on which the floating operations take place.beyond this limit the values are not representable. This limit is called FLT_EPSILON.  The values less than FLT_EPSILON is virtually 0.
+>define FLT_EPSILON 1.19209290E-07F // decimal constant
+FLT_EPSILON the minimum positive number such that, 1.0 + FLT_EPSILON != 1.0 // do not apply your math here, this is hardware/compiler dependent ;-)
+
+>When the value of one of the component of the above Taylor expression ( (x^n) / n!  ) gets equal to zero, or technically less than FLT_EPSILON we stop the calculation and print the answer.
 
 ##Algorithm:
 1. Start
