@@ -6,7 +6,7 @@
 
 ##Algorithm:
 1. Start.
-2. Take input size of the arrays a[] and b[].
+2. Take input size of the arrays a[ ] and b[ ].
 3. Input the elements to these arrays.
 4. Set the number of threads.
 5. Until size of reaches maxlength -1    
@@ -16,53 +16,56 @@
 7. Print the resultant array.
 8. stop.  
 
-##Program: matrixadd.c
+##Program: parallelprog.c
 	#include<stdio.h>
 	#include<stdlib.h>
 	#include<omp.h>
-
+	
 	int main()
 	{
-		int a[20],b[20],add[20],i,n;
+	    int a[20],b[20],add[20],i,n;
 	
-		printf("Enter the array size\n");
-		 scanf("%d",&n); // input for size of the array //
-
-		printf("Enter elements of array A\n");
-		 for(i=0;i<n;i++)
-		  scanf("%d",&a[i]); //taking elements of array A //
-
-		printf("Enter elements of array B\n");
-		 for(i=0;i<n;i++)
-		  scanf("%d",&b[i]); //taking elements of array B //
-		printf("Array elements are\n");
-		printf("\tArray A    Array B\n");
-	 
-		for(i=0;i<n;i++)
-		   printf("\ta[%d]=%d\t\tb[5d]=%d\n",i,a[i]i,b[i]);
-		   printf("Computing result...\n");
-		    //parallel function to perform array addition //
-		
-		omp_set_num_threads(5);
-		#pragma omp parallel for private(i)
-		for(i=0;i<n;i++)
-		 {
-			int tid=omp_get_thread_num();
-			add[i]=a[i]+b[i]; // adding array A and B //
-			printf("RES[%d]=%d\t, thread_id=%d",i,add[i],tid);
-		 }
-		 
-		printf("Resultant array is\n");
-   	
-		for(i=0;i<n;i++)
-		     printf("%d\n",add[i]);//printing resultant array 			//
- 
-		return 0;
+	    printf("Enter the array size\n");
+	    scanf("%d",&n); // input for size of the array //
+	
+	    printf("Enter elements of array A\n");
+	    for(i=0;i<n;i++)
+	    scanf("%d",&a[i]); //taking elements of array A //
+	
+	    printf("Enter elements of array B\n");
+	     for(i=0;i<n;i++)
+	      scanf("%d",&b[i]); //taking elements of array B //
+	    
+	    printf("Array elements are\n");
+	
+	    printf("\tArray A\t\tArray B\n");
+	
+	    for(i=0;i<n;i++)
+	       printf("\ta[%d]=%d\t\tb[%d]=%d\n",i,a[i],i,b[i]);
+	       printf("\nComputing Sum...\n");
+	
+	    //parallel function to perform array addition //
+	
+	    omp_set_num_threads(5);
+	    #pragma omp parallel for private(i)
+	    for(i=0;i<n;i++)
+	     {
+	        int tid=omp_get_thread_num();
+	        add[i]=a[i]+b[i]; // adding array A and B //
+	        printf("\nRES[%d]=%d, thread_id=%d",i,add[i],tid);
+	     }
+	
+	    printf("\n\nResultant array is\n");
+	
+	    for(i=0;i<n;i++)
+	         printf("%d\n",add[i]);//printing resultant array           //
+	
+	    return 0;
 	}
 ## Output:
 
 Run the following commands in your terminal:<br>
-###gcc matrixadd.c –fopenmp
+###gcc parallelprog.c –fopenmp
 ###./a.out
 
 	Enter the array size
