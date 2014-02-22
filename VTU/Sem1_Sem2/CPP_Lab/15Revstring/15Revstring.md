@@ -23,52 +23,52 @@
 
 
 ##Program:reversestring.c
+
 	#include<stdio.h>
 	#include<string.h>
 	void reverses(char *);
-
+	
 	void main()
 	{
-		char a[100];
-
-		printf("Enter the string to be reversed\n");
-		scanf("%s",a); // reading string //
-
-		printf("The original string is %s\n",a);
-		reverses(a); //calling a function //
-
-		printf("The reversed string is %s\n",a);
+	    char a[100];
+	
+	    printf("Enter the string to be reversed\n");
+	    scanf("%s",a); // reading string //
+	
+	    printf("The original string is %s\n",a);
+	    reverses(a); //calling a function //
+	
+	    printf("The reversed string is %s\n",a);
 	}
-
+	
 	void reverses(char *a) // function to reverse a string //
 	{
-   	char temp;
-   	int i,j;
-
-   	i=0; //initializing i to start bit of string //
-   	j=strlen(a)-1; //initializing j to last bit of string //
-
-       
-	while(i<j)
-        	{    //reversing the string //
-	        	temp=a[i];
-		 		a[i]=a[j];
-		 		a[j]=temp;
-		 		i++;
-		 		j--;
-        	}
+		char temp;
+		int i,j;
+	
+		i=0; //initializing i to start bit of string //
+		j=strlen(a)-1; //initializing j to last bit of string //
+	
+	
+		while(i<j)
+		{    //reversing the string //
+		    temp=a[i];
+		    a[i]=a[j];
+		    a[j]=temp;
+		    i++;
+		    j--;
+		}
 	}
-
 ##Output:
 
 ###gcc reversestring.c
 ###./a.out 
 
     1. Enter the string to be reversed
-       Munitalp
+       fsmk
 
        The original string is 
-       Munitalp
+       fsmk
 
-       The reversed string is platinum
+       The reversed string is kmsf
 
