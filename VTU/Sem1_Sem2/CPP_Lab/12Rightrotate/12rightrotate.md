@@ -75,6 +75,6 @@ Run the following commands in your terminal:<br>
 
 	Enter an integer <=65535
 	4
-	Rotate 28 how many times
+	Rotate 4 how many times
 	3
-	Right_rot(4,3)=32772
+	Right_rot(4,3)=32768
