@@ -19,44 +19,45 @@
 	#include<omp.h>
 	#include<stdio.h>
 	#include<math.h>
+	
 	int main(void)
-
+	
 	{   
-		int a[200];
-		int n,i,k;
-
-		printf("Enter the value of n:\n");
-		scanf("%d",&n);  // Input value//
-
-		for(i=2;i<=n;i++)
-		{
-			a[i]=i;  //Storing the number into array upto n//
-		}
-
-		omp_set_num_threads(5); //Setting up threads//
-		for(k=2;k<=sqrt(n);k++)
-		{
-        		if(a[k]!=0)
-              		{
-				#pragma omp parallel for private(i)
-				for(i=k*k;i<=n;i=i+k)  //Assigning 0 	to multiples// 
-				{
-		printf("\nThread id=%d makes %d position   
-          zero",omp_get_thread_num(),i);				
-					a[i]=0;
-				}	
-        		}
-		}	
-		printf("\nPrime numbers are \n");
-		for(i=2;i<=n;i++)
-		{
-			if(a[i]>0)
-		printf("%d\t",a[i]); //Printing prime numbers//
-		}
-		printf("\n");
-		return 0;
+	    int a[200];
+	    int n,i,k;
+	
+	    printf("Enter the value of n:\n");
+	    scanf("%d",&n);  // Input value//
+	
+	    for(i=2;i<=n;i++)
+	    {
+	        a[i]=i;  //Storing the number into array upto n//
+	    }
+	
+	    omp_set_num_threads(5); //Setting up threads//
+	    for(k=2;k<=sqrt(n);k++)
+	    {
+	            if(a[k]!=0)
+	            {
+			#pragma omp parallel for private(i)
+			for(i=k*k;i<=n;i=i+k)  //Assigning 0 to multiples// 
+			{
+		          printf("\nThread id=%d makes %d position zero",omp_get_thread_num(),i);                
+	  	          a[i]=0;
+		        }   
+	            }
+	    }   
+	    printf("\nPrime numbers are \n");
+	    for(i=2;i<=n;i++)
+	    {
+	        if(a[i]>0)
+	 		printf("%d\t",a[i]); //Printing prime numbers//
+	    }
+	
+	    printf("\n");
+	
+	    return 0;
 	}
-
 
 ##Output:
 
