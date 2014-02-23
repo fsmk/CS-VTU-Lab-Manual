@@ -26,7 +26,7 @@
 	#include<stdio.h>
 	void main()
 	{
-		int n,m,rem,rev;
+		int n,m,rem,rev=0;
 		printf("Enter the number\n");
 		scanf("%d",&n); // taking input //
 		m=n;   // assigning value of n to m //
