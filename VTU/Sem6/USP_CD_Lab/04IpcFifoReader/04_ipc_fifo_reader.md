@@ -66,7 +66,7 @@ determine the value of PIPE_BUF by using pathconf or fpathconf.</pre>
 </blockquote>
 
 ##Code:
-
+###4read.cpp
 <pre><code>#include&lt;stdio.h&gt;
 #include&lt;stdlib.h&gt;
 #include&lt;iostream&gt;
@@ -77,40 +77,98 @@ using namespace std;
 #define BUFFER_SIZE PIPE_BUF
 int main(int argc,char *argv[])
 {
-        int pipe_fd,res=0;
-        char buffer[BUFFER_SIZE+1];
-        if(argc!=2)
-        {
-                cout&lt;&lt;"usage:./a.out pipe_name\n";
-                return -1;
-        }
-        cout&lt;&lt;"\nFD of fifo in read mode:"&lt;&lt;pipe_fd&lt;&lt;endl;
-        if((pipe_fd=open(argv[1],O_RDONLY))!=-1)
-        {
-                res=read(pipe_fd,buffer,BUFFER_SIZE);
-                cout&lt;&lt;"\n data read..\n";
-                cout&lt;&lt;buffer;
-                (void) close(pipe_fd);
-        }
-        else
-        {
-                perror("\nfifo read\n");
-        }
-        cout&lt;&lt;\nprocess  "&lt;&lt;getpid()&lt;&lt;" finished reading\n"&lt;&lt;endl;
-        return 0;
+int pipe_fd,res=0;
+char buffer[BUFFER_SIZE+1];
+if(argc!=2)
+{
+cout&lt;&lt;"usage:./a.out pipe_name\n";
+return -1;
+}
+cout&lt;&lt;"\nFD of fifo in read mode:"<<pipe_fd<<endl;
+if((pipe_fd=open(argv[1],O_RDONLY))!=-1)
+{
+res=read(pipe_fd,buffer,BUFFER_SIZE);
+cout&lt;&lt;"\n data read..\n";
+cout&lt;&lt;buffer;
+(void) close(pipe_fd);
+}
+else
+{
+perror("\nfifo read"\n);
+}
+cout&lt;&lt;"\nprocess "&lt;&lt;getpid()&lt;&lt;" finished reading\n"&lt;&lt;endl;
+return 0;
 }
 </code></pre>
-
+###4write.cpp
+<pre><code>
+#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+#include&lt;iostream&gt;
+#include&lt;string.h&gt;
+#include&lt;unistd.h&gt;
+#include&lt;fcntl.h&gt;
+#include&lt;limits.h&gt;
+#include&lt;sys/types.h&gt;
+#include&lt;sys/stat.h&gt;
+using namespace std;
+#define BUFFER_SIZE PIPE_BUF
+int main(int argc,char *argv[])
+{
+int pipe_fd,res;
+char buffer[BUFFER_SIZE+1];
+if(argc!=2)
+{
+cout&lt;&lt;"usage:./a.out pipe_name\n";
+return 1;
+}
+if(access(argv[1],F_OK)==-1)
+{
+res=mkfifo(argv[1],0777);
+if(res!=0)
+{
+perror("\nmkfifo error\n");
+exit(0);
+}
+}
+cout&lt;&lt;"Process "&lt;&lt;getpid()&lt;&lt;"opening fifo in write mode"&lt;&lt;endl;
+pipe_fd=open(argv[1],O_WRONLY);
+cout&lt;&lt;"FD of fifo in write mode:"&lt;&lt;pipe_fd&lt;&lt;endl;
+if(pipe_fd!=-1)
+{
+cout&lt;&lt;"enter data\n";
+gets(buffer);
+res=write(pipe_fd,buffer,BUFFER_SIZE);
+if(res==-1)
+{
+perror("write error\n");
+exit(0);
+}
+close(pipe_fd);
+}
+else
+perror("fifo write");
+cout&lt;&lt;"\nprocess "<<getpid()<<" finished writing\n"<<endl;
+unlink(argv[1]);
+return 0;
+}
+</code></pre>
 ##Output:
 
 *Commands for execution:-*
 <ul>
     <li> Open a terminal.</li>
     <li> Change directory to the file location in the terminal.</li>
-    <li> Run gcc "usp01.c -o usp04.out" in the terminal.</li>
-    <li> If no errors, run "./usp04.out pipe1" </li>
+    <li> Run "g++ 4read.cpp -o 4read.out" in the terminal.</li>
+    <li> If no errors run "g++ 4write.cpp -o 4write.out"  </li>
+    <li> If no errors, run ./4rwite.out pipe1" </li>
+    <li>Open another terminal without closong the first one</li>
+    <li>Change directory into the file location in the terminal</li>
+    <li>Run "./4read.out pipe1"</li>
+    <li>Shift to the original terminal and enter some string</li>
+    <li>The same string should be displayed on the other terminal</li>
 </ul>
 
 ##Screenshots:
-
+<h2>Update screenhots</h2>
  ![not available](usp-lab-04.png "usp04 screenshot") 
