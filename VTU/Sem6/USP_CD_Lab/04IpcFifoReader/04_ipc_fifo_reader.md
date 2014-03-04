@@ -161,7 +161,7 @@ return 0;
     <li> Change directory to the file location in the terminal.</li>
     <li> Run "g++ 4read.cpp -o 4read.out" in the terminal.</li>
     <li> If no errors run "g++ 4write.cpp -o 4write.out"  </li>
-    <li> If no errors, run ./4rwite.out pipe1" </li>
+    <li> If no errors, run ./4wite.out pipe1" </li>
     <li>Open another terminal without closong the first one</li>
     <li>Change directory into the file location in the terminal</li>
     <li>Run "./4read.out pipe1"</li>
