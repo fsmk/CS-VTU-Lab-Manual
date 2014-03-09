@@ -1,0 +1,41 @@
+## Program 9: Write a PHP program to store current date-time in a COOKIE and display the "Last visited on" date-time on the web page upon reopening of the same page.
+***
+
+### Tags used:
+     date("G:i -m/d/y") - Gives the timestamp where,
+     	* G represents 24-hour format of hour without leading zeros
+     	* i represents Minutes with leading zeros
+     	* m represents Numeric representation of a month, with leading zeros
+     	* d represents Day of the month, 2 digits with leading zeros
+     	* y represents A two digit representation of a year
+
+### Code: 
+*9.php*
+
+     <?php
+     	#calculate 60 days in the future: seconds * minutes * hours * days + current time
+     	$itm=60*60*24*60+time();
+     	#create cookie
+     	setcookie('last_visit',date("G:i -m/d/y"),$itm);
+     	#check if cookie exists
+     	if(isset($_COOKIE['last_visit']))
+     		{
+     			$visit=$_COOKIE['last_visit'];
+     			echo "Your last visit was- " .$visit;
+     		}
+     	else
+     		#no cookies
+     		echo "You have some stale cookies!" ;
+     ?>
+     
+### Output:
+*Steps for checking output-*
+
+* Save the .php file in the folder `/var/www`
+* Change the file permission of the PHP file by running the command `sudo chmod 777 9.php`
+* Open a browser and in the address bar type `localhost/9.php`
+* The output is displayed on the browser with the last visit time. On sucessive refresh, the timestamp gets updated.
+
+### Screenshot:
+
+![output_1](9.png)

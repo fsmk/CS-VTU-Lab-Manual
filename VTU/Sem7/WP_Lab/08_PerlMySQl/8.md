@@ -1,0 +1,76 @@
+## Program 8: Write a Perl program to insert name and age information entered by the user into a table created using MySQL and to display the current contents of this table.
+***
+
+### Setting up the database (MySQL):
+1. Open a terminal and run the command `mysql`
+2. In the MySQL prompt run `show databases;`
+3. Choose an existing database by running the command `use test;` where test is the name of an already existing database.
+4. Now, create a new table by running the command `create table info(name varchar(20), age integer);`
+5. Run the command `exit` to exit from the MySQL prompt.
+
+### Code: 
+*8.html*
+
+     <html>
+	<form action="http://localhost/cgi-bin/8.pl">
+     		Name:<input type=text name=name><br>
+     		Age:<input type=text name=age><br>
+     		<input type=submit value=submit />
+     	</form>
+     </html>
+
+*8.pl*
+
+     #!/usr/bin/perl
+     use CGI;
+     #import database module
+     use DBI;
+     $q=new CGI;
+     	#take inputs and store in local variables
+     	$nm=$q->param('name');
+     	$age=$q->param('age');
+     		#connect takes parameter driver_name:database_name
+     		#this creates a database handle & stores it in $db
+     		$db=DBI->connect("DBI:mysql:test");
+     			#query
+     			$str=("insert into info values('$nm',$age)");
+     			#compiles the query and returns an object reference which is called statement handle
+     				$q=$db->prepare($str);
+     				#execute the query using statement handle
+     				$q->execute();
+     				$q=$db->prepare("select * from info");
+     				$q->execute();
+     				print<<1;
+     					Content-type:text/html\n\n
+     					<html>
+     					<table border=1>
+     					<tr><th>Name</th><th>Age</th></tr>
+     					1
+     				#obtain all the rows with matching patterns
+     				while(($nm,$age)=$q->fetchrow())
+     					{
+     						print "<tr><td>$nm</td><td>$age</td></tr>";
+     					}
+     				print "</table></html>";
+     			#release the statement handle & database handle
+     		$db->disconnect;
+     $q->finish;
+     
+### Output:
+*Steps for checking output-*
+
+* Save the .html file in the folder `/var/www/html`
+* Save the .pl files in the folder `/var/www/cgi-bin`
+* Change the file permission of the perl file by running the command `sudo chmod 777 8.pl`
+* Make sure the database is set before executing the program.
+* Open a browser and in the address bar type `localhost/html/8.html`
+* Input the `name` and `age`.
+* The output is displayed on the browser by storing the input in the database.
+* To check if the value is stored correctly in the database, 
+	* Open a terminal and run `mysql`
+	* Run the command `use test;`
+	* Run the command `select * from info;` for fetching all the inputs stored in the database.
+
+### Screenshot:
+
+![output_1](8.png)

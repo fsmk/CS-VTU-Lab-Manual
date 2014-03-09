@@ -1,0 +1,38 @@
+## Program 10: Write a PHP program to store page views count in SESSION, to increment the count on each refresh, and to show the count on web page.
+***
+
+### Tags used:
+     session_start() - Start new session or resume existing session
+
+### Code: 
+*10.php*
+
+     <?php
+     	#start session
+     	session_start();
+     		#check if session exists
+     		if(isset($_SESSION['count']))
+     			{
+     				echo "Pageviews: " .$_SESSION['count'];
+     				#increment the count
+     				$_SESSION['count']++;
+     			}
+     		else
+     			{
+     				#if no session exists
+     				$_SESSION['count']=1;
+     				echo "Pageviews" .$_SESSION['count'];
+     			}
+     ?>
+     
+### Output:
+*Steps for checking output-*
+
+* Save the .php file in the folder `/var/www`
+* Change the file permission of the PHP file by running the command `sudo chmod 777 10.php`
+* Open a browser and in the address bar type `localhost/10.php`
+* The output is displayed on the browser with the last visit time. On sucessive refresh, the timestamp gets updated.
+
+### Screenshot:
+
+![output_1](10.png)
