@@ -2,6 +2,18 @@
 
 ### Following is the list of all the volunteers who contributed to the making of the Lab Manual.
 
+* Neeta Ann Jacob, Asst Professor, The Oxford College of Engineering, Bangalore
+* Bindu Madavi K P, 
+* Arun Chavan L, 
+* Manjunatha H C, 
+* Byregowda B K, 
+* Rajesh N, 
+* Shashidhar S, 
+* Ananda kumar H N, 
+* Kiran B, 
+* Shwetha M K, 
+* Deepika, 
+* Bhavya D, 
 * Abdul Nooran, Student, Vivekananda College of Engineering and Technology, Puttur
 * Abhiram R., Student, P.E.S Institute of Technology, Bangalore South Campus
 * Ajith K.S., Student, The Oxford College of Engineering, Bangalore
@@ -27,7 +39,7 @@
 * Samruda, Student, Student, Government Engineering College, Hassan
 * Samyama H.M., Student, Government Engineering College, Hassan
 * Santosh Kumar, Student,Dr. Ambedkar Institute of Technology, Bangalore
-* Shashank S., Student, S.J.B. Institute of Technology, Bangalore
+* Shashank M C., Student, S.J.B. Institute of Technology, Bangalore
 * Soheb Mohammed, Student, P.E.S Institute of Technology, Bangalore South Campus
 * Suhas, Student, P.A. College of Engineering, Mangalore
 * Vamsikrishna G., Student, P.E.S Institute of Technology, Bangalore South Campus
