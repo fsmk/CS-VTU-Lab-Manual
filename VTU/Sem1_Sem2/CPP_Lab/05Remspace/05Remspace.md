@@ -32,13 +32,13 @@
 	
 	      for(i=0;i<strlen(c);i++)
 	      {
-			if(c[i]==' ')// Checks for blank spaces//
+			if(c[i]==' ' || c[i]=='\t')// Checks for white spaces//
 			{
 				if(inspace==0)
 				{ 
 					//replaces multiple space with single space// 
 					inspace=1;  //change the value of inspace//
-					printf("%c",c[i]);
+					printf("%c",32); //32 is the ASCII character of space
 				}
 			}
 			else//prints the text//
