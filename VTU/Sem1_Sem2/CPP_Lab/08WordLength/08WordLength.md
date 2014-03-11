@@ -2,7 +2,7 @@
 ### Design, develop and execute a program in C to compute and print the word length on the host machine.
 
 ## Summary:  
->The word size of a computer generally indicates the largest integer it can process in a single instruction, and the size of a memory address, which is usually, but not necessarily the same as the integer size.
+>The word size of a computer generally indicates the bit length of the largest integer it can process in a single instruction, and the size of a memory address, which is usually, but not necessarily the same as the integer size.
 The C/C++ standard does not specify the size of integral types in bytes, but it specifies minimum ranges they must be able to hold.
 The word size can be inferred using predefined architecture/OS/compiler macros provided by the compiler. The below program finds out virtually the word size used by the compiler.
 
@@ -68,7 +68,7 @@ The word size can be inferred using predefined architecture/OS/compiler macros p
 			iLen++;
 		}
 
-		printf("\n\nThe Word length of the host machine is %d\n\n", iLen);
+		printf("\n\nThe Word length of the host machine is %d bits\n\n", iLen);
 		return 0;
 	}
 
@@ -79,4 +79,4 @@ Run the following commands in your terminal:<br>
 ####gcc wordlength.c
 ####./a.out
 
-The Word length of the host machine is 32
+The Word length of the host machine is 32 bits
