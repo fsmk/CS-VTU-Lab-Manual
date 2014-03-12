@@ -41,6 +41,7 @@
 * Santosh Kumar, Student,Dr. Ambedkar Institute of Technology, Bangalore
 * Shashank M C., Student, S.J.B. Institute of Technology, Bangalore
 * Soheb Mohammed, Student, P.E.S Institute of Technology, Bangalore South Campus
+* Indra Priyadarshini, Student, P.E.S Institute of Technology, Bangalore South Campus
 * Suhas, Student, P.A. College of Engineering, Mangalore
 * Vamsikrishna G., Student, P.E.S Institute of Technology, Bangalore South Campus
 * Vikram S., Student, P.E.S Institute of Technology, Bangalore South Campus
