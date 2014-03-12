@@ -2,18 +2,18 @@
 
 ### Following is the list of all the volunteers who contributed to the making of the Lab Manual.
 
-* Neeta Ann Jacob, Asst Professor, The Oxford College of Engineering, Bangalore
-* Bindu Madavi K P, Assistant Professor, The Oxford College of Engineering, Bangalore
-* Arun Chavan L, Assistant Professor, The Oxford College of Engineering, Bangalore
-* Manjunatha H C, Assistant Professor, Sir M. Visvesvaraya Institute of Technology, Banglore
-* Byregowda B K, Assistant Professor, Sir M. Visvesvaraya Institute of Technology, Banglore
-* Rajesh N, Assistant Professor, Sir M. Visvesvaraya Institute of Technology, Banglore
-* Shashidhar S, Assistant Professor, A.T.M.E College of Engineering, Mysore
-* Ananda kumar H N, Assistant Professor, A.T.M.E College of Engineering, Mysore
-* Kiran B, Assistant Professor, A.T.M.E College of Engineering, Mysore
-* Shwetha M K, Assistant Professor, P.E.S. College of Engineering, Mandya
-* Deepika, Assistant Professor, P.E.S. College of Engineering, Mandya
-* Bhavya D, Assistant Professor, P.E.S. College of Engineering, Mandya
+* Ananda Kumar H N, Faculty, A.T.M.E College of Engineering, Mysore
+* Arun Chavan L, Faculty, The Oxford College of Engineering, Bangalore
+* Bhavya D, Faculty, P.E.S. College of Engineering, Mandya
+* Bindu Madavi K P, Faculty, The Oxford College of Engineering, Bangalore
+* Byregowda B K, Faculty, Sir M. Visvesvaraya Institute of Technology, Banglore
+* Deepika, Faculty, P.E.S. College of Engineering, Mandya
+* Kiran B, Faculty, A.T.M.E College of Engineering, Mysore
+* Manjunatha H C, Faculty, Sir M. Visvesvaraya Institute of Technology, Banglore
+* Neeta Ann Jacob, Faculty, The Oxford College of Engineering, Bangalore
+* Rajesh N, Faculty, Sir M. Visvesvaraya Institute of Technology, Banglore
+* Shashidhar S, Faculty, A.T.M.E College of Engineering, Mysore
+* Shwetha M K, Faculty, P.E.S. College of Engineering, Mandya
 * Abdul Nooran, Student, Vivekananda College of Engineering and Technology, Puttur
 * Abhiram R., Student, P.E.S Institute of Technology, Bangalore South Campus
 * Ajith K.S., Student, The Oxford College of Engineering, Bangalore
