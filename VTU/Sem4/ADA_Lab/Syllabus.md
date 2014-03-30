@@ -32,7 +32,7 @@ doesn't have a solution.
 Salesperson problem and then solve the same problem instance using any 
 approximation algorithm and determine the error in the approximation.
 10. Find Minimum Cost Spanning Tree of a given undirected graph using 
-Prim’s algorithm.
+Prim's algorithm.
 11. Implement All-Pairs Shortest Paths Problem using Floyd's algorithm. 
 Parallelize this algorithm, implement it using OpenMP and determine the 
 speed-up achieved.

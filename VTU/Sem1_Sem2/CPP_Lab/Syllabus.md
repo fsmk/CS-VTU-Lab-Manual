@@ -2,8 +2,8 @@ Lab Programs list for Computer Programming Lab as specified by VTU for
 1st year students:
 
 1. Design, develop and execute  a program in C to  find and output all 
-the roots of a given quadratic equation, for non­zero coefficients.
-2. Design, develop and execute a program in C to implement Euclid’s 
+the roots of a given quadratic equation, for nonzero coefficients.
+2. Design, develop and execute a program in C to implement Euclid's 
 algorithm to find the GCD and LCM of two integers and to output the 
 results along with the given integers.
 3. Design, develop and execute  a program in C to  reverse a given four 
@@ -11,7 +11,7 @@ digit integer number and check whether it is a palindrome or not. Output
 the given number with suitable message.
 4. Design, develop and execute a program in C to evaluate the given 
 polynomial f(x) = a 4x4 +  a3x3 + a2x2 + a1x + a0 for given value of x 
-and the coefficients using Horner’s method.
+and the coefficients using Horner's method.
 5. Design, develop and execute a program in C to copy its input to its 
 output, replacing each string of one or more blanks by a single blank.
 6. Design, develop and execute a program in C to input N integer numbers 
@@ -37,8 +37,8 @@ format if the matrices are compatible for multiplication, otherwise the
 program must print a suitable message. (For the purpose of demonstration, 
 the array sizes M, N, P, and Q can all be less than or equal to 3)
 11. Design, develop and execute a parallel program in C to add, 
-element­wise, two one­dimensional arrays A and B of N integer elements 
-and to store the result in another one­dimensional array C of N integer 
+elementwise, two onedimensional arrays A and B of N integer elements 
+and to store the result in another onedimensional array C of N integer 
 elements.
 12. Design and develop a function rightrot (x, n) in C that returns the 
 value of the integer x rotated to the right by n bit positions as an 
@@ -57,7 +57,7 @@ in place. Invoke this function from the main for different strings and
 print the original and reversed strings.
 16. Design and develop a function matchany (s1,s2) which returns the first 
 location in the string s1 where any character from the string s2 occurs, 
-or – 1 if s1 contains  no  character  from   s2.   Do  not   use  the 
+or - 1 if s1 contains  no  character  from   s2.   Do  not   use  the 
 standard library function which does a similar job! Invoke the function 
 matchany (s1. s2) from the main for different strings and print both the 
 strings and the return value from the function matchany (s1,s2).

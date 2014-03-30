@@ -2,7 +2,7 @@
 ###Design, develop and execute a program in C to reverse a given four    digit integer number and check whether it is a palindrome or not. Output the given number with suitable message.
 
 ##Summary:
->Palindrome is a number, word, phrase, or sequence that reads the same backward as forward, e.g., “madam” or “malayalam” or 1221 or 10301.
+>Palindrome is a number, word, phrase, or sequence that reads the same backward as forward, e.g., "madam" or "malayalam" or 1221 or 10301.
 
 ##Algorithm:
 

@@ -1,5 +1,5 @@
 ###Aim:
-C program that creates a child process to read commands from the standard input and execute them (a minimal implementation of a shell–like program). You can assume that no arguments will be passed to the commands to be executed.
+C program that creates a child process to read commands from the standard input and execute them (a minimal implementation of a shell-like program). You can assume that no arguments will be passed to the commands to be executed.
 
 ####Description:
  <p>fork():it is a system call which forks a new child of a processs

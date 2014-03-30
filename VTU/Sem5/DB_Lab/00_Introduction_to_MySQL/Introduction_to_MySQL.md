@@ -126,13 +126,13 @@ http://packages.ubuntu.com/quantal/multiarch-support
 	8. In between if user wants to clear the screen of the terminal then press:
 ctrl+l.
 
-	9. To get any information about the commands used in the mysql use “help” command.
+	9. To get any information about the commands used in the mysql use "help" command.
 		Eg: help insert;
 		help create;
 	10. Type exit to exit from the MySQL prompt.
 
 		Note 1 : MYSQL is a a case sensitive.
-			Ex: “desc MEMBERS” is differ from “desc members”.
+			Ex: "desc MEMBERS" is differ from "desc members".
 
 		![Alt text](DBScreenShots/8.png) 
 

@@ -67,92 +67,102 @@ determine the value of PIPE_BUF by using pathconf or fpathconf.</pre>
 
 ##Code:
 ###4read.cpp
-<pre><code>#include&lt;stdio.h&gt;
-#include&lt;stdlib.h&gt;
-#include&lt;iostream&gt;
-#include&lt;unistd.h&gt;
-#include&lt;limits.h&gt;
-#include&lt;fcntl.h&gt;
-using namespace std;
-#define BUFFER_SIZE PIPE_BUF
-int main(int argc,char *argv[])
-{
-int pipe_fd,res=0;
-char buffer[BUFFER_SIZE+1];
-if(argc!=2)
-{
-cout&lt;&lt;"usage:./a.out pipe_name\n";
-return -1;
-}
-cout&lt;&lt;"\nFD of fifo in read mode:"<<pipe_fd<<endl;
-if((pipe_fd=open(argv[1],O_RDONLY))!=-1)
-{
-res=read(pipe_fd,buffer,BUFFER_SIZE);
-cout&lt;&lt;"\n data read..\n";
-cout&lt;&lt;buffer;
-(void) close(pipe_fd);
-}
-else
-{
-perror("\nfifo read"\n);
-}
-cout&lt;&lt;"\nprocess "&lt;&lt;getpid()&lt;&lt;" finished reading\n"&lt;&lt;endl;
-return 0;
-}
-</code></pre>
+
+	#include<stdio.h>
+	#include<stdlib.h>
+	#include<iostream>
+	#include<unistd.h>
+	#include<limits.h>
+	#include<fcntl.h>
+	using namespace std;
+	#define BUFFER_SIZE PIPE_BUF
+	int main(int argc,char *argv[])
+	{
+		int pipe_fd,res=0;
+		char buffer[BUFFER_SIZE+1];
+		if(argc!=2)
+		{
+			cout<<"usage:./a.out pipe_name\n";
+			return -1;
+		}
+		cout<<"\nFD of fifo in read mode:"<<pipe_fdendl;
+	
+		if((pipe_fd=open(argv[1],O_RDONLY))!=-1)
+		{
+			res=read(pipe_fd,buffer,BUFFER_SIZE);
+			cout<<"\n data read..\n";
+			cout<<buffer;
+			(void) close(pipe_fd);
+		}
+		else
+		{
+			perror("\nfifo read"\n);
+		}
+
+		cout<<"\nprocess "<<getpid()<<" finished reading\n"<<endl;
+		return 0;
+	}
+
+
+
 ###4write.cpp
-<pre><code>
-#include&lt;stdio.h&gt;
-#include&lt;stdlib.h&gt;
-#include&lt;iostream&gt;
-#include&lt;string.h&gt;
-#include&lt;unistd.h&gt;
-#include&lt;fcntl.h&gt;
-#include&lt;limits.h&gt;
-#include&lt;sys/types.h&gt;
-#include&lt;sys/stat.h&gt;
-using namespace std;
-#define BUFFER_SIZE PIPE_BUF
-int main(int argc,char *argv[])
-{
-int pipe_fd,res;
-char buffer[BUFFER_SIZE+1];
-if(argc!=2)
-{
-cout&lt;&lt;"usage:./a.out pipe_name\n";
-return 1;
-}
-if(access(argv[1],F_OK)==-1)
-{
-res=mkfifo(argv[1],0777);
-if(res!=0)
-{
-perror("\nmkfifo error\n");
-exit(0);
-}
-}
-cout&lt;&lt;"Process "&lt;&lt;getpid()&lt;&lt;"opening fifo in write mode"&lt;&lt;endl;
-pipe_fd=open(argv[1],O_WRONLY);
-cout&lt;&lt;"FD of fifo in write mode:"&lt;&lt;pipe_fd&lt;&lt;endl;
-if(pipe_fd!=-1)
-{
-cout&lt;&lt;"enter data\n";
-gets(buffer);
-res=write(pipe_fd,buffer,BUFFER_SIZE);
-if(res==-1)
-{
-perror("write error\n");
-exit(0);
-}
-close(pipe_fd);
-}
-else
-perror("fifo write");
-cout&lt;&lt;"\nprocess "<<getpid()<<" finished writing\n"<<endl;
-unlink(argv[1]);
-return 0;
-}
-</code></pre>
+
+
+	#include<stdio.h>
+	#include<stdlib.h>
+	#include<iostream>
+	#include<string.h>
+	#include<unistd.h>
+	#include<fcntl.h>
+	#include<limits.h>
+	#include<sys/types.h>
+	#include<sys/stat.h>
+
+	using namespace std;
+	#define BUFFER_SIZE PIPE_BUF
+	int main(int argc,char *argv[])
+	{
+			int pipe_fd,res;
+			char buffer[BUFFER_SIZE+1];
+			if(argc!=2)
+			{
+				cout<<"usage:./a.out pipe_name\n";
+				return 1;
+			}
+			if(access(argv[1],F_OK)==-1)
+			{
+				res=mkfifo(argv[1],0777);
+			if(res!=0)
+			{
+				perror("\nmkfifo error\n");
+				exit(0);
+			}
+		}
+
+		cout<<"Process "<<getpid()<<"opening fifo in write mode"<<endl;
+		pipe_fd=open(argv[1],O_WRONLY);
+		cout<<"FD of fifo in write mode:"<<pipe_fd<<endl;
+		if(pipe_fd!=-1)
+		{
+			cout<<"enter data\n";
+			gets(buffer);
+			res=write(pipe_fd,buffer,BUFFER_SIZE);
+			if(res==-1)
+			{
+				perror("write error\n");
+				exit(0);
+			}
+			close(pipe_fd);
+		}
+		else
+			perror("fifo write");
+
+		cout<<"\nprocess "<<getpid()<<" finished writing\n"<<endl;
+		unlink(argv[1]);
+		return 0;
+	}
+
+
 ##Output:
 
 *Commands for execution:-*

@@ -9,7 +9,7 @@ p2 	       5 	            1
 p3 	       2 	            2
 shortest remaining time scheduling
 In this, the CPU will be taken away from the currently executing process whenever a process will less CPU burst time.
-As shown in figure, the time when P2 arrives P1 needs 9 millisecond more to finish. As B’s cpu burst in 5 millisecond < 9 millisecond, therefore, P1 execution will be preempted and P2 will be executed but against as P3 arrives P2 execution needs 3 more millisecond where as P3 needs only 2 millisecond to execute, thus P3 takes over P2 and so on.
+As shown in figure, the time when P2 arrives P1 needs 9 millisecond more to finish. As B's cpu burst in 5 millisecond < 9 millisecond, therefore, P1 execution will be preempted and P2 will be executed but against as P3 arrives P2 execution needs 3 more millisecond where as P3 needs only 2 millisecond to execute, thus P3 takes over P2 and so on.
 
 <pre>Waiting time for P1 = 0+ (8-1) = 7 millisecond
 Waiting time for P2 = 1+ (4-2) = 3 millisecond

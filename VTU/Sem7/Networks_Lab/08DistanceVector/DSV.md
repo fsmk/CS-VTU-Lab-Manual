@@ -36,7 +36,7 @@ that destination, and an estimate of the time or distance to that destination. T
 be number of hops, time delay in milliseconds, total number of packets queued along the path, or
 something similar.
 
-> The router is assumed to know the “distance” to each of its neighbour. If the metric is hops, the
+> The router is assumed to know the "distance" to each of its neighbour. If the metric is hops, the
 distance is just one hop. If the metric is queue length, the router simply examines each queue. If the
 metric is delay, the router can measure it directly with special ECHO packets that the receiver just
 time stamps and sends back as fast as possible.

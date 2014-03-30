@@ -128,6 +128,4 @@
 * compile as gcc -lGLU -lGL -lglut sierpanski.c -o sierpanski
 * If no errors, run as ./sierpanski
 
-*Screenshots:-*
 
-![ScreenShot of Output](sierpanski.png)   

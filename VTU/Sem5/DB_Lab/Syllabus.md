@@ -59,7 +59,7 @@ ii. Enter at least five tuples for each relation.
 iii. Demonstrate how you add a new text book to the database and make 
 this book be adopted by some department.
 iv. Produce a list of text books (include Course #, Book-ISBN, Book-title) 
-in the alphabetical order for courses offered by the ‘CS’ department that 
+in the alphabetical order for courses offered by the 'CS' department that 
 use more than two books.
 v. List any department that has all its adopted books published by a 
 specific publisher.

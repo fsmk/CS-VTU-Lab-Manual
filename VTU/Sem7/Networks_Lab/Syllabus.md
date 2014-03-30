@@ -1,17 +1,17 @@
 ##Lab Programs list for Networks Lab as specified by VTU for 7th Semester students:
 
-###PART A – Simulation Exercises
+###PART A - Simulation Exercises
 
 The following experiments shall be conducted using either NS228/OPNET or 
 any other suitable simulator.
 
-1. Simulate a three nodes point – to – point network with duplex links 
+1. Simulate a three nodes point - to - point network with duplex links 
 between them. Set the queue size and vary the bandwidth and find the 
 number of packets dropped.
 
 2. Simulate a four node point-to-point network with the links connected as
 follows:
-n0 – n2, n1 – n2 and n2 – n3. Apply TCP agent between n0-n3 and UDP 
+n0 - n2, n1 - n2 and n2 - n3. Apply TCP agent between n0-n3 and UDP 
 between n1-n3. Apply relevant applications over TCP and UDP agents 
 changing the parameter and determine the number of packets sent by TCP/UDP.
 
@@ -39,7 +39,7 @@ Implement the following in C/C++:
 8. Write a program for distance vector algorithm to find suitable path for
 transmission.
 
-9. Using TCP/IP sockets, write a client – server program to make the client
+9. Using TCP/IP sockets, write a client - server program to make the client
 send the file name and to make the server send back the contents of the
 requested file if present.
 

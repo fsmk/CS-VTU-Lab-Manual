@@ -1,6 +1,4 @@
-## Aim: 
-###
-Program to implement the Cohen-Sutherland line-clipping algorithm. Make provision to specify the input line, window for clipping and view port for displaying the clipped image.
+## Aim: Program to implement the Cohen-Sutherland line-clipping algorithm. Make provision to specify the input line, window for clipping and view port for displaying the clipped image.
 
 ##Algorithm:
 1. End-points pairs are check for trivial acceptance or trivial rejected using the outcode.

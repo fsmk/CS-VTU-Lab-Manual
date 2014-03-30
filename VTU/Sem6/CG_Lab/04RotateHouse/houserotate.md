@@ -137,4 +137,4 @@
 
 *Screenshots:-*
 
-![Screenshot of Output](rotatehouse.png) 
+![Screenshot of Output](rthouse.png) 

@@ -65,7 +65,7 @@
 ## Output:
 
 Run the following commands in your terminal:<br>
-###gcc parallelprog.c –fopenmp
+###gcc parallelprog.c -fopenmp
 ###./a.out
 
 	Enter the array size

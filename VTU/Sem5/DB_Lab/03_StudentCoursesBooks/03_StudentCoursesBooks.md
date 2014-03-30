@@ -17,7 +17,7 @@ the foreign keys.
 3. Demonstrate how you add a new text book to the database and make 
 this book be adopted by some department.
 4. Produce a list of text books (include Course #, Book-ISBN, Book-title) 
-in the alphabetical order for courses offered by the ‘CS’ department that 
+in the alphabetical order for courses offered by the 'CS' department that 
 use more than two books.
 5. List any department that has all its adopted books published by a 
 specific publisher.
@@ -245,7 +245,7 @@ mysql> select * from book_adoption;
 8 rows in set (0.00 sec).
 </pre>
 ##Queries:
-###4. Produce a list of text books (include Course #, Book-ISBN, Book-title) in the alphabetical order for courses offered by the ‘CS’ department that use more than two books.
+###4. Produce a list of text books (include Course #, Book-ISBN, Book-title) in the alphabetical order for courses offered by the 'CS' department that use more than two books.
 <pre>
 mysql> select c.courseno,t.book_isbn,t.book_title
      from course c,book_adoption ba,text t

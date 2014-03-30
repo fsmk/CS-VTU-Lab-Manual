@@ -52,7 +52,7 @@ current time of the server.
 user into a table created using MySQL and to display the current contents
 of this table.
 9. Write a PHP program to store current date-time in a COOKIE and display 
-the ‘Last visited on’ date-time on the web page upon reopening of the same 
+the 'Last visited on' date-time on the web page upon reopening of the same 
 page.
 10. Write a PHP program to store page views count in SESSION, to increment 
 the count on each refresh, and to show the count on web page.

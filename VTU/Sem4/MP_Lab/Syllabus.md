@@ -1,10 +1,10 @@
 Lab Programs list for Microprocessors Lab as specified by VTU for 4th 
 Semester students:
 
-1. a) Search a key element in a list of ‘n’ 16-bit numbers using the 
+1. a) Search a key element in a list of 'n' 16-bit numbers using the 
 Binary search algorithm.
 b) Read the status of eight input bits from the Logic Controller Interface 
-and display ‘FF’ if it is the parity of the input read is even; otherwise 
+and display 'FF' if it is the parity of the input read is even; otherwise 
 display 00.
 2. a) Write two ALP modules stored in two different files; one module is 
 to read a character from the keyboard and the other one is to display a 
@@ -12,7 +12,7 @@ character. Use the above two modules to read a string of characters from
 the keyboard terminated by the carriage return and print the string on the 
 display in the next line.
 b) Implement a BCD Up-Down Counter on the Logic Controller Interface.
-3. a) Sort a given set of ‘n’ numbers in ascending order using the Bubble 
+3. a) Sort a given set of 'n' numbers in ascending order using the Bubble 
 Sort algorithm.
 b) Read the status of two 8-bit inputs (X & Y) from the Logic Controller 
 Interface and display X*Y.
@@ -36,12 +36,12 @@ b) Convert a 16-bit binary value (assumed to be an unsigned integer)to
 BCD and display it from left to right and right to left for specified 
 number of times on a 7-segment display interface.
 7. a) Read your name from the keyboard and display it at a specified 
-location on the screen after the message “What is your name?” You must 
+location on the screen after the message "What is your name?" You must 
 clear the entire screen before display.
 b) Scan a 8 x 3 keypad for key closure and to store the code of the key 
 pressed in a memory location or display on screen. Also display row and 
 column numbers of the key pressed.
-8. a) Compute nCr using recursive procedure. Assume that ‘n’ and ‘r’ are 
+8. a) Compute nCr using recursive procedure. Assume that 'n' and 'r' are 
 non-negative integers.
 b) Drive a Stepper Motor interface to rotate the motor in specified 
 direction (clockwise or counter-clockwise) by N steps (Direction and N 

@@ -1,5 +1,5 @@
 ##Aim:
-###Design, develop and execute a program in C to evaluate the given polynomial    f(x) = a4x4 + a3x3 + a2x2+ a1x + a0   for given value of x and the coefficients using Horner’s method.
+###Design, develop and execute a program in C to evaluate the given polynomial    f(x) = a4x4 + a3x3 + a2x2+ a1x + a0   for given value of x and the coefficients using Horner's method.
 
 ##Summary:
 >Horner's method of polynomial evaluation is described below
@@ -25,13 +25,13 @@
 
 >a0=5, a1=4, a2=3, a3=2, a4=1
 
->sum =    a4  * x   		→  1 * 6 		→ 6
+>sum =    a4  * x   		->  1 * 6 		-> 6
 
->sum =    ( sum + a3 )  * x	→  ( 6 + 2 ) * 6 	→ 48
+>sum =    ( sum + a3 )  * x	->  ( 6 + 2 ) * 6 	-> 48
 
->sum =    ( sum + a2 )  * x 	→  ( 48  + 3 ) * 6	→  306
+>sum =    ( sum + a2 )  * x 	->  ( 48  + 3 ) * 6	->  306
 
->sum =    ( sum + a1 )  * x 	→  ( 306  + 4 ) *6	→  1860
+>sum =    ( sum + a1 )  * x 	->  ( 306  + 4 ) *6	->  1860
 
 
 ##Algorithm:
@@ -67,7 +67,7 @@
 	    for(i=deg;i>0;i--)
 	    {
 	        Sum=(Sum + Arr[i])*x;
-	    }   //evaluating polynomial using Horner’s method//
+	    }   //evaluating polynomial using Horner's method//
 	    Sum = Sum + Arr[0]; //adding sum to higher degree co-efficient //
 	    printf("\nValue of polynomial after evaluation=%g\n",Sum);
 	    //printing the result//
@@ -77,7 +77,7 @@
 ## Output:
 
 Run the following commands in your terminal:<br>
-###gcc –lm polynomial.c
+###gcc -lm polynomial.c
 ###./a.out
 
 	1:	Enter the degree of the polynomial and value of x
@@ -89,7 +89,7 @@ Run the following commands in your terminal:<br>
 
 
 
-###gcc –lm polynomial.c
+###gcc -lm polynomial.c
 ###./a.out
 
 	2: 	Enter the degree of the polynomial and value of x

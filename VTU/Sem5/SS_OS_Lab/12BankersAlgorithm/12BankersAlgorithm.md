@@ -17,7 +17,7 @@ If Max [i, j] = k, then process P. may request at most k instances of resource t
 3)Allocation: An n x m matrix defines the number of resources of each type currently allocated to each process.
  If allocation [i, j] = k, then P. is currently allocated k instances of resource type R
 4)Need: An n x m matrix indicates the remaining resource need of each process.
- If Need |i, j] = k, then process P. may need k more instances of resource type R, to complete its task. Need [i, j] – Allocation [i, j].
+ If Need |i, j] = k, then process P. may need k more instances of resource type R, to complete its task. Need [i, j] - Allocation [i, j].
 </pre>
 ####Safety algorithm: 
 Safety algorithm is used to find the state of the system: That is, system may be safe state or unsafe state. Method for this is as follows:
@@ -36,7 +36,7 @@ Let request, be the request vector for process P. If Request, fj] = k, then proc
 When a request for resources is made by process P, the following actions are taken.
 1)If Request. &lt; Need(, then go to step 2. Otherwise, raise an eitor condition since the process has exceeded its maximum claim.
 2)If Request &lt; Available, then go to step 3. Otherwise, P. must wait since the resources are not available.
-3)Available : = Available – Request.; Allocation : = Allocation + Request.; Need; : = Needt – Request.;
+3)Available : = Available - Request.; Allocation : = Allocation + Request.; Need; : = Needt - Request.;
 
 If the resulting resource allocation stale is safe, the transaction is completed and process P. is allocated its resources. If the new state is unsafe, then P. must wait to the Request, and the old resource allocation state is restored.
 </pre>
@@ -405,9 +405,9 @@ if(p[pid].request[j]&gt;avail[j])
 waitcheck=1;
 }
 if (violationcheck==1)
-printf("\n\n\t The Process Exceeds it’s Max Need: Terminated");
+printf("\n\n\t The Process Exceeds it's Max Need: Terminated");
 else if(waitcheck==1)
-printf("\n\n\t Lack of Resourcess : Process State – Wait");
+printf("\n\n\t Lack of Resourcess : Process State - Wait");
 else
 {
 for(j=0;j&lt;nor;j++)

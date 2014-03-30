@@ -1,0 +1,25 @@
+<h1>Books#index</h1>
+<h1>Books</h1>
+<div id="container">
+	<div id="addbox" style="margin-left:8em;margin-right: 10em;background-color: grey;">
+		<h3 style="text-align: center;">Add a book</h3>
+		<%= form_tag("/books/add", :method=>"post") do %>
+			Access No:<%= text_field_tag(:b_access_no) %><br>
+			Title: <%= text_field_tag(:b_title) %>
+			<br>Author: <%= text_field_tag(:b_author) %>
+			<br>Edition: <%= text_field_tag(:b_edition) %>
+			<br>Publisher: <%= text_field_tag(:b_publisher) %>
+			<center><br><%= submit_tag("Add Book") %><center>
+		<% end %>
+				
+	</div>
+	<div id="addbox" style="margin-left:8em;margin-right: 10em;background-color: grey;">
+		<h3 style="text-align: center;">Search for a book</h3>
+		<%= form_tag("/books/search", :method=>"post") do %>
+			Title: <%= text_field_tag(:bs_title) %>
+			<center><br><%= submit_tag("Search") %><center>
+		<% end %>
+				
+	</div>
+
+</div>

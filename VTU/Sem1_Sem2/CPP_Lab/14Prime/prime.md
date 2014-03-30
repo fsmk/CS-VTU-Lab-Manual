@@ -61,7 +61,7 @@
 
 ##Output:
 
-###gcc prime.c –fopenmp –lm
+###gcc prime.c -fopenmp -lm
 ###./a.out
 
     Enter the value of n:  25

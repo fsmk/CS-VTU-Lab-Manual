@@ -1,8 +1,8 @@
 ## Name of the Program:
 Design, develop, and execute a program in C++ to create a class called STRING and implement the 
 following operations. Display the results after every operation by overloading the operator << 
-i) STRING s1 = “VTU” 
-ii) STRING s2 = “BELGAUM” 
+i) STRING s1 = "VTU" 
+ii) STRING s2 = "BELGAUM" 
 iii)	STIRNG s3 = s1 + s2; (Use copy constructor)
 
 ### Theory:

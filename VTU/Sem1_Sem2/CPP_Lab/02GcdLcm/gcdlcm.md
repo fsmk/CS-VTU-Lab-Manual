@@ -1,14 +1,14 @@
 ##Aim:
-###Design, develop and execute a program in C to implement Euclid’s algorithm to find the GCD and LCM of two integers and to output  the results along with the given integers.
+###Design, develop and execute a program in C to implement Euclid's algorithm to find the GCD and LCM of two integers and to output  the results along with the given integers.
 
 ##Summary:
 >In its simplest form, Euclid's algorithm starts with a pair of positive integers, and forms a new pair that consists of the smaller number and the difference between the larger and smaller numbers. 
 
 > The process repeats until the numbers in the pair are equal. That number then is the greatest common divisor of the original pair of integers.
 
->The main principle is that the GCD does not change if the smaller number is subtracted from the larger number. For example, the GCD of 252 and 105 is exactly the GCD of 147 (= 252 − 105) and 105. Since the larger of the two numbers is reduced, repeating this process gives successively smaller numbers, so this repetition will necessarily stop sooner or later — when the numbers are equal (if the process is attempted once more, one of the numbers will become 0).
+>The main principle is that the GCD does not change if the smaller number is subtracted from the larger number. For example, the GCD of 252 and 105 is exactly the GCD of 147 (= 252 - 105) and 105. Since the larger of the two numbers is reduced, repeating this process gives successively smaller numbers, so this repetition will necessarily stop sooner or later - when the numbers are equal (if the process is attempted once more, one of the numbers will become 0).
 
->Euclid’s Algorithm can thus be simplified by finding the remainder of the two integers and forms a new pair consisting of the divisor and the remainder. 
+>Euclid's Algorithm can thus be simplified by finding the remainder of the two integers and forms a new pair consisting of the divisor and the remainder. 
 
 >Also to calculate the LCM of any two numbers m and n, following formula can be used if GCD of the two numbers, GCD(m,n) is already known.
 <pre><code>LCM(m,n) = (m*n)/GCD(m,n)</code></pre>

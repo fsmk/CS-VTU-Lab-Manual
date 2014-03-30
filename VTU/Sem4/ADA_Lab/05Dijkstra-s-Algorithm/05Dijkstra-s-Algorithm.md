@@ -6,177 +6,177 @@
 3. Dijkstra's algorithm finds the shortest path from x to y in order of increasing distance from x. That is, it chooses the first minimum edge, stores this value and adds the next minimum value from the next edge it selects.
 4. It starts out at one vertex and branches out by selecting certain edges that lead to new vertices.
 5. It is similar to the minimum spanning tree algorithm, in that it is "greedy", always choosing the closest edge in hopes of an optimal solution. 
+
 ###ALGORITHM:
-<pre>
- function Dijkstra(Graph, source):
-      for each vertex v in Graph:                                // Initializations
-          dist[v]  := infinity ;                                  // Unknown distance function from 
-                                                                 // source to v
-          previous[v]  := undefined ;                             // Previous node in optimal path
-      end for                                                    // from source
-      
-      dist[source]  := 0 ;                                        // Distance from source to source
-      Q := the set of all nodes in Graph ;                       // All nodes in the graph are
-                                                                 // unoptimized – thus are in Q
-      while Q is not empty:                                      // The main loop
-          u := vertex in Q with smallest distance in dist[] ;    // Source node in first case
-          remove u from Q ;
-          if dist[u] = infinity:
-             break ;                                            // all remaining vertices are
-          end if                                                 // inaccessible from source
-          
-          for each neighbor v of u:                              // where v has not yet been 
-                                                                 // removed from Q.
-              alt := dist[u] + dist_between(u, v) ;
-              if alt < dist[v]:                                  // Relax (u,v,a)
-                  dist[v]  := alt ;
-                  previous[v]  := u ;
-                  decrease-key v in Q;                           // Reorder v in the Queue
-              end if
-          end for
-      end while
-      return dist;
-  endfunction
-</pre>
+
+	function Dijkstra(Graph, source):
+	      for each vertex v in Graph:                                // Initializations
+		  dist[v]  := infinity ;                                 // Unknown distance function from 
+		                                                         // source to v
+		  previous[v]  := undefined ;                            // Previous node in optimal path
+	      end for                                                    // from source
+	      
+	      dist[source]  := 0 ;                                       // Distance from source to source
+	      Q := the set of all nodes in Graph ;                       // All nodes in the graph are
+		                                                         // unoptimized - thus are in Q
+	      while Q is not empty:                                      // The main loop
+		  u := vertex in Q with smallest distance in dist[] ;    // Source node in first case
+		  remove u from Q ;
+		  if dist[u] = infinity:
+		     break ;                                             // all remaining vertices are
+		  end if                                                 // inaccessible from source
+		  
+		  for each neighbor v of u:                              // where v has not yet been 
+		                                                         // removed from Q.
+		      alt := dist[u] + dist_between(u, v) ;
+		      if alt < dist[v]:                                  // Relax (u,v,a)
+		          dist[v]  := alt ;
+		          previous[v]  := u ;
+		          decrease-key v in Q;                           // Reorder v in the Queue
+		      end if
+		  end for
+	      end while
+	      return dist;
+	end function
+
 ###CODE:
 
-<pre>/********************************************************************************
-*File		: Dijkstra.cpp
-*Description	: Program to find shortest paths to other vertices 
-			  using Dijkstra's algorithm.
-*Author		: Prabodh C P
-*Compiler	: gcc compiler 4.6.3, Ubuntu 12.04
-*Date		: Friday 22 November 2013 
+	/********************************************************************************
+	*File		: Dijkstra.cpp
+	*Description	: Program to find shortest paths to other vertices 
+				  using Dijkstra's algorithm.
+	*Author		: Prabodh C P
+	*Compiler	: gcc compiler 4.6.3, Ubuntu 12.04
+	*Date		: Friday 22 November 2013 
 
-********************************************************************************/</pre>
-
-<pre>
- #include&lt;ostream&gt;
- #include&lt;cstdio&gt;
-using namespace std;
-
-const int MAXNODES = 10,INF = 9999;
-
-void fnDijkstra(int [][MAXNODES], int [], int [], int[], int, int, int);
-</pre>
-<pre>/******************************************************************************
-*Function	: main
-*Input parameters: no parameters
-*RETURNS	:	0 on success
-******************************************************************************/</pre>
-<pre>
-int main(void)
-{
-    int n,cost[MAXNODES][MAXNODES],dist[MAXNODES],visited[MAXNODES],path[MAXNODES],i,j,source,dest;
-
-    cout &lt;&lt; "\nEnter the number of nodes\n";
-    cin >> n;
-    cout &lt;&lt; "Enter the Cost Matrix\n" << endl;
-    for (i=0;i&lt;n;i++)
-        for (j=0;j&lt;n;j++)
-            cin >> cost[i][j];
-
-    
-    for (source = 0; source &lt; n; source++)
-    {
-	getchar();
-	cout &lt;&lt; "\n//For Source Vertex : " << source  << " shortest path to other vertices//"<< endl;
-        for (dest=0; dest &lt; n; dest++)
-        {
-            fnDijkstra(cost,dist,path,visited,source,dest,n);
+	********************************************************************************/
 
 
-            if (dist[dest] == INF)
-                cout &lt;&lt; dest &lt;&lt; " not reachable" &lt;&lt; endl;
-            else
-            {
-                cout &lt;&lt; endl;
-                i = dest;
-		do
-                {
-                    cout &lt;&lt; i &lt;&lt; "<--";
-                    i = path[i];
-                }while (i!= source);
-                cout &lt;&lt; i &lt;&lt; " = " &lt;&lt; dist[dest] &lt;&lt; endl;
-            }
-        }
-	cout &lt;&lt; "Press Enter to continue...";
-    }
+	 #include<ostream>
+	 #include<cstdio>
+	using namespace std;
 
-    return 0;
-}
+	const int MAXNODES = 10,INF = 9999;
 
+	void fnDijkstra(int [][MAXNODES], int [], int [], int[], int, int, int);
 
-</pre>
-<pre>/******************************************************************************
-*Function	: fnDijkstra
-*Description	: Function to find shortest paths to other vertices 
-        		  using Dijkstra's algorithm.
-*Input parameters:
-*	int c[][] - cost adjacency matrix of the graph
-*	int d[] - distance vector
-*	int p[] - path vector
-*	int s[] - vector to store visited information
-*	int so	- source vertex
-*	int de	- destination vertex
-*	int n	- no of vertices in the graph
-*RETURNS	: no value
-******************************************************************************/</pre>
-<pre>
-void fnDijkstra(int c[MAXNODES][MAXNODES], int d[MAXNODES], int p[MAXNODES], int s[MAXNODES], int so, int de, int n)
-{
-    int i,j,a,b,min;
+	/******************************************************************************
+	*Function	: main
+	*Input parameters: no parameters
+	*RETURNS	:	0 on success
+	******************************************************************************/
 
-    for (i=0;i&lt;n;i++)
-    {
-        s[i] = 0;
-        d[i] = c[so][i];
-        p[i] = so;
-    }
+	int main(void)
+	{
+	    int n,cost[MAXNODES][MAXNODES],dist[MAXNODES],visited[MAXNODES],path[MAXNODES],i,j,source,dest;
 
-    s[so] = 1;
+	    cout << "\nEnter the number of nodes\n";
+	    cin >> n;
+	    cout << "Enter the Cost Matrix\n" << endl;
+	    for (i=0;i<n;i++)
+		for (j=0;j<n;j++)
+		    cin >> cost[i][j];
 
-    for (i=1;i&lt;n;i++)
-    {
-        min = INF;
-        a = -1;
-        for (j=0;j&lt;n;j++)
-        {
-            if (s[j] == 0)
-            {
-                if (d[j] &lt; min)
-                {
-                    min = d[j];
-                    a = j;
-                }
-            }
-        }
-
-        if (a == -1) return;
-
-        s[a] = 1;
-
-        if (a == de) return;
-
-        for (b=0;b&lt;n;b++)
-        {
-            if (s[b] == 0)
-            {
-                if (d[a] + c[a][b] &lt;d[b])
-                {
-                    d[b] = d[a] + c[a][b];
-                    p[b] = a;
-                }
-            }
-        }
-    }
-}
+	    
+	    for (source = 0; source < n; source++)
+	    {
+		getchar();
+		cout << "\n//For Source Vertex : " << source  << " shortest path to other vertices//"<< endl;
+		for (dest=0; dest < n; dest++)
+		{
+		    fnDijkstra(cost,dist,path,visited,source,dest,n);
 
 
-/******************************************************************************
-</pre>
+		    if (dist[dest] == INF)
+		        cout << dest << " not reachable" << endl;
+		    else
+		    {
+		        cout << endl;
+		        i = dest;
+			do
+		        {
+		            cout << i << "<--";
+		            i = path[i];
+		        }while (i!= source);
+		        cout << i << " = " << dist[dest] << endl;
+		    }
+		}
+		cout << "Press Enter to continue...";
+	    }
+
+	    return 0;
+	}
+
+
+
+	/******************************************************************************
+	*Function	: fnDijkstra
+	*Description	: Function to find shortest paths to other vertices 
+				  using Dijkstra's algorithm.
+	*Input parameters:
+	*	int c[][] - cost adjacency matrix of the graph
+	*	int d[] - distance vector
+	*	int p[] - path vector
+	*	int s[] - vector to store visited information
+	*	int so	- source vertex
+	*	int de	- destination vertex
+	*	int n	- no of vertices in the graph
+	*RETURNS	: no value
+	******************************************************************************/
+
+	void fnDijkstra(int c[MAXNODES][MAXNODES], int d[MAXNODES], int p[MAXNODES], int s[MAXNODES], int so, int de, int n)
+	{
+	    int i,j,a,b,min;
+
+	    for (i=0;i<n;i++)
+	    {
+		s[i] = 0;
+		d[i] = c[so][i];
+		p[i] = so;
+	    }
+
+	    s[so] = 1;
+
+	    for (i=1;i<n;i++)
+	    {
+		min = INF;
+		a = -1;
+		for (j=0;j<n;j++)
+		{
+		    if (s[j] == 0)
+		    {
+		        if (d[j] < min)
+		        {
+		            min = d[j];
+		            a = j;
+		        }
+		    }
+		}
+
+		if (a == -1) return;
+
+		s[a] = 1;
+
+		if (a == de) return;
+
+		for (b=0;b<n;b++)
+		{
+		    if (s[b] == 0)
+		    {
+		        if (d[a] + c[a][b] <d[b])
+		        {
+		            d[b] = d[a] + c[a][b];
+		            p[b] = a;
+		        }
+		    }
+		}
+	    }
+	}
+
+
+
 ###Output
-<pre>
+
 Enter the number of nodes
 5
 Enter the Cost Matrix
@@ -251,6 +251,6 @@ Press Enter to continue...
 
 4<--4 = 0
 Press Enter to continue...
-******************************************************************************/
 
-</pre>
+
+

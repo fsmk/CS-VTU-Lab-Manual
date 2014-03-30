@@ -28,8 +28,8 @@ execute the ps command to verify that the process is zombie.
 9. Write a C/C++ program to implement the system function.
 10. Write a C/C++ program to set up a real-time clock interval timer using 
 the alarm API. 
-11. Write a C program to implement the syntax-directed definition of “if E 
-then S1” and “if E then S1 else S2”. (Refer Fig. 8.23 in the text book 
+11. Write a C program to implement the syntax-directed definition of "if E 
+then S1" and "if E then S1 else S2". (Refer Fig. 8.23 in the text book 
 prescribed for 06CS62 Compiler Design, Alfred V Aho, Ravi Sethi, and 
 Jeffrey D Ullman: Compilers- Principles, Techniques and Tools, 2nd 
 Edition, Pearson Education, 2007).

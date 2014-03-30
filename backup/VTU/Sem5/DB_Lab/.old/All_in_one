@@ -1,0 +1,1097 @@
+1)
+mysql> create table department(dname char(10),dnumber int primary key,mgr_ssn in
+t);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> desc department;
++---------+----------+------+-----+---------+-------+
+| Field   | Type     | Null | Key | Default | Extra |
++---------+----------+------+-----+---------+-------+
+| dname   | char(10) | YES  |     | NULL    |       |
+| dnumber | int(11)  | NO   | PRI | NULL    |       |
+| mgr_ssn | int(11)  | YES  |     | NULL    |       |
++---------+----------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql>  insert into department values('cs','10','11'),('is','20','22'),('ec','30
+','33');
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select *from department;
++-------+---------+---------+
+| dname | dnumber | mgr_ssn |
++-------+---------+---------+
+| cs    |      10 |      11 |
+| is    |      20 |      22 |
+| ec    |      30 |      33 |
++-------+---------+---------+
+3 rows in set (0.00 sec)
+
+mysql>  create table employee(fname char(10),ssn int primary key,salary real,sup
+er_ssn int,dno int,foreign key(dno) references department(dnumber),sex char);
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> desc employee;
++-----------+----------+------+-----+---------+-------+
+| Field     | Type     | Null | Key | Default | Extra |
++-----------+----------+------+-----+---------+-------+
+| fname     | char(10) | YES  |     | NULL    |       |
+| ssn       | int(11)  | NO   | PRI | NULL    |       |
+| salary    | double   | YES  |     | NULL    |       |
+| super_ssn | int(11)  | YES  |     | NULL    |       |
+| dno       | int(11)  | YES  | MUL | NULL    |       |
+| sex       | char(1)  | YES  |     | NULL    |       |
++-----------+----------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> insert into employee values('sushma','10','250','11','10','f');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into employee values('aaa','11','350','22','20','m'),('bbb',
+    -> '22','250','33','30','f'),('ccc','33','350','22','10','m');
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+
+
+mysql> select * from employee;
++--------+-----+--------+-----------+------+------+
+| fname  | ssn | salary | super_ssn | dno  | sex  |
++--------+-----+--------+-----------+------+------+
+| sushma |  10 |    250 |        11 |   10 | f    |
+| aaa    |  11 |    350 |        22 |   20 | m    |
+| bbb    |  22 |    250 |        33 |   30 | f    |
+| ccc    |  33 |    350 |        22 |   10 | m    |
++--------+-----+--------+-----------+------+------+
+4 rows in set (0.00 sec)
+
+mysql> create table works_on(essnf int,foreign key(essnf) references employee(ss
+n),pno int primary key,hours int);
+Query OK, 0 rows affected (0.28 sec)
+
+mysql> desc works_on;
++-------+---------+------+-----+---------+-------+
+| Field | Type    | Null | Key | Default | Extra |
++-------+---------+------+-----+---------+-------+
+| essnf | int(11) | YES  | MUL | NULL    |       |
+| pno   | int(11) | NO   | PRI | NULL    |       |
+| hours | int(11) | YES  |     | NULL    |       |
++-------+---------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into works_on values('10','1','5'),('11','2','6'),
+    -> ('22','3','7');
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from works_on;
++-------+-----+-------+
+| essnf | pno | hours |
++-------+-----+-------+
+|    10 |   1 |     5 |
+|    11 |   2 |     6 |
+|    22 |   3 |     7 |
++-------+-----+-------+
+3 rows in set (0.00 sec)
+
+mysql>  create table dependent(essnf int,foreign key(essnf) references employee(
+ssn),dependent_name char(10),sex char);
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> desc dependent;
++----------------+----------+------+-----+---------+-------+
+| Field          | Type     | Null | Key | Default | Extra |
++----------------+----------+------+-----+---------+-------+
+| essnf          | int(11)  | YES  | MUL | NULL    |       |
+| dependent_name | char(10) | YES  |     | NULL    |       |
+| sex            | char(1)  | YES  |     | NULL    |       |
++----------------+----------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into dependent values('11','ccc','m'),('22','ddd','f');
+Query OK, 2 rows affected (0.00 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from dependent;
++-------+----------------+------+
+| essnf | dependent_name | sex  |
++-------+----------------+------+
+|    11 | ccc            | m    |
+|    22 | ddd            | f    |
++-------+----------------+------+
+2 rows in set (0.00 sec)
+
+mysql> select dno,max(salary) from employee group by dno;
++------+-------------+
+| dno  | max(salary) |
++------+-------------+
+|   10 |         350 |
+|   20 |         350 |
+|   30 |         250 |
++------+-------------+
+3 rows in set (0.30 sec)
+
+mysql> select dno,count(dno),avg(salary)  from employee group by dno;
++------+------------+-------------+
+| dno  | count(dno) | avg(salary) |
++------+------------+-------------+
+|   10 |          2 |         300 |
+|   20 |          1 |         350 |
+|   30 |          1 |         250 |
++------+------------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into employee values('abc','44','450','','20','f');
+Query OK, 1 row affected, 1 warning (0.00 sec)
+
+mysql> select * from employee;
++--------+-----+--------+-----------+------+------+
+| fname  | ssn | salary | super_ssn | dno  | sex  |
++--------+-----+--------+-----------+------+------+
+| sushma |  10 |    250 |        11 |   10 | f    |
+| aaa    |  11 |    350 |        22 |   20 | m    |
+| bbb    |  22 |    250 |        33 |   30 | f    |
+| ccc    |  33 |    350 |        22 |   10 | m    |
+| abc    |  44 |    450 |         0 |   20 | f    |
++--------+-----+--------+-----------+------+------+
+5 rows in set (0.00 sec)
+
+mysql>  insert into employee values('bcd','55','360','null','30','m');
+Query OK, 1 row affected, 1 warning (0.01 sec)
+
+
+
+
+
+
+
+
+
+
+mysql>  select * from employee;
++--------+-----+--------+-----------+------+------+
+| fname  | ssn | salary | super_ssn | dno  | sex  |
++--------+-----+--------+-----------+------+------+
+| sushma |  10 |    250 |        11 |   10 | f    |
+| aaa    |  11 |    350 |        22 |   20 | m    |
+| bbb    |  22 |    250 |        33 |   30 | f    |
+| ccc    |  33 |    350 |        22 |   10 | m    |
+| abc    |  44 |    450 |         0 |   20 | f    |
+| bcd    |  55 |    360 |         0 |   30 | m    |
++--------+-----+--------+-----------+------+------+
+6 rows in set (0.00 sec)
+
+mysql> select fname from employee where super_ssn='null';
++-------+
+| fname |
++-------+
+| abc   |
+| bcd   |
++-------+
+2 rows in set, 1 warning (0.00 sec)
+
+mysql> insert into dependent values('44','abc','f');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from dependent;
++-------+----------------+------+
+| essnf | dependent_name | sex  |
++-------+----------------+------+
+|    11 | ccc            | m    |
+|    22 | ddd            | f    |
+|    44 | abc            | f    |
++-------+----------------+------+
+3 rows in set (0.00 sec)
+
+mysql>  select e.fname from employee e,dependent d where e.fname=d.dependent_nam
+e and e.sex=d.sex and e.ssn=d.essnf;
++-------+
+| fname |
++-------+
+| abc   |
++-------+
+1 row in set (0.00 sec)
+
+mysql> insert into works_on values('44','4','8');
+Query OK, 1 row affected (0.02 sec)
+
+
+
+
+
+
+
+
+
+mysql> select * from works_on;
++-------+-----+-------+
+| essnf | pno | hours |
++-------+-----+-------+
+|    10 |   1 |     5 |
+|    11 |   2 |     6 |
+|    22 |   3 |     7 |
+|    44 |   4 |     8 |
++-------+-----+-------+
+4 rows in set (0.00 sec)
+
+mysql> select essnf from works_on where pno in (1,2,3);
++-------+
+| essnf |
++-------+
+|    10 |
+|    11 |
+|    22 |
++-------+
+3 rows in set (0.30 sec)
+
+mysql>  select e.fname
+    ->  from employee e,department d,dependent t
+    ->  where d.mgr_ssn=e.ssn and t.essnf=e.ssn
+    ->  group by e.ssn
+    ->  having count(t.essnf)>2;
++-------+
+| fname |
++-------+
+| aaa   |
++-------+
+1 row in set (0.00 sec)
+
+mysql> create table project(pname char(10),pnumber int primary key,dnum int,
+    -> foreign key(dnum) references department(dnumber));
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> desc project;
++---------+----------+------+-----+---------+-------+
+| Field   | Type     | Null | Key | Default | Extra |
++---------+----------+------+-----+---------+-------+
+| pname   | char(10) | YES  |     | NULL    |       |
+| pnumber | int(11)  | NO   | PRI | NULL    |       |
+| dnum    | int(11)  | YES  | MUL | NULL    |       |
++---------+----------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> create table works_on2(essnf int,foreign key(essnf) references employee(s
+sn),pno int, foreign key(pno) references project(pnumber),
+    -> hours int);
+Query OK, 0 rows affected (0.02 sec)
+
+
+
+
+
+
+mysql> desc works_on2;
++-------+---------+------+-----+---------+-------+
+| Field | Type    | Null | Key | Default | Extra |
++-------+---------+------+-----+---------+-------+
+| essnf | int(11) | YES  | MUL | NULL    |       |
+| pno   | int(11) | YES  | MUL | NULL    |       |
+| hours | int(11) | YES  |     | NULL    |       |
++-------+---------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into project values('qwe','01','10'),('wer','02','20'),('dfg','03'
+,'20');
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql>  insert into works_on2 values ('11','01','5'),('22','02','6'),('33','01',
+'5');
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from project;
++-------+---------+------+
+| pname | pnumber | dnum |
++-------+---------+------+
+| qwe   |       1 |   10 |
+| wer   |       2 |   20 |
+| dfg   |       3 |   20 |
++-------+---------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from works_on2;
++-------+------+-------+
+| essnf | pno  | hours |
++-------+------+-------+
+|    11 |    1 |     5 |
+|    22 |    2 |     6 |
+|    33 |    1 |     5 |
++-------+------+-------+
+3 rows in set (0.01 sec)
+
+mysql> insert into dependent values('11','ghj','m'),('11','cvb','f'),('22','nmj'
+,'m');
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+
+
+
+
+
+
+
+
+
+mysql> select * from dependent;
++-------+----------------+------+
+| essnf | dependent_name | sex  |
++-------+----------------+------+
+|    11 | ccc            | m    |
+|    22 | ddd            | f    |
+|    44 | abc            | f    |
+|    11 | ghj            | m    |
+|    11 | cvb            | f    |
+|    22 | nmj            | m    |
++-------+----------------+------+
+6 rows in set (0.00 sec)
+
+2)
+mysql> select fname
+    -> from employee
+    -> where (select count(*) from dependent
+    ->          where ssn=essnf)>=2;
++-------+
+| fname |
++-------+
+| aaa   |
+| bbb   |
++-------+
+2 rows in set (0.00 sec)
+
+mysql>  select distinct  e.fname from employee e,department d,dependent t
+    ->  where e.ssn=d.mgr_ssn and d.mgr_ssn=t.essnf and t.sex='m';
++-------+
+| fname |
++-------+
+| aaa   |
+| bbb   |
++-------+
+2 rows in set (0.00 sec)
+
+mysql> select fname
+    -> from employee
+    -> where salary in ( select salary from employee where fname='aaa');
++-------+
+| fname |
++-------+
+| aaa   |
+| ccc   |
++-------+
+2 rows in set (0.31 sec)
+
+
+
+
+
+
+
+
+
+
+mysql>  select e.fname,s.fname
+    ->  from employee e,employee s
+    -> where e.super_ssn=s.ssn;
++--------+-------+
+| fname  | fname |
++--------+-------+
+| sushma | aaa   |
+| aaa    | bbb   |
+| bbb    | ccc   |
+| ccc    | bbb   |
++--------+-------+
+4 rows in set (0.00 sec)
+
+mysql> create table dept(dname char(10),dnumber int primary key,mgrssn int,mgrst
+rtdate date);
+Query OK, 0 rows affected (0.34 sec)
+
+mysql> desc dept;
++-------------+----------+------+-----+---------+-------+
+| Field       | Type     | Null | Key | Default | Extra |
++-------------+----------+------+-----+---------+-------+
+| dname       | char(10) | YES  |     | NULL    |       |
+| dnumber     | int(11)  | NO   | PRI | NULL    |       |
+| mgrssn      | int(11)  | YES  |     | NULL    |       |
+| mgrstrtdate | date     | YES  |     | NULL    |       |
++-------------+----------+------+-----+---------+-------+
+4 rows in set (0.05 sec)
+
+mysql> create table emp(fname char(10),lname char(10),ssn int primary key,
+    -> bdate date,address char(10),sex char,salary int,superssn int,
+    -> dno int,foreign key(dno) references dept(dnumber));
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> desc emp;
++----------+----------+------+-----+---------+-------+
+| Field    | Type     | Null | Key | Default | Extra |
++----------+----------+------+-----+---------+-------+
+| fname    | char(10) | YES  |     | NULL    |       |
+| lname    | char(10) | YES  |     | NULL    |       |
+| ssn      | int(11)  | NO   | PRI | NULL    |       |
+| bdate    | date     | YES  |     | NULL    |       |
+| address  | char(10) | YES  |     | NULL    |       |
+| sex      | char(1)  | YES  |     | NULL    |       |
+| salary   | int(11)  | YES  |     | NULL    |       |
+| superssn | int(11)  | YES  |     | NULL    |       |
+| dno      | int(11)  | YES  | MUL | NULL    |       |
++----------+----------+------+-----+---------+-------+
+9 rows in set (0.00 sec)
+
+mysql> create table dept_loc(dnumber int,foreign key(dnumber) references dept(dn
+umber), dloc char(10));
+Query OK, 0 rows affected (0.00 sec)
+
+
+
+
+
+mysql> desc dept_loc;
++---------+----------+------+-----+---------+-------+
+| Field   | Type     | Null | Key | Default | Extra |
++---------+----------+------+-----+---------+-------+
+| dnumber | int(11)  | YES  | MUL | NULL    |       |
+| dloc    | char(10) | YES  |     | NULL    |       |
++---------+----------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> create table project3(pname char(10),
+    -> pnumber int primary key,ploc char(10),
+    -> dnum int,foreign key(dnum) references dept(dnumber));
+Query OK, 0 rows affected (0.00 sec)
+
+
+3)
+
+mysql> desc project3;
++---------+----------+------+-----+---------+-------+
+| Field   | Type     | Null | Key | Default | Extra |
++---------+----------+------+-----+---------+-------+
+| pname   | char(10) | YES  |     | NULL    |       |
+| pnumber | int(11)  | NO   | PRI | NULL    |       |
+| ploc    | char(10) | YES  |     | NULL    |       |
+| dnum    | int(11)  | YES  | MUL | NULL    |       |
++---------+----------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> create table works_on3(eesn int,foreign key(eesn) references emp(ssn),
+    -> pno int,foreign key(pno) references project3(pnumber),
+    -> hours int);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc project3;
++---------+----------+------+-----+---------+-------+
+| Field   | Type     | Null | Key | Default | Extra |
++---------+----------+------+-----+---------+-------+
+| pname   | char(10) | YES  |     | NULL    |       |
+| pnumber | int(11)  | NO   | PRI | NULL    |       |
+| ploc    | char(10) | YES  |     | NULL    |       |
+| dnum    | int(11)  | YES  | MUL | NULL    |       |
++---------+----------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql>  insert into dept values('cs','1','11','2001-01-01');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from dept;
++-------+---------+--------+-------------+
+| dname | dnumber | mgrssn | mgrstrtdate |
++-------+---------+--------+-------------+
+| cs    |       1 |     11 | 2001-01-01  |
++-------+---------+--------+-------------+
+1 row in set (0.00 sec)
+
+
+mysql> insert into dept values('ec','2','22','2002-02-02'),
+    -> ('is','3','33','2003-03-03');
+Query OK, 2 rows affected (0.00 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql>  select * from dept;
++-------+---------+--------+-------------+
+| dname | dnumber | mgrssn | mgrstrtdate |
++-------+---------+--------+-------------+
+| cs    |       1 |     11 | 2001-01-01  |
+| ec    |       2 |     22 | 2002-02-02  |
+| is    |       3 |     33 | 2003-03-03  |
++-------+---------+--------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into emp values('john','smith','11','1981-03-05','731 fondren',
+    -> 'm','3000','44','1'),
+    -> ('alicia','zelaya','22','1982-05-10','33 castle','f','4000','44','2');
+Query OK, 2 rows affected, 1 warning (0.00 sec)
+Records: 2  Duplicates: 0  Warnings: 1
+
+mysql> select * from emp;
++--------+--------+-----+------------+------------+------+--------+----------
+| fname  | lname  | ssn | bdate      | address    | sex  | salary | superssn | dno  |
++--------+--------+-----+------------+------------+------+--------+----------+------+
+| john   | smith  |  11 | 1981-03-05 | 731 fondre | m    |   3000 |       44 |  1 |
+| alicia | zelaya |  22 | 1982-05-10 | 33 castle  | f    |   4000 |       44 |    2 |
++--------+--------+-----+------------+------------+------+--------+----------
+2 rows in set (0.00 sec)
+
+mysql> insert into emp values('ramesh','narayan','33','1980-11-12','bantwal','m'
+,'3000','11','3'),
+    -> ('jenny','borg','44','1981-05-25','291 berry','f','5000','22','1');
+Query OK, 2 rows affected (0.00 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from emp;
++--------+---------+-----+------------+------------+------+--------+----------+------+
+| fname  | lname   | ssn | bdate      | address    | sex  | salary | superssn |dno  |
++--------+---------+-----+------------+------------+------+--------+----------+------+
+| john   | smith   |  11 | 1981-03-05 | 731 fondre | m    |   3000 |       44 |   1 |
+| alicia | zelaya  |  22 | 1982-05-10 | 33 castle  | f    |   4000 |       44 |   2 |
+| ramesh | narayan |  33 | 1980-11-12 | bantwal    | m    |   3000 |       11 |   3 |
+| jenny  | borg    |  44 | 1981-05-25 | 291 berry  | f    |   5000 |       22 |   1 |
++--------+---------+-----+------------+------------+------+--------+---------
+4 rows in set (0.00 sec)
+
+mysql>  select fname,lname from emp
+    ->  where sex='f' and dno='1' and salary>='4000';
++-------+-------+
+| fname | lname |
++-------+-------+
+| jenny | borg  |
++-------+-------+
+1 row in set (0.30 sec)
+
+
+mysql> insert into dept_loc values('1','nadupadav'),('2','kulur'),('3','urva');
+Query OK, 3 rows affected (0.34 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from dept_loc;
++---------+-----------+
+| dnumber | dloc      |
++---------+-----------+
+|       1 | nadupadav |
+|       2 | kulur     |
+|       3 | urva      |
++---------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select dname,dnumber,mgrssn,mgrstrtdate
+    -> from dept where dname='cs';
++-------+---------+--------+-------------+
+| dname | dnumber | mgrssn | mgrstrtdate |
++-------+---------+--------+-------------+
+| cs    |       1 |     11 | 2001-01-01  |
++-------+---------+--------+-------------+
+1 row in set (0.00 sec)
+
+mysql> select dname,dept.dnumber,mgrssn,dloc
+    -> from dept,dept_loc
+    -> where dept.dnumber=dept_loc.dnumber and dname='cs';
++-------+---------+--------+-----------+
+| dname | dnumber | mgrssn | dloc      |
++-------+---------+--------+-----------+
+| cs    |       1 |     11 | nadupadav |
++-------+---------+--------+-----------+
+1 row in set (0.00 sec)
+
+mysql> insert into emp values('ram','rao','55','1985-07-04','bc road','m','4500
+,'33','3');
+Query OK, 1 row affected (0.02 sec)
+
+
+
+
+
+
+
+
+
+mysql>  select * from emp;
++--------+---------+-----+------------+------------+------+--------+----------+-----+
+| fname  | lname   | ssn | bdate      | address    | sex  | salary | superssn |dno  |
++--------+---------+-----+------------+------------+------+--------+----------+-----+
+| john   | smith   |  11 | 1981-03-05 | 731 fondre | m    |   3000 |       44 |   1 |
+| alicia | zelaya  |  22 | 1982-05-10 | 33 castle  | f    |   4000 |       44 |  2 |
+| ramesh | narayan |  33 | 1980-11-12 | bantwal    | m    |   3000 |       11 |   3 |
+| jenny  | borg    |  44 | 1981-05-25 | 291 berry  | f    |   5000 |       22 |   1 |
+| ram    | rao     |  55 | 1985-07-04 | bc road    | m    |   4500 |       33 |   3 |
++--------+---------+-----+------------+------------+------+--------+----------+-----+
+5 rows in set (0.00 sec)
+
+mysql>  select fname,lname,salary
+    ->  from emp
+    -> where dno='3';
++--------+---------+--------+
+| fname  | lname   | salary |
++--------+---------+--------+
+| ramesh | narayan |   3000 |
+| ram    | rao     |   4500 |
++--------+---------+--------+
+2 rows in set (0.00 sec)
+
+mysql>  select dname,fname,lname
+    -> from emp,dept
+    -> where dept.mgrssn=emp.ssn;
++-------+--------+---------+
+| dname | fname  | lname   |
++-------+--------+---------+
+| cs    | john   | smith   |
+| ec    | alicia | zelaya  |
+| is    | ramesh | narayan |
++-------+--------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select fname,lname,address
+    -> from emp e,dept d
+    -> where d.dname='is' and d.dnumber=e.dno;
++--------+---------+---------+
+| fname  | lname   | address |
++--------+---------+---------+
+| ramesh | narayan | bantwal |
+| ram    | rao     | bc road |
++--------+---------+---------+
+2 rows in set (0.00 sec)
+
+
+
+mysql> insert into project3 values('prj1','10','kavoor','1'),
+    -> ('prj2','20','bajpe','1'),
+    -> ('prj3','30','konaje','3');
+Query OK, 3 rows affected (0.33 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from project3;
++-------+---------+--------+------+
+| pname | pnumber | ploc   | dnum |
++-------+---------+--------+------+
+| prj1  |      10 | kavoor |    1 |
+| prj2  |      20 | bajpe  |    1 |
+| prj3  |      30 | konaje |    3 |
++-------+---------+--------+------+
+3 rows in set (0.00 sec)
+
+mysql> insert into works_on3 values('11','10','5'),
+    -> ('33','10','5'),('33','30','6'),
+    -> ('22','20','7'),('44','20','3');
+Query OK, 5 rows affected (0.34 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from works_on3;
++------+------+-------+
+| eesn | pno  | hours |
++------+------+-------+
+|   11 |   10 |     5 |
+|   33 |   10 |     5 |
+|   33 |   30 |     6 |
+|   22 |   20 |     7 |
+|   44 |   20 |     3 |
++------+------+-------+
+5 rows in set (0.00 sec)
+
+
+4)
+mysql> create table boat(boat_id int primary key,boat_name char(10), colour char
+(10));
+Query OK, 0 rows affected (0.31 sec)
+
+mysql> create table sailor(sal_id int primary key,sal_name char(10),rating int,
+    -> age int);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> create table reserve(sal_id int,foreign key(sal_id) references
+    -> sailor(sal_id),boat_id int,foreign key(boat_id) references boat(boat_id),
+dday char(15));
+Query OK, 0 rows affected (0.00 sec)
+
+
+
+
+
+
+
+
+mysql> desc boat;
++-----------+----------+------+-----+---------+-------+
+| Field     | Type     | Null | Key | Default | Extra |
++-----------+----------+------+-----+---------+-------+
+| boat_id   | int(11)  | NO   | PRI | NULL    |       |
+| boat_name | char(10) | YES  |     | NULL    |       |
+| colour    | char(10) | YES  |     | NULL    |       |
++-----------+----------+------+-----+---------+-------+
+3 rows in set (0.02 sec)
+
+mysql> desc sailor;
++----------+----------+------+-----+---------+-------+
+| Field    | Type     | Null | Key | Default | Extra |
++----------+----------+------+-----+---------+-------+
+| sal_id   | int(11)  | NO   | PRI | NULL    |       |
+| sal_name | char(10) | YES  |     | NULL    |       |
+| rating   | int(11)  | YES  |     | NULL    |       |
+| age      | int(11)  | YES  |     | NULL    |       |
++----------+----------+------+-----+---------+-------+
+4 rows in set (0.02 sec)
+
+mysql> desc reserve;
++---------+----------+------+-----+---------+-------+
+| Field   | Type     | Null | Key | Default | Extra |
++---------+----------+------+-----+---------+-------+
+| sal_id  | int(11)  | YES  | MUL | NULL    |       |
+| boat_id | int(11)  | YES  | MUL | NULL    |       |
+| dday    | char(15) | YES  |     | NULL    |       |
++---------+----------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> insert into boat values('100','ray1','blue'),
+    -> ('200','ray2','red'),
+    -> ('300','ray3','purple'),
+    -> ('400','ray4','black');
+Query OK, 4 rows affected (0.00 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from boat;
++---------+-----------+--------+
+| boat_id | boat_name | colour |
++---------+-----------+--------+
+|     100 | ray1      | blue   |
+|     200 | ray2      | red    |
+|     300 | ray3      | purple |
+|     400 | ray4      | black  |
++---------+-----------+--------+
+4 rows in set (0.00 sec)
+
+mysql> insert into sailor values('1000','raj','5000','50'),
+    -> ('1500','ravi','4000','45'),
+    -> ('2000','arvi','4500','46'),
+    -> ('3000','chandra','5500','48'),
+    -> ('4500','deep','6000','40');
+Query OK, 5 rows affected (0.00 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from sailor;
++--------+----------+--------+------+
+| sal_id | sal_name | rating | age  |
++--------+----------+--------+------+
+|   1000 | raj      |   5000 |   50 |
+|   1500 | ravi     |   4000 |   45 |
+|   2000 | arvi     |   4500 |   46 |
+|   3000 | chandra  |   5500 |   48 |
+|   4500 | deep     |   6000 |   40 |
++--------+----------+--------+------+
+5 rows in set (0.00 sec)
+
+mysql> insert into reserve values('1000','100','mon'),
+    -> ('2000','200','tue'),('3000','300','wed'),
+    -> ('1500','400','mon'),('4500','200','sat');
+Query OK, 5 rows affected (0.00 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from reserve;
++--------+---------+------+
+| sal_id | boat_id | dday |
++--------+---------+------+
+|   1000 |     100 | mon  |
+|   2000 |     200 | tue  |
+|   3000 |     300 | wed  |
+|   1500 |     400 | mon  |
+|   4500 |     200 | sat  |
++--------+---------+------+
+5 rows in set (0.00 sec)
+
+mysql> insert into reserve values('2000','400','fri');
+Query OK, 1 row affected (0.31 sec)
+
+mysql> select * from reserve;
++--------+---------+------+
+| sal_id | boat_id | dday |
++--------+---------+------+
+|   1000 |     100 | mon  |
+|   2000 |     200 | tue  |
+|   3000 |     300 | wed  |
+|   1500 |     400 | mon  |
+|   4500 |     200 | sat  |
+|   2000 |     400 | fri  |
++--------+---------+------+
+6 rows in set (0.00 sec)
+
+mysql>  select sal_name
+    ->  from sailor s,reserve r
+    ->  where s.sal_id=r.sal_id
+    -> group by sal_name
+    ->  having count(distinct r.boat_id)>=2;
++----------+
+| sal_name |
++----------+
+| arvi     |
++----------+
+1 row in set (0.00 sec)
+
+
+mysql> select sal_name
+    -> from sailor s,boat b,reserve r
+    -> where b.boat_name='ray2' and r.boat_id=b.boat_id and r.sal_id=s.sal_id;
++----------+
+| sal_name |
++----------+
+| arvi     |
+| deep     |
++----------+
+2 rows in set (0.00 sec)
+
+mysql>  select s.sal_name from sailor s,sailor a
+    -> where a.sal_name='raj' and s.rating>a.rating;
++----------+
+| sal_name |
++----------+
+| chandra  |
+| deep     |
++----------+
+2 rows in set (0.00 sec)
+
+mysql> (select sal_id
+    -> from sailor
+    -> where rating='5000')
+    -> union
+    -> (select sal_id
+    -> from reserve
+    -> where boat_id='200');
++--------+
+| sal_id |
++--------+
+|   1000 |
+|   2000 |
+|   4500 |
++--------+
+3 rows in set (0.00 sec)
+
+mysql>  insert into sailor value('4000','veer','5500','46');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from sailor;
++--------+----------+--------+------+
+| sal_id | sal_name | rating | age  |
++--------+----------+--------+------+
+|   1000 | raj      |   5000 |   50 |
+|   1500 | ravi     |   4000 |   45 |
+|   2000 | arvi     |   4500 |   46 |
+|   3000 | chandra  |   5500 |   48 |
+|   4000 | veer     |   5500 |   46 |
+|   4500 | deep     |   6000 |   40 |
++--------+----------+--------+------+
+6 rows in set (0.00 sec)
+
+
+
+mysql>  select sal_name
+    ->  from sailor
+    ->  where age in (select s.age
+    -> from sailor s,sailor r
+    -> where s.age>r.age
+    -> and r.rating='5500' group by r.age having max(r.age));
++----------+
+| sal_name |
++----------+
+| raj      |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select distinct s.sal_id
+    -> from sailor s,reserve r,boat b
+    -> where s.age>='45' and r.boat_id=b.boat_id
+    -> and b.colour!='red' and s.sal_id=r.sal_id;
++--------+
+| sal_id |
++--------+
+|   1000 |
+|   3000 |
+|   1500 |
+|   2000 |
++--------+
+4 rows in set (0.02 sec)
+
+
+
+5)
+mysql> create table manager(pname char(10) primary key,mgrname char(10));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> create table located_in(cname char(15) primary key,city char(15));
+Query OK, 0 rows affected (0.31 sec)
+
+mysql> create table work(pname char(10),foreign key(pname) references
+    -> manager(pname),cname char(15),foreign key(cname) references located_in(cn
+ame),salary int);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> create table lives(pname char(10),foreign key(pname) references
+    ->  manager(pname),street char(15),city char(15));
+Query OK, 0 rows affected (0.31 sec)
+
+mysql> desc manager;
++---------+----------+------+-----+---------+-------+
+| Field   | Type     | Null | Key | Default | Extra |
++---------+----------+------+-----+---------+-------+
+| pname   | char(10) | NO   | PRI | NULL    |       |
+| mgrname | char(10) | YES  |     | NULL    |       |
++---------+----------+------+-----+---------+-------+
+
+2 rows in set (0.00 sec)
+
+
+mysql> desc located_in;
++-------+----------+------+-----+---------+-------+
+| Field | Type     | Null | Key | Default | Extra |
++-------+----------+------+-----+---------+-------+
+| cname | char(15) | NO   | PRI | NULL    |       |
+| city  | char(15) | YES  |     | NULL    |       |
++-------+----------+------+-----+---------+-------+
+2 rows in set (0.31 sec)
+
+mysql> desc work;
++--------+----------+------+-----+---------+-------+
+| Field  | Type     | Null | Key | Default | Extra |
++--------+----------+------+-----+---------+-------+
+| pname  | char(10) | YES  | MUL | NULL    |       |
+| cname  | char(15) | YES  | MUL | NULL    |       |
+| salary | int(11)  | YES  |     | NULL    |       |
++--------+----------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> desc lives;
++--------+----------+------+-----+---------+-------+
+| Field  | Type     | Null | Key | Default | Extra |
++--------+----------+------+-----+---------+-------+
+| pname  | char(10) | YES  | MUL | NULL    |       |
+| street | char(15) | YES  |     | NULL    |       |
+| city   | char(15) | YES  |     | NULL    |       |
++--------+----------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into manager values('ravi','gopal'),('raju','smith'),
+    -> ('minu','jessi'),('santa','banta');
+Query OK, 4 rows affected (0.13 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql>  insert into manager values('gopal','raju'),('smith','minu'),
+    -> ('jessi','santa'),('banta','ravi');
+Query OK, 4 rows affected (0.00 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> insert into located_in values('tcs','pune'),('infosys','mangalore'),
+    -> ('wipro','bangalore');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> insert into work values('gopal','infosys','40000'),('raju','infosys','450
+00'),('minu','wipro','30000'),('banta','tcs','50000'),('smith','wipro','25000');
+
+Query OK, 5 rows affected (0.00 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> insert into lives values('gopal','gurgao','mumbai'),('raju','kavoor','man
+galore'),('minu','khavgali','mumbai'),('banta','kottara','mangalore');
+Query OK, 4 rows affected (0.34 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from manager;
++-------+---------+
+| pname | mgrname |
++-------+---------+
+| banta | ravi    |
+| gopal | raju    |
+| jessi | santa   |
+| minu  | jessi   |
+| raju  | smith   |
+| ravi  | gopal   |
+| santa | banta   |
+| smith | minu    |
++-------+---------+
+8 rows in set (0.00 sec)
+
+mysql> select * from located_in;
++---------+-----------+
+| cname   | city      |
++---------+-----------+
+| infosys | mangalore |
+| tcs     | pune      |
+| wipro   | bangalore |
++---------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select * from work;
++-------+---------+--------+
+| pname | cname   | salary |
++-------+---------+--------+
+| gopal | infosys |  40000 |
+| raju  | infosys |  45000 |
+| minu  | wipro   |  30000 |
+| banta | tcs     |  50000 |
+| smith | wipro   |  25000 |
++-------+---------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from lives;
++-------+----------+-----------+
+| pname | street   | city      |
++-------+----------+-----------+
+| gopal | gurgao   | mumbai    |
+| raju  | kavoor   | mangalore |
+| minu  | khavgali | mumbai    |
+| banta | kottara  | mangalore |
++-------+----------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select pname from lives where city='mumbai';
++-------+
+| pname |
++-------+
+| gopal |
+| minu  |
++-------+
+2 rows in set (0.30 sec)
+
+mysql>  select pname
+    -> from work
+    ->  where (salary between 30000 and 50000) and cname='infosys';
++-------+
+| pname |
++-------+
+| gopal |
+| raju  |
++-------+
+2 rows in set (0.00 sec)
+
+mysql> select w.pname
+    -> from work w,lives l,located_in o
+    -> where w.cname=o.cname and w.pname=l.pname and l.city=o.city;
++-------+
+| pname |
++-------+
+| raju  |
++-------+
+1 row in set (0.00 sec)
+
+mysql> insert into lives values('smith','lucit','banlore');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select w.pname,l.city
+    -> from work w,lives l
+    -> where w.pname=l.pname and w.cname='wipro';
++-------+---------+
+| pname | city    |
++-------+---------+
+| minu  | mumbai  |
+| smith | banlore |
++-------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select avg(salary)
+    -> from work
+    -> where cname='infosys';
++-------------+
+| avg(salary) |
++-------------+
+|  42500.0000 |
++-------------+
+1 row in set (0.00 sec)
+
+

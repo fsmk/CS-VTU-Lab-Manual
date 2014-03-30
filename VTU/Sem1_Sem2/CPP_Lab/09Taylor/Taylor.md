@@ -21,7 +21,7 @@ FLT_EPSILON the minimum positive number such that, 1.0 + FLT_EPSILON != 1.0 // d
 
 ##Algorithm:
 1. Start
-2. Taylor’s series expansion
+2. Taylor's series expansion
 		Let sum=0, x=0.5
 3. Do num=pow(x,i), where value of i=1,2,3,4,5.......  (for numerator)
 4. Calculate deno=factorial of k, where k ranges from 1 to i  (for denominator)
@@ -68,7 +68,7 @@ FLT_EPSILON the minimum positive number such that, 1.0 + FLT_EPSILON != 1.0 // d
 
 ##Output:
 
-###gcc –lm Taylor.c
+###gcc -lm Taylor.c
 ###./a.out
 
     Value of exp(0.5) after evaluation = 1.648721

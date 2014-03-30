@@ -20,7 +20,7 @@ Max-Heapify(A, i)
 
 // Output: A modified so that i roots a heap
 
-//Running Time: O(log n) where n = heap-size[A] − i
+//Running Time: O(log n) where n = heap-size[A] - i
 
 1. l ← Left(i)
 2. r ← Right(i)
@@ -42,7 +42,7 @@ Max-Heap-Insert(A, key)
 //Running Time: O(log n) where n =heap-size[A]
 
 1 .heap-size[A] ←heap-size[A] + 1
-2 .A[heap-size[A]] ← −∞
+2 .A[heap-size[A]] ← -∞
 3 .Heap-Increase-Key(A[heap-size[A]], key)
 
 ##CODE: heap.c

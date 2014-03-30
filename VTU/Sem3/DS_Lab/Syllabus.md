@@ -34,12 +34,12 @@ to calculate Net_Salary and
 to print the values of all the data members.
 (All_Allowances = 123% of Basic; 
 Income Tax (IT) = 30% of the gross salary (= basic_Salary _ All_Allowance); 
-Net_Salary = Basic_Salary + All_Allowances – IT)
+Net_Salary = Basic_Salary + All_Allowances - IT)
 6. Design, develop, and execute a program in C++ to create a class called 
 STRING and implement the following operations. Display the results after 
 every operation by overloading the operator <<.
-i. STRING s1 = “VTU”
-ii. STRING s2 = “BELGAUM”
+i. STRING s1 = "VTU"
+ii. STRING s2 = "BELGAUM"
 iii. STIRNG s3 = s1 + s2; (Use copy constructor)
 7. Design, develop, and execute a program in C++ to create a class called 
 STACK using an array of integers and to implement the following operations 
@@ -48,7 +48,7 @@ i. s1=s1 + element;
 where s1 is an object of the class STACK
 and element is an integer to be pushed on to top of the stack.
 ii. s1=s1- ; 
-where s1 is an object of the class STACK and – operator pops off the top 
+where s1 is an object of the class STACK and - operator pops off the top 
 element.
 Handle the STACK Empty and STACK Full conditions. Also display the contents 
 of the stack after each operation, by overloading the operator <<.
@@ -80,7 +80,7 @@ DATE with methods to accept two valid dates in the form dd/mm/yy and to
 implement the following operations by overloading the operators + and -. 
 After every operation the results are to be displayed by overloading the 
 operator <<.
-i. no_of_days = d1 – d2; where d1 and d2 are DATE objects, d1 >=d2 and 
+i. no_of_days = d1 - d2; where d1 and d2 are DATE objects, d1 >=d2 and 
 no_of_days is an integer.
 ii. d2 = d1 + no_of_days; where d1 is a DATE object and no_of_days is 
 an integer.

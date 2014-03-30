@@ -8,26 +8,25 @@
 <li>Use the alarm API for generating a signal after certain time interval as specified by the user.</li>
 </ul>
 ##Code :
-<pre><code>
- #include&lt;stdio.h&gt;
- #include&lt;stdlib.h&gt;
- #include&lt;unistd.h&gt;
- #include&lt;signal.h&gt;
- #define INTERVAL 5
- void callme(int sig_no)
- {
-        alarm(INTERVAL);
-        printf("Hello!!\n");
- }
- int main()
- {
-        struct sigaction action;
-        action.sa_handler=(void(*)(int))callme;
-        sigaction(SIGALRM,&action,0);
-        alarm(2);
-        sleep(5);
-        return 0;
- }
+	 #include<stdio.h>
+	 #include<stdlib.h>
+	 #include<unistd.h>
+	 #include<signal.h>
+	 #define INTERVAL 5
+	 void callme(int sig_no)
+	 {
+		alarm(INTERVAL);
+		printf("Hello!!\n");
+	 }
+	 int main()
+	 {
+		struct sigaction action;
+		action.sa_handler=(void(*)(int))callme;
+		sigaction(SIGALRM,&action,0);
+		alarm(2);
+		sleep(5);
+		return 0;
+	 }
 
 ##Output :
 <ol>

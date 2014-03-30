@@ -1,4 +1,4 @@
-##AIM :Program to recognize strings ‘aaab’, ‘abbb’, ‘ab’ and ‘a’ using the grammar (anbn, n>= 0).
+##AIM :Program to recognize strings 'aaab', 'abbb', 'ab' and 'a' using the grammar (anbn, n>= 0).
 
 
 ###DESCRIPTION : 

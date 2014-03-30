@@ -46,4 +46,18 @@
 * Vamsikrishna G., Student, P.E.S Institute of Technology, Bangalore South Campus
 * Vikram S., Student, P.E.S Institute of Technology, Bangalore South Campus
 * Vivek Basavraj, Student, Jnana Vikas Institute of Technology, Bidadi
- 
+* Aruna S, Core member of FSMK
+* HariPrasad, Core member of FSMK
+* Isham, Core member of FSMK
+* Jayakumar , Core member of FSMK
+* Jeeva J, Core member of FSMK
+* Jickson, Core member of FSMK
+* Karthik Bhat, Core member of FSMK
+* Prabodh C P, Core member of FSMK
+* RaghuRam N, Core member of FSMK
+* Rameez Thonnakkal, Core member of FSMK
+* Sarath M S, Core member of FSMK
+* Shijil TV, Core member of FSMK
+* Vignesh Prabhu, Core member of FSMK
+* Vijay Kulkarni, Core member of FSMK
+* Yajnesh, Core member of FSMK
