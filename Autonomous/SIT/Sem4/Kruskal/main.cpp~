@@ -1,0 +1,126 @@
+#include <iostream>
+using namespace std;
+
+const int MAX = 10;
+const int INF = 9999;
+
+struct edge
+{
+	int u, v, cost;
+};
+
+int find(int v, int parent[])
+{
+	while (parent[v] != v)
+		v = parent[v];
+
+	return v;
+}
+
+void union_ij(int i, int j, int parent[])
+{
+	if(i < j)
+		parent[j] = i;
+	else
+		parent[i] = j;
+}
+
+void create_edge(int m, edge e[])
+{
+	int i, j, k, cost;
+
+	for(k=0; k<m; k++)
+	{
+		cout << "Enter edge and cost in the form u, v, w : \n";
+		cin >> i >> j >> cost;
+
+		e[k].u = i;
+		e[k].v = j;
+		e[k].cost = cost;
+	}
+}
+
+int minimum(edge e[], int n)
+{
+	int i, small, pos;
+	small = INF;
+	pos = -1;
+
+	for(i=0; i<n; i++)
+	{
+		if(e[i].cost < small)
+		{
+			small = e[i].cost;
+			pos = i;
+		}
+	}
+
+	return pos;
+}
+
+void kruskal(int n, edge e[], int m)
+{
+	int i, j, count, k, sum, u, v, t[MAX][2], pos;
+	int parent[MAX];
+	count = 0;
+	k = 0;
+	sum = 0;
+
+	for(i=0; i<n; i++)
+	{
+		parent[i] = i;
+	}
+
+	while(count != n-1)
+	{
+		pos = minimum(e,m);
+		if(pos == -1)
+		{
+			break;
+		}
+		u = e[pos].u;
+		v = e[pos].v;
+		i = find(u,parent);
+		j = find(v,parent);
+
+		if(i != j)
+		{
+			t[k][0] = u;
+			t[k][1] = v;
+			k++;
+			count++;
+			sum += e[pos].cost;
+			union_ij(i, j, parent);
+		}
+		e[pos].cost = 9999;
+	}
+
+	if(count == n-1)
+	{
+		cout << "\nSpanning tree exists";
+		cout << "\nThe Spanning tree is shown below\n";
+		for(i=0; i<n-1; i++)
+			cout << t[i][0] << " " << t[i][1] << endl;
+
+		cout << "\nCost of the spanning tree : " << sum;
+	}
+	else
+		cout << "\nThe spanning tree does not exist";
+}
+
+int main(void)
+{
+	int n = 6, m = 10;
+	edge e[2*MAX] = {{0,1,6},{1,4,3},{4,5,6},{5,3,2},{3,0,5},{0,2,1},{1,2,5},{3,2,5},{4,2,6},{5,2,4}};
+
+	cout << "Enter the number of nodes : ";
+	cin >> n;
+	cout << "Enter the number of edges : ";
+	cin >> m;
+
+	create_edge(m, e);
+	kruskal(n, e, m);
+
+	return 0;
+}
+

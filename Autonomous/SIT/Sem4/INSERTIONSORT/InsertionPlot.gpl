@@ -1,0 +1,10 @@
+# Gnuplot script file for plotting data in file "InsertionPlot.dat"
+# This file is called       InsertionPlot.gpl
+set terminal png font arial
+set title "Time Complexity for Insertion Sort"
+set autoscale
+set xlabel "Size of Input"
+set ylabel "Sorting Time (microseconds)"
+set grid
+set output "InsertionPlot.png"
+plot "InsertionPlot.dat" t 'Insertion Sort' with lines

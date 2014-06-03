@@ -1,0 +1,10 @@
+# Gnuplot script file for plotting data in file "HeapPlot.dat"
+# This file is called       HeapPlot.gpl
+set terminal png font arial
+set title "Time Complexity for Heap Sort"
+set autoscale
+set xlabel "Size of Input"
+set ylabel "Sorting Time (microseconds)"
+set grid
+set output "HeapPlot.png"
+plot "HeapPlot.dat" t 'Heap Sort' with lines

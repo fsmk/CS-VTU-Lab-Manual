@@ -1,0 +1,10 @@
+# Gnuplot script file for plotting data in file "MergePlot.dat"
+# This file is called       MergePlot.gpl
+set terminal png font arial
+set title "Time Complexity for Merge Sort"
+set autoscale
+set xlabel "Size of Input"
+set ylabel "Sorting Time (microseconds)"
+set grid
+set output "MergePlot.png"
+plot "MergePlot.dat" t 'Merge Sort' with lines
