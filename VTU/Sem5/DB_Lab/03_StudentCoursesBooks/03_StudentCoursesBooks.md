@@ -9,22 +9,22 @@ books adopted for each course.
 * BOOK_ADOPTION (course# :int, sem:int, book-ISBN:int)
 * TEXT (book-ISBN:int, book-title:string, publisher:string, author:string)
 
-##Queries:
+###Queries:
 
-1. Create the above tables by properly specifying the primary keys and 
+1. Create the above tables by properly specifying the primary keys and
 the foreign keys.
 2. Enter at least five tuples for each relation.
-3. Demonstrate how you add a new text book to the database and make 
+3. Demonstrate how you add a new text book to the database and make
 this book be adopted by some department.
-4. Produce a list of text books (include Course #, Book-ISBN, Book-title) 
-in the alphabetical order for courses offered by the 'CS' department that 
+4. Produce a list of text books (include Course #, Book-ISBN, Book-title)
+in the alphabetical order for courses offered by the 'CS' department that
 use more than two books.
-5. List any department that has all its adopted books published by a 
+5. List any department that has all its adopted books published by a
 specific publisher.
 6. Generate suitable reports.
 7. Create suitable front end for querying and displaying the results.
 
-##Create:
+###Create:
 <pre>
 mysql> create database books;
 Query OK, 1 row affected (0.01 sec)
@@ -136,7 +136,8 @@ mysql> desc book_adoption;
 +-----------+---------+------+-----+---------+-------+
 3 rows in set (0.00 sec)
 </pre>
-##Insertion:
+
+###Insertion:
 <pre>mysql> insert into student values ('1pe11cs001','a','sr',19931230);
 Query OK, 1 row affected (0.05 sec)
 </pre>
@@ -216,7 +217,7 @@ mysql> select * from enroll;
 5 rows in set (0.00 sec)
 </pre>
 <pre>
-mysql> insert into book_adoption values 
+mysql> insert into book_adoption values
 (111,5,900),
 (111,5,903),
 (111,5,904),
@@ -244,7 +245,8 @@ mysql> select * from book_adoption;
 +----------+------+-----------+
 8 rows in set (0.00 sec).
 </pre>
-##Queries:
+
+###Queries:
 ###4. Produce a list of text books (include Course #, Book-ISBN, Book-title) in the alphabetical order for courses offered by the 'CS' department that use more than two books.
 <pre>
 mysql> select c.courseno,t.book_isbn,t.book_title
@@ -266,6 +268,7 @@ mysql> select c.courseno,t.book_isbn,t.book_title
 +----------+-----------+------------------+
 3 rows in set (0.01 sec)
 </pre>
+
 ###5. List any department that has all its adopted books published by a specific publisher.
 <pre>
 mysql> select distinct c.dept
@@ -288,5 +291,4 @@ mysql> select distinct c.dept
 | CSE  |
 +------+
 1 row in set (0.00 sec).
-
 </pre>

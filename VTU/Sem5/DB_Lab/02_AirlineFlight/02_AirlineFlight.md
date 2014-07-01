@@ -1,347 +1,316 @@
-##PROGRAM 4 
+##PROGRAM 2
 ###DESCRIPTION:
-The following tables are maintained by a book dealer.
+The following relations keep track of airline flight information:
 
-* AUTHOR (author-id:int, name:string, city:string, country:string)
-* PUBLISHER (publisher-id:int, name:string, city:string, country:string)
-* CATALOG (book-id:int, title:string, author-id:int, publisher-id:int,
-* Category-id:int, year:int, price:int)
-* CATEGORY (category-id:int, description:string)
-* ORDER-DETAILS (order-no:int, book-id:int, quantity:int)
+* FLIGHTS (no:integer,from:string,to:string,distance:integer,departs:time,arrives:time,price:real)
+* AIRCRAFT (aid:integer,aname:string,cruisingrange:integer)
+* CERTIFIED (eid:integer,aid:integer)
+* EMPLOYEES (eid:integer,ename:string,salary:integer)
 
-##Queries:
+NOTE that the EMPLOYEES relation describes pilots and other kinds of employees as well;Every pilot is certified for some aircraft,and only pilots are certified to fly.
+
+###Queries:
 
 <pre>Write each of the following queries in SQL.
 
-1. Create the above tables by properly specifying the primary keys and the foreign keys.
-2. Enter at least five tuples for each relation.
-3. Give the details of the authors who have 2 or more books in the 
-catalog and the price of the books is greater than the average price of 
-the books in the catalog and the year of publication is after 2000.
-4. Find the author of the book which has maximum sales.
-5. Demonstrate how you increase the price of books published by a specific 
-publisher by 10%.
-6. Generate suitable reports.
-7. Create suitable front end for querying and displaying the results.</pre>
+1. Find the names of aircraft such that all pilots certified to operate them have salaries more than Rs 80,000.
+2. For each pilot who is certified for more than three aircrafts,find the eid and the maximum cruisingrange of the aircraft for which he/she is certified.
+3. Find the names of all pilots whose salary is less than the price of the cheapest route from Bangalore to Frankfurt.
+4. For all aircrafts with cruisingrange over 1000 kms,find the name of the aircraft and the average salary of all pilots certified for this aircraft.
+5. Find the names of pilots certified for some Boeing aircraft.
+6. Find the aid's of all aircraft that can be used on routes from Bangalore to Delhi.
+</pre>
 
-###QUERY (i): Create the above tables by properly specifying the primary keys and the foreign keys.
-
-###CREATION:
-<pre>mysql> create database book_dealer;
-Query OK, 1 row affected (0.00 sec)</pre>
-
-<pre>mysql> use book_dealer;
+###Create:
+<pre>
+mysql> create database flights;
+Query OK, 1 row affected (0.00 sec)
+</pre>
+<pre>
+mysql> use flights;
 Database changed
-mysql> create table author1 (
-      author1_id int, 
-      author1_name varchar(20),
-      author1_city varchar(20),
-      author1_country varchar(20),
-      primary key(author1_id));
-Query OK, 0 rows affected (0.11 sec)
-
-mysql> desc author1;
-+-----------------+-------------+------+-----+---------+-------+
-| Field           | Type        | Null | Key | Default | Extra |
-+-----------------+-------------+------+-----+---------+-------+
-| author1_id      | int(11)     | NO   | PRI | 0       |       |
-| author1_name    | varchar(20) | YES  |     | NULL    |       |
-| author1_city    | varchar(20) | YES  |     | NULL    |       |
-| author1_country | varchar(20) | YES  |     | NULL    |       |
-+-----------------+-------------+------+-----+---------+-------+
-4 rows in set (0.00 sec)
-
-mysql> create table publisher1 (
-      publisher1_id int, 
-      publisher1_name varchar(20),
-      publisher1_city varchar(20),
-      publisher1_country varchar(20),
-      primary key(publisher1_id));
-Query OK, 0 rows affected (0.15 sec)
-
-mysql> desc publisher1;
-+--------------------+-------------+------+-----+---------+-------+
-| Field              | Type        | Null | Key | Default | Extra |
-+--------------------+-------------+------+-----+---------+-------+
-| publisher1_id      | int(11)     | NO   | PRI | 0       |       |
-| publisher1_name    | varchar(20) | YES  |     | NULL    |       |
-| publisher1_city    | varchar(20) | YES  |     | NULL    |       |
-| publisher1_country | varchar(20) | YES  |     | NULL    |       |
-+--------------------+-------------+------+-----+---------+-------+
-4 rows in set (0.00 sec)
-
-mysql> create table category1 (
-      category_id int,
-      description varchar(30),
-      primary key(category_id) );
-Query OK, 0 rows affected (0.14 sec)
-
-mysql> desc category1;
-+-------------+-------------+------+-----+---------+-------+
-| Field       | Type        | Null | Key | Default | Extra |
-+-------------+-------------+------+-----+---------+-------+
-| category_id | int(11)     | NO   | PRI | 0       |       |
-| description | varchar(30) | YES  |     | NULL    |       |
-+-------------+-------------+------+-----+---------+-------+
-2 rows in set (0.00 sec)
-
-mysql> desc category1;
-+-------------+-------------+------+-----+---------+-------+
-| Field       | Type        | Null | Key | Default | Extra |
-+-------------+-------------+------+-----+---------+-------+
-| category_id | int(11)     | NO   | PRI | 0       |       |
-| description | varchar(30) | YES  |     | NULL    |       |
-+-------------+-------------+------+-----+---------+-------+
-2 rows in set (0.00 sec)
-
-
-mysql> create table catalogue1(
-      book_id int,
-      book_title varchar(30),
-      author1_id int,
-      publisher1_id int,
-      category_id int,
-      year int,
-      price int,
-      primary key(book_id),
-      foreign key(author1_id) references author1(author1_id),
-      foreign key(publisher1_id) references publisher1(publisher1_id),
-      foreign key(category_id) references category1(category_id) );
-Query OK, 0 rows affected (0.47 sec)
-
-mysql> desc catalogue1;
+mysql> create table flight(
+    -> no int,
+    -> frm varchar(20),
+    -> too varchar(20),
+    -> distance int,
+    -> departs varchar(20),
+    -> arrives varchar(20),
+    -> price real,
+    -> primary key (no) );
+Query OK, 0 rows affected (0.17 sec)</pre>
+<pre>
+mysql> desc flight;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| no       | int(11)     | NO   | PRI | 0       |       |
+| frm      | varchar(20) | YES  |     | NULL    |       |
+| too      | varchar(20) | YES  |     | NULL    |       |
+| distance | int(11)     | YES  |     | NULL    |       |
+| departs  | varchar(20) | YES  |     | NULL    |       |
+| arrives  | varchar(20) | YES  |     | NULL    |       |
+| price    | double      | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+</pre>
+<pre>
+mysql> create table aircraft(
+    -> aid int,
+    -> aname varchar(20),
+    -> cruisingrange int,
+    -> primary key (aid) );
+Query OK, 0 rows affected (0.19 sec)
+</pre>
+<pre>
+mysql> desc aircraft;
 +---------------+-------------+------+-----+---------+-------+
 | Field         | Type        | Null | Key | Default | Extra |
 +---------------+-------------+------+-----+---------+-------+
-| book_id       | int(11)     | NO   | PRI | 0       |       |
-| book_title    | varchar(30) | YES  |     | NULL    |       |
-| author1_id    | int(11)     | YES  | MUL | NULL    |       |
-| publisher1_id | int(11)     | YES  | MUL | NULL    |       |
-| category_id   | int(11)     | YES  | MUL | NULL    |       |
-| year          | int(11)     | YES  |     | NULL    |       |
-| price         | int(11)     | YES  |     | NULL    |       |
+| aid           | int(11)     | NO   | PRI | 0       |       |
+| aname         | varchar(20) | YES  |     | NULL    |       |
+| cruisingrange | int(11)     | YES  |     | NULL    |       |
 +---------------+-------------+------+-----+---------+-------+
-7 rows in set (0.00 sec)
-
-
-
-mysql> create table orderdetails1(
-      order_id int,
-      book_id int,
-      quantity int,
-      primary key(order_id),
-      foreign key(book_id) references catalogue1(book_id));
-Query OK, 0 rows affected (0.12 sec)
-
-mysql> desc orderdetails1;
-+----------+---------+------+-----+---------+-------+
-| Field    | Type    | Null | Key | Default | Extra |
-+----------+---------+------+-----+---------+-------+
-| order_id | int(11) | NO   | PRI | 0       |       |
-| book_id  | int(11) | YES  | MUL | NULL    |       |
-| quantity | int(11) | YES  |     | NULL    |       |
-+----------+---------+------+-----+---------+-------+
-3 rows in set (0.00 sec)
-</pre> 
-
-###QUERY (ii): Enter at least five tuples for each relation.
-
-###INSERTIONS:
-<pre>mysql> insert into author1 values
-          (1001,'JK Rowling','London','England'),
-          (1002,'Chetan Bhagat','Mumbai','India'),
-          (1003,'John McCarthy','Chicago','USA'),
-          (1004,'Dan Brown','California','USA') ;
-
-Query OK, 4 rows affected (0.08 sec)
-Records: 4  Duplicates: 0  Warnings: 0
-</pre><pre>
-mysql> select * from author1;
-+------------+---------------+--------------+-----------------+
-| author1_id | author1_name  | author1_city | author1_country |
-+------------+---------------+--------------+-----------------+
-|       1001 | JK Rowling    | London       | England         |
-|       1002 | Chetan Bhagat | Mumbai       | India           |
-|       1003 | John McCarthy | Chicago      | USA             |
-|       1004 | Dan Brown     | California   | USA             |
-+------------+---------------+--------------+-----------------+
-4 rows in set (0.01 sec)
-</pre><pre>
-mysql> insert into publisher1 values
-          (2001,'Bloomsbury','London','England'),
-          (2002,'Scholastic','Washington','USA'),
-          (2003,'Pearson','London','England'),
-          (2004,'Rupa','Delhi','India') ;
-Query OK, 4 rows affected (0.06 sec)
-Records: 4  Duplicates: 0  Warnings: 0
-</pre><pre>
-mysql> select * from publisher1;
-+---------------+-----------------+-----------------+--------------------+
-| publisher1_id | publisher1_name | publisher1_city | publisher1_country |
-+---------------+-----------------+-----------------+--------------------+
-|          2001 | Bloomsbury      | London          | England            |
-|          2002 | Scholastic      | Washington      | USA                |
-|          2003 | Pearson         | London          | England            |
-|          2004 | Rupa            | Delhi           | India              |
-+---------------+-----------------+-----------------+--------------------+
-4 rows in set (0.00 sec)
-mysql> insert into category1 values
-          (3001,'Fiction'),
-          (3002,'Non-Fiction'),
-           (3003,'thriller'),
-     (3004,'action'),
-     (3005,'fiction') ;
-Query OK, 5 rows affected (0.04 sec)
-Records: 5  Duplicates: 0  Warnings: 0
-</pre><pre>
-mysql> select * from category1;
-+-------------+-------------+
-| category_id | description |
-+-------------+-------------+
-|        3001 | Fiction     |
-|        3002 | Non-Fiction |
-|        3003 | thriller    |
-|        3004 | action      |
-|        3005 | fiction     |
-+-------------+-------------+
-5 rows in set (0.00 sec)
-</pre><pre>
-mysql> insert into catalogue1 values
-          (4001,'HP and Goblet Of Fire',1001,2001,3001,2002,600),
-          (4002,'HP and Order Of Phoenix',1001,2002,3001,2005,650),
-          (4003,'Two States',1002,2004,3001,2009,65),
-          (4004,'3 Mistakes of my life',1002,2004,3001,2007,55),
-          (4005,'Da Vinci Code',1004,2003,3001,2004,450),
-          (4006,'Angels and Demons',1004,2003,3001,2003,350),
-          (4007,'Artificial Intelligence',1003,2002,3002,1970,500) ;
-Query OK, 7 rows affected (0.36 sec)
-Records: 7  Duplicates: 0  Warnings: 0
-</pre><pre>
-mysql> select * from catalogue1;
-+---------+-------------------------+------------+---------------+-------------+------+-------+
-| book_id | book_title              | author1_id | publisher1_id | category_id | year | price |
-+---------+-------------------------+------------+---------------+-------------+------+-------+
-|    4001 | HP and Goblet Of Fire   |       1001 |          2001 |        3001 | 2002 |   600 |
-|    4002 | HP and Order Of Phoenix |       1001 |          2002 |        3001 | 2005 |   650 |
-|    4003 | Two States              |       1002 |          2004 |        3001 | 2009 |    65 |
-|    4004 | 3 Mistakes of my life   |       1002 |          2004 |        3001 | 2007 |    55 |
-|    4005 | Da Vinci Code           |       1004 |          2003 |        3001 | 2004 |   450 |
-|    4006 | Angels and Demons       |       1004 |          2003 |        3001 | 2003 |   350 |
-|    4007 | Artificial Intelligence |       1003 |          2002 |        3002 | 1970 |   500 |
-+---------+-------------------------+------------+---------------+-------------+------+-------+
-7 rows in set (0.00 sec)
-</pre><pre>
-mysql> insert into orderdetails1 values
-          (5001,4001,5),
-          (5002,4002,7),
-          (5003,4003,15),
-          (5004,4004,11),
-          (5005,4005,9),
-          (5006,4006,8),
-          (5007,4007,2),
-          (5008,4004,3) ;
-Query OK, 8 rows affected (0.47 sec)
-Records: 8  Duplicates: 0  Warnings: 0
-</pre><pre>
-mysql> select * from orderdetails1;
-+----------+---------+----------+
-| order_id | book_id | quantity |
-+----------+---------+----------+
-|     5001 |    4001 |        5 |
-|     5002 |    4002 |        7 |
-|     5003 |    4003 |       15 |
-|     5004 |    4004 |       11 |
-|     5005 |    4005 |        9 |
-|     5006 |    4006 |        8 |
-|     5007 |    4007 |        2 |
-|     5008 |    4004 |        3 |
-+----------+---------+----------+
-8 rows in set (0.00 sec)</pre>
-
-### QUERY (iii): Give the details of the authors who have 2 or more books in the catalog and the price of the books is greater than the  average price of the books in the catalog and the year of  publication is after 2000
-
-<pre>mysql> select * from author1
-          where author1_id in
-          (select author1_id from catalogue1 where
-          year>2000 and price>
-          (select avg(price) from catalogue1)
-          group by author1_id having count(*)>1);
-
-OR
-
-mysql> select * from author1
-               where author1_id in
-               (select author1_id from catalogue1 where
-               year>2000 and price>
-               (select avg(price) from catalogue1)
-               group by author1_id having count(*)>1);
-
-Description:
-(select avg(price) from catalogue1):-it select the average price of the books from catalogue1. it acts as an input to the outer query which selects the author id from catalogue1 which are published after 2000 and the price of books is greater than the average price of the books.this acts as an input to the outer most query which displays the author1 details of the values which satisfy the inner queries. 
-+------------+--------------+--------------+-----------------+
-| author1_id | author1_name | author1_city | author1_country |
-+------------+--------------+--------------+-----------------+
-|       1001 | JK Rowling   | London       | England         |
-+------------+--------------+--------------+-----------------+
-1 row in set (0.00 sec))</pre>
-
-### QUERY (iv): Find the author1 of the book which has maximum sales.
-
+3 rows in set (0.01 sec)
+</pre>
 <pre>
-mysql> select author1_name
-           from author1 a,catalogue1 c
-           where a.author1_id=c.author1_id
-           and book_id in
-           (select book_id from orderdetails1 
-           where quantity= (select max(quantity) 
-           from orderdetails1));
-
-OR
-
-mysql> SELECT a.author1_name FROM author1 a,catalogue1 c
-     WHERE a.author1_id=c.author1_id AND
-     c.book_id IN (SELECT book_id 
-     FROM orderdetails1 
-     GROUP BY book_id HAVING
-     SUM(quantity)>=ALL(SELECT SUM(quantity) 
-     FROM orderdetails1 GROUP BY book_id));
-
-Description:
-(select max(quantity) from orderdetails1):-it selects the maximum quantity of books from the orderdetails1 which acts as the input to its outer query which selects the book_id from the orderdetails where the quantity is equal to the selected maximum quantity. This acts as the input to the outer most query which displays the author name where the book id satisfies the inner query.
-+---------------+
-| author1_name  |
-+---------------+
-| Chetan Bhagat |
-+---------------+
-1 row in set (0.00 sec)
-1 row in set (0.00 sec)</pre>
-
-### QUERY (v): Demonstrate how you increase the price of books published by a specific publisher1  by 10%.
-
-<pre>ysql> update catalogue1 set price=1.1*price
-          where publisher1_id in
-          (select publisher1_id from publisher1 where 
-         publisher1_name='pearson');
-Query OK, 2 rows affected (0.41 sec)
-Rows matched: 2  Changed: 2  Warnings: 0
-
-Description:
-This query is used to update the price of the books by 10% which are published by a specific author. Here we have considered pearson as the author.
-
-mysql> select * from catalogue1;
-+---------+-------------------------+------------+---------------+-------------+------+-------+
-| book_id | book_title              | author1_id | publisher1_id | category_id | year | price |
-+---------+-------------------------+------------+---------------+-------------+------+-------+
-|    4001 | HP and Goblet Of Fire   |       1001 |          2001 |        3001 | 2002 |   600 |
-|    4002 | HP and Order Of Phoenix |       1001 |          2002 |        3001 | 2005 |   650 |
-|    4003 | Two States              |       1002 |          2004 |        3001 | 2009 |    65 |
-|    4004 | 3 Mistakes of my life   |       1002 |          2004 |        3001 | 2007 |    55 |
-|    4005 | Da Vinci Code           |       1004 |          2003 |        3001 | 2004 |   495 |
-|    4006 | Angels and Demons       |       1004 |          2003 |        3001 | 2003 |   385 |
-|    4007 | Artificial Intelligence |       1003 |          2002 |        3002 | 1970 |   500 |
-+---------+-------------------------+------------+---------------+-------------+------+-------+
-7 rows in set (0.00 sec)
-
+mysql> create table employees(
+    -> eid int,
+    -> ename varchar(20),
+    -> salary int,
+    -> primary key (eid) );
+Query OK, 0 rows affected (0.29 sec)
+</pre>
+<pre>
+mysql> desc employees;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| eid    | int(11)     | NO   | PRI | 0       |       |
+| ename  | varchar(20) | YES  |     | NULL    |       |
+| salary | int(11)     | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+</pre>
+<pre>
+mysql> create table certified(
+    -> eid int,
+    -> aid int,
+    -> primary key (eid,aid),
+    -> foreign key (eid) references employees (eid),
+    -> foreign key (aid) references aircraft (aid) );
+Query OK, 0 rows affected (0.43 sec)
+</pre>
+<pre>
+mysql> desc certified;
++-------+---------+------+-----+---------+-------+
+| Field | Type    | Null | Key | Default | Extra |
++-------+---------+------+-----+---------+-------+
+| eid   | int(11) | NO   | PRI | 0       |       |
+| aid   | int(11) | NO   | PRI | 0       |       |
++-------+---------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
 </pre>
 
+###Insertion:
+<pre>mysql> insert into flight values (1,'Bangalore','Mangalore',360,'10:45:00','12:00:00',10000),(2,'Bangalore','Delhi',5000,'12:15:00','04:30:00',25000),(3,'Bangalore','Mumbai',3500,'02:15:00','05:25:00',30000),(4,'Delhi','Mumbai',4500,'10:15:00','12:05:00',35000),(5,'Delhi','Frankfurt',18000,'07:15:00','05:30:00',90000),(6,'Bangalore','Frankfurt',19500,'10:00:00','07:45:00',95000),(7,'Bangalore','Frankfurt',17000,'12:00:00','06:30:00',99000);
+Query OK, 7 rows affected (0.06 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+</pre>
+<pre>
+mysql> select * from flight;
++----+-----------+-----------+----------+----------+----------+-------+
+| no | frm       | too       | distance | departs  | arrives  | price |
++----+-----------+-----------+----------+----------+----------+-------+
+|  1 | Bangalore | Mangalore |      360 | 10:45:00 | 12:00:00 | 10000 |
+|  2 | Bangalore | Delhi     |     5000 | 12:15:00 | 04:30:00 | 25000 |
+|  3 | Bangalore | Mumbai    |     3500 | 02:15:00 | 05:25:00 | 30000 |
+|  4 | Delhi     | Mumbai    |     4500 | 10:15:00 | 12:05:00 | 35000 |
+|  5 | Delhi     | Frankfurt |    18000 | 07:15:00 | 05:30:00 | 90000 |
+|  6 | Bangalore | Frankfurt |    19500 | 10:00:00 | 07:45:00 | 95000 |
+|  7 | Bangalore | Frankfurt |    17000 | 12:00:00 | 06:30:00 | 99000 |
++----+-----------+-----------+----------+----------+----------+-------+
+7 rows in set (0.00 sec)
+</pre>
+<pre>
+mysql> insert into aircraft values (123,'Airbus',1000),(302,'Boeing',5000),(306,'Jet01',5000),(378,'Airbus380',8000),(456,'Aircraft',500),(789,'Aircraft02',800),(951,'Aircraft03',1000);
+Query OK, 7 rows affected (0.07 sec)
+Records: 7  Duplicates: 0  Warnings: 0
 
+mysql> select * from aircraft;
++-----+------------+---------------+
+| aid | aname      | cruisingrange |
++-----+------------+---------------+
+| 123 | Airbus     |          1000 |
+| 302 | Boeing     |          5000 |
+| 306 | Jet01      |          5000 |
+| 378 | Airbus380  |          8000 |
+| 456 | Aircraft   |           500 |
+| 789 | Aircraft02 |           800 |
+| 951 | Aircraft03 |          1000 |
++-----+------------+---------------+
+7 rows in set (0.00 sec)
+</pre>
+<pre>
+mysql> insert into employees values(1,'Ajay',30000),(2,'Ajith',85000),(3,'Arnab',50000),(4,'Harry',45000),(5,'Ron',90000),(6,'Josh',75000),(7,'Ram',100000);
+Query OK, 7 rows affected (0.29 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+</pre>
+<pre>
+mysql> select * from employees;
++-----+-------+--------+
+| eid | ename | salary |
++-----+-------+--------+
+|   1 | Ajay  |  30000 |
+|   2 | Ajith |  85000 |
+|   3 | Arnab |  50000 |
+|   4 | Harry |  45000 |
+|   5 | Ron   |  90000 |
+|   6 | Josh  |  75000 |
+|   7 | Ram   | 100000 |
++-----+-------+--------+
+7 rows in set (0.00 sec)
+</pre>
+<pre>
+mysql> insert into certified values (1,123),(2,123),(1,302),(5,302),(7,302),(1,306),(2,306),(1,378),(2,378),(4,378),(6,456),(3,456),(5,789),(6,789),(3,951),(1,951),(1,789);
+Query OK, 17 rows affected (0.30 sec)
+Records: 17  Duplicates: 0  Warnings: 0
+</pre>
+<pre>
+mysql> select * from certified;
++-----+-----+
+| eid | aid |
++-----+-----+
+|   1 | 123 |
+|   2 | 123 |
+|   1 | 302 |
+|   5 | 302 |
+|   7 | 302 |
+|   1 | 306 |
+|   2 | 306 |
+|   1 | 378 |
+|   2 | 378 |
+|   4 | 378 |
+|   3 | 456 |
+|   6 | 456 |
+|   1 | 789 |
+|   5 | 789 |
+|   6 | 789 |
+|   1 | 951 |
+|   3 | 951 |
++-----+-----+
+17 rows in set (0.00 sec)
+</pre>
+
+###Queries:
+###1.Find the names of aircraft such that all pilots certified to operate them have salaries more than Rs 80,000.
+<pre>
+mysql> select distinct a.aname
+    -> from aircraft a,certified c,employees e
+    -> where a.aid=c.aid
+    -> and c.eid=e.eid
+    -> and not exists
+    -> (select *
+    -> from employees e1
+    -> where e1.eid=e.eid
+    -> and e1.salary<80000);
++------------+
+| aname      |
++------------+
+| Airbus     |
+| Boeing     |
+| Jet01      |
+| Airbus380  |
+| Aircraft02 |
++------------+
+5 rows in set (0.00 sec)
+</pre>
+
+###2.For each pilot who is certified for more than three aircrafts,find the eid and the maximum cruisingrange of the aircraft for which he/she is certified.
+<pre>
+mysql> select c.eid,max(cruisingrange)
+    -> from certified c,aircraft a
+    -> where c.aid=a.aid
+    -> group by c.eid
+    -> having count(*)>3;
++-----+--------------------+
+| eid | max(cruisingrange) |
++-----+--------------------+
+|   1 |               8000 |
++-----+--------------------+
+1 row in set (0.00 sec)
+</pre>
+
+###3.Find the names of all pilots whose salary is less than the price of the cheapest route from Bangalore to Frankfurt.
+<pre>
+mysql> select distinct e.ename
+    -> from employees e
+    -> where e.salary<
+    -> (select min(f.price)
+    -> from flight f
+    -> where f.frm='Bangalore'
+    -> and f.too='Frankfurt');
++-------+
+| ename |
++-------+
+| Ajay  |
+| Ajith |
+| Arnab |
+| Harry |
+| Ron   |
+| Josh  |
++-------+
+6 rows in set (0.00 sec)
+</pre>
+
+###4.For all aircrafts with cruisingrange over 1000 kms,find the name of the aircraft and the average salary of all pilots certified for this aircraft.
+<pre>
+mysql> select a.aid,a.aname,avg(e.salary)
+    -> from aircraft a,certified c,employees e
+    -> where a.aid=c.aid
+    -> and c.eid=e.eid
+    -> and a.cruisingrange>1000
+    -> group by a.aid,a.aname;
++-----+-----------+---------------+
+| aid | aname     | avg(e.salary) |
++-----+-----------+---------------+
+| 302 | Boeing    |    73333.3333 |
+| 306 | Jet01     |    57500.0000 |
+| 378 | Airbus380 |    53333.3333 |
++-----+-----------+---------------+
+3 rows in set (0.01 sec)
+</pre>
+
+###5.Find the names of pilots certified for some Boeing aircraft.
+<pre>
+mysql> select distinct e.ename
+    -> from employees e,aircraft a,certified c
+    -> where e.eid=c.eid
+    -> and c.aid=a.aid
+    -> and a.aname='Boeing';
++-------+
+| ename |
++-------+
+| Ajay  |
+| Ron   |
+| Ram   |
++-------+
+3 rows in set (0.00 sec)
+</pre>
+
+###6.Find the aid's of all aircraft that can be used on routes from Bangalore to Delhi.
+<pre>
+mysql> select a.aid
+    -> from aircraft a
+    -> where a.cruisingrange>
+    -> (select min(f.distance)
+    -> from flight f
+    -> where f.frm='Bangalore'
+    -> and f.too='Delhi');
++-----+
+| aid |
++-----+
+| 378 |
++-----+
+1 row in set (0.00 sec)
+</pre>
