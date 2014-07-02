@@ -1,23 +1,23 @@
 ##PROGRAM 5
 ###DESCRIPTION:
-The following relations keep track of a banking enterprise. 
-  
-* BRANCH(branch-name:string, branch-city:string, assets:real) 
-* ACCOUNT(accno:int, branch-name:string, balance:real) 
-* DEPOSITOR(customer-name:string, accno:int) 
-* CUSTOMER(customer-name:string, customer-street:string, customer-city:string)    
-* LOAN(loan-number:int, branch-name:string, amount:real) 
-* BORROWER(customer-name:string, loan-number:int) 
+The following relations keep track of a banking enterprise.
 
-##Queries:
+* BRANCH(branch-name:string, branch-city:string, assets:real)
+* ACCOUNT(accno:int, branch-name:string, balance:real)
+* DEPOSITOR(customer-name:string, accno:int)
+* CUSTOMER(customer-name:string, customer-street:string, customer-city:string)
+* LOAN(loan-number:int, branch-name:string, amount:real)
+* BORROWER(customer-name:string, loan-number:int)
 
-Write each of the following queries in SQL.  
+###Queries:
 
-1. Create the above tables by properly specifying the primary keys and the foreign keys 
+Write each of the following queries in SQL.
+
+1. Create the above tables by properly specifying the primary keys and the foreign keys
 2. Enter at least five tuples for each relation.
 
 
-##Create:
+###Create:
 
 <pre>CREATE TABLE BRANCH
      ( branch_name VARCHAR(15),
@@ -63,10 +63,10 @@ Write each of the following queries in SQL.
       PRIMARY KEY(customer_name, loan_number),
       FOREIGN KEY(customer_name) REFERENCES CUSTOMER(customer_name),
       FOREIGN KEY(loan_number) REFERENCES LOAN(loan_number)
-    ); 
+    );
+</pre>
 
-
-##INSERTIONS:
+###INSERTIONS:
 
 <pre>mysql> insert into branch values
     -> 		("b1","c1",10000),
@@ -115,7 +115,7 @@ Records: 5  Duplicates: 0  Warnings: 0</pre>
 5 rows in set (0.00 sec)</pre>
 
 
-<pre>mysql> insert into customer values    
+<pre>mysql> insert into customer values
     -> 		("cust1","cstreet1","ccity1"),
     -> 		("cust2","cstreet2","ccity2"),
     -> 		("cust3","cstreet3","ccity3"),
@@ -210,12 +210,12 @@ Records: 5  Duplicates: 0  Warnings: 0</pre>
 +---------------+-------------+
 5 rows in set (0.00 sec)</pre>
 
-##QUERIES:
+###QUERIES:
 
 ###iii. Find all the customers who have at least two accounts at the Main branch.
 
-<pre>mysql> SELECT customer_name FROM depositor d,account a WHERE 
-     d.accno=a.accno AND a.branch_name='Main' 
+<pre>mysql> SELECT customer_name FROM depositor d,account a WHERE
+     d.accno=a.accno AND a.branch_name='Main'
      GROUP BY d.customer_name HAVING COUNT(d.customer_name)&gt=2;
 
 Empty set (0.00 sec)</pre>
@@ -239,11 +239,11 @@ mysql> update account set customer_name='cust1' where customer_name="cust2";
 
 <p>Description: The query is selecting the customer's name such that the account number associated with name is in both the account table and depositor table and also the name of the branch in the account table is 'Main' and then the tuples are being grouped by customer name in the depositor table and also the customer name having count atleast equal to 2 are being selected.</p>
 
-### iv. Find all the customers who have an account at all the branches located in a specific city. 
+### iv. Find all the customers who have an account at all the branches located in a specific city.
 
 
 <pre> mysql> SELECT d.customer_name FROM account a,branch b,depositor d WHERE
-       b.branch_name=a.branch_name AND a.accno=d.accno AND b.branch_city='c3' 
+       b.branch_name=a.branch_name AND a.accno=d.accno AND b.branch_city='c3'
        GROUP BY d.customer_name HAVING COUNT(distinct b.branch_name)=(select count(branch_name) from branch where branch_city='c3');
 
 +---------------+

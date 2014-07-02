@@ -1,4 +1,4 @@
-##PROGRAM 4 
+##PROGRAM 4
 ###DESCRIPTION:
 The following tables are maintained by a book dealer.
 
@@ -9,7 +9,7 @@ The following tables are maintained by a book dealer.
 * CATEGORY (category-id:int, description:string)
 * ORDER-DETAILS (order-no:int, book-id:int, quantity:int)
 
-##Queries:
+###Queries:
 
 Write each of the following queries in SQL.
 
@@ -18,7 +18,7 @@ Write each of the following queries in SQL.
 
 
 
-##Create:
+###Create:
 
 <pre>mysql> create database book_dealer;
 Query OK, 1 row affected (0.00 sec)</pre>
@@ -26,7 +26,7 @@ Query OK, 1 row affected (0.00 sec)</pre>
 <pre>mysql> use book_dealer;
 Database changed
 mysql> create table author1 (
-      author1_id int, 
+      author1_id int,
       author1_name varchar(20),
       author1_city varchar(20),
       author1_country varchar(20),
@@ -45,7 +45,7 @@ mysql> desc author1;
 4 rows in set (0.00 sec)
 
 mysql> create table publisher1 (
-      publisher1_id int, 
+      publisher1_id int,
       publisher1_name varchar(20),
       publisher1_city varchar(20),
       publisher1_country varchar(20),
@@ -123,9 +123,9 @@ mysql> desc orderdetails1;
 | quantity | int(11) | YES  |     | NULL    |       |
 +----------+---------+------+-----+---------+-------+
 3 rows in set (0.00 sec)
-</pre> 
+</pre>
 
-##INSERTIONS:
+###INSERTIONS:
 
 <pre>
 mysql> insert into author1 values
@@ -242,7 +242,7 @@ mysql> select * from orderdetails1;
 +----------+---------+----------+
 8 rows in set (0.00 sec)</pre>
 
-##QUERIES:
+###QUERIES:
 
 ### 3: Give the details of the authors who have 2 or more books in the catalog and the price of the books is greater than the  average price of the books in the catalog and the year of  publication is after 2000
 
@@ -263,7 +263,7 @@ mysql> select * from author1
                group by author1_id having count(*)>1);
 
 Description:
-(select avg(price) from catalogue1):-it select the average price of the books from catalogue1. it acts as an input to the outer query which selects the author id from catalogue1 which are published after 2000 and the price of books is greater than the average price of the books.this acts as an input to the outer most query which displays the author1 details of the values which satisfy the inner queries. 
+(select avg(price) from catalogue1):-it select the average price of the books from catalogue1. it acts as an input to the outer query which selects the author id from catalogue1 which are published after 2000 and the price of books is greater than the average price of the books.this acts as an input to the outer most query which displays the author1 details of the values which satisfy the inner queries.
 +------------+--------------+--------------+-----------------+
 | author1_id | author1_name | author1_city | author1_country |
 +------------+--------------+--------------+-----------------+
@@ -287,18 +287,18 @@ mysql> select author1_name
            from author1 a,catalogue1 c
            where a.author1_id=c.author1_id
            and book_id in
-           (select book_id from orderdetails1 
-           where quantity= (select max(quantity) 
+           (select book_id from orderdetails1
+           where quantity= (select max(quantity)
            from orderdetails1));
 
 OR
 
 mysql> SELECT a.author1_name FROM author1 a,catalogue1 c
      WHERE a.author1_id=c.author1_id AND
-     c.book_id IN (SELECT book_id 
-     FROM orderdetails1 
+     c.book_id IN (SELECT book_id
+     FROM orderdetails1
      GROUP BY book_id HAVING
-     SUM(quantity)>=ALL(SELECT SUM(quantity) 
+     SUM(quantity)>=ALL(SELECT SUM(quantity)
      FROM orderdetails1 GROUP BY book_id));
 
 Description:
@@ -315,10 +315,11 @@ Description:
 
 <pre>mysql> update catalogue1 set price=1.1*price
           where publisher1_id in
-          (select publisher1_id from publisher1 where 
+          (select publisher1_id from publisher1 where
          publisher1_name='pearson');
 Query OK, 2 rows affected (0.41 sec)
 Rows matched: 2  Changed: 2  Warnings: 0
+
 Description:
 This query is used to update the price of the books by 10% which are published by a specific author. Here we have considered pearson as the author.
 
