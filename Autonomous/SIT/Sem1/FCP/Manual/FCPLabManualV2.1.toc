@@ -1,0 +1,30 @@
+\contentsline {part}{I\hspace {1em}PART A}{4}
+\contentsline {chapter}{\numberline {1}Sales of a shop}{5}
+\contentsline {chapter}{\numberline {2}Sum of last two digits}{7}
+\contentsline {chapter}{\numberline {3}Boiling Points}{9}
+\contentsline {chapter}{\numberline {4}Roots of a Quadratic Equation}{11}
+\contentsline {chapter}{\numberline {5}}{14}
+\contentsline {section}{\numberline {5.1}Determine Quadrant}{14}
+\contentsline {section}{\numberline {5.2}Sine Series}{16}
+\contentsline {chapter}{\numberline {6}Print Calendar of a Month}{18}
+\contentsline {chapter}{\numberline {7}Area under the curve y=log(x)}{20}
+\contentsline {chapter}{\numberline {8}Calculating nCr}{22}
+\contentsline {chapter}{\numberline {9}}{24}
+\contentsline {section}{\numberline {9.1}Fibonacci Series}{24}
+\contentsline {section}{\numberline {9.2}x raised to the power n}{25}
+\contentsline {chapter}{\numberline {10}Bubble Sort and Binary Search}{26}
+\contentsline {chapter}{\numberline {11}Selection Sort and Insertion Sort}{28}
+\contentsline {part}{II\hspace {1em}PART B}{32}
+\contentsline {chapter}{\numberline {1}}{33}
+\contentsline {section}{\numberline {1.1}Set Difference}{33}
+\contentsline {section}{\numberline {1.2}Duplicate element check in an array of elements}{36}
+\contentsline {chapter}{\numberline {2}Matrix Construction}{37}
+\contentsline {chapter}{\numberline {3}Matrix Multiplication}{39}
+\contentsline {chapter}{\numberline {4}Swap smallest and largest elements in an array using pointers}{42}
+\contentsline {chapter}{\numberline {5}Pass by Reference}{44}
+\contentsline {chapter}{\numberline {6}Caesar Cipher}{45}
+\contentsline {chapter}{\numberline {7}Substring Search}{47}
+\contentsline {chapter}{\numberline {8}String Comparison}{49}
+\contentsline {chapter}{\numberline {9}Bowler Information}{51}
+\contentsline {chapter}{\numberline {10}Distance between two points}{54}
+\contentsline {chapter}{\numberline {11}Bitwise Operations}{56}
