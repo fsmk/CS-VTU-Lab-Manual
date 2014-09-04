@@ -7,9 +7,9 @@ int main()
     int iWordCount = 0, iLineCount = 0;
     char cCharacter;
 
-    fp1 = fopen("f1.txt","r");
-    fp2 = fopen("f2.txt", "r");
-    fp3 = fopen("f3.txt", "w+");
+    fp1 = fopen("Ramayana.in","r");
+    fp2 = fopen("Mahabharatha.in", "r");
+    fp3 = fopen("Karnataka.in", "w+");
 
     while((cCharacter=fgetc(fp1))!=EOF)
     {
@@ -43,8 +43,8 @@ int main()
     printf("\n\nNumber of words is : %d\n", iWordCount);
 
     //Code for Verification (works only on GNU\Linux)
-    printf("\nOutput of command : wc f3.txt -lw\n");
-    system("wc f3.txt -lw");
+    printf("\nOutput of command : wc Karnataka.in -lw\n");
+    system("wc Karnataka.in -lw");
     return 0;
 }
 

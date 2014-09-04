@@ -14,7 +14,7 @@ int main()
         fLastGuess = fNextGuess;
     }while (fDiff > 0.0001);
 
-    printf("\nSquare root of %f = %f\n", fVal, fNextGuess);
+    printf("\nSquare root of %g = %g\n", fVal, fNextGuess);
     return 0;
 }
 

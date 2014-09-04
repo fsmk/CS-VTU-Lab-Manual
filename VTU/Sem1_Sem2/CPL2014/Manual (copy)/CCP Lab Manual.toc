@@ -1,2 +1,0 @@
-\contentsline {chapter}{\numberline {1}Roots of a Quadratic Equation Program}{2}
-\contentsline {chapter}{\numberline {2}Palindrome Check Program}{5}

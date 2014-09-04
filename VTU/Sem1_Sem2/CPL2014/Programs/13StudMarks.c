@@ -48,7 +48,7 @@ int main()
         }
     }
     if(iFound == 0)
-        printf("\nNo student by name %s found\n", s[i].acName);
+        printf("\nNo student by name %s found\n", acStudName);
     return 0;
 }
 
