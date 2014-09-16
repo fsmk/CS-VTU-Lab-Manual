@@ -14,7 +14,7 @@ number of characters,number of words,number of lines.We are expected to develop 
 ##CODE:
 
 <pre>%{
-#include<stdio.h>
+#include&lt;stdio.h&gt;
 int char_count=0,word_count=0,line_count=0,space_count=0;
 %}
 %%
