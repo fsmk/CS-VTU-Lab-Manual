@@ -6,9 +6,9 @@ In mathematics, the Fibonacci numbers or Fibonacci series or Fibonacci sequence 
 ###FORMULA:
 F<sub>n</sub> = F<sub>(n-1)</sub> + F<sub>(n-2)</sub>
 ###CODE:
-`#`include&lt;stdio.h&gt;
+<pre>#include&lt;stdio.h&gt;
 
-`#`include&lt;omp.h&gt;
+#include&lt;omp.h&gt;
 
 int main()
 {
