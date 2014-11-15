@@ -27,20 +27,21 @@ Write the following queries in SQL. No duplicates should be printed in any of th
 
 ###Create:
 
-<pre>mysql> create database student;
+<pre>mysql> CREATE DATABASE student;
 Query OK, 1 row affected (0.00 sec)</pre>
 
-<pre>mysql> use flights;
+<pre>mysql> USE student;
 Database changed
 
-mysql> create table student(
-	snum int,sname varchar(10),
-	major varchar(2),
-	level varchar(2),
+mysql> CREATE TABLE student(
+	snum INT,
+	sname VARCHAR(10),
+	major VARCHAR(2),
+	level VARCHAR(2),
 	age int,primary key(snum));
 Query OK, 0 rows affected (0.10 sec)
 
-mysql> desc student;
+mysql> DESC student;
 +-------+-------------+------+-----+---------+-------+
 | Field | Type        | Null | Key | Default | Extra |
 +-------+-------------+------+-----+---------+-------+
@@ -53,12 +54,12 @@ mysql> desc student;
 5 rows in set (0.01 sec)
 
 
-mysql> create table faculty(
-	fid int,fname varchar(20),
-	deptid int,
-	primary key(fid));
+mysql> CREATE TABLE faculty(
+	fid INT,fname VARCHAR(20),
+	deptid INT,
+	PRIMARY KEY(fid));
 Query OK, 0 rows affected (0.08 sec)
-mysql> desc faculty;
+mysql> DESC faculty;
 +--------+-------------+------+-----+---------+-------+
 | Field  | Type        | Null | Key | Default | Extra |
 +--------+-------------+------+-----+---------+-------+
@@ -69,16 +70,16 @@ mysql> desc faculty;
 3 rows in set (0.00 sec)
 
 
-mysql> create table class(
-	cname varchar(20),
-	metts_at varchar(10),
-	room varchar(10),
-	fid int,
-	primary key(cname),
-	foreign key(fid) references faculty(fid));
+mysql> CREATE TABLE class(
+	cname VARCHAR(20),
+	metts_at VARCHAR(10),
+	room VARCHAR(10),
+	fid INT,
+	PRIMARY KEY(cname),
+	FOREIGN KEY(fid) REFERENCES faculty(fid));
 Query OK, 0 rows affected (0.09 sec)
 
-mysql> desc class;
+mysql> DESC class;
 +----------+-------------+------+-----+---------+-------+
 | Field    | Type        | Null | Key | Default | Extra |
 +----------+-------------+------+-----+---------+-------+
@@ -91,16 +92,16 @@ mysql> desc class;
 
 
 
-mysql> create table enrolled(
-	snum int,
-	cname varchar(20),
-	primary key(snum,cname),
-	foreign key(snum) references student(snum),
-	foreign key(cname) references class(cname));
+mysql> CREATE TABLE enrolled(
+	snum INT,
+	cname VARCHAR(20),
+	PRIMARY KEY(snum,cname),
+	FOREIGN KEY(snum) REFERENCES student(snum),
+	FOREIGN KEY(cname) REFERENCES class(cname));
 Query OK, 0 rows affected (0.12 sec)
 
 
-mysql> desc enrolled;
+mysql> DESC enrolled;
 +-------+-------------+------+-----+---------+-------+
 | Field | Type        | Null | Key | Default | Extra |
 +-------+-------------+------+-----+---------+-------+
@@ -111,7 +112,7 @@ mysql> desc enrolled;
 
 ###INSERTIONS:
 
-<pre>mysql> insert into student values
+<pre>mysql> INSERT INTO student (snum,sname,major,level,age) VALUES
     -> (1,'jhon','CS','Sr',19),
     -> (2,'smith','CS','Jr',20),
     -> (3,'jacob','CV','Sr',20),
@@ -120,7 +121,7 @@ mysql> desc enrolled;
     -> (6,'harry','CS','Sr',21)
 Query OK, 2 rows affected (0.04 sec)
 
-mysql> select *from student;
+mysql> SELECT * FROM student;
 +------+-------+-------+-------+------+
 | snum | sname | major | level | age  |
 +------+-------+-------+-------+------+
@@ -134,7 +135,7 @@ mysql> select *from student;
 6 rows in set (0.00 sec)
 
 
-mysql> insert into faculty values
+mysql> INSERT INTO faculty (fid,fname, deptid) VALUES
     ->(11,'Harshith',1000),
     ->(12,'Mohan',1000),
     ->(13,'Kumar',1001),
@@ -142,7 +143,7 @@ mysql> insert into faculty values
     ->(15,'Shan',1000);
 Query OK, 1 row affected (0.03 sec)
 
-mysql> select *from faculty;
+mysql> SELECT * FROM faculty;
 +-----+----------+--------+
 | fid | fname    | deptid |
 +-----+----------+--------+
@@ -156,7 +157,7 @@ mysql> select *from faculty;
 
 
 
-mysql> insert into class values
+mysql> INSERT INTO class (cname,meets_at,room,fid) VALUES
     -> ('class1','noon','room1',14),
     -> ('class10','morning','room128',14),
     -> ('class2','morning','room2',12),
@@ -184,7 +185,7 @@ Records: 8  Duplicates: 0  Warnings: 0
 
 
 
-mysql> insert into enrolled values
+mysql> INSERT INTO enrolled (snum,cname) VALUES
     -> (1,'class1'),
     -> (2,'class1'),
     -> (3,'class3'),
@@ -201,7 +202,7 @@ mysql> insert into enrolled values
 Query OK, 12 rows affected (0.03 sec)
 
 
-mysql> select *from enrolled;
+mysql> SELECT * FROM enrolled;
 
 +------+--------+
 | snum | cname  |
@@ -224,12 +225,12 @@ mysql> select *from enrolled;
 ###QUERIES:
 ###Query 1: Find the names of all juniors (level=Jr) who are enrolled for class taught by professor Harshith.
 
-<pre>mysql> select distinct s.sname
-	from student s,class c,faculty f,enrolled e
-	where  s.snum=e.snum      and
-	       e.cname=c.cname    and
-       	       s.level='jr'       and
-	       f.fname='Harshith' and
+<pre>mysql> SELECT DISTINCT s.sname
+	FROM student s,class c,faculty f,enrolled e
+	WHERE  s.snum=e.snum      AND
+	       e.cname=c.cname    AND
+       	   s.level='jr'   AND
+	       f.fname='Harshith' AND
 	       f.fid=c.fid;
 +-------+
 | sname |
@@ -261,14 +262,14 @@ Description : Query results displays the class names that either have room numbe
 
 ###Query 3: Find the names of all students who are enrolled in two classes that meet at same time.
 
-<pre>mysql> select distinct s.sname
-	from student s
-	where s.snum in (select e1.snum
-				from enrolled e1,enrolled e2,class c1,class c2
-				where e1.snum=e2.snum   and
-				e1.cname<>e2.cname      and
-		  	        e1.cname=c1.cname       and
-			        e2.cname=c2.cname       and
+<pre>mysql> SELECT DISTINCT s.sname
+	FROM student s
+	WHERE s.snum IN (SELECT e1.snum
+				FROM enrolled e1,enrolled e2,class c1,class c2
+				WHERE e1.snum=e2.snum   AND
+				e1.cname<>e2.cname      AND
+		  	        e1.cname=c1.cname       AND
+			        e2.cname=c2.cname       AND
 			        c1.meets_at=c2.meets_at  );
 +-------+
 | sname |
@@ -283,9 +284,10 @@ Description : Outer part of the query extraxts the name of the students from tab
 
 ###Query 4: Find the names of faculty members who teach in every room in which some class is taught.
 
-<pre>mysql> select f.fname,f.fid from faculty f
-     	where f.fid in ( select fid from class
-			  group by fid having count(*)=(select count(distinct room) from class) );
+<pre>mysql> SELECT f.fname,f.fid
+			FROM faculty f
+	     	WHERE f.fid in ( SELECT fid FROM class
+			GROUP BY fid HAVING COUNT(*)=(SELECT COUNT(DISTINCT room) FROM class) );
 
 
 +--------+-----+
@@ -301,11 +303,11 @@ Description : The outer part of the query fetches the name and id of the facuty 
 
 ###Query 5: Find the names of the faculty members for whome the combined enrollment of the classes that they teach is less then five.
 
-<pre>mysql>  select distinct f.fname
-	from faculty f
-	where f.fid in (  select c.fid
-			  from class c, enrolled e
-			  where c.cname = e.cname group by c.cname having count(c.cname)< 5 );</pre>
+<pre>mysql>  SELECT DISTINCT f.fname
+	FROM faculty f
+	WHERE f.fid IN (  SELECT c.fid
+			  FROM class c, enrolled e
+			  WHERE c.cname = e.cname GROUP BY c.cname HAVING COUNT(c.cname)< 5 );</pre>
 <pre>+----------+
 | fname    |
 +----------+
