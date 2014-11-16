@@ -23,24 +23,24 @@ NOTE that the EMPLOYEES relation describes pilots and other kinds of employees a
 
 ###Create:
 <pre>
-mysql> create database flights;
+mysql> CREATE DATABASE flights;
 Query OK, 1 row affected (0.00 sec)
 </pre>
 <pre>
-mysql> use flights;
+mysql> USE flights;
 Database changed
-mysql> create table flight(
-    -> no int,
-    -> frm varchar(20),
-    -> too varchar(20),
-    -> distance int,
-    -> departs varchar(20),
-    -> arrives varchar(20),
-    -> price real,
-    -> primary key (no) );
+mysql> CREATE TABLE flight(
+    -> no INT,
+    -> frm VARCHAR(20),
+    -> too VARCHAR(20),
+    -> distance INT,
+    -> departs VARCHAR(20),
+    -> arrives VARCHAR(20),
+    -> price REAL,
+    -> PRIMARY KEY (no) );
 Query OK, 0 rows affected (0.17 sec)</pre>
 <pre>
-mysql> desc flight;
+mysql> DESC flight;
 +----------+-------------+------+-----+---------+-------+
 | Field    | Type        | Null | Key | Default | Extra |
 +----------+-------------+------+-----+---------+-------+
@@ -55,15 +55,15 @@ mysql> desc flight;
 7 rows in set (0.00 sec)
 </pre>
 <pre>
-mysql> create table aircraft(
-    -> aid int,
-    -> aname varchar(20),
-    -> cruisingrange int,
-    -> primary key (aid) );
+mysql> CREATE TABLE aircraft(
+    -> aid INT,
+    -> aname VARCHAR(20),
+    -> cruisingrange INT,
+    -> PRIMARY KEY (aid) );
 Query OK, 0 rows affected (0.19 sec)
 </pre>
 <pre>
-mysql> desc aircraft;
+mysql> DESC aircraft;
 +---------------+-------------+------+-----+---------+-------+
 | Field         | Type        | Null | Key | Default | Extra |
 +---------------+-------------+------+-----+---------+-------+
@@ -74,15 +74,15 @@ mysql> desc aircraft;
 3 rows in set (0.01 sec)
 </pre>
 <pre>
-mysql> create table employees(
-    -> eid int,
-    -> ename varchar(20),
-    -> salary int,
-    -> primary key (eid) );
+mysql> CREATE TABLE employees(
+    -> eid INT,
+    -> ename VARCHAR(20),
+    -> salary INT,
+    -> PRIMARY KEY (eid) );
 Query OK, 0 rows affected (0.29 sec)
 </pre>
 <pre>
-mysql> desc employees;
+mysql> DESC employees;
 +--------+-------------+------+-----+---------+-------+
 | Field  | Type        | Null | Key | Default | Extra |
 +--------+-------------+------+-----+---------+-------+
@@ -93,16 +93,16 @@ mysql> desc employees;
 3 rows in set (0.00 sec)
 </pre>
 <pre>
-mysql> create table certified(
-    -> eid int,
-    -> aid int,
-    -> primary key (eid,aid),
-    -> foreign key (eid) references employees (eid),
-    -> foreign key (aid) references aircraft (aid) );
+mysql> CREATE TABLE certified(
+    -> eid INT,
+    -> aid INT,
+    -> PRIMARY KEY (eid,aid),
+    -> FOREIGN KEY (eid) REFERENCES employees (eid),
+    -> FOREIGN KEY (aid) REFERENCES aircraft (aid) );
 Query OK, 0 rows affected (0.43 sec)
 </pre>
 <pre>
-mysql> desc certified;
+mysql> DESC certified;
 +-------+---------+------+-----+---------+-------+
 | Field | Type    | Null | Key | Default | Extra |
 +-------+---------+------+-----+---------+-------+
@@ -113,12 +113,20 @@ mysql> desc certified;
 </pre>
 
 ###Insertion:
-<pre>mysql> insert into flight values (1,'Bangalore','Mangalore',360,'10:45:00','12:00:00',10000),(2,'Bangalore','Delhi',5000,'12:15:00','04:30:00',25000),(3,'Bangalore','Mumbai',3500,'02:15:00','05:25:00',30000),(4,'Delhi','Mumbai',4500,'10:15:00','12:05:00',35000),(5,'Delhi','Frankfurt',18000,'07:15:00','05:30:00',90000),(6,'Bangalore','Frankfurt',19500,'10:00:00','07:45:00',95000),(7,'Bangalore','Frankfurt',17000,'12:00:00','06:30:00',99000);
+<pre>mysql> INSERT INTO flight (no,frm,too,distance,departs,arrives,price) VALUES 
+            (1,'Bangalore','Mangalore',360,'10:45:00','12:00:00',10000),
+            (2,'Bangalore','Delhi',5000,'12:15:00','04:30:00',25000),
+            (3,'Bangalore','Mumbai',3500,'02:15:00','05:25:00',30000),
+            (4,'Delhi','Mumbai',4500,'10:15:00','12:05:00',35000),
+            (5,'Delhi','Frankfurt',18000,'07:15:00','05:30:00',90000),
+            (6,'Bangalore','Frankfurt',19500,'10:00:00','07:45:00',95000),
+            (7,'Bangalore','Frankfurt',17000,'12:00:00','06:30:00',99000);
+
 Query OK, 7 rows affected (0.06 sec)
 Records: 7  Duplicates: 0  Warnings: 0
 </pre>
 <pre>
-mysql> select * from flight;
+mysql> SELECT * FROM flight;
 +----+-----------+-----------+----------+----------+----------+-------+
 | no | frm       | too       | distance | departs  | arrives  | price |
 +----+-----------+-----------+----------+----------+----------+-------+
@@ -133,11 +141,19 @@ mysql> select * from flight;
 7 rows in set (0.00 sec)
 </pre>
 <pre>
-mysql> insert into aircraft values (123,'Airbus',1000),(302,'Boeing',5000),(306,'Jet01',5000),(378,'Airbus380',8000),(456,'Aircraft',500),(789,'Aircraft02',800),(951,'Aircraft03',1000);
+mysql> INSERT INTO aircraft (aid,aname,cruisingrange) values 
+        (123,'Airbus',1000),
+        (302,'Boeing',5000),
+        (306,'Jet01',5000),
+        (378,'Airbus380',8000),
+        (456,'Aircraft',500),
+        (789,'Aircraft02',800),
+        (951,'Aircraft03',1000);
+
 Query OK, 7 rows affected (0.07 sec)
 Records: 7  Duplicates: 0  Warnings: 0
 
-mysql> select * from aircraft;
+mysql> SELECT * FROM aircraft;
 +-----+------------+---------------+
 | aid | aname      | cruisingrange |
 +-----+------------+---------------+
@@ -152,12 +168,20 @@ mysql> select * from aircraft;
 7 rows in set (0.00 sec)
 </pre>
 <pre>
-mysql> insert into employees values(1,'Ajay',30000),(2,'Ajith',85000),(3,'Arnab',50000),(4,'Harry',45000),(5,'Ron',90000),(6,'Josh',75000),(7,'Ram',100000);
+mysql> INSERT INTO employees (eid,ename,salary) VALUES
+        (1,'Ajay',30000),
+        (2,'Ajith',85000),
+        (3,'Arnab',50000),
+        (4,'Harry',45000),
+        (5,'Ron',90000),
+        (6,'Josh',75000),
+        (7,'Ram',100000);
+
 Query OK, 7 rows affected (0.29 sec)
 Records: 7  Duplicates: 0  Warnings: 0
 </pre>
 <pre>
-mysql> select * from employees;
+mysql> SELECT * FROM employees;
 +-----+-------+--------+
 | eid | ename | salary |
 +-----+-------+--------+
@@ -172,12 +196,30 @@ mysql> select * from employees;
 7 rows in set (0.00 sec)
 </pre>
 <pre>
-mysql> insert into certified values (1,123),(2,123),(1,302),(5,302),(7,302),(1,306),(2,306),(1,378),(2,378),(4,378),(6,456),(3,456),(5,789),(6,789),(3,951),(1,951),(1,789);
+mysql> INSERT INTO certified (edit,aid) VALUES
+        (1,123),
+        (2,123),
+        (1,302),
+        (5,302),
+        (7,302),
+        (1,306),
+        (2,306),
+        (1,378),
+        (2,378),
+        (4,378),
+        (6,456),
+        (3,456),
+        (5,789),
+        (6,789),
+        (3,951),
+        (1,951),
+        (1,789);
+
 Query OK, 17 rows affected (0.30 sec)
 Records: 17  Duplicates: 0  Warnings: 0
 </pre>
 <pre>
-mysql> select * from certified;
+mysql> SELECT * FROM certified;
 +-----+-----+
 | eid | aid |
 +-----+-----+
@@ -205,15 +247,15 @@ mysql> select * from certified;
 ###Queries:
 ###1.Find the names of aircraft such that all pilots certified to operate them have salaries more than Rs 80,000.
 <pre>
-mysql> select distinct a.aname
-    -> from aircraft a,certified c,employees e
-    -> where a.aid=c.aid
-    -> and c.eid=e.eid
-    -> and not exists
-    -> (select *
-    -> from employees e1
-    -> where e1.eid=e.eid
-    -> and e1.salary<80000);
+mysql> SELECT DISTINCT a.aname
+    -> FROM aircraft a,certified c,employees e
+    -> WHERE a.aid=c.aid
+    -> AND c.eid=e.eid
+    -> AND NOT EXISTS
+    -> (SELECT *
+    -> FROM employees e1
+    -> WHERE e1.eid=e.eid
+    -> AND e1.salary<80000);
 +------------+
 | aname      |
 +------------+
@@ -228,11 +270,11 @@ mysql> select distinct a.aname
 
 ###2.For each pilot who is certified for more than three aircrafts,find the eid and the maximum cruisingrange of the aircraft for which he/she is certified.
 <pre>
-mysql> select c.eid,max(cruisingrange)
-    -> from certified c,aircraft a
-    -> where c.aid=a.aid
-    -> group by c.eid
-    -> having count(*)>3;
+mysql> SELECT c.eid,MAX(cruisingrange)
+    -> FROM certified c,aircraft a
+    -> WHERE c.aid=a.aid
+    -> GROUP BY c.eid
+    -> HAVING COUNT(*)>3;
 +-----+--------------------+
 | eid | max(cruisingrange) |
 +-----+--------------------+
@@ -243,13 +285,13 @@ mysql> select c.eid,max(cruisingrange)
 
 ###3.Find the names of all pilots whose salary is less than the price of the cheapest route from Bangalore to Frankfurt.
 <pre>
-mysql> select distinct e.ename
-    -> from employees e
-    -> where e.salary<
-    -> (select min(f.price)
-    -> from flight f
-    -> where f.frm='Bangalore'
-    -> and f.too='Frankfurt');
+mysql> SELECT DISTINCT e.ename
+    -> FROM employees e
+    -> WHERE e.salary<
+    -> (SELECT MIN(f.price)
+    -> FROM flight f
+    -> WHERE f.frm='Bangalore'
+    -> AND f.too='Frankfurt');
 +-------+
 | ename |
 +-------+
@@ -265,12 +307,12 @@ mysql> select distinct e.ename
 
 ###4.For all aircrafts with cruisingrange over 1000 kms,find the name of the aircraft and the average salary of all pilots certified for this aircraft.
 <pre>
-mysql> select a.aid,a.aname,avg(e.salary)
-    -> from aircraft a,certified c,employees e
-    -> where a.aid=c.aid
-    -> and c.eid=e.eid
-    -> and a.cruisingrange>1000
-    -> group by a.aid,a.aname;
+mysql> SELECT a.aid,a.aname,AVG(e.salary)
+    -> FROM aircraft a,certified c,employees e
+    -> WHERE a.aid=c.aid
+    -> AND c.eid=e.eid
+    -> AND a.cruisingrange>1000
+    -> GROUP BY a.aid,a.aname;
 +-----+-----------+---------------+
 | aid | aname     | avg(e.salary) |
 +-----+-----------+---------------+
@@ -283,11 +325,11 @@ mysql> select a.aid,a.aname,avg(e.salary)
 
 ###5.Find the names of pilots certified for some Boeing aircraft.
 <pre>
-mysql> select distinct e.ename
-    -> from employees e,aircraft a,certified c
-    -> where e.eid=c.eid
-    -> and c.aid=a.aid
-    -> and a.aname='Boeing';
+mysql> SELECT distinct e.ename
+    -> FROM employees e,aircraft a,certified c
+    -> WHERE e.eid=c.eid
+    -> AND c.aid=a.aid
+    -> AND a.aname='Boeing';
 +-------+
 | ename |
 +-------+
@@ -300,13 +342,13 @@ mysql> select distinct e.ename
 
 ###6.Find the aid's of all aircraft that can be used on routes from Bangalore to Delhi.
 <pre>
-mysql> select a.aid
-    -> from aircraft a
-    -> where a.cruisingrange>
-    -> (select min(f.distance)
-    -> from flight f
-    -> where f.frm='Bangalore'
-    -> and f.too='Delhi');
+mysql> SELECT a.aid
+    -> FROM aircraft a
+    -> WHERE a.cruisingrange>
+    -> (SELECT MIN(f.distance)
+    -> FROM flight f
+    -> WHERE f.frm='Bangalore'
+    -> AND f.too='Delhi');
 +-----+
 | aid |
 +-----+
