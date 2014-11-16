@@ -244,11 +244,11 @@ Description : Query checks whether the students are enrolled for the class and t
 
 ###Query 2: Find the names of all classes that either meet in room128 or have 5 or more students enrolled.
 
-<pre>mysql> select distinct cname
-	from class
-	where room='room128'
-	or
-	cname in (select e.cname from enrolled e group by e.cname having count(*)>=5);
+<pre>mysql> SELECT DISTINCT cname
+	FROM class
+	WHERE room='room128'
+	OR
+	cname IN (SELECT e.cname FROM enrolled e GROUP BY e.cname HAVING COUNT(*)>=5);
 +---------+
 | cname   |
 +---------+
