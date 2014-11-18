@@ -23,9 +23,7 @@ int main(void)
 
 int fnRecPow(int iX, int iN)
 {
-    if(0==iN)
-		return 1;
-	else if(1 == iN)
+    if(1 == iN)
         return iX;
     else
         return (iX * fnRecPow(iX, iN-1));

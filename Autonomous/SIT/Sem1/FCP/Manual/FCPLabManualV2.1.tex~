@@ -971,32 +971,24 @@ The terms in the Fibonacci Sequence:
 int fnRecPow(int, int);
 int main(void)
 {
-    int iX, iN;
-	float fRes;
+    int iX, iN, iRes;
     printf("\n Enter value of x and n\n");
     scanf("%d%d", &iX, &iN);
 
-	if(iN<0)
-	{
-		fRes = 1.0/fnRecPow(iX,-iN);
-	}
-	else
-	{
-	    fRes = fnRecPow(iX,iN);
-	}
-    printf("\n%d raised to the power %d is %d\n",iX, iN, fRes);
+    //printf("\n%d raised to the power %d is %d\n",iX, iN, fnRecPow(iX,iN));
+    iRes = fnRecPow(iX,iN);
+        printf("\n%d raised to the power %d is %d\n",iX, iN, iRes);
     return 0;
 }
 
 int fnRecPow(int iX, int iN)
 {
-    if(0==iN)
-		return 1;
-	else if(1 == iN)
+    if(1 == iN)
         return iX;
     else
         return (iX * fnRecPow(iX, iN-1));
 }
+
 \end{Verbatim}
 \section*{Output}
 \begin{Verbatim}

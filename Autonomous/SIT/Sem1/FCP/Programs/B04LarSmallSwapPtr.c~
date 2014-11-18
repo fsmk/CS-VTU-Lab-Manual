@@ -3,7 +3,7 @@
 
 int main(void)
 {
-    int iaList[50], iNum, i, j, iTemp, iPos;
+    int iaList[50], iNum, i, j,iSmall, iLarge,iTemp, iPos;
     int *iPtr1,*iPtr2;
 
     iPtr1 = iPtr2 = iaList;
@@ -16,14 +16,18 @@ int main(void)
         scanf("%d", &iaList[i]);
     }
 
+    iSmall = *iPtr1;
+    iLarge = *iPtr2;
     for(i=1;i<iNum;++i)
     {
-        if(iaList[i] < *iPtr1)
+        if(iaList[i] < iSmall)
         {
+            iSmall = iaList[i];
             iPtr1 = &iaList[i];
         }
-        if(iaList[i] > *iPtr2)
+        if(iaList[i] > iLarge)
         {
+            iLarge = iaList[i];
             iPtr2 = &iaList[i];
         }
     }
@@ -49,4 +53,36 @@ int main(void)
     printf("\n");
     return 0;
 }
+
+/*
+$ ./a.out 
+
+Enter the value of n : 5
+
+Enter the elements: 5 4 3 2 1
+
+Array elements before swapping the largest and smallest elements
+5	4	3	2	1	
+Smallest Element = 1
+
+Largest Element = 5
+
+Array elements after swapping the largest and smallest elements
+1	4	3	2	5	
+
+$ ./a.out 
+
+Enter the value of n : 6
+
+Enter the elements: 3 2 1 4 5 6
+
+Array elements before swapping the largest and smallest elements
+3	2	1	4	5	6	
+Smallest Element = 1
+
+Largest Element = 6
+
+Array elements after swapping the largest and smallest elements
+3	2	6	4	5	1	
+*/
 

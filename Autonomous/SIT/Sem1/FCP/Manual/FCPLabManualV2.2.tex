@@ -1515,9 +1515,9 @@ Array does not contain duplicate elements
 \chapter{Matrix Construction}
 {\fontfamily{ppl}\selectfont \textbf{Write a program that reads a matrix of order M X N and fills the matrix by following: 
 \begin{enumerate}[i]
-\item Upper left triangle with '1' s 
-\item Lower right triangle with  '-1' s 
-\item Right to left diagonal with zeros \\
+\item Upper triangle with '1' s 
+\item Lower triangle with  '-1' s 
+\item Left to Right diagonal with zeros \\
 \end{enumerate}
 Check the necessity condition needed and display the contents of the matrix in proper format. 
 }}
@@ -1589,6 +1589,7 @@ Matrix
 }}
 \section*{C Code}
 \begin{Verbatim}
+
 /***************************************************************************
 *File		: MatrixMul.c
 *Description	: Program to implement Matrix Multiplication
@@ -1608,7 +1609,7 @@ Matrix
 
 int main(void)
 {
-	int iM, iN, iP, iQ, i, j, k, iaMat1[10][10], iaMat2[10][10];
+	int iM, iN, iP, iQ, i, j, k, iaMat1[10][10], iaMat2[10][10], iTrace = 0;
 	int iaProd[10][10] = {0};   //Initialize the matrix with all zeros
 
 
@@ -1690,7 +1691,7 @@ a20  a21  a22   |*|    b20  b21  b22   |*|
 	}
 	printf("\n");
 
-	printf("\nThe Product matrix is is \n");
+	printf("\nThe Product matrix is \n");
 
 	for(i=0;i<iM;i++)
 	{
@@ -1701,6 +1702,17 @@ a20  a21  a22   |*|    b20  b21  b22   |*|
 		printf("\n");
 	}
 	printf("\n");
+
+	if(iM == iQ)
+	{
+		for(i=0;i<iM;i++)
+			iTrace += iaProd[i][i];
+		printf("\nTrace of the product matrix is : %d\n", iTrace);
+	}
+	else
+	{
+		printf("\nTrace does not exist\n");
+	}
 	return 0;
 }
 
