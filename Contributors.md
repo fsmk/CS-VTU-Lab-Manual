@@ -46,6 +46,7 @@
 * Vamsikrishna G., Student, P.E.S Institute of Technology, Bangalore South Campus
 * Vikram S., Student, P.E.S Institute of Technology, Bangalore South Campus
 * Vivek Basavraj, Student, Jnana Vikas Institute of Technology, Bidadi
+* Nishchal Gautam, Student, Sri Venkateshwara College of Engineering, Bangalore
 * Aruna S, Core member of FSMK
 * HariPrasad, Core member of FSMK
 * Isham, Core member of FSMK
@@ -61,3 +62,4 @@
 * Vignesh Prabhu, Core member of FSMK
 * Vijay Kulkarni, Core member of FSMK
 * Yajnesh, Core member of FSMK
+* Rakesh P Gowda, Core member of FSMK
