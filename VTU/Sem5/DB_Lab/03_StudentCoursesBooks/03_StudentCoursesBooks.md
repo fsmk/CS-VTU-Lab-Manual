@@ -26,22 +26,22 @@ specific publisher.
 
 ###Create:
 <pre>
-mysql> create database books;
+mysql> CREATE DATABASE books;
 Query OK, 1 row affected (0.01 sec)
 </pre>
 <pre>
-mysql> use books;
+mysql> USE books;
 Database changed
-mysql> create table student(
-     regno varchar(15),
-     name varchar(20),
-     major varchar(20),
-     bdate date,
-     primary key (regno) );
+mysql> CREATE TABLE student(
+     regno VARCHAR(15),
+     name VARCHAR(20),
+     major VARCHAR(20),
+     bdate DATE,
+     PRIMARY KEY (regno) );
 Query OK, 0 rows affected (0.12 sec)
 </pre>
 <pre>
-mysql> desc student;
+mysql> DESC student;
 +-------+-------------+------+-----+---------+-------+
 | Field | Type        | Null | Key | Default | Extra |
 +-------+-------------+------+-----+---------+-------+
@@ -53,15 +53,15 @@ mysql> desc student;
 4 rows in set (0.01 sec)
 </pre>
 <pre>
-mysql> create table course(
-     courseno int,
-     cname varchar(20),
-     dept varchar(20),
-     primary key (courseno) );
+mysql> CREATE TABLE course(
+     courseno INT,
+     cname VARCHAR(20),
+     dept VARCHAR(20),
+     PRIMARY KEY (courseno) );
 Query OK, 0 rows affected (0.12 sec)
 </pre>
 <pre>
-mysql> desc course;
+mysql> DESC course;
 +----------+-------------+------+-----+---------+-------+
 | Field    | Type        | Null | Key | Default | Extra |
 +----------+-------------+------+-----+---------+-------+
@@ -72,18 +72,18 @@ mysql> desc course;
 3 rows in set (0.00 sec)
 </pre>
 <pre>
-mysql> create table enroll(
-     regno varchar(15),
-     courseno int,
-     sem int(3),
-     marks int(4),
-     primary key (regno,courseno),
-     foreign key (regno) references student (regno),
-     foreign key (courseno) references course (courseno) );
+mysql> CREATE TABLE enroll(
+     regno VARCHAR(15),
+     courseno INT,
+     sem INT(3),
+     marks INT(4),
+     PRIMARY KEY (regno,courseno),
+     FOREIGN KEY (regno) REFERENCES student (regno),
+     FOREIGN KEY (courseno) REFERENCES course (courseno) );
 Query OK, 0 rows affected (0.19 sec)
 </pre>
 <pre>
-mysql> desc enroll;
+mysql> DESC enroll;
 +----------+-------------+------+-----+---------+-------+
 | Field    | Type        | Null | Key | Default | Extra |
 +----------+-------------+------+-----+---------+-------+
@@ -95,16 +95,16 @@ mysql> desc enroll;
 4 rows in set (0.00 sec)
 </pre>
 <pre>
-mysql> create table text(
-     book_isbn int(5),
-     book_title varchar(20),
-     publisher varchar(20),
-     author varchar(20),
-     primary key (book_isbn) );
+mysql> CREATE TABLE text(
+     book_isbn INT(5),
+     book_title VARCHAR(20),
+     publisher VARCHAR(20),
+     author VARCHAR(20),
+     PRIMARY KEY (book_isbn) );
 Query OK, 0 rows affected (0.15 sec)
 </pre>
 <pre>
-mysql> desc text;
+mysql> DESC text;
 +------------+-------------+------+-----+---------+-------+
 | Field      | Type        | Null | Key | Default | Extra |
 +------------+-------------+------+-----+---------+-------+
@@ -116,17 +116,17 @@ mysql> desc text;
 4 rows in set (0.00 sec)
 </pre>
 <pre>
-mysql> create table book_adoption(
-     courseno int,
-     sem int(3),
-     book_isbn int(5),
-     primary key (courseno,book_isbn),
-     foreign key (courseno) references course (courseno),
-     foreign key (book_isbn) references text(book_isbn) );
+mysql> CREATE TABLE book_adoption(
+     courseno INT,
+     sem INT(3),
+     book_isbn INT(5),
+     PRIMARY KEY (courseno,book_isbn),
+     FOREIGN KEY (courseno) REFERENCES course (courseno),
+     FOREIGN KEY (book_isbn) REFERENCES text(book_isbn) );
 Query OK, 0 rows affected (0.17 sec)
 </pre>
 <pre>
-mysql> desc book_adoption;
+mysql> DESC book_adoption;
 +-----------+---------+------+-----+---------+-------+
 | Field     | Type    | Null | Key | Default | Extra |
 +-----------+---------+------+-----+---------+-------+
@@ -138,16 +138,21 @@ mysql> desc book_adoption;
 </pre>
 
 ###Insertion:
-<pre>mysql> insert into student values ('1pe11cs001','a','sr',19931230);
+<pre>mysql> INSERT INTO student (regno,name,major,bdate) VALUES ('1pe11cs001','a','sr',19931230);
 Query OK, 1 row affected (0.05 sec)
 </pre>
 <pre>
-mysql> insert into student values ('1pe11cs002','b','sr','19930924'),('1pe11cs003','c','sr','19931127'),('1pe11cs004','d','sr','19930413'),('1pe11cs005','e','jr','19940824');
+mysql> INSERT INTO student (regno,name,major,bdate) VALUES
+     ('1pe11cs002','b','sr','19930924'),
+     ('1pe11cs003','c','sr','19931127'),
+     ('1pe11cs004','d','sr','19930413'),
+     ('1pe11cs005','e','jr','19940824');
+
 Query OK, 4 rows affected (0.07 sec)
 Records: 4  Duplicates: 0  Warnings: 0
 </pre>
 <pre>
-mysql> select * from student;
+mysql> SELECT * FROM student;
 +------------+------+-------+------------+
 | regno      | name | major | bdate      |
 +------------+------+-------+------------+
@@ -160,12 +165,17 @@ mysql> select * from student;
 5 rows in set (0.01 sec)
 </pre>
 <pre>
-mysql> insert into course values (111,'OS','CSE'),(112,'EC','CSE'),(113,'SS','ISE'),(114,'DBMS','CSE'),(115,'SIGNALS','ECE');
+mysql> INSERT INTO course VALUES (111,'OS','CSE'),
+     (112,'EC','CSE'),
+     (113,'SS','ISE'),
+     (114,'DBMS','CSE'),
+     (115,'SIGNALS','ECE');
+
 Query OK, 5 rows affected (0.06 sec)
 Records: 5  Duplicates: 0  Warnings: 0
 </pre>
 <pre>
-mysql> select * from course;
+mysql> SELECT * FROM course;
 +----------+---------+------+
 | courseno | cname   | dept |
 +----------+---------+------+
@@ -178,12 +188,20 @@ mysql> select * from course;
 5 rows in set (0.00 sec)
 </pre>
 <pre>
-mysql> insert into text values (10,'DATABASE SYSTEMS','PEARSON','SCHIELD'),(900,'OPERATING SYS','PEARSON','LELAND'),(901,'CIRCUITS','HALL INDIA','BOB'),(902,'SYSTEM SOFTWARE','PETERSON','JACOB'),(903,'SCHEDULING','PEARSON','PATIL'),(904,'DATABASE SYSTEMS','PEARSON','JACOB'),(905,'DATABASE MANAGER','PEARSON','BOB'),(906,'SIGNALS','HALL INDIA','SUMIT');
+mysql> INSERT INTO text VALUES (book_isbn,book_title,publisher,author)
+     (10,'DATABASE SYSTEMS','PEARSON','SCHIELD'),
+     (900,'OPERATING SYS','PEARSON','LELAND'),
+     (901,'CIRCUITS','HALL INDIA','BOB'),
+     (902,'SYSTEM SOFTWARE','PETERSON','JACOB'),
+     (903,'SCHEDULING','PEARSON','PATIL'),
+     (904,'DATABASE SYSTEMS','PEARSON','JACOB'),
+     (905,'DATABASE MANAGER','PEARSON','BOB'),
+     (906,'SIGNALS','HALL INDIA','SUMIT');
 Query OK, 8 rows affected (0.06 sec)
 Records: 8  Duplicates: 0  Warnings: 0
 </pre>
 <pre>
-mysql> select * from text;
+mysql> SELECT * FROM text;
 +-----------+------------------+------------+---------+
 | book_isbn | book_title       | publisher  | author  |
 +-----------+------------------+------------+---------+
@@ -199,12 +217,16 @@ mysql> select * from text;
 8 rows in set (0.00 sec)
 </pre>
 <pre>
-mysql> insert into enroll values ('1pe11cs001',115,3,100),('1pe11cs002',114,5,100),('1pe11cs003',113,5,100),('1pe11cs004',111,5,100),('1pe11cs005',112,3,100);
+mysql> INSERT INTO enroll (regno,courseno,sem,marks) VALUES ('1pe11cs001',115,3,100),
+     ('1pe11cs002',114,5,100),
+     ('1pe11cs003',113,5,100),
+     ('1pe11cs004',111,5,100),
+     ('1pe11cs005',112,3,100);
 Query OK, 5 rows affected (0.08 sec)
 Records: 5  Duplicates: 0  Warnings: 0
 </pre>
 <pre>
-mysql> select * from enroll;
+mysql> SELECT * FROM enroll;
 +------------+----------+------+-------+
 | regno      | courseno | sem  | marks |
 +------------+----------+------+-------+
@@ -217,7 +239,7 @@ mysql> select * from enroll;
 5 rows in set (0.00 sec)
 </pre>
 <pre>
-mysql> insert into book_adoption values
+mysql> INSERT INTO book_adoption (courseno,sem,book_isbn) VALUES
 (111,5,900),
 (111,5,903),
 (111,5,904),
@@ -230,7 +252,7 @@ Query OK, 8 rows affected (0.06 sec)
 Records: 8  Duplicates: 0  Warnings: 0
 </pre>
 <pre>
-mysql> select * from book_adoption;
+mysql> SELECT * FROM book_adoption;
 +----------+------+-----------+
 | courseno | sem  | book_isbn |
 +----------+------+-----------+
@@ -249,16 +271,16 @@ mysql> select * from book_adoption;
 ###Queries:
 ###4. Produce a list of text books (include Course #, Book-ISBN, Book-title) in the alphabetical order for courses offered by the 'CS' department that use more than two books.
 <pre>
-mysql> select c.courseno,t.book_isbn,t.book_title
-     from course c,book_adoption ba,text t
-     where c.courseno=ba.courseno
-     and ba.book_isbn=t.book_isbn
-     and c.dept='CSE'
-     and 2<(
-     select count(book_isbn)
-     from book_adoption b
-     where c.courseno=b.courseno)
-     order by t.book_title;
+mysql> SELECT c.courseno,t.book_isbn,t.book_title
+     FROM course c,book_adoption ba,text t
+     WHERE c.courseno=ba.courseno
+     AND ba.book_isbn=t.book_isbn
+     AND c.dept='CSE'
+     AND 2<(
+     SELECT COUNT(book_isbn)
+     FROM book_adoption b
+     WHERE c.courseno=b.courseno)
+     ORDER BY t.book_title;
 +----------+-----------+------------------+
 | courseno | book_isbn | book_title       |
 +----------+-----------+------------------+
@@ -271,20 +293,20 @@ mysql> select c.courseno,t.book_isbn,t.book_title
 
 ###5. List any department that has all its adopted books published by a specific publisher.
 <pre>
-mysql> select distinct c.dept
-     from course c
-     where c.dept in
-     ( select c.dept
-     from course c,book_adoption b,text t
-     where c.courseno=b.courseno
-     and t.book_isbn=b.book_isbn
-     and t.publisher='PEARSON')
-     and c.dept not in
-     (select c.dept
-     from course c,book_adoption b,text t
-     where c.courseno=b.courseno
-     and t.book_isbn=b.book_isbn
-     and t.publisher!='PEARSON');
+mysql> SELECT DISTINCT c.dept
+     FROM course c
+     WHERE c.dept IN
+     ( SELECT c.dept
+     FROM course c,book_adoption b,text t
+     WHERE c.courseno=b.courseno
+     AND t.book_isbn=b.book_isbn
+     AND t.publisher='PEARSON')
+     AND c.dept NOT IN
+     (SELECT c.dept
+     FROM course c,book_adoption b,text t
+     WHERE c.courseno=b.courseno
+     AND t.book_isbn=b.book_isbn
+     AND t.publisher != 'PEARSON');
 +------+
 | dept |
 +------+

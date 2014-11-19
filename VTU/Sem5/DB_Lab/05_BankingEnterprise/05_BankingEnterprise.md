@@ -19,56 +19,56 @@ Write each of the following queries in SQL.
 
 ###Create:
 
-<pre>CREATE TABLE BRANCH
+<pre>CREATE TABLE branch
      ( branch_name VARCHAR(15),
        branch_city VARCHAR(15),
        assets NUMBER(10,2),
        PRIMARY KEY(branch_name)
      );
 
-     CREATE TABLE ACCOUNT
+     CREATE TABLE account
      ( accno INTEGER(8),
        branch_name VARCHAR(15),
        balance NUMBER(10,2),
        PRIMARY KEY(accno),
-       FOREIGN KEY(branch_name) REFERENCES BRANCH(branch_name)ON DELETE CASCADE
+       FOREIGN KEY(branch_name) REFERENCES branch(branch_name)ON DELETE CASCADE
      );
 
-    CREATE TABLE CUSTOMER
+    CREATE TABLE customer
     ( customer_name VARCHAR(15),
       customer_street VARCHAR(15),
       customer_city VARCHAR(15),
       PRIMARY KEY(customer_name)
     );
 
-    CREATE TABLE LOAN
+    CREATE TABLE loan
     ( loan_number INTEGER(8),
       branc_hname VARCHAR(15),
       amount NUMBER(10,2),
       PRIMARY KEY(loan_number),
-      FOREIGN KEY(branch_name) REFERENCES BRANCH(branch_name)
+      FOREIGN KEY(branch_name) REFERENCES branch(branch_name)
     );
 
-    CREATE TABLE DEPOSITOR
+    CREATE TABLE depositor
     ( customer_name VARCHAR(15),
       accno INTEGER,
       PRIMARY KEY(customer_name, accno),
-      FOREIGN KEY(customer_name) REFERENCES CUSTOMER(customer_name),
-      FOREIGN KEY(accno) REFERENCES ACCOUNT(accno)
+      FOREIGN KEY(customer_name) REFERENCES customer(customer_name),
+      FOREIGN KEY(accno) REFERENCES account(accno)
     );
 
-    CREATE TABLE BORROWER
+    CREATE TABLE borrower
     ( customer_name  VARCHAR(15),
       loan_number INTEGER(8),
       PRIMARY KEY(customer_name, loan_number),
-      FOREIGN KEY(customer_name) REFERENCES CUSTOMER(customer_name),
-      FOREIGN KEY(loan_number) REFERENCES LOAN(loan_number)
+      FOREIGN KEY(customer_name) REFERENCES customer(customer_name),
+      FOREIGN KEY(loan_number) REFERENCES loan(loan_number)
     );
 </pre>
 
 ###INSERTIONS:
 
-<pre>mysql> insert into branch values
+<pre>mysql> insert into branch (branch_name,branch_city,assets) values
     -> 		("b1","c1",10000),
     -> 		("b2","c2",20000),
     -> 		("b3","c3",30000),
@@ -77,7 +77,7 @@ Write each of the following queries in SQL.
 Query OK, 5 rows affected (0.06 sec)
 Records: 5  Duplicates: 0  Warnings:0</pre>
 
-<pre>mysql> select * from branch;
+<pre>mysql> SELECT * FROM branch;
 
 +-------------+-------------+--------+
 | branch_name | branch_city | assets |
@@ -91,7 +91,7 @@ Records: 5  Duplicates: 0  Warnings:0</pre>
 5 rows in set (0.00 sec)</pre>
 
 
-<pre>mysql> insert into account values
+<pre>mysql> INSERT INTO account (accno,branch_name,balance) VALUES
     -> 		(12,"b1",3000),
     -> 		(22,"b2",4000),
     -> 		(32,"b3",5000),
@@ -101,7 +101,7 @@ Records: 5  Duplicates: 0  Warnings:0</pre>
 Query OK, 5 rows affected (0.06 sec)
 Records: 5  Duplicates: 0  Warnings: 0</pre>
 
-<pre>mysql> select * from account;
+<pre>mysql> SELECT * FROM account;
 
 +-------+-------------+---------+
 | accno | branch_name | balance |
@@ -115,7 +115,7 @@ Records: 5  Duplicates: 0  Warnings: 0</pre>
 5 rows in set (0.00 sec)</pre>
 
 
-<pre>mysql> insert into customer values
+<pre>mysql> INSERT INTO customer (customer_name,customer_street,customer_city) VALUES
     -> 		("cust1","cstreet1","ccity1"),
     -> 		("cust2","cstreet2","ccity2"),
     -> 		("cust3","cstreet3","ccity3"),
@@ -126,7 +126,7 @@ Query OK, 5 rows affected (0.07 sec)
 Records: 5  Duplicates: 0  Warnings: 0</pre>
 
 
-<pre>mysql> select * from customer;
+<pre>mysql> SELECT * FROM customer;
 +---------------+-----------------+---------------+
 | customer_name | customer_street | customer_city |
 +---------------+-----------------+---------------+
@@ -139,7 +139,7 @@ Records: 5  Duplicates: 0  Warnings: 0</pre>
 5 rows in set (0.00 sec)</pre>
 
 
-<pre>mysql> insert into depositor values
+<pre>mysql> INSERT INTO depositor (customer_name,accno) VALUES
     -> 		("cust1",12),
     -> 		("cust2",22),
     -> 		("cust3",32),
@@ -149,7 +149,7 @@ Records: 5  Duplicates: 0  Warnings: 0</pre>
 Query OK, 5 rows affected (0.06 sec)
 Records: 5  Duplicates: 0  Warnings: 0</pre>
 
-<pre>mysql> select * from depositor;
+<pre>mysql> SELECT * FROM depositor;
 
 +---------------+-------+
 | customer_name | accno |
@@ -163,7 +163,7 @@ Records: 5  Duplicates: 0  Warnings: 0</pre>
 5 rows in set (0.00 sec)</pre>
 
 
-<pre>mysql> insert into values loan
+<pre>mysql> INSERT INTO loan (loan_number_branch_name,amount) VALUES
     -> (10,"b1",10000),
     -> (20,"b2",20000),
     -> (30,"b3",30000),
@@ -187,7 +187,7 @@ Records: 5  Duplicates: 0  Warnings: 0</pre>
 5 rows in set (0.00 sec)</pre>
 
 
-<pre>mysql> insert into borrower values
+<pre>mysql> INSERT INTO borrower (customer_name,loan_number) VALUES
     -> ("cust1",10),
     -> ("cust2",20),
     -> ("cust3",30),
@@ -197,7 +197,7 @@ Records: 5  Duplicates: 0  Warnings: 0</pre>
 Query OK, 5 rows affected (0.05 sec)
 Records: 5  Duplicates: 0  Warnings: 0</pre>
 
-<pre>mysql> select * from borrower;
+<pre>mysql> SELECT * FROM borrower;
 
 +---------------+-------------+
 | customer_name | loan_number |
@@ -214,9 +214,12 @@ Records: 5  Duplicates: 0  Warnings: 0</pre>
 
 ###iii. Find all the customers who have at least two accounts at the Main branch.
 
-<pre>mysql> SELECT customer_name FROM depositor d,account a WHERE
-     d.accno=a.accno AND a.branch_name='Main'
-     GROUP BY d.customer_name HAVING COUNT(d.customer_name)&gt=2;
+<pre>mysql> SELECT customer_name
+			FROM depositor d,account a
+			WHERE d.accno=a.accno
+			AND a.branch_name='Main'
+		    GROUP BY d.customer_name
+		    HAVING COUNT(d.customer_name)>=2;
 
 Empty set (0.00 sec)</pre>
 
@@ -226,9 +229,9 @@ Empty set (0.00 sec)</pre>
 
 <p>updating can be done with the following commands.</p>
 
-<pre>mysql> update account set branch_name='Main' where branch_name="b1";
-mysql> update account set branch_name='Main' where branch_name="b2";
-mysql> update account set customer_name='cust1' where customer_name="cust2";
+<pre>mysql> UPDATE account SET branch_name='Main' WHERE branch_name="b1";
+mysql> UPDATE account SET branch_name='Main' WHERE branch_name="b2";
+mysql> UPDATE account SET customer_name='cust1' WHERE customer_name="cust2";
 
 +---------------+
 | customer_name |
@@ -242,9 +245,16 @@ mysql> update account set customer_name='cust1' where customer_name="cust2";
 ### iv. Find all the customers who have an account at all the branches located in a specific city.
 
 
-<pre> mysql> SELECT d.customer_name FROM account a,branch b,depositor d WHERE
-       b.branch_name=a.branch_name AND a.accno=d.accno AND b.branch_city='c3'
-       GROUP BY d.customer_name HAVING COUNT(distinct b.branch_name)=(select count(branch_name) from branch where branch_city='c3');
+<pre> mysql> SELECT d.customer_name
+			 FROM account a,branch b,depositor d
+			 WHERE b.branch_name=a.branch_name AND
+			 a.accno=d.accno AND
+			 b.branch_city='c3'
+		     GROUP BY d.customer_name
+		     HAVING COUNT(distinct b.branch_name)=(
+		     	SELECT COUNT(branch_name)
+		     	BRANCH branch
+		     	WHERE branch_city='c3');
 
 +---------------+
 | customer_name |
@@ -257,7 +267,7 @@ mysql> update account set customer_name='cust1' where customer_name="cust2";
 
 ###v. Demonstrate how you delete all account tuples at every branch located in a specific city.
 
-<pre>mysql> DELETE FROM account where branch_name IN(SELECT branch_name FROM branch WHERE branch_city='c5');
+<pre>mysql> DELETE FROM account WHERE branch_name IN(SELECT branch_name FROM branch WHERE branch_city='c5');
 
 Query OK, 1 row affected (0.04 sec)
 
