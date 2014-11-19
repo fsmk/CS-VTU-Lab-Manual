@@ -20,20 +20,20 @@ Write each of the following queries in SQL.
 
 ###Create:
 
-<pre>mysql> create database book_dealer;
+<pre>mysql> CREATE DATABASE book_dealer;
 Query OK, 1 row affected (0.00 sec)</pre>
 
 <pre>mysql> use book_dealer;
 Database changed
-mysql> create table author1 (
-      author1_id int,
-      author1_name varchar(20),
-      author1_city varchar(20),
-      author1_country varchar(20),
-      primary key(author1_id));
+mysql> CREATE TABLE author1 (
+      author1_id INT,
+      author1_name VARCHAR(20),
+      author1_city VARCHAR(20),
+      author1_country VARCHAR(20),
+      PRIMARY KEY(author1_id));
 Query OK, 0 rows affected (0.11 sec)
 
-mysql> desc author1;
+mysql> DESC author1;
 +-----------------+-------------+------+-----+---------+-------+
 | Field           | Type        | Null | Key | Default | Extra |
 +-----------------+-------------+------+-----+---------+-------+
@@ -44,15 +44,15 @@ mysql> desc author1;
 +-----------------+-------------+------+-----+---------+-------+
 4 rows in set (0.00 sec)
 
-mysql> create table publisher1 (
-      publisher1_id int,
-      publisher1_name varchar(20),
-      publisher1_city varchar(20),
-      publisher1_country varchar(20),
-      primary key(publisher1_id));
+mysql> CREATE TABLE publisher1 (
+      publisher1_id INT,
+      publisher1_name VARCHAR(20),
+      publisher1_city VARCHAR(20),
+      publisher1_country VARCHAR(20),
+      PRIMARY KEY(publisher1_id));
 Query OK, 0 rows affected (0.15 sec)
 
-mysql> desc publisher1;
+mysql> DESC publisher1;
 +--------------------+-------------+------+-----+---------+-------+
 | Field              | Type        | Null | Key | Default | Extra |
 +--------------------+-------------+------+-----+---------+-------+
@@ -63,13 +63,13 @@ mysql> desc publisher1;
 +--------------------+-------------+------+-----+---------+-------+
 4 rows in set (0.00 sec)
 
-mysql> create table category1 (
-      category_id int,
-      description varchar(30),
-      primary key(category_id) );
+mysql> CREATE TABLE category1 (
+      category_id INT,
+      description VARCHAR(30),
+      PRIMARY KEY(category_id) );
 Query OK, 0 rows affected (0.14 sec)
 
-mysql> desc category1;
+mysql> DESC category1;
 +-------------+-------------+------+-----+---------+-------+
 | Field       | Type        | Null | Key | Default | Extra |
 +-------------+-------------+------+-----+---------+-------+
@@ -78,21 +78,21 @@ mysql> desc category1;
 +-------------+-------------+------+-----+---------+-------+
 2 rows in set (0.00 sec)
 
-mysql> create table catalogue1(
-      book_id int,
-      book_title varchar(30),
-      author1_id int,
-      publisher1_id int,
-      category_id int,
-      year int,
-      price int,
-      primary key(book_id),
-      foreign key(author1_id) references author1(author1_id),
-      foreign key(publisher1_id) references publisher1(publisher1_id),
-      foreign key(category_id) references category1(category_id) );
+mysql> CREATE TABLE catalogue1(
+      book_id INT,
+      book_title VARCHAR(30),
+      author1_id INT,
+      publisher1_id INT,
+      category_id INT,
+      year INT,
+      price INT,
+      PRIMARY KEY(book_id),
+      FOREIGN KEY(author1_id) REFERENCES author1(author1_id),
+      FOREIGN KEY(publisher1_id) REFERENCES publisher1(publisher1_id),
+      FOREIGN KEY(category_id) REFERENCES category1(category_id) );
 Query OK, 0 rows affected (0.47 sec)
 
-mysql> desc catalogue1;
+mysql> DESC catalogue1;
 +---------------+-------------+------+-----+---------+-------+
 | Field         | Type        | Null | Key | Default | Extra |
 +---------------+-------------+------+-----+---------+-------+
@@ -106,15 +106,15 @@ mysql> desc catalogue1;
 +---------------+-------------+------+-----+---------+-------+
 7 rows in set (0.00 sec)
 
-mysql> create table orderdetails1(
-      order_id int,
-      book_id int,
-      quantity int,
-      primary key(order_id),
-      foreign key(book_id) references catalogue1(book_id));
+mysql> CREATE TABLE orderdetails1(
+      order_id INT,
+      book_id INT,
+      quantity INT,
+      PRIMARY KEY(order_id),
+      FOREIGN KEY(book_id) REFERENCES catalogue1(book_id));
 Query OK, 0 rows affected (0.12 sec)
 
-mysql> desc orderdetails1;
+mysql> DESC orderdetails1;
 +----------+---------+------+-----+---------+-------+
 | Field    | Type    | Null | Key | Default | Extra |
 +----------+---------+------+-----+---------+-------+
@@ -128,7 +128,7 @@ mysql> desc orderdetails1;
 ###INSERTIONS:
 
 <pre>
-mysql> insert into author1 values
+mysql> INSERT INTO author1 (author1_id,author1_name,author1_city,author1_country) VALUES
           (1001,'JK Rowling','London','England'),
           (1002,'Chetan Bhagat','Mumbai','India'),
           (1003,'John McCarthy','Chicago','USA'),
@@ -137,7 +137,7 @@ mysql> insert into author1 values
 Query OK, 4 rows affected (0.08 sec)
 Records: 4  Duplicates: 0  Warnings: 0</pre>
 <pre>
-mysql> select * from author1;
+mysql> SELECT * FROM author1;
 +------------+---------------+--------------+-----------------+
 | author1_id | author1_name  | author1_city | author1_country |
 +------------+---------------+--------------+-----------------+
@@ -149,7 +149,7 @@ mysql> select * from author1;
 4 rows in set (0.01 sec)</pre>
 
 <pre>
-mysql> insert into publisher1 values
+mysql> INSERT INTO publisher1 (publisher1_id,publisher1_name,publisher1_city,publisher1_country) VALUES
           (2001,'Bloomsbury','London','England'),
           (2002,'Scholastic','Washington','USA'),
           (2003,'Pearson','London','England'),
@@ -157,7 +157,7 @@ mysql> insert into publisher1 values
 Query OK, 4 rows affected (0.06 sec)
 Records: 4  Duplicates: 0  Warnings: 0
 
-mysql> select * from publisher1;
+mysql> SELECT * FROM publisher1;
 +---------------+-----------------+-----------------+--------------------+
 | publisher1_id | publisher1_name | publisher1_city | publisher1_country |
 +---------------+-----------------+-----------------+--------------------+
@@ -168,7 +168,7 @@ mysql> select * from publisher1;
 +---------------+-----------------+-----------------+--------------------+
 4 rows in set (0.00 sec)</pre>
 
-<pre>mysql> insert into category1 values
+<pre>mysql> INSERT INTO category1 (category_id,description) VALUES
           (3001,'Fiction'),
           (3002,'Non-Fiction'),
           (3003,'thriller'),
@@ -177,7 +177,7 @@ mysql> select * from publisher1;
 Query OK, 5 rows affected (0.04 sec)
 Records: 5  Duplicates: 0  Warnings: 0
 
-mysql> select * from category1;
+mysql> SELECT * FROM category1;
 +-------------+-------------+
 | category_id | description |
 +-------------+-------------+
@@ -189,7 +189,7 @@ mysql> select * from category1;
 +-------------+-------------+
 5 rows in set (0.00 sec)</pre>
 
-<pre>mysql> insert into catalogue1 values
+<pre>mysql> INSERT INTO catalogue1 VALUES (book_id,book_title,author1_id,publisher1_id,category_id,year,price)
           (4001,'HP and Goblet Of Fire',1001,2001,3001,2002,600),
           (4002,'HP and Order Of Phoenix',1001,2002,3001,2005,650),
           (4003,'Two States',1002,2004,3001,2009,65),
@@ -200,7 +200,7 @@ mysql> select * from category1;
 Query OK, 7 rows affected (0.36 sec)
 Records: 7  Duplicates: 0  Warnings: 0
 
-mysql> select * from catalogue1;
+mysql> SELECT * FROM catalogue1;
 +---------+-------------------------+------------+---------------+-------------+------+-------+
 | book_id | book_title              | author1_id | publisher1_id | category_id | year | price |
 +---------+-------------------------+------------+---------------+-------------+------+-------+
@@ -215,7 +215,7 @@ mysql> select * from catalogue1;
 7 rows in set (0.00 sec)</pre>
 
 <pre>
-mysql> insert into orderdetails1 values
+mysql> INSERT INTO orderdetails1 (order_id,book_id,quantity) VALUES
           (5001,4001,5),
           (5002,4002,7),
           (5003,4003,15),
@@ -227,7 +227,7 @@ mysql> insert into orderdetails1 values
 Query OK, 8 rows affected (0.47 sec)
 Records: 8  Duplicates: 0  Warnings: 0
 
-mysql> select * from orderdetails1;
+mysql> SELECT * FROM orderdetails1;
 +----------+---------+----------+
 | order_id | book_id | quantity |
 +----------+---------+----------+
@@ -246,21 +246,21 @@ mysql> select * from orderdetails1;
 
 ### 3: Give the details of the authors who have 2 or more books in the catalog and the price of the books is greater than the  average price of the books in the catalog and the year of  publication is after 2000
 
-<pre>mysql> select * from author1
-          where author1_id in
-          (select author1_id from catalogue1 where
-          year>2000 and price>
-          (select avg(price) from catalogue1)
-          group by author1_id having count(*)>1);
+<pre>mysql> SELECT * FROM author1
+          WHERE author1_id IN
+          (SELECT author1_id FROM catalogue1 WHERE
+          year>2000 AND price>
+          (SELECT AVG(price) FROM catalogue1)
+          GROUP BY author1_id HAVING COUNT(*)>1);
 
 OR
 
-mysql> select * from author1
-               where author1_id in
-               (select author1_id from catalogue1 where
-               year>2000 and price>
-               (select avg(price) from catalogue1)
-               group by author1_id having count(*)>1);
+mysql> SELECT * FROM author1
+               WHERE author1_id IN
+               (SELECT author1_id FROM catalogue1 WHERE
+               year>2000 AND price>
+               (SELECT AVG(price) FROM catalogue1)
+               GROUP BY author1_id HAVING COUNT(*)>1);
 
 Description:
 (select avg(price) from catalogue1):-it select the average price of the books from catalogue1. it acts as an input to the outer query which selects the author id from catalogue1 which are published after 2000 and the price of books is greater than the average price of the books.this acts as an input to the outer most query which displays the author1 details of the values which satisfy the inner queries.
@@ -273,33 +273,34 @@ Description:
 
 ### 4: Find the author1 of the book which has maximum sales.
 
-<pre>mysql> select c.eid,max(cruisingrange)
-     from certified c,aircraft a
-     where c.aid=a.aid
-     group by c.eid
-     having count(*)>3;
+<pre>mysql> SELECT c.eid,MAX(cruisingrange)
+     FROM certified c,aircraft a
+     WHERE c.aid=a.aid
+     GROUP BY c.eid
+     HAVING COUNT(*)>3;
 +-----+--------------------+
 | eid | max(cruisingrange) |
 +-----+--------------------+
 |   1 |               8000 |
 +-----+----------------
-mysql> select author1_name
-           from author1 a,catalogue1 c
-           where a.author1_id=c.author1_id
-           and book_id in
-           (select book_id from orderdetails1
-           where quantity= (select max(quantity)
-           from orderdetails1));
+mysql> SELECT author1_name
+           FROM author1 a,catalogue1 c
+           WHERE a.author1_id=c.author1_id
+           AND book_id IN
+           (SELECT book_id FROM orderdetails1
+           WHERE quantity= (SELECT MAX(quantity)
+           FROM orderdetails1));
 
 OR
 
-mysql> SELECT a.author1_name FROM author1 a,catalogue1 c
-     WHERE a.author1_id=c.author1_id AND
-     c.book_id IN (SELECT book_id
-     FROM orderdetails1
-     GROUP BY book_id HAVING
-     SUM(quantity)>=ALL(SELECT SUM(quantity)
-     FROM orderdetails1 GROUP BY book_id));
+mysql>  SELECT a.author1_name
+		FROM author1 a,catalogue1 c
+     	WHERE a.author1_id=c.author1_id AND
+     	c.book_id IN (SELECT book_id
+     	FROM orderdetails1
+     	GROUP BY book_id HAVING
+     	SUM(quantity)>=ALL(SELECT SUM(quantity)
+     	FROM orderdetails1 GROUP BY book_id));
 
 Description:
 (select max(quantity) from orderdetails1):-it selects the maximum quantity of books from the orderdetails1 which acts as the input to its outer query which selects the book_id from the orderdetails where the quantity is equal to the selected maximum quantity. This acts as the input to the outer most query which displays the author name where the book id satisfies the inner query.
@@ -313,9 +314,9 @@ Description:
 
 ### 5: Demonstrate how you increase the price of books published by a specific publisher1  by 10%.
 
-<pre>mysql> update catalogue1 set price=1.1*price
-          where publisher1_id in
-          (select publisher1_id from publisher1 where
+<pre>mysql> UPDATE catalogue1 SET price=1.1*price
+          WHERE publisher1_id IN
+          (SELECT publisher1_id FROM publisher1 WHERE
          publisher1_name='pearson');
 Query OK, 2 rows affected (0.41 sec)
 Rows matched: 2  Changed: 2  Warnings: 0
@@ -323,7 +324,7 @@ Rows matched: 2  Changed: 2  Warnings: 0
 Description:
 This query is used to update the price of the books by 10% which are published by a specific author. Here we have considered pearson as the author.
 
-mysql> select * from catalogue1;
+mysql> SELECT * FROM catalogue1;
 +---------+-------------------------+------------+---------------+-------------+------+-------+
 | book_id | book_title              | author1_id | publisher1_id | category_id | year | price |
 +---------+-------------------------+------------+---------------+-------------+------+-------+

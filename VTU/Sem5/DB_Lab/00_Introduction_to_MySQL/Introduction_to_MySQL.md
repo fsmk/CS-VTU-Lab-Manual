@@ -35,7 +35,7 @@ http://packages.ubuntu.com/quantal/multiarch-support
 		
 			c. Go to to the empty folder path through terminal and type 
 		
-			*<b>Sudo dpkg -i *.deb</b>*
+			*<b>sudo dpkg -i *.deb</b>*
 		
 		2. **Using Ubuntu software Center:**
 
@@ -70,38 +70,52 @@ http://packages.ubuntu.com/quantal/multiarch-support
 	2. Database Object Creation:
 		* To create Database 
 
-			Create Database Student;
+			CREATE DATABASE Student;
 
 		* To Use Database
 
-			use Student;
+			USE Student;
 
 		* To view the databases
 
-			show databases;
+			SHOW DATABASES;
 
 		![Alt text](DBScreenShots/2.png) 
 
 	3. Table Creation: 
 		
-			create table student(snum int(4) primary key,sname varchar(10),major varchar(10),lev varchar(2),age int(2)); 
+			CREATE TABLE student(
+			snum INT(4) PRIMARY KEY,
+			sname varchar(10),
+			major VARCHAR(10),
+			lev VARCHAR(2),
+			age INT(2)); 
 
-			create table faculty(fid int(4) primary key,fname varchar(10), deptid int(2)); 
+			CREATE TABLE faculty(
+			fid INT(4) PRIMARY KEY,
+			fname VARCHAR(10),
+			deptid INT(2)); 
 
-			create table class(cname varchar(10) primary key,meetat varchar(10),room varchar(4), fid int(4) references faculty(fid)); 
+			CREATE TABLE class(
+			cname VARCHAR(10) PRIMARY KEY,
+			meetat varchar(10),
+			room VARCHAR(4),
+			fid INT(4) REFERENCES faculty(fid)); 
 
-			create table enrolled(snum int(4) references student(snum),cname varchar(10) references class(cname)); 
+			CREATE TABLE enrolled(
+			snum INT(4) REFERENCES student(snum),
+			cname VARCHAR(10) REFERENCES class(cname)); 
 
 		![Alt text](DBScreenShots/3.png) 
 
 
 	4. Inserting values into Table:
 
-			insert into student values(121,'Agrawal','CSE','SR',21);
+			INSERT INTO student (snum,sname,major,lev,age) values(121,'Agrawal','CSE','SR',21);
 
-			insert into student values(119, 'Tony ', 'CSE', 'SR',21);
+			INSERT INTO student (snum,sname,major,lev,age) values(119, 'Tony ', 'CSE', 'SR',21);
 
-			insert into student values(122, ' Krishna ', 'CSE', 'JR',20);
+			INSERT INTO student (snum,sname,major,lev,age) values(122, ' Krishna ', 'CSE', 'JR',20);
 
 		![Alt text](DBScreenShots/4.png) 
 
@@ -110,7 +124,14 @@ http://packages.ubuntu.com/quantal/multiarch-support
 
 			To find the author1 of the book which has maximum sales:
 
-			select author1_name from author1 a,catalogue1 c where a.author1_id=c.author1_id and book_id in (select book_id from orderdetails1 where quantity= (select max(quantity) from orderdetails1));
+			SELECT author1_name
+			FROM author1 a,catalogue1 c
+			WHERE a.author1_id=c.author1_id AND book_id IN (
+				SELECT book_id
+				FROM orderdetails1
+				WHERE quantity= (
+					SELECT MAX(quantity) FROM orderdetails1)
+					);
 
 		![Alt text](DBScreenShots/5.png) 
 
@@ -127,12 +148,12 @@ http://packages.ubuntu.com/quantal/multiarch-support
 ctrl+l.
 
 	9. To get any information about the commands used in the mysql use "help" command.
-		Eg: help insert;
-		help create;
+		Eg: HELP INSERT;
+		HELP CREATE;
 	10. Type exit to exit from the MySQL prompt.
 
 		Note 1 : MYSQL is a a case sensitive.
-			Ex: "desc MEMBERS" is differ from "desc members".
+			Ex: "DESC MEMBERS" is differ from "DESC members".
 
 		![Alt text](DBScreenShots/8.png) 
 
@@ -158,69 +179,79 @@ ctrl+l.
     <TR>
         <TD>Create a database on the sql server.
         </TD>
-        <TD>create database [databasename];
+        <TD>CREATE DATABASE [databasename];
         </TD>
     </TR>
     <TR>
         <TD>List all databases on the sql server.
         </TD>
-        <TD>show databases;
+        <TD>SHOW DATABASES;
         </TD>
     </TR>
     <TR>
         <TD>Switch to a database.
         </TD>
-        <TD>use [db name];use [db name];use [db name];
+        <TD>USE [db name];USE [db name];USE [db name];
         </TD>
     </TR>
     <TR>
         <TD>To see all the tables in
             the db.
         </TD>
-        <TD>show tables;
+        <TD>SHOW TABLES;
         </TD>
     </TR>
     <TR>
         <TD>To see database's field
             formats.
         </TD>
-        <TD>describe [tadescribe [table name];
+        <TD>DESCRIBE [tadescribe [table name];
         </TD>
     </TR>
     <TR>
         <TD>To delete a db.
         </TD>
-        <TD>drop database [database
+        <TD>DROP TABLE [database
             name];
         </TD>
     </TR>
     <TR>
         <TD>To delete a table.
         </TD>
-        <TD>drop table [table name];
+        <TD>DROP TABLE [table name];
         </TD>
     </TR>
     <TR>
         <TD>Show all data in a table.
         </TD>
-        <TD>SELECT * FROM [table
-            name];
+        <TD>SELECT * FROM [table name];
+        </TD>
+    </TR>
+    <TR>
+        <TD>Show only N number of rows from table.
+        </TD>
+        <TD>SELECT * FROM [table name] LIMIT N;
+        </TD>
+    </TR>
+    <TR>
+        <TD>Show fix N of rows from table starting from Mth record
+        </TD>
+        <TD>SELECT * FROM [table name] LIMIT N OFFSET M;
         </TD>
     </TR>
     <TR>
         <TD>Returns the columns and
             column information pertaining to the designated table.
         </TD>
-        <TD>show columns from [table
-            name]; 
+        <TD>SHOW COLUMNS FROM [table name]; 
         </TD>
     </TR>
     <TR>
         <TD>Show certain selected rows
             with the value &quot;whatever&quot;.
         </TD>
-        <TD>SELECT * FROM [table name]
-            WHERE [field name] = &quot;whatever&quot;;          
+        <TD>SELECT * FROM [table name]  
+            WHERE [field name] = &quot;whatever&quot;;  
             </TD>
     </TR>
     <TR>
@@ -228,8 +259,10 @@ ctrl+l.
             containing the name &quot;Bob&quot; AND the phone number
             '3444444'.
         </TD>
-        <TD>SELECT * FROM [table name]
-            WHERE name = &quot;Bob&quot; AND phone<em>number = '3444444'; 
+        <TD>SELECT *  
+        	FROM [table name]  
+            WHERE name = &quot;Bob&quot;  
+            AND phone<em>number = '3444444';  
         </TD>
     </TR>
     <TR>
@@ -237,17 +270,21 @@ ctrl+l.
             containing the name &quot;Bob&quot; AND the phone number '3444444'
             order by the phone</em>number field.
         </TD>
-        <TD>SELECT * FROM [table name]
-            WHERE name != &quot;Bob&quot; AND phone<em>number = '3444444' order
-            by phone</em>number; 
+        <TD>SELECT *  
+        	FROM [table name]  
+            WHERE name != &quot;Bob&quot;  
+            AND phone<em>number = '3444444'  
+            order by phone number</em>;  
         </TD>
     </TR>
     <TR>
         <TD>Show all records starting
             with the letters 'bob' AND the phone number '3444444'.
         </TD>
-        <TD>SELECT * FROM [table name]
-            WHERE name like &quot;Bob%&quot; AND phone<em>number = '3444444'; 
+        <TD>SELECT *  
+        	FROM [table name]  
+            WHERE name like &quot;Bob%&quot;  
+            AND phone<em>number = '3444444'; </em>
         </TD>
     </TR>
     <TR>
@@ -275,7 +312,7 @@ ctrl+l.
         </TD>
     </TR>
     <TR>
-        <TD>Count rows.
+        <TD>Count number of rows.
         </TD>
         <TD>SELECT COUNT(*) FROM
             [table name]; 
@@ -285,10 +322,10 @@ ctrl+l.
         <TD>Join tables on common
             columns.
         </TD>
-        <TD>select
-            lookup.illustrationid, lookup.personid,person.birthday from
-            lookup<BR>left join person on
-            lookup.personid=person.personid=statement to join birthday in
+        <TD>SELECT 
+            lookup.illustrationid, lookup.personid, person.birthday FROM
+            lookup<BR>LEFT JOIN person ON
+            lookup.personid=person.personid=statement TO JOIN birthday IN
             person table with primary illustration id;
         </TD>
     </TR>
@@ -330,8 +367,7 @@ ctrl+l.
             a table.
         </TD>
         <TD>UPDATE [table name] SET
-            Select</em>priv = 'Y',Insert<em>priv = 'Y',Update</em>priv = 'Y' where [field
-            name] = 'user';
+            [column name]=[new value] WHERE [column name]=[value]
         </TD>
     </TR>
     <TR>
@@ -352,43 +388,43 @@ ctrl+l.
     <TR>
         <TD>Delete a column.
         </TD>
-        <TD>alter table [table name]
-            drop column [column name];
+        <TD>ALTER TABLE [table name]
+            DROP COLUMN [column name];
         </TD>
     </TR>
     <TR>
         <TD>Add a new column to db.
         </TD>
-        <TD>alter table [table name]
-            add column [new column name] varchar (20);      </TD>
+        <TD>ALTER TABLE [table name]
+            ADD COLUMN [new column name] varchar (20);      </TD>
     </TR>
     <TR>
         <TD>Change column name. 
         </TD>
-        <TD>alter table [table name]
-            change [old column name] [new column name] varchar (50); 
+        <TD>ALTER TABLE [table name]
+            CHANGE [old column name] [new column name] varchar (50); 
         </TD>
     </TR>
     <TR>
         <TD>Make a unique column so
             you get no dupes. 
         </TD>
-        <TD>alter table [table name]
-            add unique ([column name]); 
+        <TD>ALTER TABLE [table name]
+            ADD UNIQUE ([column name]); 
         </TD>
     </TR>
     <TR>
         <TD>Make a column bigger. 
         </TD>
-        <TD>alter table [table name]
-            modify [column name] VARCHAR(3); 
+        <TD>ALTER TABLE [table name]
+            MODIFY [column name] VARCHAR(3); 
         </TD>
     </TR>
     <TR>
         <TD>Delete unique from table. 
         </TD>
-        <TD>alter table [table name]
-            drop index [colmn name]; 
+        <TD>ALTER TABLE [table name]
+            DROP INDEX [colmn name]; 
         </TD>
     </TR>
     <TR>
@@ -447,10 +483,12 @@ ctrl+l.
     <TR>
 		  <TD>Create Table Example 2. 
         </TD>
-        <TD>create table [table name]
-            (personid int(50) not null auto_increment primary key,firstname
-            varchar(35),middlename varchar(50),lastname varchar(50) default
-            'bato'); <br />
+        <TD>CREATE TABLE [table name]
+            (personid INT(50) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            firstname VARCHAR(35),
+            middlename VARCHAR(50),
+            lastname VARCHAR(50) DEFAULT 'bato');
+            <br />
         </TD>
     </TR>
 </TABLE></p>
@@ -474,4 +512,3 @@ ctrl+l.
 * The MySQL Handbook is also available in the mysql-doc-5.0 package. To install the package enter the following in a terminal: 
 	*<b>sudo apt-get install mysql-doc-5.0</b>*
 * The documentation is in HTML format, to view them enter file:///usr/share/doc/mysql-doc-5.0/refman-5.0-en.html-chapter/index.html in your browser's address bar. 
-
