@@ -9,7 +9,7 @@ Given any program containing few datatypes defined we should be able to count th
 
 ###CODE:
 <pre>%{
-`#`include&lt;stdio.h>
+#include&lt;stdio.h>
 int count=0,floatcount=0,charcount=0,doublecount=0;
 %}</pre>
 <pre>ID [a-zA-Z][a-zA-Z0-9]*
