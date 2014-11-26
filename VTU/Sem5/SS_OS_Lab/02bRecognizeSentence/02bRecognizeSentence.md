@@ -4,28 +4,28 @@ Program to recognize whether a given sentence is simple or compound.
 The user is expected to develop a code which recognizes a sentence as either simple or compound.The design considers that we use and, or, but & between.The user can specify more rules as per his/her choice.
 
 ##CODE:
-<pre>%{
-`#`include&lt;stdio.h>
-int valid=1;
-%}
-id [a-zA-Z0-9]*
-%%
-{id}" and "{id} {valid=0;}
-{id}" or "{id} {valid=0;}
-{id}" but "{id} {valid=0;}
-{id}" between "{id} {valid=0;}
-. ;
-\n {return 0;}
-%%
-main()
-{
-	printf("Enter a sentence\n");
-	yylex();
-	if(valid==1)
-	printf("Its a simple sentence\n");
-	else
-	printf("Its a compound sentence\n");
-}</pre> 
+	%{
+	#include <stdio.h>
+	#include <stdlib.h>
+	int flag=0;
+	%}
+	%%
+	("AND")|("OR")|("and")|("or")|("but")|("between")|("BUT")("BETWEEN") {flag=1;}
+	[\n]	;
+	. ;
+	%%
+	main()
+	{
+		printf("Enter a sentence\n");
+		yylex();
+		if(flag){
+			printf("It's a compound statement\n");
+		}else{
+			printf("It's not a compound statement\n");
+		}
+		exit(EXIT_SUCCESS);
+
+	}
 ##OUTPUT:
 <pre>Enter a sentence
 hi and bye
@@ -34,6 +34,5 @@ Its a compound sentence</pre>
 <pre>Enter a sentence
 anand
 Its a simple sentence</pre>
-
 
 
