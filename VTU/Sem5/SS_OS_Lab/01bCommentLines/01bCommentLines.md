@@ -6,38 +6,42 @@ The central idea of the program is to develop a code which can count all the sin
 
 ###CODE:
 
-	%{
-	#include<stdio.h>
-	int c=0;
-	%}
-	%x COMMENT
-    	%%
-    	"//".* {c++;}
-    	"/*".* {BEGIN COMMENT;}
-    	<COMMENT>. ;
-    	<COMMENT>\n ;
-    	<COMMENT>"*/" {BEGIN 0;c++;}
-    	%%
+    %{
+    #include <stdio.h>
+    #include <stdlib.h>
+    int multi=0,single=0;
+    %}
+	%%
+	("/*"((.)|(\n))+?"*/")	{multi++;}
+    ("//".+"\n")	{single++;}
+    .|\n	{fprintf(yyout,"%s",yytext);}
+	%%
 	int main(int argc,char **argv)
 	{
 		if(argc!=3)
 		{
-			printf("No file\n");
-			return 0;
+			printf("usage: ./a.out <input file> <output file>\n");
+			return 1;
+            //return 1 tells there was an error on last execution.
 		}
 		else
 		{
 			yyin=fopen(argv[1],"r");
 			yyout=fopen(argv[2],"w");
 			yylex();
-			printf("Number of comments is %d\n",c);
+			printf("single line comments:%d\n",multi);
+			printf("Multiline comments:%d\n",single);
+			printf("Total comments:%d\n",(multi+single));
 		}
+		exit(EXIT_SUCCESS);
 	}
 
 ###OUTPUT:
 <pre>
 ./a.out 11.c r.txt
-Number of comments is 3
+Single line comments:3
+Multiline comments:4
+Total comments:7
 </pre>
 
 ###cat r.txt
@@ -64,5 +68,3 @@ Number of comments is 3
 
    	return 0;
 	}
-
-
