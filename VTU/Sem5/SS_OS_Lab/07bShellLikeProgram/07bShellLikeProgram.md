@@ -6,27 +6,24 @@ C program that creates a child process to read commands from the standard input 
 </p>system ():it is a system call which takes a command as an argument and invokes the operating system to execute it.</p>
 
 ####Code:
-<pre>#include&lt;stdio.h>
-`#`include&lt;stdlib.h>
-`#`include&lt;string.h>
-`#`include&lt;unistd.h></pre>
-<pre>int main()
-{
-int pid,n,i;
-char cmd[14];
-system("clear");
-printf("enter the no. of commands:\n");
-scanf("%d",&n);
-pid=fork();
-if(!pid)
-{
-for(i=0;i&lt;n;i++)
-{
-printf("\nEnter command:\n");
-scanf("%s",cmd);
-system(cmd);
-}
-</pre>
+	#include<stdio.h>
+	#include<stdlib.h>
+	#include<string.h>
+	#include<unistd.h>
+	int main()
+	{
+		char cmd[100];
+		if(fork()==0){
+			do{
+				printf("Enter command");
+				gets(cmd);
+				system(cmd);
+				}while(strcmp(cmd,"exit"));
+		}else{
+			wait();
+		}
+	}
+
 ####Output:
 
 /a.out
