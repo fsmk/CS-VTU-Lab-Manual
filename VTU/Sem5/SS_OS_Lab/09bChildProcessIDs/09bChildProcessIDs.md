@@ -1,49 +1,41 @@
 ###Aim:
-C program to do the following: Using fork( ) create a child process.The child process prints its own process-id and id of its parent and then exits. The parent process waits for its child to finish (by executing the wait( )) and prints its own process-id and the id of its child process and then exits.
+C program to do the following: Using fork( ) create a child process.The child process prints its own process-id and id of its parent and then exits. The parent process waits for its child to finish (by executing the wait()) and prints its own process-id and the id of its child process and then exits.
 
 ###Description:
 <p>pid_t:parent id of the process.
 <p>fork():it is a system call which forks a new child of a processs</p>
 
 ###Code:
-<pre>`#`include&lt;stdio.h>
-`#`include&lt;unistd.h>
-`#`include&lt;stdlib.h>
-int main()
-{
-	pid_t p;
-	if((p=fork())&lt;0)
+	#include<stdio.h>
+	#include<unistd.h>
+	#include<stdlib.h>
+	int main()
 	{
-		printf("fork error\n");
-		return 0;
+		int pid;
+		pid=fork();
+		if(pid==0){
+			//child
+			printf("--Child in execution--\n");
+			printf("Process ID of child:%d\n",getpid());
+			printf("Process ID of parent:%d\n",getppid());
+			printf("Done with child\n\n");
+		}else{
+			//parent
+			printf("--Parent in execution--\n");
+			printf("Process ID of parent:%d\n",getpid());
+			printf("Process ID of child:%d\n",pid);
+			printf("Done with parent\n\n");
+		}
 	}
-	else if(p==0)
-	{
-		printf("i am child process\n");
-		printf("my parent process id is:%d\n",getppid());
-		printf("my process id is:%d\n",getpid());
-	}
-	else
-	{
-		wait();
-		printf("i am parent process\n");
-		printf("my child process id is:%d\n",p);
-		printf("my own id is: %d\n",getpid());
-	}
-	return 0;
-}</pre>
 
 ###Output:
-<pre>i am child process
-my parent process id is:4273
-my process id is:4274
-i am parent process
-my child process id is:4274
-my own id is: 4273</pre>
-
-		
-	
+	--Child in execution--
+	Process ID of child:3432
+	Process ID of parent:3431
+	Done with child
 
 
-
-
+	--Parent in execution--
+	Process ID of parent:3431
+	Process ID of child:3432
+	Done with parent
