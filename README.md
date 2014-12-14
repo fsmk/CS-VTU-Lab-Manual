@@ -2,11 +2,11 @@
 
 ![FSMK Logo](http://upload.wikimedia.org/wikipedia/en/thumb/d/dd/Free_Software_Movement_Logo.png/220px-Free_Software_Movement_Logo.png)
 
-Fossalized Lab Manual for CS.
+[FSMK's Free Software Lab Manual for CS](http://fsmk.org/labmanual)
 
 This repository is a collection programs ported to Free and Open Source Software which can also serve as a manual for CSE students studying under VTU and Autonomous institutions.
 
-An initiative by [Free Software Movement Karnataka](http://fsmk.org/), this project is a part of Doc-a-thon 2013.
+An initiative by [Free Software Movement Karnataka](http://fsmk.org/), this project is a part of Docathon 2014.
 
 #Structure of the Repo
 
