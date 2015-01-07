@@ -1,6 +1,6 @@
 %{
 #include<stdio.h>
-int count=0,floatcount=0,charcount=0,doublecount=0;
+int intcount=0,floatcount=0,charcount=0,doublecount=0;
 %}
 ID [a-zA-Z][a-zA-Z0-9]*
 I "int"
