@@ -22,7 +22,7 @@ D "double"
 {C} {BEGIN DEFN3;}
 <DEFN3>{ID}"," {charcount++;printf("%s\n",yytext);}
 <DEFN3>{ID}";" {charcount++;BEGIN 0;printf("%s\n",yytext);}
-{D} {BEGIN DEFN;}
+{D} {BEGIN DEFN4;}
 <DEFN4>{ID}"," {doublecount++;printf("%s\n",yytext);}
 <DEFN4>{ID}";" {doublecount++;BEGIN 0;printf("%s\n",yytext);}
 . ;
