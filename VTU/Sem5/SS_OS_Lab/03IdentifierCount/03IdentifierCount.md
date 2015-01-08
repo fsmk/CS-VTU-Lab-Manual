@@ -10,7 +10,7 @@ Given any program containing few datatypes defined we should be able to count th
 ###CODE:
 <pre>%{
 `#`include&lt;stdio.h>
-int count=0,floatcount=0,charcount=0,doublecount=0;
+int intcount=0,floatcount=0,charcount=0,doublecount=0;
 %}</pre>
 <pre>ID [a-zA-Z][a-zA-Z0-9]*
 I "int"
@@ -32,7 +32,7 @@ D "double"
 {C} {BEGIN DEFN3;}
 &lt;DEFN3>{ID}"," {charcount++;printf("%s\n",yytext);}
 &lt;DEFN3>{ID}";" {charcount++;BEGIN 0;printf("%s\n",yytext);}
-{D} {BEGIN DEFN;}
+{D} {BEGIN DEFN4;}
 &lt;DEFN4>{ID}"," {doublecount++;printf("%s\n",yytext);}
 &lt;DEFN4>{ID}";" {doublecount++;BEGIN 0;printf("%s\n",yytext);}
 . ;
