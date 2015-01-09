@@ -10,8 +10,8 @@
 ###CODE :
 
 <pre>%{
-#include&lt;stdio.h>
-#include&lt;stdlib.h>
+#include<stdio.h>
+#include<stdlib.h>
 %}
 %token A B;
 %%

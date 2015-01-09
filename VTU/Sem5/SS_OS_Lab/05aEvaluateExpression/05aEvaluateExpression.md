@@ -60,7 +60,7 @@ main()
 
 	  printf("Enter the expression\n");
 	  yyparse();
-	  printf("Valid expression\n")
+	  printf("Valid expression\n");
 }		
 
 

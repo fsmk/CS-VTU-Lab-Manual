@@ -8,11 +8,11 @@
 ###CODE:
 
 <pre>%{
-#include&lt;stdio.h>
-#include&lt;stdlib.h>
+#include<stdio.h>
+#include<stdlib.h>
 int count=0;
 %}
-% token A B;
+%token A B;
 %%
 S: X B
 X: X A {count++;}

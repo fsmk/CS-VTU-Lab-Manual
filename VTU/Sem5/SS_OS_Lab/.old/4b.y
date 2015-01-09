@@ -5,7 +5,7 @@
 %token DIGIT ALPHA
 %%
 variable:ALPHA
-        |variable APLHA
+        |variable ALPHA
         | variable DIGIT 
         ;
 %%
