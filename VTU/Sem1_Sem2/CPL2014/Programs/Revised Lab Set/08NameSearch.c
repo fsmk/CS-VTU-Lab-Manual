@@ -1,13 +1,15 @@
 /***************************************************************************
-*File		: 07BubbleSort.c
-*Description	: Program to implement Bubble Sort Algorithm
+*File		: 08NameSearch.c
+*Description	: Program to implement Bubble Sort Algorithmsearch for a name
+*					in a list of names using Binary Search
 *Author		: Prabodh C P
-*Compiler	: gcc compiler, Ubuntu 8.10
-*Date		: 7 September 2010
+*Compiler	: gcc compiler, Ubuntu 12.04
+*Date		: 27 January 2015
 ***************************************************************************/
 
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 /***************************************************************************
 *Function	: main
@@ -18,10 +20,11 @@
 int main(void)
 {
 	char acNames[20][30], cTemp[30], cKeyName[30];
-	int iNum, i, j, k,  iPos, iLow, iHigh, iMid, iFound;
+	int iNum, i, j, iPos, iLow, iHigh, iMid, iFound;
 
 	printf("\nEnter no of names\n");
 	scanf("%d",&iNum);
+	getchar();
 
 	printf("\nEnter %d names\n", iNum);
 	for(i=0;i<iNum;i++)
@@ -47,7 +50,7 @@ int main(void)
 
 	printf("\n");
 	printf("\nEnter the name you want to search\n");
-	scanf("%d",&cKeyName);
+	gets(cKeyName);
 
 	iFound = 0;
 	iLow = 0;
