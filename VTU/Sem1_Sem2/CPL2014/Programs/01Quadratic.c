@@ -43,7 +43,7 @@ int main(void)
 
 
 	printf("\nEnter the coefficients of a,b,c \n");
-	scanf("%f%f%f",&fA,&fB,&fC);
+	scanf("%f %f %f", &fA, &fB, &fC);
 	if(0 == fA)
 	{
 		printf("\nInvalid input, not a quadratic equation - try again\n");
