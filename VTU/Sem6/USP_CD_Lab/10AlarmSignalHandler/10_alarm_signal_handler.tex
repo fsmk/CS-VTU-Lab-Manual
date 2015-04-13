@@ -1,0 +1,42 @@
+Write a C/C++ program to set up a real-time clock interval timer using the alarm API.
+
+\section{Theory}
+
+Every signal has a name. These names all begin with the three characters SIG. For example, SIGABRT is the abort signal that is generated when a process calls the abort function. SIGALRM is the alarm signal that is generated when the timer set by the alarm function goes off.
+
+\section{Code}
+
+\lstinputlisting[style=source-file]{10AlarmSignalHandler/10_alarm_signal_handler.c}
+
+\section{Output}
+
+Open a terminal. Change directory to the file location in both the terminals.
+
+Compile
+\begin{lstlisting}[style=shell-command]
+$ g++ 10_alarm_signal_handler.c -o 10_alarm_signal_handler.out
+\end{lstlisting}
+
+If there are no errors after compilation execute the program using
+\begin{lstlisting}[style=shell-command]
+$ ./10_alarm_signal_handler.out
+\end{lstlisting}
+
+After a delay of approximately 5 seconds, "Hello!!!" will be printed on the screen.
+\begin{lstlisting}[style=shell-output]
+Hello!!!
+\end{lstlisting}
+
+You can use the \emph{time} command to measure the time taken for the execution.
+\begin{lstlisting}[style=shell-command]
+$ time ./10_alarm_signal_handler.out
+\end{lstlisting}
+
+The \emph{time} command will give you an output similar to this.
+\begin{lstlisting}[style=shell-output]
+Hello!!!
+
+real    0m5.002s
+user    0m0.000s
+sys     0m0.000s
+\end{lstlisting}

@@ -1,20 +1,22 @@
-/*Write a C/C++ program to set up a real-time clock interval timer using the alarm API.*/
-#include<stdio.h>
-#include<stdlib.h>
-#include<unistd.h>
-#include<signal.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <signal.h>
+
 #define INTERVAL 5
-void callme(int sig_no)
+
+void callme(int sig)
 {
-        alarm(INTERVAL);
-        printf("Hello!!\n");
+	printf("Hello!!!\n");
+	exit(EXIT_SUCCESS);
 }
+
 int main()
 {
-        struct sigaction action;
-        action.sa_handler=(void(*)(int))callme;
-        sigaction(SIGALRM,&action,0);
-        alarm(2);
-        sleep(5);
-        return 0;
+	struct sigaction action;
+	action.sa_handler = (void(*)(int))callme;
+	sigaction(SIGALRM, &action, NULL);
+	alarm(INTERVAL);
+	pause();
+	return 0;
 }
