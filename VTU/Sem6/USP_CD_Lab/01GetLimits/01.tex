@@ -1,6 +1,4 @@
-\section{Aim}
-
-To Write a C/C++ POSIX compliant program to check the following limits:
+Write a C/C++ POSIX compliant program to check the following limits:
 \begin{enumerate}
 	\item Number of clock ticks
 	\item Maximum number of child processes
@@ -9,7 +7,7 @@ To Write a C/C++ POSIX compliant program to check the following limits:
 	\item Maximum number of open files
 \end{enumerate}
 
-\section{Theory}
+\section{Function Reference}
 
 \subsection{sysconf - Get configuration information at runtime}
 
@@ -62,40 +60,27 @@ The corresponding macros defined in <unistd.h> are minimum values; if an applica
 
 \section{Code}
 
-\begin{lstlisting}
-#define _POSIX_SOURCE
-#define _POSIX_C_SOURCE 199309L
-
-#include "iostream"
-#include <unistd.h>
-using namespace std;
-
-int main()
-{
-	cout << "No of clock ticks:" << sysconf(_SC_CLK_TCK) << endl;
-	cout << "Maximum no of child processes:" << sysconf(_SC_CHILD_MAX) << endl;
-	cout << "Maximum path length:" << pathconf("/",_PC_PATH_MAX) << endl;
-	cout << "Maximum characters in a file name:" << pathconf("/",_PC_NAME_MAX) << endl;
-	cout << "Maximum no of open files:" << sysconf(_SC_OPEN_MAX) << endl;
-	return 0;
-}
-\end{lstlisting}
+\lstinputlisting[style=source-file]{01GetLimits/usp01.cc}
 
 \section{Output}
 
-%\emph{Commands for execution:-}
+Open a terminal. Change directory to the file location in the terminal.
 
-\begin{enumerate}
-	\item Open a terminal.
-	\item Change directory to the file location in the terminal.
-	\item Run g++ usp01.c -o usp01.out in the terminal.
-	\item If no errors, run ./usp01.out
-\end{enumerate}
+Run
+\begin{lstlisting}[style=shell-command]
+$ g++ usp01.cc -o usp01.out
+\end{lstlisting}
 
-%\subsection{Screenshots:}\label{screenshots}
+If no errors, run
+\begin{lstlisting}[style=shell-command]
+$ ./usp01.out
+\end{lstlisting}
 
-%\begin{figure}[htbp]
-%\centering
-%\includegraphics{usp-lab-01.png}
-%\caption{not available}
-%\end{figure}
+The output should be something like this.
+\begin{lstlisting}[style=shell-output]
+No of clock ticks: 100
+Maximum no of child processes: 7082
+Maximum path length: 4096
+Maximum characters in a file name: 255
+Maximum no of open files: 1024
+\end{lstlisting}
