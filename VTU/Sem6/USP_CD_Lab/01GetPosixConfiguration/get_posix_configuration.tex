@@ -1,3 +1,5 @@
+\chapter{Getting POSIX configuration information}
+
 Write a C/C++ POSIX compliant program to check the following limits:
 \begin{enumerate}
 	\item Number of clock ticks
@@ -6,6 +8,8 @@ Write a C/C++ POSIX compliant program to check the following limits:
 	\item Maximum number of characters in a file
 	\item Maximum number of open files
 \end{enumerate}
+
+\jobname
 
 \section{Function Reference}
 
@@ -60,7 +64,7 @@ The corresponding macros defined in <unistd.h> are minimum values; if an applica
 
 \section{Code}
 
-\lstinputlisting[style=source-file]{01GetLimits/usp01.c}
+\lstinputlisting[style=source-file]{01GetPosixConfiguration/get_posix_configuration.c}
 
 \section{Output}
 
