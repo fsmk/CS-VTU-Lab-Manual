@@ -1,0 +1,49 @@
+Write a C/C++ POSIX compliant program that prints the POSIX defined configuration options supported on any given system using feature test macros.
+
+\section{Description}
+
+\begin{description}
+
+	\item \_POSIX\_SOURCE \hfill \\
+		If you define this macro, then the functionality from the POSIX.1 standard (IEEE Standard 1003.1) is available, as well as all of the ISO C facilities.
+	\item \_POSIX\_C\_SOURCE \hfill \\
+		Define this macro to a positive integer to control which POSIX functionality is made available. The greater the value of this macro, the more functionality is made available.
+	\item \_POSIX\_JOB\_CONTROL \hfill \\
+		If this symbol is defined, it indicates that the system supports job control. Otherwise, the implementation behaves as if all processes within a session belong to a single process group. See section Job Control.
+	\item \_POSIX\_SAVED\_IDS \hfill \\
+		If this symbol is defined, it indicates that the system remembers the effective user and group IDs of a process before it executes an executable file with the set-user-ID or set-group-ID bits set, and that explicitly changing the effective user or group IDs back to these values is permitted. If this option is not defined, then if a nonprivileged process changes its effective user or group ID to the real user or group ID of the process, it can't change it back again.
+	\item \_POSIX\_CHOWN\_RESTRICTED \hfill \\
+		If this option is in effect, the chown function is restricted so that the only changes permitted to nonprivileged processes is to change the group owner of a file to either be the effective group ID of the process, or one of its supplementary group IDs. 
+	\item int \_POSIX\_NO\_TRUNC \hfill \\
+		If this option is in effect, file name components longer than NAME\_MAX generate an ENAMETOOLONG error. Otherwise, file name components that are too long are silently truncated.
+	\item \_POSIX\_VDISABLE \hfill \\
+		This option is only meaningful for files that are terminal devices. If it is enabled, then handling for special control characters can be disabled individually.
+	
+\end{description}
+
+\section{Code}
+
+\lstinputlisting[style=source-file]{02PosixConfiguration/02_posix_configuration.cc}
+
+\section{Output}
+
+Open a terminal. Change directory to the file location in the terminal.
+
+Run
+\begin{lstlisting}[style=shell-command]
+$ g++ 02_posix_configuration.cc
+\end{lstlisting}
+
+If no errors, run
+\begin{lstlisting}[style=shell-command]
+$ ./a.out
+\end{lstlisting}
+
+The output should be something like this.
+\begin{lstlisting}[style=shell-output]
+System supports POSIX job control: 1
+System supports saved set UID and GID: 1
+Chown restricted option is: 0
+Truncation option is: 1
+Disable char for terminal files
+\end{lstlisting}
