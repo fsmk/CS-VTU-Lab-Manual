@@ -2,7 +2,7 @@
 
 Write a C/C++ program that creates a zombie and then calls system to execute the ps command to verify that the process is zombie.
 
-\subsection{Theory}
+\section{Theory}
 
 In unix terminology, a process that has terminated, but whose parent has not yet waited for it, is called a zombie.
 
@@ -10,11 +10,11 @@ fork() creates a new process by duplicating the calling process. The new process
 
 system() executes a command specified in command by calling "/bin/sh -c", and returns after the command has been completed.
 
-\subsection{Code}
+\section{Code}
 
 \lstinputlisting[style=source-file]{07CreateZombie/create_zombie.c}
 
-\subsection{Output}
+\section{Output}
 
 The output will look something like this.
 
