@@ -1,0 +1,30 @@
+Write a C/C++ program to illustrate the race condition.
+
+\section{Description}
+
+A race condition occurs when multiple processes are trying to do something with shared data and the final outcome depends on the order in which the processes run. The fork function is a lively breeding ground for race conditions, if any of the logic after the fork either explicitly or implicitly depends on whether the parent or child runs first after the fork. In general, we cannot predict which process runs first. Even if we knew which process would run first, what happens after that process starts running depends on the system load and the kernel's scheduling algorithm.
+
+\section{Code}
+
+\lstinputlisting[style=source-file]{06RaceCondition/06racecondition.c}
+
+
+\section{Output}
+
+Open a terminal. Change directory to the file location in the terminal.
+
+Run
+\begin{lstlisting}[style=shell-command]
+$ gcc 06racecondition.c -o 06racecondition.out
+\end{lstlisting}
+
+If no errors, run
+\begin{lstlisting}[style=shell-command]
+$ ./06racecondition.out
+\end{lstlisting}
+
+The output should be something like this.
+\begin{lstlisting}[style=shell-output]
+output from parent
+output from child
+\end{lstlisting}

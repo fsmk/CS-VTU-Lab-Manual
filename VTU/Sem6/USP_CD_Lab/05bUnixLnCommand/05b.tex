@@ -1,0 +1,60 @@
+Write a C/C++ program to emulate the unix ln command.
+
+\section{Description}
+
+Links are created by giving alternate names to the original file. The use of links allows a large file, such as a database or mailing list, to be shared by several users without making copies of that file. Not only do links save disk space, but changes made to one file are automatically reflected in all the linked files. The ln command links the file designated in the SourceFile parameter to the file designated by the TargetFile parameter or to the same file name in another directory specified by the TargetDirectory parameter. By default, the ln command creates hard links.
+
+
+To create a link to a file named chap1, type the following:
+\begin{lstlisting}[style=shell-command]
+	$ ln -f chap1 intro
+\end{lstlisting}
+
+This links chap1 to the new name, intro. When the -f flag is used, the file name intro is created if it does not already exist. If intro does exist, the file is replaced by a link to chap1. Both the chap1 and intro file names refer to the same file.
+
+To link a file named index to the same name in another directory named manual, type the following:
+\begin{lstlisting}[style=shell-command]
+	$ ln index manual
+\end{lstlisting}
+
+This links index to the new name, manual/index. To link several files to names in another directory, type the following:
+\begin{lstlisting}[style=shell-command]
+	$ ln chap2 jim/chap3 /home/manual
+\end{lstlisting}
+
+This links chap2 to the new name /home/manual/chap2 and jim/chap3 to /home/manual/chap3.
+
+\section{Code}
+
+\lstinputlisting[style=source-file]{05bUnixLnCommand/05b_unix_ln-command.c}
+
+\section{Output}
+
+Open a terminal. Change directory to the file location in the terminal.
+
+Run
+\begin{lstlisting}[style=shell-command]
+$ g++ 05b_unix_ln-command.c
+\end{lstlisting}
+
+If no errors, run
+\begin{lstlisting}[style=shell-command]
+$ ./a.out abc.c out.c
+\end{lstlisting}
+
+Then verify the creation of hard link using
+\begin{lstlisting}[style=shell-command]
+$ ls -l
+\end{lstlisting}
+
+
+The output should be something like this.
+\begin{lstlisting}[style=shell-output]
+-rw-rw-r-- 1 fsmk fsmk  294 Jan 23 12:59 05b_unix_ln-command.c
+-rw-rw-r-- 2 fsmk fsmk    5 Jan 24 10:32 abc.c
+-rw-rw-r-- 2 fsmk fsmk    4 Jan 24 10:32 a.c
+-rwxrwxr-x 1 fsmk fsmk 7936 Jan 24 10:32 a.out
+drwxrwxr-x 2 fsmk fsmk 4096 Nov  9 10:58 dew
+-rw-rw-r-- 2 fsmk fsmk    5 Jan 24 10:43 out.c
+-rw-rw-r-- 2 fsmk fsmk    4 Jan 24 10:32 sample
+\end{lstlisting}
