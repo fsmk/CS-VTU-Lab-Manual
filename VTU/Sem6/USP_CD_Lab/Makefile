@@ -1,6 +1,6 @@
 LATEX = xelatex
 
-manual.pdf: *.tex */*.tex */*.cc
+manual.pdf: *.tex */*.tex */*.c
 	${LATEX} manual.tex
 
 .PHONY: clean
