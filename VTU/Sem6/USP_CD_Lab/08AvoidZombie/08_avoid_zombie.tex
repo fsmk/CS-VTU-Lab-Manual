@@ -1,0 +1,21 @@
+Write a C/C++ program to avoid zombie process by forking twice.
+
+\subsection{Theory}
+
+If we want to write a process so that it forks a child but we don't want to wait for the child to complete and we don't want the child to become a zombie until we terminate, the trick is to call fork twice.
+
+We call sleep in the second child to ensure that the first child terminates before printing the parent process ID. After a fork, either the parent or the child can continue executing; we never know which will resume execution first. If we didn't put the second child to sleep, and if it resumed execution after the fork before its parent, the parent process ID that it printed would be that of its parent, not process ID 1.
+
+\subsection{Code}
+
+\lstinputlisting[style=source-file]{08AvoidZombie/08_avoid_zombie.c}
+
+\subsection{Output}
+
+\begin{lstlisting}[style=shell-output]
+Second child: My parent PID is 1
+  PID  PPID S TT       COMMAND
+  315   309 S pts/0    /usr/bin/fish -i
+ 6139   315 S pts/0    ./08\_avoid\_zombie.out
+ 6142  6139 R pts/0    ps -o pid,ppid,state,tty,command
+\end{lstlisting}
