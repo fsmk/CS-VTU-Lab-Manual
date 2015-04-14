@@ -1,0 +1,10 @@
+\BOOKMARK [0][-]{chapter.1}{Limit\040Checking}{}% 1
+\BOOKMARK [1][-]{section.1.1}{Function\040Reference}{chapter.1}% 2
+\BOOKMARK [2][-]{subsection.1.1.1}{sysconf\040-\040Get\040configuration\040information\040at\040runtime}{section.1.1}% 3
+\BOOKMARK [2][-]{subsection.1.1.2}{fpathconf,\040pathconf\040-\040Get\040configuration\040values\040for\040files}{section.1.1}% 4
+\BOOKMARK [1][-]{section.1.2}{Code}{chapter.1}% 5
+\BOOKMARK [1][-]{section.1.3}{Output}{chapter.1}% 6
+\BOOKMARK [0][-]{chapter.2}{Printing\040POSIX\040defined\040configuration\040options}{}% 7
+\BOOKMARK [1][-]{section.2.1}{Description}{chapter.2}% 8
+\BOOKMARK [1][-]{section.2.2}{Code}{chapter.2}% 9
+\BOOKMARK [1][-]{section.2.3}{Output}{chapter.2}% 10
