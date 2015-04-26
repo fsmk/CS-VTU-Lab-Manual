@@ -28,7 +28,7 @@ F_GETLK, F_SETLK and F_SETLKW are used  to  acquire, release, and test for the e
         struct flock fvar;
         if(argc==1)
         {
-                printf("usage:./a.out filename\n");
+                printf("usage: %s filename\n",argv[0]);
                 return -1;
         }
         if((fd=open(argv[1],O_RDWR))==-1)
