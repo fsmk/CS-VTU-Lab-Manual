@@ -1,6 +1,6 @@
 <h2>Aim :</h2>
 
-<h3>Write a C/C++ program thgat output the contents of its Environment list.</h3>
+<h3>Write a C/C++ program that output the contents of its Environment list.</h3>
 
 <h2>Theory :</h2>
 
@@ -14,16 +14,15 @@
 
 <pre><code>
  #include&lt;stdio.h&gt;
- #include&lt;stdlib.h&gt;
  #include&lt;unistd.h&gt;
  int main(int argc,char *argv[])
  {
   int i;
   char **ptr;
   extern char **environ;
-  for(ptr=environ; *ptr!=0;ptr++)
-  printf("%s\n",*ptr);
-  exit(0);
+  for(ptr=environ; *ptr!=0; ptr++)
+    printf("%s\n",*ptr);
+  return 0;
  }
 </code></pre>
 
