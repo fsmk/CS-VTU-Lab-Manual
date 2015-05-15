@@ -21,8 +21,8 @@
   int i;
   char **ptr;
   extern char **environ;
-  for(ptr=environ; *ptr!=0;ptr++)
-  printf("%s\n",*ptr);
+  for(ptr=environ; *ptr; ptr++)
+   printf("%s\n",*ptr);
   exit(0);
  }
 </code></pre>
