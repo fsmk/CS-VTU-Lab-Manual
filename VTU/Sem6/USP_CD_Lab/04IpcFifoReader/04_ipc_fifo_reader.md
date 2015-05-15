@@ -85,14 +85,14 @@ determine the value of PIPE_BUF by using pathconf or fpathconf.</pre>
 			cout<<"usage:./a.out pipe_name\n";
 			return -1;
 		}
-		cout<<"\nFD of fifo in read mode:"<<pipe_fdendl;
+		cout<<"\nFD of fifo in read mode:"<<pipe_fd<<endl;
 	
 		if((pipe_fd=open(argv[1],O_RDONLY))!=-1)
 		{
 			res=read(pipe_fd,buffer,BUFFER_SIZE);
-			cout<<"\n data read..\n";
+			cout<<"\ndata read..\n";
 			cout<<buffer;
-			(void) close(pipe_fd);
+			close(pipe_fd);
 		}
 		else
 		{
@@ -122,17 +122,16 @@ determine the value of PIPE_BUF by using pathconf or fpathconf.</pre>
 	#define BUFFER_SIZE PIPE_BUF
 	int main(int argc,char *argv[])
 	{
-			int pipe_fd,res;
-			char buffer[BUFFER_SIZE+1];
-			if(argc!=2)
-			{
-				cout<<"usage:./a.out pipe_name\n";
-				return 1;
-			}
-			if(access(argv[1],F_OK)==-1)
-			{
-				res=mkfifo(argv[1],0777);
-			if(res!=0)
+		int pipe_fd;
+		char buffer[BUFFER_SIZE+1];
+		if(argc!=2)
+		{
+			cout<<"usage:./a.out pipe_name\n";
+			return 1;
+		}
+		if(access(argv[1],F_OK)==-1)
+		{
+			if(mkfifo(argv[1],0777))
 			{
 				perror("\nmkfifo error\n");
 				exit(0);
