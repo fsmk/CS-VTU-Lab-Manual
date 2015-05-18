@@ -17,11 +17,10 @@ An initiative by [Free Software Movement Karnataka](http://fsmk.org/), this proj
 
 #Contributing
 
-1. Read the 'SubmittingPatches' document for guidelines on contribution.
+1. Read [Guidelines for Contribution](https://github.com/fsmk/CS-VTU-Lab-Manual/wiki/Guidelines-for-Contribution) for guidelines on writing good commit messages.
 2. [Fork it](https://github.com/fsmk/CS-VTU-Lab-Manual/fork)
 3. Please check the appropriate University/Semester/Subject.
   If the Subject is not present then add that particular folder in that semester.
 4. Update the syllabus.md file present in that subject folder, if not present please add it.
 5. Check the Syllabus.md file if the program is being added or not. It can be checked by seeing whether their is link to the program file in the directory or not.
 6. Create new [Pull Request](https://help.github.com/articles/using-pull-requests).
-
