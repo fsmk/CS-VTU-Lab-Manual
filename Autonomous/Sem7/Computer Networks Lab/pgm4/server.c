@@ -1,67 +1,55 @@
-// for std C functions
-#include <stdio.h>
-#include <stdlib.h>
-
-// for general Unix apis
-#include <unistd.h>
-#include <sys/types.h>
-
-// for file apis
-#include <sys/stat.h>
-#include <fcntl.h>
-
-// for socket apis
-#include <netinet/in.h>
-#include <sys/socket.h>
-
+#include<string.h>
+#include<stdio.h>
+#include<netinet/in.h>
 int main(){
-    int server, client, fd, count;
-    int buflen = 1024;
-    char *buf = malloc(buflen);
-    char fname[256];
-    struct sockaddr_in address;
-    
-    server = socket(AF_INET, SOCK_STREAM, 0);
-    if(server < 0){
-        printf("Couldnot create socket");
-        return -1;
-    }
-    printf("The socket was created\n");
-    address.sin_family = AF_INET;
-    address.sin_addr.s_addr = INADDR_ANY;
-    address.sin_port = htons(15000);
-    
-    printf("Binding Socket\n");
-    if(bind(server, (struct sockaddr*)&address, sizeof(address)) != 0){
-        printf("Error binding address to server");
-        return -1;
-    }
-    printf("Done\n");
+	int sockfd,newsockfd,portno;
+	char buffer[256],fname[20];	
+	struct sockaddr_in cli;
+	FILE *fptr;
 
-    listen(server, 3);
-    printf("Server started\n");
-    int len = sizeof(address);
-    client = accept(server, (struct sockaddr*)&address, &len);
-    if(client > 0){
-        printf("Client connected\n");
-        
-        // Receiving filename
-        recv(client, fname, 255, 0);
-        
-        //Opening file
-        if ((fd = open(fname, O_RDONLY)) < 0){
-            perror("File Open Failed"); 
-            return 0;
+	printf("This is server\n");
+	printf("Enter server port number  : ");
+	scanf("%d",&portno);
+	
+	sockfd=socket(AF_INET,SOCK_STREAM,0);
+	bzero(&cli,sizeof(cli));
+	cli.sin_family=AF_INET;
+	cli.sin_addr.s_addr=INADDR_ANY;
+	cli.sin_port=htons(portno);
+
+	bind(sockfd,(struct sockaddr *)&cli,sizeof(cli));
+		
+	printf("\nNow server is up wating for client");
+	
+	listen(sockfd,1);
+	
+	while(1){
+		newsockfd=accept(sockfd,NULL,NULL);               
+		printf("\n New client requested it sockfd  =  %d",newsockfd);
+		bzero(fname,20);
+		close(sockfd);
+
+     	read(newsockfd,fname,20);
+    	printf("\nClient requesting %s file content\n\n",fname);
+
+		if((fptr=fopen(fname,"r"))==NULL){		  
+         	printf("\nSERVER:file not found");
+		    strcpy(buffer, "File not Found vijay");
+            write(newsockfd, buffer, strlen(buffer));
+            close(newsockfd);
+	 	    fclose(fptr);
+         	return 0;   
         }
+	
+   	printf("\nServer : Following information is sent to the client \n\n\n");
 
-        //Reading contents and sending
-        while((count = read(fd, buf, buflen)) > 0) {
-            send(client, buf, buflen, 0);
-        }
-
-        printf("Data sent\n");
-        close(client);
-        close(server);
-    }
+    while(fgets(buffer,79,fptr)!=NULL){
+        write(newsockfd, buffer, strlen(buffer));
+	    printf("%s",buffer);
+	}
+	      
+    close(fptr);
+    close(newsockfd);
     return 0;
+    }    
 }
