@@ -12,6 +12,8 @@ Environment variables are a set of dynamic named values that can affect the way 
 
 \lstinputlisting[style=source-file]{05aEnvironmentVariables/environment_variables.c}
 
+environ is an array of character pointers to the environment strings. The environ array is terminated by a NULL pointer. The loop in lines 7 - 8 iterates through the environ array printing the value of each environment variable. The loop stops when the terminating NULL pointer is reached.
+
 \section{Output}
 
 Open a terminal. Change directory to the file location in the terminal.
