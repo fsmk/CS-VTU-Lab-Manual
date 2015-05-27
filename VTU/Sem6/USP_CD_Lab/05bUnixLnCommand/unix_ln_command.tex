@@ -30,6 +30,12 @@ This links chap2 to the new name /home/manual/chap2 and jim/chap3 to /home/manua
 
 \lstinputlisting[style=source-file]{05bUnixLnCommand/unix_ln_command.c}
 
+Line 2 includes unistd.h required for the link function.
+
+Lines 6 - 9 check for the correct number of command line arguments. If the number of command line arguments supplied is incorrect, the correct usage format is printed.
+
+Lines 10 - 13 try to link the specified source and destination files. If the linking files, an error message is printed.
+
 \section{Output}
 
 Open a terminal. Change directory to the file location in the terminal.
