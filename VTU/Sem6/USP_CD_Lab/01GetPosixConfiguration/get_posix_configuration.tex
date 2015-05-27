@@ -9,8 +9,6 @@ Write a C/C++ POSIX compliant program to check the following limits:
 	\item Maximum number of open files
 \end{enumerate}
 
-\jobname
-
 \section{Function Reference}
 
 \subsection{sysconf - Get configuration information at runtime}
@@ -65,6 +63,10 @@ The corresponding macros defined in <unistd.h> are minimum values; if an applica
 \section{Code}
 
 \lstinputlisting[style=source-file]{01GetPosixConfiguration/get_posix_configuration.c}
+
+Line 2 includes unistd.h which is required for functions sysconf and pathconf.
+
+Lines 6 - 10 print the required parameters by querying them with appropriate calls to sysconf and pathconf.
 
 \section{Output}
 
