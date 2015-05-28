@@ -2,9 +2,9 @@
 
 int main (int argc, char *argv[])
 {
+	int i = 0;
 	extern char **environ;
-	char **ptr;
-	for (ptr = environ; *ptr != NULL; ptr++)
-		printf("%s\n", *ptr);
+	while (environ[i])
+		printf("%s\n", environ[i++]);
 	return 0;
 }
