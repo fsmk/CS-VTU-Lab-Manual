@@ -2,16 +2,15 @@
 ### Program to recursively subdivide a tetrahedron to from 3D Sierpinski gasket. The number of recursive steps is to be specified by the user.
 
 ##Theory
-> A geometric method of creating the gasket is to start with a triangle and cut out the middle piece as shown in the generator below. This results in three smaller triangles to which the process is continued. The nine resulting smaller triangles are cut in the same way, and so on, indefinitely. The gasket is perfectly self similar, an attribute of many fractal images. Any triangular portion is an exact replica of the whole gasket
+> A geometric method of creating the gasket is to start with a vertex of the object and get all the mid points to the other verticies. This results in smaller strucure of the original geometric object (repete for all the verticies). For another itteration take the smaller object ang perform the same as above. The gasket is perfectly self similar, an attribute of many fractal images. Any portion is an exact replica of the phase of the gasket
 > The construction of the 3 dimensional version of the gasket follows similar rules for the 2D case except that the building blocks are square based pyramids instead of triangles.
 
 ## Algorithm: 
-1. Start with a single triangle.
-2. Inside this triangle, draw a smaller upside down triangle. It's corners should be exactly in the centers of the sides of the large triangle
-3. Now, draw 3 smaller triangles in each of the 3 triangles that are pointing upwards, again with the corners in the centers of the sides of the triangles that point upwards
-4. Now there are 9 triangles pointing upwards. In each of these 9, draw again smaller upside down triangles.
-5. In the 27 triangles pointing upwards, again draw 27 triangles pointing downwards.
-6. repeat
+1. Start with a tetrahedron.
+2. Inside this take the edges, calculate there mid points.
+3. Now, the from each original vertex costrict a new tetrahedron consiating of vertex(original,midpoint,midpoint,midpoint)
+4. repete it recursively (till m>0)
+6. at m = 0 draw all the leaf nodes of the recursive tree
 
 ## Code: sierpanski.c
     #include<stdio.h>
@@ -22,63 +21,53 @@
                  {-0.816497,-0.471405,-0.333333},
                  {0.816497,-0.471405,-0.333333}
                  };
-    static GLfloat theta[] = {0.0,0.0,0.0};
     int n;
-    
-    void triangle(point a,point b,point c)
+    void draw_triangle(point a,point b,point c)
     {
       glBegin(GL_POLYGON);
-      glNormal3fv(a);
       glVertex3fv(a);
       glVertex3fv(b);
       glVertex3fv(c);
       glEnd();
     }
-  
-    void divide_triangle(point a,point b,point c,int m)
-    {
-      point v1,v2,v3;
-      int j;
-      
-      //repeat 'm' no of times as specified by user
-      if(m>0)		
-      {
-        for(j=0;j<3;j++)
-          // get midpoint of first edge
-          v1[j]=(a[j]+b[j])/2;		
-        for(j=0;j<3;j++)
-          // get midpoint of second edge
-          v2[j]=(a[j]+c[j])/2;		
-        for(j=0;j<3;j++)
-          // get midpoint of third edge
-          v3[j]=(b[j]+c[j])/2;		
-        
-        // consider midpoints as vertex and divide bigger triangle 
-        // to 3 parts recursively
-        divide_triangle(a,v1,v2,m-1);	
-        divide_triangle(c,v2,v3,m-1);
-        divide_triangle(b,v3,v1,m-1);
-      }
-      //draw the sub divided traingles
-      else 
-      {
-        (triangle(a,b,c));		
-      }
+    
+    void midpoint(point save,point a,point b) {// one can use c also
+      save[0]=(a[0]+b[0])/2;
+      save[1]=(a[1]+b[1])/2;
+      save[2]=(a[2]+b[2])/2;
     }
     
-    // tetrahedron has 4 faces. each face is traingle. we send each 
-    // face of tetrahedron and divide each faces/triangles into 3 
-    // triangles recursively 'm' times
-    void tetrahedron(int m)
+    void divide_tetrahedron(point a,point b,point c,point d,int m)
     {
-    glColor3f(1.0,0.0,0.0);
-      divide_triangle(v[0],v[1],v[2],m);
-    glColor3f(0.0,1.0,0.0);
-      divide_triangle(v[3],v[2],v[1],m);
-    glColor3f(0.0,0.0,1.0);
-      divide_triangle(v[0],v[3],v[1],m);
-    glColor3f(0.0,0.0,0.0);
-      divide_triangle(v[0],v[2],v[3],m);
+      point ab,ac,ad,bc,bd,cd;
+      
+      //repeat 'm' no of times as specified by user
+      if(m>0) {
+        midpoint(ab,a,b);
+        midpoint(ac,a,c);
+        midpoint(ad,a,d);
+        midpoint(bc,b,c);
+        midpoint(bd,b,d);
+        midpoint(cd,c,d);        
+        // consider midpoints as vertex and divide bigger triangle 
+        // to 3 parts recursively
+        divide_tetrahedron(a,ab,ac,ad,m-1);	
+        divide_tetrahedron(b,ab,bc,bd,m-1);
+        divide_tetrahedron(c,ac,bc,cd,m-1);
+        divide_tetrahedron(d,ad,bd,cd,m-1);
+        //note if u want the colors of phases to align just adjudt the above points
+      }
+      //draw the sub divided traingles
+      else {
+        glColor3f(1.0,0.0,0.0);
+        draw_triangle(a,b,c);
+        glColor3f(0.0,0.0,1.0);
+        draw_triangle(a,c,d);
+        glColor3f(0.0,1.0,0.0);
+        draw_triangle(c,b,d);
+        glColor3f(0.0,0.0,0.0);
+        draw_triangle(a,b,d);
+      }
     }
     
     //this is called everytime the display is refreshed. Here it draw a tetrahedron.
@@ -86,10 +75,9 @@
     {
       glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
       glLoadIdentity();
-      tetrahedron(n);
+      divide_tetrahedron(v[0],v[1],v[2],v[3],n);
       glFlush();
     }
-    
     
     // This function is executed when the wiindow size is changed. 
     void myReshape(int w,int h)
@@ -105,7 +93,6 @@
       glutPostRedisplay();
     }
     
-    
     int main(int argc,char **argv)
     {
       printf("no. of divisions \n");
@@ -120,6 +107,7 @@
       glClearColor(1.0,1.0,1.0,1.0);
       glutMainLoop();
     }
+
 
 ## Output:
 *Commands for execution:-*
