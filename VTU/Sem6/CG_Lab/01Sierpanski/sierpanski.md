@@ -31,7 +31,7 @@
       glEnd();
     }
     
-    void midpoint(point save,point a,point b) {// one can use c also
+    void midpoint(point save,point a,point b) {
       save[0]=(a[0]+b[0])/2;
       save[1]=(a[1]+b[1])/2;
       save[2]=(a[2]+b[2])/2;
@@ -52,9 +52,9 @@
         // consider midpoints as vertex and divide bigger triangle 
         // to 3 parts recursively
         divide_tetrahedron(a,ab,ac,ad,m-1);	
-        divide_tetrahedron(b,ab,bc,bd,m-1);
-        divide_tetrahedron(c,ac,bc,cd,m-1);
-        divide_tetrahedron(d,ad,bd,cd,m-1);
+        divide_tetrahedron(ab,b,bc,bd,m-1);
+        divide_tetrahedron(ac,bc,c,cd,m-1);
+        divide_tetrahedron(ad,bd,cd,d,m-1);
         //note if u want the colors of phases to align just adjudt the above points
       }
       //draw the sub divided traingles
