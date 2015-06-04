@@ -31,7 +31,7 @@ Syntax:
 
 
 ##Code:
-	#include&lt;stdio.h&gt; 
+	\#include&lt;unistd.h&gt;
 	#include<unistd.h>
 	#include<stdlib.h>
 	int main()
