@@ -18,25 +18,31 @@ become a zombie until we terminate, the trick is to call fork twice.</p>
 
 ##Code:
 
-<pre><code>#include&lt;stdio.h&gt;
-#include&lt;stdlib.h&gt;
-#include&lt;unistd.h&gt;
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;unistd.h&gt;
+
 int main()
 {
-        int pid;
-        if((pid=fork())&lt;0)
-                printf("fork error\n");
-        else if(pid==0)
-        {
-                if((pid=fork())&lt;0)
-                        printf("fork error\n");
-                else if(pid&lt;0)
-                        _exit(0);
-                sleep(2);
-                printf("second child,parent pid:%d\n",getppid());
-                _exit(0);
-        }
-        _exit(0);
+	int pid;
+	pid = fork();
+
+	if (pid == 0) {
+		// First child
+		pid = fork();
+		if (pid == 0) {
+			// Second child
+			sleep(1);
+			printf("Second child: My parent PID is %d\n", getppid());
+		}
+	}
+	else {
+		// Parent process
+		wait(NULL);
+		sleep(2);
+		system("ps -o pid,ppid,state,tty,command");
+	}
+	return 0;
 }
 </code></pre>
 
@@ -49,7 +55,3 @@ int main()
     <li> Run "gcc usp06.c -o usp08.out" in the terminal.</li>
     <li> If no errors, run "./usp08.out"</li>
 </ul>
-
-##Screenshot:
-
-![not available](usp-lab-08.png "usp08 screenshot") 
