@@ -47,54 +47,55 @@ time stamps and sends back as fast as possible.
 3. Accept the input distance matrix from the user (*dm[][]*) that represents the distance between each node in the network.
 4. Store the distance between nodes in a suitable varible.
 5. Calculate the minimum distance between two nodes by iterating.
-	* If the distance between two nodes is larger than the calculated alternate available path, replace the existing distance with the calculated distaance. 
+    * If the distance between two nodes is larger than the calculated alternate available path, replace the existing distance with the calculated distaance.
 6. Print the shortest path calculated.
 7. Stop.
 
 ## Code: filename.cpp
-    #include<iostream> 
+
+    #include<iostream>
     #include<stdio.h>
     using namespace std;
     struct node // C1: define structure
     {
-    	int dist[20];
-    	int from[20];
-     }rt[10]; // C2: structure variable
+        int dist[20];
+        int from[20];
+    } rt[10]; // C2: structure variable
     int main()
     {
-    	int dm[20][20]; 
-    	int i,j,k,n,src,dest,count=0;
-    	cout<<"enter no of nodes:"<<endl;
-    	cin>>n;
-    	cout<<"Enter distance matrix:"<<endl;
-    	for(i=0;i<n;i++) // C3: input matrix
-    		for(j=0;j<n;j++)
-    		{
-    			cin>>dm[i][j];
-    			dm[i][i]=0;
-    			rt[i].dist[j]=dm[i][j]; // C4: node allocations
-    			rt[i].from[j]=j;
-    		}
-    	do
-    	{
-    		count=0;
-    		for(i=0;i<n;i++)
-    			for(j=0;j<n;j++)
-    				for(k=0;k<n;k++)
-    					if((rt[i].dist[j])>(dm[i][k]+rt[k].dist[j])) // C5: check & calculate minumum distance between each node
-    					{
-    						rt[i].dist[j]=rt[i].dist[k]+rt[k].dist[j];
-    						rt[i].from[j]=k;
-    						count++;
-    					}
-    	}while(count!=0);
-    	for(i=0;i<n;i++) // C6: Display the shortest path calculated between the nodes
-    	{
-    		cout<<"Router info for router "<<i+1<<endl;
-     		printf("Dest\tNext Hop\tDist\n");
-     		for(j=0;j<n;j++)
-     			printf("%d\t%d\t\t%d\n",j+1,rt[i].from[j]+1,rt[i].dist[j]);
-     	}
+        int dm[20][20];
+        int i, j, k, n, src, dest, flag = 0;
+        cout << "Enter no of nodes:" << endl;
+        cin >> n;
+        cout << "Enter distance matrix:" << endl;
+        for(i = 0; i < n; i++) // C3: input matrix
+            for(j = 0; j < n; j++)
+            {
+                cin >> dm[i][j];
+                dm[i][i] = 0;
+                rt[i].dist[j] = dm[i][j]; // C4: node allocations
+                rt[i].from[j] = j;
+            }
+        do
+        {
+            flag = 0;
+            for(i = 0; i < n; i++)
+                for(j = 0; j < n; j++)
+                    for(k = 0; k < n; k++)
+                        if((rt[i].dist[j]) > (rt[i].dist[k] + rt[k].dist[j])) // C5: check & calculate minumum distance between each node
+                        {
+                            rt[i].dist[j] = rt[i].dist[k] + rt[k].dist[j];
+                            rt[i].from[j] = k;
+                            flag = 1;
+                        }
+        } while(flagt != 0);
+        for(i = 0; i < n; i++) // C6: Display the shortest path calculated between the nodes
+        {
+            cout << "Router info for router " << i + 1 << endl;
+            printf("Dest\tNext Hop\tDist\n");
+            for(j = 0; j < n; j++)
+                printf("%d\t%d\t\t%d\n", j+1, rt[i].from[j]+1, rt[i].dist[j]);
+        }
     return 0;
     }
 
