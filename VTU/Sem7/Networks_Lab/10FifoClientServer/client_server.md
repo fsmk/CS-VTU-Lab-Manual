@@ -61,18 +61,16 @@ contents are displayed.
 			int req,res,n,file;
 			mkfifo("req.fifo",0777);/*creates a fifo file of permission 777*/
 			mkfifo("res.fifo",0777);
-			printf("waiting for request...\n");
+			printf("Waiting for request...\n");
 			req=open("req.fifo",O_RDONLY);/*opens a read-only file req.fifo and stores the file descriptor value in req*/
 			res=open("res.fifo",O_WRONLY);/*opens a read-only file res.fifo and stores the file descriptor value in res*/
 			read(req,fname,sizeof(fname));/* reads the content of the file req.fifo by referencing the file descriptor value req and stores it in fname array*/
-			printf("received request for %s\n",fname);
+			printf("Received request for %s\n",fname);
 			file=open(fname,O_RDONLY);/*opens fname as Read-only*/
 			if(file<0)
 				write(res,"File not found\n",15);
-			else
-			{
-				while((n=read(file,buffer,sizeof(buffer)))>0)
-				{
+			else{
+				while((n=read(file,buffer,sizeof(buffer)))>0){
 					write(res,buffer,n);
 				}
 			}
@@ -87,6 +85,7 @@ contents are displayed.
 
 		#include<stdio.h>
 		#include<unistd.h>
+		#include<stdlib.h>
 		#include<fcntl.h>/*used for file handling*/
 		#include<sys/stat.h>/*used to access mkfifo() method*/
 		#include<sys/types.h>/*when compiled in gcc, mkfifo() has dependency on both types.h and stat.h*/
@@ -96,13 +95,16 @@ contents are displayed.
 			int req,res,n;
 			req=open("req.fifo",O_WRONLY);/*opens a write&read-only file req.fifo and stores the file descriptor value in req*/
 			res=open("res.fifo",O_RDONLY);/*opens a read-only file req.fifo and stores the file descriptor value in res*/
-			printf("enter filename to request:\n");
+			if(req<0 || res<0){
+				printf("Please Start the server first\n");
+				exit(-1);
+			}
+			printf("Enter filename to request:\n");
 			scanf("%s",fname);
 			write(req,fname,sizeof(fname));/*writes into fname*/
-			printf("received response\n");
-			while((n=read(res,buffer,sizeof(buffer)))>0)
-			{
-				write(1,buffer,n);/*writes content into the buffer*/
+			printf("Received response\n");
+			while((n=read(res,buffer,sizeof(buffer)))>0){
+				printf("%s", buffer);/*writes content into the buffer*/
 			}
 			close(req);/*close the file*/
 			close(res);
