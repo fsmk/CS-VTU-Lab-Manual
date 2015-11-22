@@ -88,7 +88,7 @@ time stamps and sends back as fast as possible.
                             rt[i].from[j] = k;
                             flag = 1;
                         }
-        } while(flagt != 0);
+        } while(flag != 0);
         for(i = 0; i < n; i++) // C6: Display the shortest path calculated between the nodes
         {
             cout << "Router info for router " << i + 1 << endl;
