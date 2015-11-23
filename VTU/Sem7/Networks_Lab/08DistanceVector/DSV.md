@@ -53,51 +53,59 @@ time stamps and sends back as fast as possible.
 
 ## Code: filename.cpp
 
-    #include<iostream>
-    #include<stdio.h>
-    using namespace std;
-    struct node // C1: define structure
-    {
-        int dist[20];
-        int from[20];
-    } rt[10]; // C2: structure variable
-    int main()
-    {
-        int dm[20][20];
-        int i, j, k, n, src, dest, flag = 0;
-        cout << "Enter no of nodes:" << endl;
-        cin >> n;
-        cout << "Enter distance matrix:" << endl;
-        for(i = 0; i < n; i++) // C3: input matrix
-            for(j = 0; j < n; j++)
-            {
-                cin >> dm[i][j];
-                dm[i][i] = 0;
-                rt[i].dist[j] = dm[i][j]; // C4: node allocations
-                rt[i].from[j] = j;
-            }
-        do
-        {
-            flag = 0;
-            for(i = 0; i < n; i++)
-                for(j = 0; j < n; j++)
-                    for(k = 0; k < n; k++)
-                        if((rt[i].dist[j]) > (rt[i].dist[k] + rt[k].dist[j])) // C5: check & calculate minumum distance between each node
-                        {
-                            rt[i].dist[j] = rt[i].dist[k] + rt[k].dist[j];
-                            rt[i].from[j] = k;
-                            flag = 1;
-                        }
-        } while(flag != 0);
-        for(i = 0; i < n; i++) // C6: Display the shortest path calculated between the nodes
-        {
-            cout << "Router info for router " << i + 1 << endl;
-            printf("Dest\tNext Hop\tDist\n");
-            for(j = 0; j < n; j++)
-                printf("%d\t%d\t\t%d\n", j+1, rt[i].from[j]+1, rt[i].dist[j]);
-        }
-    return 0;
-    }
+```cpp
+#include <iostream>
+#include <stdio.h>
+
+using namespace std;
+
+struct node {
+	int dist[20];
+	int from[20];
+} route[10];
+
+int main()
+{
+	int dm[20][20], no;
+
+	cout << "Enter no of nodes." << endl;
+	cin >> no;
+	cout << "Enter the distance matrix:" << endl;
+	for (int i = 0; i < no; i++) {
+		for (int j = 0; j < no; j++) {
+			cin >> dm[i][j];
+			/*  Set distance from i to i as 0 */
+			dm[i][i] = 0;
+			route[i].dist[j] = dm[i][j];
+			route[i].from[j] = j;
+		}
+	}
+
+	int flag;
+	do {
+		flag = 0;
+		for (int i = 0; i < no; i++) {
+			for (int j = 0; j < no; j++) {
+				for (int k = 0; k < no; k++) {
+					if ((route[i].dist[j]) > (route[i].dist[k] + route[k].dist[j])) {
+						route[i].dist[j] = route[i].dist[k] + route[k].dist[j];
+						route[i].from[j] = k;
+						flag = 1;
+					}
+				}
+			}
+		}
+	} while (flag);
+
+	for (int i = 0; i < no; i++) {
+		cout << "Router info for router: " << i + 1 << endl;
+		cout << "Dest\tNext Hop\tDist" << endl;
+		for (int j = 0; j < no; j++)
+			printf("%d\t%d\t\t%d\n", j+1, route[i].from[j]+1, route[i].dist[j]);
+	}
+	return 0;
+}
+```
 
 ## Output:
 *Commands for execution:-*
