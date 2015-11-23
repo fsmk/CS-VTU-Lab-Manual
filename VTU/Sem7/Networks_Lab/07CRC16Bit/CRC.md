@@ -24,54 +24,54 @@ The technique is also sometimes applied to data storage devices, such as a disk 
 ## Code:
 
 ```c
-#include<iostream>/*includes input, output streams for C++ programs*/
-#include<stdio.h>
-#include<string.h>/*helps in accessing string modifying functions*/
+#include <iostream>
+#include <string.h>
 
 using namespace std;
 
-int crc(char *input,char *output,const char *gp,int mode)
+int crc(char *ip, char *op, char *poly, int mode)
 {
-	int j,k;
-	strcpy(output,input);/*copy contents of input to output*/
-	if(mode)/*if mode == 1, then continue. 1 is interpreted as boolean value `TRUE`*/
-	{
-		for(j=1; j<strlen(gp); j++)
-			strcat(output,"0");/*append output with 0`s depending on the length of gp. here it is 17*/
+	strcpy(op, ip);
+	if (mode) {
+		for (int i = 1; i < strlen(poly); i++)
+			strcat(op, "0");
 	}
-	for(j=0; j<strlen(input); j++)/*This is XOR operation using iteration and comparison*/
-		if(*(output+j) == '1')
-			for(k=0; k<strlen(gp); k++)
-			{
-				if (((*(output+j+k) =='0') && (gp[k] == '0') ||	(*(output+j+k) == '1') && (gp[k] == '1')))
-					*(output+j+k)='0';
+	/* Perform XOR on the msg with the selected polynomial */
+	for (int i = 0; i < strlen(ip); i++) {
+		if (op[i] == '1') {
+			for (int j = 0; j < strlen(poly); j++) {
+				if (op[i + j] == poly[j])
+					op[i + j] = '0';
 				else
-					*(output+j+k)='1';
+					op[i + j] = '1';
 			}
-	for(j=0; j<strlen(output); j++)
-		if(output[j] == '1')
-			return 1;
-	return 0;
+		}
+	}
+	/* check for errors. return 0 if error detected */
+	for (int i = 0; i < strlen(op); i++)
+		if (op[i] == '1')
+			return 0;
+	return 1;
 }
 
 int main()
 {
-	char input[50],output[50],recv[50];
-	const char gp[18]="10001000000100001";
-	cout<<"\nEnter the input message in binary\n";
-	cin>>input;
-	crc(input,output,gp,1);
-	cout<<"\nThe transmitted message is: "<<input<<output+strlen(input)<<"\n";
-	cout<<"\n\nEnter the recevied message in binary \n";
-	cin>>recv;
-	if(!crc(recv,output,gp,0))
-		cout<<"\nNo error in data\n";
+	char ip[50], op[50], recv[50];
+	char poly[] = "10001000000100001";
+
+	cout << "Enter the input message in binary"<< endl;
+	cin >> ip;
+	crc(ip, op, poly, 1);
+	cout << "The transmitted message is: " << ip << op + strlen(ip) << endl;
+	cout << "Enter the recevied message in binary" << endl;
+	cin >> recv;
+	if (crc(recv, op, poly, 0))
+		cout << "No error in data" << endl;
 	else
-		cout<<"\nError in data transmission has occurred\n";
+		cout << "Error in data transmission has occurred" << endl;
 
 	return 0;
 }
-
 ```
 
 ###Output:
