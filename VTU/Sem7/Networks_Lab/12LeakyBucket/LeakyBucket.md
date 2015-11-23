@@ -38,65 +38,68 @@ network, smoothing out bursts and greatly reducing the chances of congestion.
 5. Repeat the process of transmission until all packets are transmitted. (Reject packets where its size is greater than the bucket size)
 6. Stop
 
-### Code:
-'''
+### Code (Alternate solution given at the end):
+```c
+#include<stdio.h>
+#include<stdlib.h>
+#include<unistd.h>
 
-    #include<stdio.h>
-    #include<stdlib.h>
-    #include<unistd.h>
-    #define NOF_PACKETS 10
-    int rand(int a)
-    {
-      int rn = (random()%10)%a;
-      return  rn == 0 ? 1 : rn;
-    }
-    int main()
-    {
-      int packet_sz[NOF_PACKETS],i,clk,b_size,o_rate,p_sz_rm=0,p_sz,p_time,op;
-      for(i=0;i<NOF_PACKETS;++i)
-        packet_sz[i]=rand(6)*10;
-      for(i=0;i<NOF_PACKETS;++i)
-        printf("\npacket[%d]:%d bytes\t",i,packet_sz[i]);
-      printf("\nEnter the Output rate:");
-      scanf("%d",&o_rate);
-      printf("Enter the Bucket Size:");
-      scanf("%d",&b_size);
-      for(i=0; i<NOF_PACKETS; ++i)
-      {
-        if( (packet_sz[i] + p_sz_rm) > b_size)
-          if(packet_sz[i] > b_size)/*compare the packet siz with bucket size*/
-            printf("\n\nIncoming packet size (%dbytes) is Greater than bucket capacity (%dbytes)-PACKET REJECTED",packet_sz[i],b_size);
-          else
-            printf("\n\nBucket capacity exceeded-PACKETS REJECTED!!");
-        else
-        {
-          p_sz_rm += packet_sz[i];
-          printf("\n\nIncoming Packet size: %d",packet_sz[i]);
-          printf("\nBytes remaining to Transmit: %d",p_sz_rm);
-          p_time = rand(4)*10;
-          printf("\nTime left for transmission: %d units",p_time);
-          for(clk=10; clk<=p_time; clk+=10)
-          {
-            sleep(1);
-            if(p_sz_rm)
-            {
-              if(p_sz_rm <= o_rate)/*packet size remaining comparing with output rate*/
-                op = p_sz_rm,p_sz_rm = 0;
-              else
-                op = o_rate,p_sz_rm -= o_rate;
-              printf("\nPacket of size %d Transmitted",op);
-              printf("----Bytes Remaining to Transmit: %d",p_sz_rm);
-            }
-            else
-            {
-              printf("\nTime left for transmission: %d units",p_time-clk);
-              printf("\nNo packets to transmit!!");
-            }
-          }
-        }
-      }
-    }
-'''
+#define NOF_PACKETS 10
+
+int rand(int a)
+{
+	int rn = (random() % 10) % a;
+	return  rn == 0 ? 1 : rn;
+}
+
+int main()
+{
+	int packet_sz[NOF_PACKETS], i, clk, b_size, o_rate, p_sz_rm=0, p_sz, p_time, op;
+	for(i = 0; i<NOF_PACKETS; ++i)
+		packet_sz[i] = rand(6) * 10;
+	for(i = 0; i<NOF_PACKETS; ++i)
+		printf("\npacket[%d]:%d bytes\t", i, packet_sz[i]);
+	printf("\nEnter the Output rate:");
+	scanf("%d", &o_rate);
+	printf("Enter the Bucket Size:");
+	scanf("%d", &b_size);
+	for(i = 0; i<NOF_PACKETS; ++i)
+	{
+		if( (packet_sz[i] + p_sz_rm) > b_size)
+			if(packet_sz[i] > b_size)/*compare the packet siz with bucket size*/
+				printf("\n\nIncoming packet size (%dbytes) is Greater than bucket capacity (%dbytes)-PACKET REJECTED", packet_sz[i], b_size);
+			else
+				printf("\n\nBucket capacity exceeded-PACKETS REJECTED!!");
+		else
+		{
+			p_sz_rm += packet_sz[i];
+			printf("\n\nIncoming Packet size: %d", packet_sz[i]);
+			printf("\nBytes remaining to Transmit: %d", p_sz_rm);
+			p_time = rand(4) * 10;
+			printf("\nTime left for transmission: %d units", p_time);
+			for(clk = 10; clk <= p_time; clk += 10)
+			{
+				sleep(1);
+				if(p_sz_rm)
+				{
+					if(p_sz_rm <= o_rate)/*packet size remaining comparing with output rate*/
+						op = p_sz_rm, p_sz_rm = 0;
+					else
+						op = o_rate, p_sz_rm -= o_rate;
+					printf("\nPacket of size %d Transmitted", op);
+					printf("----Bytes Remaining to Transmit: %d", p_sz_rm);
+				}
+				else
+				{
+					printf("\nTime left for transmission: %d units", p_time-clk);
+					printf("\nNo packets to transmit!!");
+				}
+			}
+		}
+	}
+}
+
+```
 
 ###Output:
 *Commands for execution:-*
@@ -112,5 +115,30 @@ network, smoothing out bursts and greatly reducing the chances of congestion.
 ![ScreenShot of Output](leakybucket2.png)
 ![ScreenShot of Output](leakybucket3.png)
 
+###Alternate solution where we manually input each packet
+```c
+#include<stdio.h>
 
+int main(){
+	int incoming, outgoing, buck_size, n, store = 0;
+	printf("Enter bucket size, outgoing rate and no of inputs: ");
+	scanf("%d %d %d", &buck_size, &outgoing, &n);
 
+	while (n != 0) {
+		printf("Enter the incoming packet size : ");
+		scanf("%d", &incoming);
+		printf("Incoming packet size %d\n", incoming);
+		if (incoming <= (buck_size - store)){
+			store += incoming;
+			printf("Bucket buffer size %d out of %d\n", store, buck_size);
+		} else {
+			printf("Dropped %d no of packets\n", incoming - (buck_size - store));
+			printf("Bucket buffer size %d out of %d\n", store, buck_size);
+			store = buck_size;
+		}
+		store = store - outgoing;
+		printf("After outgoing %d packets left out of %d in buffer\n", store, buck_size);
+		n--;
+	}
+}
+```
