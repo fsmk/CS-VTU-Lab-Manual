@@ -22,26 +22,28 @@ The technique is also sometimes applied to data storage devices, such as a disk 
 6. End 
 
 ## Code:
-<code>
 
-    #include<iostream>/*includes input, output streams for C++ programs*/
-    #include<stdio.h>
-    #include<string.h>/*helps in accessing string modifying functions*/
-    using namespace std;
-    int crc(char *input,char *output,const char *gp,int mode)
-    {
+```c
+#include<iostream>/*includes input, output streams for C++ programs*/
+#include<stdio.h>
+#include<string.h>/*helps in accessing string modifying functions*/
+
+using namespace std;
+
+int crc(char *input,char *output,const char *gp,int mode)
+{
 	int j,k;
 	strcpy(output,input);/*copy contents of input to output*/
 	if(mode)/*if mode == 1, then continue. 1 is interpreted as boolean value `TRUE`*/
 	{
-		for(j=1; j<strlen(gp); j++) 
+		for(j=1; j<strlen(gp); j++)
 			strcat(output,"0");/*append output with 0`s depending on the length of gp. here it is 17*/
 	}
 	for(j=0; j<strlen(input); j++)/*This is XOR operation using iteration and comparison*/
 		if(*(output+j) == '1')
 			for(k=0; k<strlen(gp); k++)
 			{
-				if (((*(output+j+k) =='0') && (gp[k] == '0') ||	(*(output+j+k) == '1') && (gp[k] == '1'))) 
+				if (((*(output+j+k) =='0') && (gp[k] == '0') ||	(*(output+j+k) == '1') && (gp[k] == '1')))
 					*(output+j+k)='0';
 				else
 					*(output+j+k)='1';
@@ -52,24 +54,25 @@ The technique is also sometimes applied to data storage devices, such as a disk 
 	return 0;
 }
 
-	int main()
-	{
-		char input[50],output[50],recv[50];
-		const char gp[18]="10001000000100001";
-		cout<<"\nEnter the input message in binary\n";
-		cin>>input;
-		crc(input,output,gp,1);
-		cout<<"\nThe transmitted message is: "<<input<<output+strlen(input)<<"\n";
-		cout<<"\n\nEnter the recevied message in binary \n";
-		cin>>recv;
-		if(!crc(recv,output,gp,0))
-			cout<<"\nNo error in data\n";
-		else
-			cout<<"\nError in data transmission has occurred\n";
-	
-		return 0;
-	}
-</code>
+int main()
+{
+	char input[50],output[50],recv[50];
+	const char gp[18]="10001000000100001";
+	cout<<"\nEnter the input message in binary\n";
+	cin>>input;
+	crc(input,output,gp,1);
+	cout<<"\nThe transmitted message is: "<<input<<output+strlen(input)<<"\n";
+	cout<<"\n\nEnter the recevied message in binary \n";
+	cin>>recv;
+	if(!crc(recv,output,gp,0))
+		cout<<"\nNo error in data\n";
+	else
+		cout<<"\nError in data transmission has occurred\n";
+
+	return 0;
+}
+
+```
 
 ###Output:
 *Commands for execution:-*
