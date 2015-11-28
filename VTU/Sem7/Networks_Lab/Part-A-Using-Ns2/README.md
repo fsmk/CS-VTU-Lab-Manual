@@ -11,5 +11,5 @@ Output should be displayed on the Terminal.
 4.$awk -f filename.awk filename.tr, to run AWK on the file.  
 (optional)for the 5th program:  
 	-$awk -f filename.awk filename1.tr>file1  
-	-$awk -f filename.awk filename2.tr>file2 
+	-$awk -f filename.awk filename2.tr>file2  
 	-$xgraph file1 file2
