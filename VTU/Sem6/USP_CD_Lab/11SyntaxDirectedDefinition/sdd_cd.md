@@ -55,8 +55,8 @@
                         index=0;
                         for(j=i;input[j-1]!=')';j++)
                                 stmt[cur][index++]=input[j];
-                        	     cur++;
-                        	     i=j;
+                        cur++;
+                        i=j;
                 	}
        			gen();
         		return 0;
