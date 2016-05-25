@@ -36,7 +36,7 @@ int main()
                 cur++;
                 i=j;
                 }
-        
+
         gen();
         return 0;
 }

@@ -21,7 +21,7 @@
 ###Code:
 
 	#include<stdio.h>
-	#include<stdlib.h>	
+	#include<stdlib.h>
 	#include<string.h>
 	char input[60],stmt[3][60];
 	int len,cur,i,j;
