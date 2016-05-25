@@ -13,5 +13,10 @@ if(link(argv[1],argv[2])==-1)
 printf("Link Error\n");
 return 1;
 }
+printf("Files Linked\n");
+//display the linked files
+char str[100];
+sprintf(str,"ls -li %s %s\n",argv[1],argv[2]);
+system(str);
 return 0;
 }

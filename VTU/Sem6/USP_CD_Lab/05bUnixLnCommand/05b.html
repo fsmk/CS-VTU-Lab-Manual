@@ -51,6 +51,11 @@ To link several files to names in another directory, type the following:</p>
    printf("Link Error\n");
    return 1;
   }
+  printf("Files Linked\n");
+  //display the linked files
+  char str[100];
+  sprintf(str,"ls -li %s %s\n",argv[1],argv[2]);
+  system(str);
   return 0;
  }
 </code></pre>
