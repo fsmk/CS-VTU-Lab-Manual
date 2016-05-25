@@ -21,7 +21,7 @@
 ###Code:
 
 	#include<stdio.h>
-	#include<stdlib.h>	
+	#include<stdlib.h>
 	#include<string.h>
 	char input[60],stmt[3][60];
 	int len,cur,i,j;
@@ -55,8 +55,8 @@
                         index=0;
                         for(j=i;input[j-1]!=')';j++)
                                 stmt[cur][index++]=input[j];
-                        	     cur++;
-                        	     i=j;
+                        cur++;
+                        i=j;
                 	}
        			gen();
         		return 0;
