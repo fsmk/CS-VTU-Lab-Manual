@@ -51,6 +51,12 @@ To link several files to names in another directory, type the following:</p>
    printf("Link Error\n");
    return 1;
   }
+  printf("Files Linked\n");
+  printf("Inode number of linked files\n");
+  //display the inode linked files
+  char str[100];
+  sprintf(str,"ls -i %s %s\n",argv[1],argv[2]);
+  system(str);
   return 0;
  }
 </code></pre>
