@@ -1,4 +1,4 @@
-##Aim : 
+##Aim :
 
 ###Write a C / C++ program to emulate the unix ln command.
 
@@ -43,6 +43,10 @@ To link several files to names in another directory, type the following:
    printf("Link Error\n");
    return 1;
   }
+  printf("Files Linked\n")
+  char str[100];
+  sprintf(str,"ls -li %s %s\n",argv[1],argv[2]);
+  system(str);
   return 0;
  }
 </code></pre>
@@ -57,9 +61,8 @@ To link several files to names in another directory, type the following:
  <li>Then compile the program using <pre>g++ 5b_unix_ln-command.c</pre></li>
 <li>Then create a dummy file with any of the name like abc.c .</li>
  <li>If there are no errors after compilation execute the program using <pre>./a.out abc.c out.c</pre>where abc.c is the source file and out.c is the new destination file to be given.</li>
-
-<li>Then verify the creation of hard link using <pre>ls -l</pre>
-by checking the inode number of both the input files.</li></ul>
+ <li> The inode number for both files are displayed by executing ls -li command using system API  and is verified to be the same</li>
+</ul>
 
 ##Screenshot :
 
