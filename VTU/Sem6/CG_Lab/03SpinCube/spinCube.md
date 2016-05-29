@@ -3,102 +3,79 @@
 
 ## Algorithm
 1. Choose eight 3 dimensional coordinate points such that will make a cube
-2. Select the axis to rotate.
-3. Rotate the cube by a small angle every small interval of time.
-4. Repeat 3rd step as long as axis is not changed.
+2. Group the vertices together such that they make 6 faces.
+3. Identify the button that was last pressed.
+4. Rotate the cube by a small angle, along a particular axis;
+   by associating one mouse button to one axis.
+
+The following values assume vertices as show below:
+
+```
+   5-------6
+  /|      /|
+ / |     / |
+1-------2  |
+|  4----|--7
+| /     | /
+|/      |/
+0-------3
+```
 
 ## Code: spinCube.c
-	#include<stdlib.h>
-	#include<GL/glut.h>
+    #include<GL/glut.h>
 
-	GLfloat vertices [][3] = {{-1.0,-1.0,-1.0}, {1.0,-1.0,-1.0}, {1.0,1.0,-1.0}, {-1.0,1.0,-1.0}, {-1.0,-1.0,1.0}, {1.0,-1.0,1.0}, {1.0,1.0,1.0}, {-1.0,1.0,1.0}};
-	GLfloat normals [][3] = {{-1.0,-1.0,-1.0}, {1.0,-1.0,-1.0}, {1.0,1.0,-1.0}, {-1.0,1.0,-1.0}, {-1.0,-1.0,1.0}, {1.0,-1.0,1.0}, {1.0,1.0,1.0}, {-1.0,1.0,1.0}};
-	GLfloat colors [][3] = {{0.0,0.0,0.0}, {1.0,-1.0,-1.0}, {1.0,1.0,0.0}, {0.0,1.0,0.0}, {0.0,0.0,1.0}, {1.0,0.0,1.0}, {1.0,1.0,1.0}, {0.0,1.0,1.0}};
+    GLfloat vertices[]={-0.5f,-0.5f,-0.5f,    -0.5f,0.5f,-0.5f,    0.5f,0.5f,-0.5f,   0.5f,-0.5f,-0.5f,
+                        -0.5f,-0.5f,0.5f,     -0.5f,0.5f,0.5f,     0.5f,0.5f,0.5f,    0.5f,-0.5f,0.5f};
+    
+    GLfloat colors[] = {0,0,0,   0,0,1,    0,1,0,    0,1,1,
+                        1,0,0,   1,0,1,    1,1,0,    1,1,1};
+    
+    GLbyte faces[] = {0,1,2,3,   2,3,7,6,   4,5,6,7,  4,5,1,0,   5,6,2,1,   0,3,7,4};
+    
+    GLint currentBtn = GLUT_MIDDLE_BUTTON;
+    
+    void mouse(int btn, int state, int x, int y) {
+      currentBtn = btn;
+    }
+    
+    void display() {
+      glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+      glRotated(0.06,
+                currentBtn == GLUT_LEFT_BUTTON,
+                currentBtn == GLUT_MIDDLE_BUTTON,
+                currentBtn == GLUT_RIGHT_BUTTON);
+      glDrawElements(GL_QUADS, 24, GL_UNSIGNED_BYTE, faces);
+      glFlush();
+    }
+    
+    void glInit(int w, int h) {
+      glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+      glMatrixMode(GL_PROJECTION);
+      glLoadIdentity();
+      
+      glEnableClientState(GL_COLOR_ARRAY);
+      glEnableClientState(GL_VERTEX_ARRAY);
+      glVertexPointer(3, GL_FLOAT, 0, vertices);
+      glColorPointer(3, GL_FLOAT, 0, colors);
+      glEnable(GL_DEPTH_TEST);
 
-	void polygon(int a,int b,int c,int d)
-	{
-		glBegin(GL_POLYGON);
-		glColor3fv(colors[a]);
-		glNormal3fv(normals[a]);
-		glVertex3fv(vertices[a]);
-		glColor3fv(colors[b]);
-		glNormal3fv(normals[b]);
-		glVertex3fv(vertices[b]);
-		glColor3fv(colors[c]);
-		glNormal3fv(normals[c]);
-		glVertex3fv(vertices[c]);
-		glColor3fv(colors[d]);
-		glNormal3fv(normals[d]);
-		glVertex3fv(vertices[d]);
-		glEnd();
-	}
-
-	void colorcube(void)
-	{
-		polygon(0,3,2,1);
-		polygon(2,3,7,6);
-		polygon(0,4,7,3);
-		polygon(1,2,6,5);
-		polygon(4,5,6,7);
-		polygon(0,1,5,4);
-	}
-
-	static GLfloat theta[]={0.0,0.0,0.0};
-	static GLint axis=2;
-
-	void display(void)
-	{
-		glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-		glLoadIdentity();
-		glRotatef(theta[0],1.0,0.0,0.0);
-		glRotatef(theta[1],0.0,1.0,0.0);
-		glRotatef(theta[2],0.0,0.0,1.0);
-		colorcube();
-		glFlush();
-		glutSwapBuffers();
-	}
-
-	void spincube()
-	{
-		theta[axis]+=2.0;
-		if(theta[axis]>360.0)
-			theta[axis]-=360;
-		glutPostRedisplay();
-	}
-	void mouse(int btn,int state,int x,int y)
-	{
-		if(btn==GLUT_LEFT_BUTTON && state==GLUT_DOWN)
-			axis=0;
-		if(btn==GLUT_MIDDLE_BUTTON && state==GLUT_DOWN)
-			axis=1;
-		if(btn==GLUT_RIGHT_BUTTON && state==GLUT_DOWN)
-			axis=2;
-		spincube();
-	}
-	void myReshape(int w,int h)
-	{
-		glViewport(0,0,w,h);
-		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
-		if(w<=h)
-			glOrtho(-2.0,2.0,-2.0*(GLfloat) h/(GLfloat) w, 2.0*(GLfloat) h/(GLfloat)w, -10.0,10.0);
-		else
-			glOrtho(-2.0*(GLfloat) w/(GLfloat) h, 2.0*(GLfloat) w/(GLfloat) h, -2.0,2.0,-10.0,10.0);
-		glMatrixMode(GL_MODELVIEW);
-	}
-	int main(int argc,char **argv)
-	{
-		glutInit(&argc,argv);
-		glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGB|GLUT_DEPTH);
-		glutInitWindowSize(500,500);
-		glutCreateWindow("Color Cube and Spin it! ");
-		glutReshapeFunc(myReshape);
-		glutDisplayFunc(display);
-		glutIdleFunc(spincube);
-		glutMouseFunc(mouse);
-		glEnable(GL_DEPTH_TEST);
-		glutMainLoop();
-	}
+      glViewport(0, 0, w, h); // Resize viewport to width and height.
+      if (h > w) //Maintain proper aspect ratio; otherwise the image would appear stretched
+        glOrtho(-1.0, 1.0, (GLfloat) -h / w, (GLfloat) h / w, -1.0, 1.0);
+      else
+        glOrtho((GLfloat) -w / h, (GLfloat) w / h, -1.0, 1.0, -1.0, 1.0);
+    }
+    
+    int main(int argc, char *argv[]) {
+      glutInit(&argc, argv);
+      glutInitWindowSize(720, 720);
+      glutCreateWindow("Spin a cube");
+      glutDisplayFunc(display);
+      glutIdleFunc(display);
+      glutReshapeFunc(glInit);
+      glutMouseFunc(mouse);
+      glutMainLoop();
+    }
 
 ## Output:
 *Commands for execution:-*
