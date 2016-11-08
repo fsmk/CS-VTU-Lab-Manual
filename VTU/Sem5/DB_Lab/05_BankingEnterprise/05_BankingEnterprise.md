@@ -253,7 +253,7 @@ mysql> UPDATE account SET customer_name='cust1' WHERE customer_name="cust2";
 		     GROUP BY d.customer_name
 		     HAVING COUNT(distinct b.branch_name)=(
 		     	SELECT COUNT(branch_name)
-		     	BRANCH branch
+		     	FROM branch
 		     	WHERE branch_city='c3');
 
 +---------------+
