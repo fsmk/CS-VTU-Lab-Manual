@@ -43,7 +43,7 @@ Write each of the following queries in SQL.
 
     CREATE TABLE loan
     ( loan_number INTEGER(8),
-      branc_hname VARCHAR(15),
+      branch_name VARCHAR(15),
       amount NUMBER(10,2),
       PRIMARY KEY(loan_number),
       FOREIGN KEY(branch_name) REFERENCES branch(branch_name)
