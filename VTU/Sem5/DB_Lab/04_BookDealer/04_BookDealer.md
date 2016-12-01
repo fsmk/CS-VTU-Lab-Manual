@@ -273,20 +273,10 @@ Description:
 
 ### 4: Find the author1 of the book which has maximum sales.
 
-<pre>mysql> SELECT c.eid,MAX(cruisingrange)
-     FROM certified c,aircraft a
-     WHERE c.aid=a.aid
-     GROUP BY c.eid
-     HAVING COUNT(*)>3;
-+-----+--------------------+
-| eid | max(cruisingrange) |
-+-----+--------------------+
-|   1 |               8000 |
-+-----+----------------
-mysql> SELECT author1_name
+mysql> SELECT a.author1_name
            FROM author1 a,catalogue1 c
            WHERE a.author1_id=c.author1_id
-           AND book_id IN
+           AND c.book_id IN
            (SELECT book_id FROM orderdetails1
            WHERE quantity= (SELECT MAX(quantity)
            FROM orderdetails1));
