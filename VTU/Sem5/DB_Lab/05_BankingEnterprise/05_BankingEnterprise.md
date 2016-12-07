@@ -163,7 +163,7 @@ Records: 5  Duplicates: 0  Warnings: 0</pre>
 5 rows in set (0.00 sec)</pre>
 
 
-<pre>mysql> INSERT INTO loan (loan_number_branch_name,amount) VALUES
+<pre>mysql> INSERT INTO loan (loan_number,branch_name,amount) VALUES
     -> (10,"b1",10000),
     -> (20,"b2",20000),
     -> (30,"b3",30000),
