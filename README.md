@@ -8,14 +8,14 @@ This repository is a collection programs ported to Free and Open Source Software
 
 An initiative by [Free Software Movement Karnataka](http://fsmk.org/), this project is a part of Docathon 2014.
 
-#Structure of the Repo
+# Structure of the Repo
 
 1. This repository consists of Autonomous and VTU manuals.
 2. Within each of these folders consists of different semesters.
 3. Within each semesters has different lab subjects present.
 4. Within each Subjects, it should consists of markdown file called Syllabus.md .This Syllabus.md file consists of all the lists of the programs present in that subject and link to the program present in that directory for ease of use and navigation. 
 
-#Contributing
+# Contributing
 
 1. Read [Guidelines for Contribution](https://github.com/fsmk/CS-VTU-Lab-Manual/wiki/Guidelines-for-Contribution) for guidelines on writing good commit messages.
 2. [Fork it](https://github.com/fsmk/CS-VTU-Lab-Manual/fork)
