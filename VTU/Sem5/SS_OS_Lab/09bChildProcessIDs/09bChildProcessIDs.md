@@ -6,13 +6,13 @@ C program to do the following: Using fork( ) create a child process.The child pr
 <p>fork():it is a system call which forks a new child of a processs</p>
 
 ###Code:
-<pre>`#`include&lt;stdio.h>
-`#`include&lt;unistd.h>
-`#`include&lt;stdlib.h>
+<pre>#include<stdio.h>
+ #include<unistd.h>
+ #include<stdlib.h>
 int main()
 {
 	pid_t p;
-	if((p=fork())&lt;0)
+	if((p=fork())<0)
 	{
 		printf("fork error\n");
 		return 0;

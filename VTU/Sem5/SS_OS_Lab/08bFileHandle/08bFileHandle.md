@@ -6,9 +6,9 @@ C program to create a file with 16 bytes of arbitrary data from the beginning an
   lseek:function is used to seek the memory offset
 </pre>
 ####Code:
-<pre>`#`include&lt;stdio.h>
-`#`include&lt;stdlib.h>
-`#`include&lt;fcntl.h>
+<pre>#include<stdio.h>
+ #include<stdlib.h>
+ #include<fcntl.h>
 
 int main()
 {
