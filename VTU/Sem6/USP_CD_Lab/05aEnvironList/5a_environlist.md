@@ -14,7 +14,6 @@
 
 <pre><code>
  #include&lt;stdio.h&gt;
- #include&lt;stdlib.h&gt;
  #include&lt;unistd.h&gt;
  int main(int argc,char *argv[])
  {
@@ -23,7 +22,7 @@
   extern char **environ;
   for(ptr=environ; *ptr; ptr++)
    printf("%s\n",*ptr);
-  exit(0);
+  return 0;
  }
 </code></pre>
 
