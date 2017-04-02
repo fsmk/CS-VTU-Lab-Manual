@@ -1,5 +1,5 @@
 Books::Application.routes.draw do
-  match "books/index" => "books#index", :as => :index
+  get "books/index" => "books#index", :as => :index
   match  "books/add" => "books#add", :via => :post
   match  "books/search" => "books#search", :via => :post
   # The priority is based upon order of creation:
