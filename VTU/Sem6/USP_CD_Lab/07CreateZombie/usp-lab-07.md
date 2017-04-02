@@ -22,7 +22,7 @@ new process, referred to as the child, is an  exact  duplicate of the calling  p
 
 Syntax:
 <code><pre>
- \#include &lt;stdlib.h&gt;
+ \#include&lt;unistd.h&gt;
  int system(const char *command);
 </code></pre>
 
@@ -31,7 +31,7 @@ Syntax:
 
 
 ##Code:
-	#include&lt;stdio.h&gt; 
+	#include<stdio.h>
 	#include<unistd.h>
 	#include<stdlib.h>
 	int main()
