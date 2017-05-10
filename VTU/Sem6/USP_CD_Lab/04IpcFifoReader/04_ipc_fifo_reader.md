@@ -1,9 +1,9 @@
-##Aim:
+## Aim
 Write a C/C++ program which demonstrates interprocess communication between a reader process and a writer process. Use mkfifo, open, read, write and close APIs in your program.
 
-##Algorithm:
+## Algorithm:
 
-##Theory:
+## Theory:
 
 <blockquote>
 
@@ -65,8 +65,8 @@ than PIPE_BUF bytes, the data might be interleaved with the data from the other 
 determine the value of PIPE_BUF by using pathconf or fpathconf.</pre>
 </blockquote>
 
-##Code:
-###4read.cpp
+## Code:
+### 4read.cpp
 
 	#include<stdio.h>
 	#include<stdlib.h>
@@ -105,7 +105,7 @@ determine the value of PIPE_BUF by using pathconf or fpathconf.</pre>
 
 
 
-###4write.cpp
+### 4write.cpp
 
 
 	#include<stdio.h>
@@ -162,7 +162,7 @@ determine the value of PIPE_BUF by using pathconf or fpathconf.</pre>
 	}
 
 
-##Output:
+## Output:
 
 *Commands for execution:-*
 <ul>
@@ -178,6 +178,6 @@ determine the value of PIPE_BUF by using pathconf or fpathconf.</pre>
     <li>The same string should be displayed on the other terminal</li>
 </ul>
 
-##Screenshots:
+## Screenshots:
 <h2>Update screenhots</h2>
  ![not available](usp-lab-04.png "usp04 screenshot") 
