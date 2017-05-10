@@ -178,6 +178,5 @@ determine the value of PIPE_BUF by using pathconf or fpathconf.</pre>
     <li>The same string should be displayed on the other terminal</li>
 </ul>
 
-## Screenshots:
-<h2>Update screenhots</h2>
- ![not available](usp-lab-04.png "usp04 screenshot") 
+## Screenshot
+![alt tag](usp-lab-04.png) 
