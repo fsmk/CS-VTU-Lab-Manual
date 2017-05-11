@@ -1,9 +1,9 @@
-##Aim :
+## Aim :
 
-###Write a C / C++ program to emulate the unix ln command.
+### Write a C / C++ program to emulate the unix ln command.
 
 
-##Theory :
+## Theory :
 
 >Links are created by giving alternate names to the original file. The use of links allows a large file, such as a database or mailing list, to be shared by several users without making copies of that file.
 >Not only do links save disk space, but changes made to one file are automatically reflected in all the linked files.
@@ -26,7 +26,7 @@ To link several files to names in another directory, type the following:
 
 >This links chap2 to the new name /home/manual/chap2 and jim/chap3 to /home/manual/chap3.
 
-##Code :
+## Code :
 
 <pre><code>
  #include&lt;stdio.h&gt;
@@ -54,7 +54,7 @@ To link several files to names in another directory, type the following:
 </code></pre>
 
 
-##Output :
+## Output :
 
 <ul>
 <li>Open a terminal.</li>
@@ -65,6 +65,6 @@ To link several files to names in another directory, type the following:
  <li>If there are no errors after compilation execute the program using <pre>./a.out abc.c out.c</pre>where abc.c is the source file and out.c is the new destination file to be given.</li>
 <li>The inode numbers of both files are displayed on the screen verifying that the files are hard linked.</li></ul>
 
-##Screenshot :
+## Screenshot :
 
 ![Not Available](output5b.png)
