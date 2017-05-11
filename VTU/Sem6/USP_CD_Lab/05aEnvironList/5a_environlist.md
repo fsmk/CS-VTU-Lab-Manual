@@ -1,16 +1,16 @@
-##Aim :
+## Aim :
 
-###Write a C/C++ program thgat output the contents of its Environment list.
+### Write a C/C++ program thgat output the contents of its Environment list.
 
 
-##Theory :
+## Theory :
 
 >Environment variables are a set of dynamic named values that can affect the way running processes will behave on a computer.
 
 >They are part of the operating environment in which a process runs. For example, a running process can query the value of the TEMP environment variable to discover a suitable location to store temporary files, or the HOME or USERPROFILE variable to find the directory structure owned by the user running the process.
 
 
-##Code :
+## Code :
 
 <pre><code>
  #include&lt;stdio.h&gt;
@@ -27,7 +27,7 @@
 
 
 
-##Output:
+## Output:
 <ul>
 <li>Open a terminal.</li>
 <li>Change directory to the file location in both the terminals.</li>
@@ -37,7 +37,7 @@
 </ul>
 
 
-##Screenshot :
+## Screenshot :
 
 ![Not Available](out1.png)
 ![Not Available](out2.png)
