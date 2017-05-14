@@ -1,10 +1,10 @@
-##Aim: 
+## Aim: 
 
-###To Write a C/C++ program to illustrate the race condition.
+### To Write a C/C++ program to illustrate the race condition.
 
-##Algorithm:
+## Algorithm:
 
-##Theory:
+## Theory:
 <blockquote>
 
 A race condition occurs when multiple processes are trying to do something with
@@ -16,7 +16,7 @@ after that process starts running depends on the system load and the kernel's sc
 
 </blockquote>
 
-##Code:
+## Code:
 
 <pre><code>#include&lt;stdlib.h&gt;
 #include&lt;stdio.h&gt;
@@ -43,7 +43,7 @@ static void charatatime(char *str)
 }
 </code></pre>
 
-##Output:
+## Output:
 
 *Commands for execution:-*
 <ul>
@@ -53,7 +53,7 @@ static void charatatime(char *str)
     <li> If no errors, run ./usp06.out</li>
 </ul>
 
-##Screenshots:
+## Screenshots:
 
  ![not available](usp-lab-06a.png "usp06 screenshot") 
 

@@ -1,7 +1,7 @@
-##Aim :
-###Write a C/C++ POSIX compliant program that prints the POSIX defined configuration options supported on any given system using feature test macros.
+## Aim :
+### Write a C/C++ POSIX compliant program that prints the POSIX defined configuration options supported on any given system using feature test macros.
 
-##Theory :
+## Theory :
 
 >POSIX allows an application to test at compile or run time whether certain options are supported, or what the value  is  of  certain configurable constants or limits.
 <ul>
@@ -14,7 +14,7 @@
 <li>_POSIX_VDISABLE:This option is only meaningful for files that are terminal devices. If it is enabled, then handling for special control characters can be disabled individually.</li>
 </ul>
 
-##Code:
+## Code:
 
 <pre><code>
  #define _POSIX_SOURCE
@@ -54,7 +54,7 @@
 
 </code></pre>
 
-##Output:
+## Output:
 
 <ul>
 
@@ -83,5 +83,5 @@ and then enter the source code and save it.
 <blockquote> <pre>./a.out</pre> </blockquote> 
 </ul>
 
-#*Screenshots:-*
-![Not Available](02_output.png)
+## Screenshots:
+![alt tag](02_output.png)

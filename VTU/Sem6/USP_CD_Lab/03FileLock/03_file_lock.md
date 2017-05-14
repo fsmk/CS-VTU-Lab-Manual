@@ -77,7 +77,7 @@ F_GETLK, F_SETLK and F_SETLKW are used  to  acquire, release, and test for the e
         return 0;
  }</code></pre>
 
-##Output:
+## Output:
 
 *Commands for instructions:*
 <ol>
@@ -89,7 +89,7 @@ F_GETLK, F_SETLK and F_SETLKW are used  to  acquire, release, and test for the e
 		Note: Both the filename's should be same </li>
 </ol>
 
-##Screenshots:
+## Screenshots:
 
 ![not available](out1.png "output1")
 
