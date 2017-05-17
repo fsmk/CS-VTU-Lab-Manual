@@ -24,7 +24,6 @@
 	void init()
 	{
 		glClearColor(1.0,1.0,1.0,1.0);
-		glColor3f(1.0,0.0,0.0);
 		glPointSize(5.0);
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
@@ -35,12 +34,10 @@
 	void display(void)
 	{
 		glClear(GL_COLOR_BUFFER_BIT);
-		//glColor3f(1.0,0.0,0.0);
 		for(i=0;i<maxx;i++)
 			x[i]=x0+i*dx;
 		for(j=0;j<maxy;j++)
 			y[j]=y0+j*dy;
-		// glColor3f(0.0,0.0,1.0);
 		for(i=0;i<maxx-1;i++)
 			for(j=0;j<maxy-1;j++)
 			{
@@ -51,7 +48,6 @@
 					glVertex2f(x[i+1],y[j+1]);
 					glVertex2f(x[i+1],y[j]);
 				glEnd();
-				glFlush();
 			}
 		glFlush();
    	}
