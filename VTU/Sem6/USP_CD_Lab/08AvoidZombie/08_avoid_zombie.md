@@ -1,6 +1,6 @@
 ## Aim:
 
-###W rite a C/C++ program to avoid zombie process by forking twice.
+### Write a C/C++ program to avoid zombie process by forking twice.
 
 ## Algorithm:
 

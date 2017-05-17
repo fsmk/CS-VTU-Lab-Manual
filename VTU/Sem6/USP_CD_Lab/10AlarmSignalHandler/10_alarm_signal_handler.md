@@ -1,4 +1,4 @@
-## im :
+## Aim :
 ### Write a C/C++ program to set up a real-time clock interval timer using the alarm API.
 
 ## Theory :
