@@ -1,7 +1,7 @@
-##Aim:
+## Aim:
 ### Write a C program for a syntax directed definition of a "if E then S1" and "if E then S1 else S2"
 
-###Description:
+### Description:
 
 >  A SYNTAX-DIRECTED DEFINITION is a context-free grammar in which each grammar symbol X is associated with two finite sets of values: the synthesized attributes of X and the inherited attributes of X, each production A -> alpha is associated with a finite set of expressions of the form
 
@@ -11,14 +11,14 @@
 
 > It is usual to denote the attributes of a grammar symbol in the form X.name where name is an meaningful name for the attribute.
 
-###Algorithm:
+### Algorithm:
 1. Start
 2. Output the if, if-else statement to the user for reference.
 3. Manipulate the input string such that the if and if-else conditions are stored separately.
 4. Generate the format of the if, if-else statements and output the same.
 5. End.
 
-###Code:
+### Code:
 
 	#include<stdio.h>
 	#include<stdlib.h>	
@@ -62,7 +62,7 @@
         		return 0;
 	}
 
-###Output:
+### Output:
 *Commands for execution:-*
 
 * Open a terminal
@@ -70,6 +70,6 @@
 * Use gcc *filename.c* for compilation
 * Run ./a.out for execution
 
-###Screenshots:-
+### Screenshots:-
 
 ![ScreenShot of Output](sdd_cd.png)

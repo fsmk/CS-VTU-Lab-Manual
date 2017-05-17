@@ -1,7 +1,7 @@
-##Aim:
+## Aim:
 ### Write a yacc program that accepts a regular expression as input and produce its parse tree as output.
 
-###Description:
+### Description:
 
 > Yacc- Yet another C Compiler defines what it is all by itself.  Computer program input generally has some structure; in fact, every computer program that does input can be thought of as defining an ``input language'' which it accepts. An input language may be as complex as a programming language, or as simple as a sequence of numbers. Unfortunately, usual input facilities are limited, difficult to use, and often are lax about checking their inputs for validity.
 
@@ -31,14 +31,14 @@ In other words, a full specification file looks like
   functions the same as example 1, but it also produces the y.tab.h file            which would contain C-style #define statements for each of the tokens 
   defined in the grammar.y file.
 
-###Algorithm:
+### Algorithm:
 1. Start
 2. Accept an expression from the user.
 3. Check for the structure that satisfies the conditions of a regular expression.
 4. Print the parsed tree as output as when the conditions are satisfied.
 5. End
 
-###Code:
+### Code:
 	%{/*declaration part*/
  	#include<stdio.h>
 	#include<ctype.h>
@@ -125,7 +125,7 @@ In other words, a full specification file looks like
 		}
 	}
 
-###Output:-
+### Output:-
 *Commands for execution*
 
 * Open a terminal
@@ -135,6 +135,6 @@ In other words, a full specification file looks like
 * An output file a.out is created. 
 * Run, ./a.out to execute the program.
 
-###Screenshot:
+### Screenshot:
 
 ![ScreenShot of Output](yacc_regular.png)

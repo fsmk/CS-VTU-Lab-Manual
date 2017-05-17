@@ -1,13 +1,13 @@
-##Aim :
-###Write a C/C++ program to set up a real-time clock interval timer using the alarm API.
+## im :
+### Write a C/C++ program to set up a real-time clock interval timer using the alarm API.
 
-##Theory :
+## Theory :
 <ul>
 <li>First, every signal has a name. These names all begin with the three characters SIG .For example,SIGABRT is the abort signal that is generated when a process calls the abort function.</li>
 <li>SIGALRM is the alarm signal that is generated when the timer set by the alarm function goes off.</li>
 <li>Use the alarm API for generating a signal after certain time interval as specified by the user.</li>
 </ul>
-##Code :
+## Code :
 	 #include<stdio.h>
 	 #include<stdlib.h>
 	 #include<unistd.h>
@@ -28,7 +28,7 @@
 		return 0;
 	 }
 
-##Output :
+## Output :
 <ol>
 <li>Open a terminal.</li>
 <li>Change directory to the file location in both the terminals.</li>
@@ -37,5 +37,5 @@
  <li>If there are no errors after compilation execute the program using <pre>./a.out</pre> </li>
 </ol>
 
-##Screenshot:-
+## Screenshot:-
 ![Not Available](Output.png)
