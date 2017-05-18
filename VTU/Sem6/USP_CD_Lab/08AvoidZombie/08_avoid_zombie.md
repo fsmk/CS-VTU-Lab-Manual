@@ -1,10 +1,10 @@
-##Aim:
+## Aim:
 
-###Write a C/C++ program to avoid zombie process by forking twice.
+### Write a C/C++ program to avoid zombie process by forking twice.
 
-##Algorithm:
+## Algorithm:
 
-##Theory:
+## Theory:
 
 <blockquote>
 
@@ -16,7 +16,7 @@ become a zombie until we terminate, the trick is to call fork twice.</p>
 
 </blockquote>
 
-##Code:
+## Code:
 
 <pre><code>#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
@@ -46,7 +46,7 @@ int main()
 }
 </code></pre>
 
-##Output:
+## Output:
 
 *Commands for execution:-*
 <ul>
@@ -55,3 +55,6 @@ int main()
     <li> Run "gcc usp06.c -o usp08.out" in the terminal.</li>
     <li> If no errors, run "./usp08.out"</li>
 </ul>
+
+## Screenshot
+![not avialable](usp-lab-08.png)
