@@ -55,8 +55,6 @@ time stamps and sends back as fast as possible.
 
 ```cpp
 #include <iostream>
-#include <stdio.h>
-
 using namespace std;
 
 struct node {
