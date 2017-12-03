@@ -99,7 +99,7 @@ int main()
 		d = rand() % phi;
 	} while (((d * e) % phi) != 1);
 	cout << "Two prime numbers (p and q) are: " << p << " and " << q << endl;
-	cout << "n(p * q) = " << p << " * " << q << " = " << p*q << endl;
+	cout << "n(p * q) = " << p << " * " << q << " = " << n << endl;
 	cout << "(p - 1) * (q - 1) = "<< phi << endl;
 	cout << "Public key (n,  e): (" << n << ", " << e << ")\n";
 	cout << "Private key (n, d): (" << n << ", " << d << ")\n";
