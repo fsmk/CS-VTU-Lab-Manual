@@ -78,6 +78,7 @@ int main()
 	}
 	close(req);
 	close(res);
+	close(file);
 	unlink("req.fifo");
 	unlink("res.fifo");
 	return 0;
