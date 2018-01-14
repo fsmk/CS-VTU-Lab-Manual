@@ -1,7 +1,7 @@
-##Aim:
-###Write a program for simple RSA algorithm to encrypt and decrypt the data. 
+## Aim:
+### Write a program for simple RSA algorithm to encrypt and decrypt the data. 
 
-###Description:
+### Description:
 
 > Cryptography has a long and colorful history. The message to be encrypted, known as the plaintext, are transformed by a function that is parameterized by a key. The output of the encryption process, known as the ciphertext, is then transmitted, often by messenger or radio. The enemy, or intruder, hears and accurately copies down the complete ciphertext. However, unlike the intended recipient, he does not know the decryption key and so cannot decrypt the ciphertext easily. The art
 of breaking ciphers is called cryptanalysis the art of devising ciphers (cryptography) and breaking them (cryptanalysis) is collectively known as cryptology.
@@ -22,14 +22,14 @@ r key. One key is used to encrypt the plaintext and the other key is used to dec
 
 > The RSA algorithm can be used for both public key encryption and digital signatures. Its security is based on the difficulty of factoring large integers.
 
-###Algorithm:
+### Algorithm:
 1. Generate two large random primes, P and Q, of approximately equal size.
 2. Compute N=PxQ
 3. Compute Z=(P-1) x (Q-1).
 4. Choose an integer E, 1<E<Z, such that GCD (E, Z) = 1
 5. Compute the secret exponent D, 1<D<Z, such that ExD ≡ 1(mod Z) 
 
-###Code:
+### Code:
 ```cpp
 #include <iostream>
 #include <stdlib.h>
@@ -118,7 +118,7 @@ int main()
 	return 0;
 }
 ```
-###Output:
+### Output:
 *Commands for execution:-*
 
 > * Open a terminal.
