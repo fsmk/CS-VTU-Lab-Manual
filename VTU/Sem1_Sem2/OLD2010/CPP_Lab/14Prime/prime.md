@@ -1,9 +1,9 @@
-##Aim:
-###Design, develop and execute a parallel program in C to determine and print the prime numbers which are less than 100 making use of algorithm of the Sieve of Eratosthenes.
+## Aim:
+## Design, develop and execute a parallel program in C to determine and print the prime numbers which are less than 100 making use of algorithm of the Sieve of Eratosthenes.
 
-##Summary:
+## Summary:
 
-##Algorithm:
+## Algorithm:
 1. Start
 2. Input the value of n, from i=2 upto n store the value in an array.
 3. Set the number of threads.
@@ -14,7 +14,7 @@
 		Print the numbers of array which is not 0.
 6. Stop.
 
-##Program:
+## Program:
 
 	#include<omp.h>
 	#include<stdio.h>
@@ -59,7 +59,7 @@
 	    return 0;
 	}
 
-##Output:
+## Output:
 
 ###gcc prime.c -fopenmp -lm
 ###./a.out

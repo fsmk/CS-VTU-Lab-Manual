@@ -1,11 +1,11 @@
 #AIM: Program to solve N Queens problem using backtracking.
 
-##DESCRIPTION:
+## DESCRIPTION:
 >Given a CHESS BOARD of size N*N,we are supposed to place N QUEEN's such that no QUEEN is in an attacking position.
 
 >BACKTRACKING:Backtracking is a general algorithm for finding all (or some) solutions to some computational problem, that incrementally builds candidates to the solutions, and abandons each partial candidate c ("backtracks") as soon as it determines that c cannot possibly be completed to a valid solution.
 
-##ALGORITHM:
+## ALGORITHM:
 	1) Start in the leftmost column
 	2) If all queens are placed
 	    return true
@@ -20,7 +20,7 @@
 	3) If all rows have been tried and nothing worked, return false to trigger 
 	    backtracking.
 
-##CODE
+## CODE
 	#include <iostream>
 	#include <cstdlib>
 

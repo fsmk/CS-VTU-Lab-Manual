@@ -1,5 +1,5 @@
-##PROGRAM 3
-###DESCRIPTION:
+## PROGRAM 3
+## DESCRIPTION:
 Consider the following database of student enrollment in courses &
 books adopted for each course.
 
@@ -9,7 +9,7 @@ books adopted for each course.
 * BOOK_ADOPTION (course# :int, sem:int, book-ISBN:int)
 * TEXT (book-ISBN:int, book-title:string, publisher:string, author:string)
 
-###Queries:
+## Queries:
 
 1. Create the above tables by properly specifying the primary keys and
 the foreign keys.
@@ -24,7 +24,7 @@ specific publisher.
 6. Generate suitable reports.
 7. Create suitable front end for querying and displaying the results.
 
-###Create:
+## Create:
 <pre>
 mysql> CREATE DATABASE books;
 Query OK, 1 row affected (0.01 sec)
@@ -137,7 +137,7 @@ mysql> DESC book_adoption;
 3 rows in set (0.00 sec)
 </pre>
 
-###Insertion:
+## Insertion:
 <pre>mysql> INSERT INTO student (regno,name,major,bdate) VALUES ('1pe11cs001','a','sr',19931230);
 Query OK, 1 row affected (0.05 sec)
 </pre>
@@ -268,7 +268,7 @@ mysql> SELECT * FROM book_adoption;
 8 rows in set (0.00 sec).
 </pre>
 
-###Queries:
+## Queries:
 ###4. Produce a list of text books (include Course #, Book-ISBN, Book-title) in the alphabetical order for courses offered by the 'CS' department that use more than two books.
 <pre>
 mysql> SELECT c.courseno,t.book_isbn,t.book_title

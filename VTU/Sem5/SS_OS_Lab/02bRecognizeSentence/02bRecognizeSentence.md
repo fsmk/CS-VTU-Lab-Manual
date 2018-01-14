@@ -1,9 +1,9 @@
 #AIM:
 Program to recognize whether a given sentence is simple or compound.
-##DESCRIPTION:
+## DESCRIPTION:
 The user is expected to develop a code which recognizes a sentence as either simple or compound.The design considers that we use and, or, but & between.The user can specify more rules as per his/her choice.
 
-##CODE:
+## CODE:
 <pre>%{
 `#`include&lt;stdio.h>
 int valid=1;
@@ -26,7 +26,7 @@ main()
 	else
 	printf("Its a compound sentence\n");
 }</pre> 
-##OUTPUT:
+## OUTPUT:
 <pre>Enter a sentence
 hi and bye
 Its a compound sentence</pre>

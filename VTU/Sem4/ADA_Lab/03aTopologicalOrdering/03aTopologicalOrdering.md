@@ -1,11 +1,11 @@
-##AIM : To obtain the Topological ordering of vertices in a given digraph.
-###DESCRIPTION :
+## AIM : To obtain the Topological ordering of vertices in a given digraph.
+## DESCRIPTION :
 >Topological sorting for Directed Acyclic Graph (DAG) is a linear ordering of vertices such that for every directed edge uv, vertex u comes before v in the ordering.Topological Sorting for a graph is not possible if the graph is not a DAG.
  Input parameters:
  int a[MAX][MAX]  - adjacency matrix of the input graph
  int n	- no of vertices in the graph
  
-###ALGORITHM :
+## ALGORITHM :
 
 L  Empty list that will contain the sorted elements
 S  Set of all nodes with no incoming edges
@@ -23,7 +23,7 @@ else
 
 
 
-###CODE :
+## CODE :
 
 	#include <stdio.h>
 
@@ -90,7 +90,7 @@ else
 			printf("%d ",out[i] + 1);
 	}
 
-###OUTPUT
+## OUTPUT
 
 Input Graph : 5 vertices
     0 0 1 0 0

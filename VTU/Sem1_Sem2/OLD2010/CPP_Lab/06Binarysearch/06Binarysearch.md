@@ -1,7 +1,7 @@
-##Aim:
-###Design, develop and execute a program in C to input N integer numbers in ascending order into a single dimension array, and then to perform a binary search for a given key integer number and report success or failure in the form of a suitable message.
+## Aim:
+## Design, develop and execute a program in C to input N integer numbers in ascending order into a single dimension array, and then to perform a binary search for a given key integer number and report success or failure in the form of a suitable message.
 
-##Summary:
+## Summary:
 >Binary search or half-interval search algorithm finds the position of a specified input value (the search "key") within an array sorted by key value. In each step, the algorithm compares the search key value with the key value of the middle element of the array. If the keys match, then a matching element has been found and its index, or position, is returned. Otherwise, if the search key is less than the middle element's key, then the algorithm repeats its action on the sub-array to the left of the middle element or, if the search key is greater, on the sub-array to the right. If the remaining array to be searched is empty, then the key cannot be found in the array and a special "not found" indication is returned.
 
 
@@ -29,7 +29,7 @@
 >	looking in gets cut in half. Therefore, the total 
 >	number of iterations cannot be greater than logN.
 
-##Algorithm:
+## Algorithm:
 1. Start.
 2. Take the input for the size of array (n).
 3. Take Input to the array in ascending order.
@@ -45,7 +45,7 @@
 12. Print unsuccessful search.
 13. Stop.
 
-##Program: binsearch.c
+## Program: binsearch.c
 	#include<stdio.h>
 	void main()
 	{

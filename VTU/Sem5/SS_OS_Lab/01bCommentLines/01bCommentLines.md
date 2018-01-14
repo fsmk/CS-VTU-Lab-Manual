@@ -1,10 +1,10 @@
 #AIM:
 Program to count the numbers of comment lines in a given C program. 
 Also eliminate them and copy the resulting program into separate file.
-##Description:
+## Description:
 The central idea of the program is to develop a code which can count all the single line comments and the multiple line comments and give the total count.Also we should be able to generate a copy of the orginal C file without the comment lines.
 
-###CODE:
+## CODE:
 
 	%{
 	#include<stdio.h>
@@ -34,7 +34,7 @@ The central idea of the program is to develop a code which can count all the sin
 		}
 	}
 
-###OUTPUT:
+## OUTPUT:
 <pre>
 ./a.out 11.c r.txt
 Number of comments is 3

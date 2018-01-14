@@ -1,7 +1,7 @@
-##AIM: 
+## AIM: 
 Program to find all nodes reachable from a given node using BFS
 
-##DESCRIPTION: 
+## DESCRIPTION: 
 In graph theory, breadth-first search (BFS) is a strategy for searching in a graph when search is limited to essentially two operations: 
 
  + visit and inspect a node of a graph;
@@ -10,7 +10,7 @@ In graph theory, breadth-first search (BFS) is a strategy for searching in a gra
 
 The BFS begins at a root node and inspects all the neighboring nodes. Then for each of those neighbor nodes in turn, it inspects their neighbor ##nodes which were unvisited, and so on.
 
-##ALGORITHM:
+## ALGORITHM:
 Input: A graph G and a root v of G
 1  procedure BFS(G,v) is
 2      create a queue Q
@@ -34,7 +34,7 @@ Input: A graph G and a root v of G
 20 end BFS
 
 
-##CODE
+## CODE
 
 	 #include <iostream>
 	 #include <cstdlib>
@@ -195,7 +195,7 @@ Input: A graph G and a root v of G
 
 
 
-##OUTPUT
+## OUTPUT
 
 SAMPLE 1
 
