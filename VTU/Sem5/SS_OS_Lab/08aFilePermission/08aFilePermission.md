@@ -1,12 +1,12 @@
-###Aim:
+### Aim:
 Shell script that accepts two file names as arguments, checks if the permissions for these files are identical and if the permissions are identical, outputs the common permissions, otherwise outputs each file name followed by its permissions.
 
-####Descrtiption:
+#### Descrtiption:
 <p>-ne:not equal to.</p>
 <p>cut -c:command to cut the specified columns from the given input.</p>
 <p> $#: Contains the total number of input arguments.</p>
 
-####Code:
+#### Code:
 <pre>#!/bin/sh
 
 if [ $# -ne 2 ]
@@ -53,10 +53,10 @@ echo " Permissions for file $1 : $str5 "
 echo " Permissions for file $2 : $str6 "
 fi 
 </pre> 
-###Compile: ./1.sh 1.c 1.sh
+### Compile: ./1.sh 1.c 1.sh
 
 
-###Output:
+### Output:
 <pre>Owner permissions are different
  Permissions for file 1.c : rw- 
  Permissions for file 1.sh : rwx 
@@ -68,8 +68,8 @@ Other's permissions are different
  Permissions for file 1.sh : r-x
 </pre>
 
-###Compile: ./1.sh a.out 1.sh
-###Output:
+### Compile: ./1.sh a.out 1.sh
+### Output:
 <pre>Owner permissions are same: rwx 
 Group permissions are different
  Permissions for file a.out : rwx 

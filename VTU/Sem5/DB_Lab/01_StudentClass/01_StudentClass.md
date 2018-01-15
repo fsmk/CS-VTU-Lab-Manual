@@ -1,5 +1,5 @@
-##PROGRAM 1
-###DESCRIPTION:
+## PROGRAM 1
+### DESCRIPTION:
 The following relations keep track of students, their enrollment for classes along with faculty information.
 
 * Student (snum: integer, sname: string, major: string, level: string, age: integer)
@@ -9,7 +9,7 @@ The following relations keep track of students, their enrollment for classes alo
 
 NOTE: The meaning of these relations is straight forward.For example, Enrolled has one record per student-class pair such that the student is
 enrolled in the class. Level is a two character code with 4 different values (example: Junior: JR etc)
-###Queries:
+### Queries:
 
 Write the following queries in SQL. No duplicates should be printed in any of the answers.
 
@@ -25,7 +25,7 @@ Write the following queries in SQL. No duplicates should be printed in any of th
 
 
 
-###Create:
+### Create:
 
 <pre>mysql> CREATE DATABASE student;
 Query OK, 1 row affected (0.00 sec)</pre>
@@ -110,7 +110,7 @@ mysql> DESC enrolled;
 +-------+-------------+------+-----+---------+-------+
 2 rows in set (0.00 sec)</pre>
 
-###INSERTIONS:
+### INSERTIONS:
 
 <pre>mysql> INSERT INTO student (snum,sname,major,level,age) VALUES
     -> (1,'jhon','CS','Sr',19),
@@ -222,8 +222,8 @@ mysql> SELECT * FROM enrolled;
 +------+--------+
 12 rows in set (0.00 sec)</pre>
 
-###QUERIES:
-###Query 1: Find the names of all juniors (level=Jr) who are enrolled for class taught by professor Harshith.
+### QUERIES:
+### Query 1: Find the names of all juniors (level=Jr) who are enrolled for class taught by professor Harshith.
 
 <pre>mysql> SELECT DISTINCT s.sname
 	FROM student s,class c,faculty f,enrolled e
@@ -242,7 +242,7 @@ mysql> SELECT * FROM enrolled;
 Description : Query checks whether the students are enrolled for the class and the level of the students is 'Jr', then it extracts the name of the student who is enrolled for the class whose fid in table class correspomds to the fid of professor Harshith.</pre>
 
 
-###Query 2: Find the names of all classes that either meet in room128 or have 5 or more students enrolled.
+### Query 2: Find the names of all classes that either meet in room128 or have 5 or more students enrolled.
 
 <pre>mysql> SELECT DISTINCT cname
 	FROM class
@@ -260,7 +260,7 @@ Description : Query checks whether the students are enrolled for the class and t
 Description : Query results displays the class names that either have room number as room128 or it selects the cname from table enrolled and "group by e.cname having count(*)>=5" statement meaning that cname where number of students enrolled for that class is greater than or equal to five.</pre>
 
 
-###Query 3: Find the names of all students who are enrolled in two classes that meet at same time.
+### Query 3: Find the names of all students who are enrolled in two classes that meet at same time.
 
 <pre>mysql> SELECT DISTINCT s.sname
 	FROM student s
@@ -282,7 +282,7 @@ Description : Outer part of the query extraxts the name of the students from tab
 
 
 
-###Query 4: Find the names of faculty members who teach in every room in which some class is taught.
+### Query 4: Find the names of faculty members who teach in every room in which some class is taught.
 
 <pre>mysql> SELECT f.fname,f.fid
 			FROM faculty f
@@ -301,7 +301,7 @@ Description : The outer part of the query fetches the name and id of the facuty 
 
 
 
-###Query 5: Find the names of the faculty members for whome the combined enrollment of the classes that they teach is less then five.
+### Query 5: Find the names of the faculty members for whome the combined enrollment of the classes that they teach is less then five.
 
 <pre>mysql>  SELECT DISTINCT f.fname
 	FROM faculty f

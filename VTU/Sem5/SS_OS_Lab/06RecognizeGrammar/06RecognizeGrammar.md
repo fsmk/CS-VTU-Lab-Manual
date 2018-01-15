@@ -1,11 +1,11 @@
-##AIM:Program to recognize the grammar (anb, n>= 10).
+## AIM:Program to recognize the grammar (anb, n>= 10).
 
-###DESCRIPTION:
+### DESCRIPTION:
 <p>The program has three parts:definition section,rule section,subroutine section. The program uses a variable count to keep track of the number of A's in the input string and B is accepted only once according to the rule described.So count must be more than 9.</p>
 
-###ALGORITHM:
+### ALGORITHM:
 
-###CODE:
+### CODE:
 
 <pre>%{
 #include<stdio.h>
@@ -34,7 +34,7 @@ main()
 	printf("Invalid grammar\n");
 }</pre>
 
-###LEX SPECIFICATION:
+### LEX SPECIFICATION:
 
 <pre>%{
 #include"y.tab.h"
@@ -46,7 +46,7 @@ b return B;
 \n return 0;
 %%</pre>
 
-###OUTPUT:
+### OUTPUT:
 <p> 1) enter a string of a's and b's</p>
 <p>aaaaaaaaaab</p>
 <p>valid grammar</p>

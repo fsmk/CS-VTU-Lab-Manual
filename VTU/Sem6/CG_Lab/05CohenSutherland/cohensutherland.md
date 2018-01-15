@@ -1,6 +1,6 @@
 ## Aim: Program to implement the Cohen-Sutherland line-clipping algorithm. Make provision to specify the input line, window for clipping and view port for displaying the clipped image.
 
-##Algorithm:
+## Algorithm:
 1. End-points pairs are check for trivial acceptance or trivial rejected using the outcode.
 2. If not trivial-accepance or trivial-rejected, divided into two segments at a clip edge.
 3. Iteratively clipped by testing trivial-acceptance or trivial-rejected, and divided into two segments until completely 	inside or trivial-rejected.
@@ -14,7 +14,7 @@ X > Xmax
 	* Bit 4 : outside halfplane of left edge, to the left of left edge
 X < Xmin 
 
-##Theory
+## Theory
 > In computer graphics, 'line clipping' is the process of removing lines or portions of lines outside of an area of interest. Typically, any line or part thereof which is outside of the viewing area is removed.
 > The Cohen�Sutherland algorithm is a computer graphics algorithm used for line clipping. The algorithm divides a two-dimensional space into 9 regions (or a three-dimensional space into 27 regions), and then efficiently determines the lines and portions of lines that are visible in the center region of interest (the viewport).
 > The algorithm quickly detects and dispenses with two common and trivial cases. To clip a line, we need to consider only its endpoints. If both endpoints of a line lie inside the window, the entire line lies inside the window. It is trivially accepted and needs no clipping. On the other hand, if both endpoints of a line lie entirely to one side of the window, the line must lie entirely outside of the window. It is trivially rejected and needs to be neither clipped nor displayed.

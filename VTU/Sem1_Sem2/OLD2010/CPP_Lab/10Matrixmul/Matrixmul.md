@@ -1,11 +1,11 @@
-##Aim:
-###Design, develop and execute a program in C to read two matrices A (M x N) and B (P x Q) and to compute the product of A and B if the matrices are compatible for multiplication. The program is to print the input matrices and the resultant matrix with suitable headings and format if the matrices are compatible for multiplication, otherwise the program must print a suitable message. (For the purpose of demonstration, the array sizes M, N, P, and Q can all be less than or equal to 3)
+## Aim:
+### Design, develop and execute a program in C to read two matrices A (M x N) and B (P x Q) and to compute the product of A and B if the matrices are compatible for multiplication. The program is to print the input matrices and the resultant matrix with suitable headings and format if the matrices are compatible for multiplication, otherwise the program must print a suitable message. (For the purpose of demonstration, the array sizes M, N, P, and Q can all be less than or equal to 3)
 
-##Summary
+## Summary
 
 >Matrix multiplication, it's a mathematical operations where elements of matrixes are multiplied with other matrix element. The two matrixes are of order (M x N) and (P x Q), for multiplication to exist between matrices the number of columns of first matrix should match the number of rows of second matrix i.e. N=P. Multiplication is carried out by myultiplying row  elements of the first matrix with the coloumn elements of the second matrix. 
     
-##Algorithm
+## Algorithm
 1. Start.
 2. Input the order of first matrix   matrix1[ ][ ]       mxn  (m-rows,n-coloumns).
 3. Input the order of second matrix  matrix2[ ][ ]     pxq  (m-rows,n-coloumns).
@@ -16,7 +16,7 @@
 7. Print matrix  prod[ ][ ].
 8. Stop.
   
-##Program: Matrixmul.c
+## Program: Matrixmul.c
 	#include<stdio.h>
 	void main()
 	{
@@ -103,7 +103,7 @@
 		
 	}
 
-##Output:
+## Output:
 
 ###gcc matrixmul.c
 ###./a.out

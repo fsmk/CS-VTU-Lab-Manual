@@ -1,7 +1,7 @@
 ## Aim: 
 ### Program to recursively subdivide a tetrahedron to from 3D Sierpinski gasket. The number of recursive steps is to be specified by the user.
 
-##Theory
+## Theory
 > A geometric method of creating the gasket is to start with a vertex of the object and get all the mid points to the other verticies. This results in smaller strucure of the original geometric object (repete for all the verticies). For another itteration take the smaller object ang perform the same as above. The gasket is perfectly self similar, an attribute of many fractal images. Any portion is an exact replica of the phase of the gasket
 > The construction of the 3 dimensional version of the gasket follows similar rules for the 2D case except that the building blocks are square based pyramids instead of triangles.
 

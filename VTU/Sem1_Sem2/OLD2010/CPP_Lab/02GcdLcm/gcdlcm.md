@@ -1,7 +1,7 @@
-##Aim:
-###Design, develop and execute a program in C to implement Euclid's algorithm to find the GCD and LCM of two integers and to output  the results along with the given integers.
+## Aim:
+### Design, develop and execute a program in C to implement Euclid's algorithm to find the GCD and LCM of two integers and to output  the results along with the given integers.
 
-##Summary:
+## Summary:
 >In its simplest form, Euclid's algorithm starts with a pair of positive integers, and forms a new pair that consists of the smaller number and the difference between the larger and smaller numbers. 
 
 > The process repeats until the numbers in the pair are equal. That number then is the greatest common divisor of the original pair of integers.
@@ -30,7 +30,7 @@
 >        6         1         0
 
 
-##Algorithm:
+## Algorithm:
 1.  Start.
 2.  Take two numbers as input a and b.
 3.  If both input numbers are 0 then print error message, go to step 9, else to step 4.
@@ -48,7 +48,7 @@
 8.  Print the values of GCD and LCM.
 9.  Stop.
 
-##Program: Gcdlcm.c
+## Program: Gcdlcm.c
 	
 	#include<stdio.h>
 	#include<stdlib.h>

@@ -1,9 +1,9 @@
-##Program 14: bintree.cpp
-##AIM: Design, develop, and execute a program in C++ to create a class called BIN_TREE that
+## Program 14: bintree.cpp
+## AIM: Design, develop, and execute a program in C++ to create a class called BIN_TREE that
 ##represents a Binary Tree, with member functions to perform inorder, preorder and
 ##postorder traversals. Create a BIN_TREE object and demonstrate the traversals.*/
 
-##THEORY:
+## THEORY:
 Each of the objects in a binary tree contains two pointers, typically called left and right. In addition to these pointers, of course, the nodes can contain other types of data.A node that points to another node is said to be the parent of that node, and the node it points to is called a child.
 
 A binary tree must have the following properties: There is exactly one node in the tree which has no parent. This node is called the root of the tree. Every other node in the tree has exactly one parent. Finally, there can be no loops in a binary tree. That is, it is not possible to follow a chain of pointers starting at some node and arriving back at the same node.
@@ -35,7 +35,7 @@ Post-order:
 
 
 
-##ALGORITHM:
+## ALGORITHM:
 
 Preorder: The first type of traversal is pre-order whose code looks like the following:
 
@@ -89,7 +89,7 @@ This can be summed up as
 
 
 
-##CODE:bintree.cpp   
+## CODE:bintree.cpp   
     #include <iostream>
     #include <stdio.h>
     #include <stdlib.h>
@@ -247,7 +247,7 @@ This can be summed up as
 
 
 
-##OUTPUT:
+## OUTPUT:
 ##compilation command: g++ bintree.cpp
 ##output command : ./a.out
 1.Insert

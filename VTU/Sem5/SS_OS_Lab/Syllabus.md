@@ -1,12 +1,12 @@
-##Lab Programs list for System Software and Operating Systems Lab as specified by VTU for 5th Semester students:
+## Lab Programs list for System Software and Operating Systems Lab as specified by VTU for 5th Semester students:
 
-###Problem Structure:
+### Problem Structure:
 * Programs 1-3 using Lex
 * Programs 4-6 using Yacc
 * Programs 7-9 are related to Unix Programming
 * Programs 10-12 are related to Operating System
 
-###Problems
+### Problems
 1. 
     1. Program to count the number of characters, words, spaces and lines in a given input file.
     2. Program to count the numbers of comment lines in a given C program. Also eliminate them and copy the resulting program into separate file.

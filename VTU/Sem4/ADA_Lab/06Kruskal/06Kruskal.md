@@ -1,10 +1,10 @@
-##AIM: Find Minimum Cost Spanning Tree of a given undirected graph using Kruskal's algorithm.
+## AIM: Find Minimum Cost Spanning Tree of a given undirected graph using Kruskal's algorithm.
 
-###DESCRIPTION:
+### DESCRIPTION:
 
 >Kruskal's algorithm is an algorithm in graph theory that finds a minimum spanning tree for a connectedweighted graph. This means it finds a subset of the edges that forms a tree that includes every vertex, where the total weight of all the edges in the tree is minimized. If the graph is not connected, then it finds a minimum spanning forest (a minimum spanning tree for each connected component). Kruskal'salgorithm is an example of a greedy algorithm
 
-###ALGORITHM:
+### ALGORITHM:
 
 	Let G = (V, E) be the given graph, with | V| = n
 	{
@@ -19,7 +19,7 @@
 		}
 	} 
  
-###CODE:
+### CODE:
 
 	/********************************************************************************
 	*File          : Kruskal.cpp
@@ -231,7 +231,7 @@
 			cout << "\nThe spanning tree does not exist";
 	}
 
-###OUTPUT:
+### OUTPUT:
 
 Enter the number of nodes : 6
 

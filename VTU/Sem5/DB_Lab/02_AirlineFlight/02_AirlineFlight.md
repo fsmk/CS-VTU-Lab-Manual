@@ -1,5 +1,5 @@
-##PROGRAM 2
-###DESCRIPTION:
+## PROGRAM 2
+### DESCRIPTION:
 The following relations keep track of airline flight information:
 
 * FLIGHTS (no:integer,from:string,to:string,distance:integer,departs:time,arrives:time,price:real)
@@ -9,7 +9,7 @@ The following relations keep track of airline flight information:
 
 NOTE that the EMPLOYEES relation describes pilots and other kinds of employees as well;Every pilot is certified for some aircraft,and only pilots are certified to fly.
 
-###Queries:
+### Queries:
 
 <pre>Write each of the following queries in SQL.
 
@@ -21,7 +21,7 @@ NOTE that the EMPLOYEES relation describes pilots and other kinds of employees a
 6. Find the aid's of all aircraft that can be used on routes from Bangalore to Delhi.
 </pre>
 
-###Create:
+### Create:
 <pre>
 mysql> CREATE DATABASE flights;
 Query OK, 1 row affected (0.00 sec)
@@ -112,7 +112,7 @@ mysql> DESC certified;
 2 rows in set (0.00 sec)
 </pre>
 
-###Insertion:
+### Insertion:
 <pre>mysql> INSERT INTO flight (no,frm,too,distance,departs,arrives,price) VALUES 
             (1,'Bangalore','Mangalore',360,'10:45:00','12:00:00',10000),
             (2,'Bangalore','Delhi',5000,'12:15:00','04:30:00',25000),
@@ -244,7 +244,7 @@ mysql> SELECT * FROM certified;
 17 rows in set (0.00 sec)
 </pre>
 
-###Queries:
+### Queries:
 ###1.Find the names of aircraft such that all pilots certified to operate them have salaries more than Rs 80,000.
 <pre>
 mysql> SELECT DISTINCT a.aname
