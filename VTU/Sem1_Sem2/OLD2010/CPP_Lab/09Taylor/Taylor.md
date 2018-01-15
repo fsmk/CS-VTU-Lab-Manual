@@ -1,7 +1,7 @@
-##Aim:
-###Design, develop and execute a program in C to calculate the approximate value of exp (0.5) using the Taylor Series expansion for the exponential function. Use the terms in the expansion until the last term is less than the machine epsilon defines as FLT_EPSILON in the header file <float.h>. Print the value returned by the Mathematical function exp ( ) also.
+## Aim:
+## Design, develop and execute a program in C to calculate the approximate value of exp (0.5) using the Taylor Series expansion for the exponential function. Use the terms in the expansion until the last term is less than the machine epsilon defines as FLT_EPSILON in the header file <float.h>. Print the value returned by the Mathematical function exp ( ) also.
 
-##Summary:
+## Summary:
 >In mathematics, a Taylor series is a representation of a function as an infinite sum of terms that are calculated from the values of the function's derivatives at a single point.		
 
 >Exponential formula:
@@ -19,7 +19,7 @@ FLT_EPSILON the minimum positive number such that, 1.0 + FLT_EPSILON != 1.0 // d
 
 >When the value of one of the component of the above Taylor expression ( (x^n) / n!  ) gets equal to zero, or technically less than FLT_EPSILON we stop the calculation and print the answer.
 
-##Algorithm:
+## Algorithm:
 1. Start
 2. Taylor's series expansion
 		Let sum=0, x=0.5
@@ -28,7 +28,7 @@ FLT_EPSILON the minimum positive number such that, 1.0 + FLT_EPSILON != 1.0 // d
 5. Calculate num/den 6. Repeat step 2,3,4 till the value is less than FLT_EPSILON
 7. Stop.
 
-##Program: Taylor.c
+## Program: Taylor.c
 
 	#include<stdio.h>
 	#include<float.h>
@@ -66,7 +66,7 @@ FLT_EPSILON the minimum positive number such that, 1.0 + FLT_EPSILON != 1.0 // d
         	return 0;
 	}
 
-##Output:
+## Output:
 
 ###gcc -lm Taylor.c
 ###./a.out

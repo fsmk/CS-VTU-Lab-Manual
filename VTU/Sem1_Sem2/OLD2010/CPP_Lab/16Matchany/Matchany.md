@@ -1,11 +1,11 @@
-##Aim:
-###Design and develop a function matchany (s1,s2) which returns the first location in the string s1 where any character from the string s2 occurs,   or - 1 if s1 contains no character from s2. Do not use the standard library function which does a similar job! Invoke the function matchany (s1,s2) from the main for different strings and print both the strings and the return value from the function matchany (s1,s2).
+## Aim:
+## Design and develop a function matchany (s1,s2) which returns the first location in the string s1 where any character from the string s2 occurs,   or - 1 if s1 contains no character from s2. Do not use the standard library function which does a similar job! Invoke the function matchany (s1,s2) from the main for different strings and print both the strings and the return value from the function matchany (s1,s2).
 
-##Summary:
+## Summary:
 	
 >The  matchany function returns the first location of the character of the second string if it is present in the second string, or else it returns -1. It first checks the first character of the first string with all the characters of the second string(from first to last of second character), if any matches is found it returns the location of that character in the first string, else it searches for the second character , same process is carried on till the last character of the first string if any matches are not found in between.
 
-##Algorithm:
+## Algorithm:
 
 1. Start 
 2. Take the input strings
@@ -14,7 +14,7 @@
 5. When match found return the position of character in first string,else 			exit.                                                                                                          
 6. Stop
 	
-##Program: matchany.c
+## Program: matchany.c
 
 	#include<stdio.h>
 	#include<string.h>
@@ -57,7 +57,7 @@
 	}
 
 
-##Output :
+## Output :
 
 ###gcc matchany.c
 ###./a.out

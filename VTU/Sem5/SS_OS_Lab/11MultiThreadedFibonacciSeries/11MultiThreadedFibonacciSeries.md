@@ -1,11 +1,11 @@
-##AIM:
+## AIM:
  Using OpenMP, Design, develop and run a multi-threaded program to generate and print Fibonacci Series. One thread has to generate the  numbers up to the specified limit and another thread has to print them. Ensure proper synchronization.
 
-###DESCRIPTION:
+## DESCRIPTION:
 In mathematics, the Fibonacci numbers or Fibonacci series or Fibonacci sequence are the numbers in the following integer sequence:0 1 1 2 3 5 8 13 21 34 55 . . . . . . . 
-###FORMULA:
+## FORMULA:
 F<sub>n</sub> = F<sub>(n-1)</sub> + F<sub>(n-2)</sub>
-###CODE:
+## CODE:
 `#`include&lt;stdio.h&gt;
 
 `#`include&lt;omp.h&gt;
@@ -37,7 +37,7 @@ int main()
    return 0;
 }
 </pre>
-###OUTPUT
+## OUTPUT
 <pre>
 cc -fopenmp 11.c 
 ./a.out

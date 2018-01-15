@@ -1,10 +1,10 @@
-##Aim:
-###Design, develop and execute a program in C to copy its input to its output,    replacing each string of one or more blanks by a single blank.
+## Aim:
+## Design, develop and execute a program in C to copy its input to its output,    replacing each string of one or more blanks by a single blank.
 
-##Summary:
+## Summary:
 >The program introduces concept of character comparision and also white space characters like '\t' and null characters like '\0'. To find and replace all multiple blanks, with a single blank in the string, we will start from second character as current character in the input string and compare it with the previous character and if only both are not spaces, then the current character will stored in the destination string. We will continue this till we reach the end of the input string which is denoted by null character, '\0'.
 
-##Algorithm:
+## Algorithm:
 1. Start
 2. Initialise inspace to 0
 3. Take the input string (using gets() function).
@@ -18,7 +18,7 @@
 6. Print the character, go to step 4
 7. Stop
 
-##Program: space.c
+## Program: space.c
 
 	#include<stdio.h>
 	#include<string.h>

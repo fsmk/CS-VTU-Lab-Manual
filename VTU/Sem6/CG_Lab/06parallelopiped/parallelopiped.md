@@ -1,12 +1,12 @@
 ### Aim:
 #### Program to create a cylinder and a parallelepiped by extruding a circle and quadrilateral respectively.
-###Algorithm:
+## Algorithm:
 
 1. Under ``Cylinder_Draw`` function, we call the ``Circle_draw`` function inside a for loop.
 2. The ``Circle_Draw`` function is a midpoint circle drawing algorithm which draws a circle by calling ``plotpixels`` method. The ``plotpixels`` method draws the cylinder by plotting multiple pixels.
 3. The ``parellopiped_draw`` module calls the ``parellopiped`` module inside a for loop which draws the parellelopiped onto the screen.
 
-###Code:
+## Code:
 
     //Cylinder and Parallelepiped by extruding Circle and Quadrilateral
     #include <GL/glut.h>

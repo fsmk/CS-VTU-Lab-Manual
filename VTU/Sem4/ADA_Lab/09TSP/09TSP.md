@@ -1,7 +1,7 @@
 #AIM: 
 Implement any scheme to find the optimal solution for the TRAVELLING SALESMAN PROBLEM and then solve the same problem instance using any approximation algorithm and determine the error in the approximation.
 
-##DESCRIPTION:
+## DESCRIPTION:
 >The travelling salesman problem (TSP) asks the following question: Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city exactly once and returns to the origin city? It is an NP-hard problem in combinatorial optimization, important in operations research and theoretical computer science.
 
 >The TSP has several applications even in its purest formulation, such as planning, logistics, and the manufacture of microchips. Slightly modified, it appears as a sub-problem in many areas, such as DNA sequencing. In these applications, the concept city represents, for example, customers, soldering points, or DNA fragments, and the concept distance represents travelling times or cost, or a similarity measure between DNA fragments. In many applications, additional constraints such as limited resources or time windows make the problem considerably harder. TSP is a special case of the travelling purchaser problem.
@@ -9,7 +9,7 @@ Implement any scheme to find the optimal solution for the TRAVELLING SALESMAN PR
 >In the theory of computational complexity, the decision version of the TSP (where, given a length L, the task is to decide whether the graph has any tour shorter than L) belongs to the class of NP-complete problems. Thus, it is possible that the worst-case running time for any algorithm for the TSP increases superpolynomially (or perhaps exponentially) with the number of cities.
 
 
-##CODE:
+## CODE:
 	#include <iostream>
 	#include <iomanip>
 
@@ -205,7 +205,7 @@ Implement any scheme to find the optimal solution for the TRAVELLING SALESMAN PR
 		return 0;
 	}
 
-##OUTPUT:
+## OUTPUT:
 
 The Exact Minimum Cost tour is
 

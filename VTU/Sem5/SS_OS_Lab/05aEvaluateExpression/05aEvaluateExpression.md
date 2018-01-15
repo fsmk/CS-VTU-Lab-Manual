@@ -1,16 +1,16 @@
-##PROGRAM: 5a.y(YACC specification)
-##AIM:
+## PROGRAM: 5a.y(YACC specification)
+## AIM:
  Program to evaluate an arithmetic expression involving operators +, -, * and /.
-##DESCRIPTION:
+## DESCRIPTION:
 This program is to solve or to evaluate the given arithmatic expression using the operators +,-,* and /. 
 
 example: 3+5=8.
 
 
-##ALGORITHM:
+## ALGORITHM:
 
 
-##CODE:
+## CODE:
 %{
 
     #include<stdio.h>
@@ -67,10 +67,10 @@ main()
 
 
 
-##PROGRAM: 5a.l(LEX specification)
+## PROGRAM: 5a.l(LEX specification)
 
 
-##CODE:
+## CODE:
 %{
 
    #include"y.tab.h"
@@ -89,7 +89,7 @@ main()
 
 %%
 
-##OUTPUT:
+## OUTPUT:
 
  1.) Enter the expression
 

@@ -1,21 +1,21 @@
-##PROGRAM 4 : queue.c
-##Aim:
-##Design, develop, and execute a program in C to simulate the working of a queue of integers using an array. Provide the following operations:
+## PROGRAM 4 : queue.c
+## Aim:
+## Design, develop, and execute a program in C to simulate the working of a queue of integers using an array. Provide the following operations:
 ##1.Insert
 ##2.Delete
 ##3.Display
 
-##Theory:
+## Theory:
 Queue is a perticular kind of collection in which the entities in collection are kept in order and the principal operations on the collection are the addition of the entities to the rear terminal position and removal of entities from the front terminal position. Thus queue works in First In First Out(FIFO) order.
 
-##Algorithm:
+## Algorithm:
 1. Start
 2. To insert an element to the queue first check if queue is full. If it is full display a message saying 'queue overflow', else insert the element from rear end of the queue.
 3. To delete an element from the queue check if there are elements in queue which has to be deleted. If there is no elements in the queue print a message saying 'queue underflow', else delete the element from front end of the queue.
 4. Display the contents of the queue.
 5. Stop.
 
-##Code:
+## Code:
 
     #include<stdio.h>
     #include<stdlib.h>
@@ -89,7 +89,7 @@ Queue is a perticular kind of collection in which the entities in collection are
      }
     }
 
-##OUTPUT
+## OUTPUT
 compilation command:cc queue.c
 Output command: ./a.out
 

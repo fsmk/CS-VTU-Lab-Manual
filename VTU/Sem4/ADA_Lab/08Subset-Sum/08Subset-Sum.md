@@ -1,13 +1,13 @@
 #AIM:Program to solve Subset sum problem.
 
-##Desrcription:
+## Desrcription:
 >	In computer science, the subset sum problem is an important problem in complexity theory and cryptography. The problem is this: Given a set of integers, is there a non-empty subset whose sum is zero? For example, given the set {-7, -3, -2, 5, 8}, the answer is yes because the subset {-3, -2, 5} sums to zero. The problem is NP-complete.
 Input: The number of elements.
        The Weights of each element.
        Total Required Weight.
 Output:Subsets in which the sum of elements is equal to the given required weight(input).
 
-###CODE:
+## CODE:
 	#include <iostream>
 	using namespace std;
 
@@ -149,7 +149,7 @@ Output:Subsets in which the sum of elements is equal to the given required weigh
 	}
 
 
-###OUTPUT
+## OUTPUT
 SAMPLE 1
 
 Enter the maximum number of elements : 5

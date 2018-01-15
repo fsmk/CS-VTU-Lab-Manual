@@ -1,11 +1,11 @@
-###Aim:
+## Aim:
 C program that creates a child process to read commands from the standard input and execute them (a minimal implementation of a shell-like program). You can assume that no arguments will be passed to the commands to be executed.
 
-####Description:
+## Description:
  <p>fork():it is a system call which forks a new child of a processs
 </p>system ():it is a system call which takes a command as an argument and invokes the operating system to execute it.</p>
 
-####Code:
+## Code:
 <pre>
 #include&lt;stdio.h&gt;
 #include&lt;stdlib.h&gt;
@@ -21,7 +21,7 @@ int main()
     }while(strcmp(cmd,"exit"));
 }
 </pre>
-####Output:
+## Output:
 
 /a.out
 

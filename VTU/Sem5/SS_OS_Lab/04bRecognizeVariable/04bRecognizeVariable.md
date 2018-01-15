@@ -1,11 +1,11 @@
-##Program : 4b.y
-##Aim: 
+## Program : 4b.y
+## Aim: 
 Program to recognize a valid variable, which starts with a letter, followed by any number of letters or digits.
 
-##Description:
+## Description:
 This program checks if the given variable is valid or invalid. A variable should start with a letter followed any no of letters or digits.For example a123 or aa23 or b3455 etc are valid variables.Example for invalid expression 12aa or 1cc etc.
 
-##Code:
+## Code:
 
     %{
     #include<stdio.h>
@@ -31,9 +31,9 @@ This program checks if the given variable is valid or invalid. A variable should
  	return 0;
     }		
         
-##Program : 4b.l (Lex Specification)
+## Program : 4b.l (Lex Specification)
 
-##Code:
+## Code:
     %{
     #include"y.tab.h"
     %}
@@ -45,7 +45,7 @@ This program checks if the given variable is valid or invalid. A variable should
     %%
 
 
-##Output:
+## Output:
 1.Enter the variable
 
 a345

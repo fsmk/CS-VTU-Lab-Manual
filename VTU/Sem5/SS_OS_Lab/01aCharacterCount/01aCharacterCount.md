@@ -2,16 +2,16 @@
  Program to count the number of characters, words, spaces and lines 
 in a given input file.
 
-##DESCRIPTION:
+## DESCRIPTION:
 We have the command 'wc' in UNIX which gives us all the 
 number of characters,number of words,number of lines.We are expected to develop a similar utility which does the same using flex.
 
-##FLEX:  flex - the fast lexical analyser generator.
+## FLEX:  flex - the fast lexical analyser generator.
 
 
 
 
-##CODE:
+## CODE:
 
 <pre>%{
 #include&lt;stdio.h&gt;
@@ -43,12 +43,12 @@ int main(int argc,char *argv[])
 	return 0;
 }</pre>
 
-##COMPILE:
+## COMPILE:
 <pre>lex 1a.l
 gcc lex.yy.c -ll
 ./a.out 1a.l</pre>
 
-##OUTPUT:
+## OUTPUT:
 <pre>line count is 29
 word count is 55
 space count is 26

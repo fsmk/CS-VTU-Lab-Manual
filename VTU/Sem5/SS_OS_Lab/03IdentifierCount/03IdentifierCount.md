@@ -2,12 +2,12 @@
 Program to recognize and count the number of identifiers in a given
 input file.
 
-##DESCRIPTION:
+## DESCRIPTION:
 Given any program containing few datatypes defined we should be able to count the total number of identifiers, number of identifers of the same datatype and also display what they are.
 
-###FLEX:  flex - the fast lexical analyser generator.
+## FLEX:  flex - the fast lexical analyser generator.
 
-###CODE:
+## CODE:
 <pre>%{
 `#`include&lt;stdio.h>
 int intcount=0,floatcount=0,charcount=0,doublecount=0;
@@ -55,12 +55,12 @@ int main(int argc,char **argv)
 	return 0;
 }	
 </pre>		
-###COMPILE:
+## COMPILE:
 <pre>lex 3.l
 gcc lex.yy.c -ll
 ./a.out 10.c
 </pre>
-###OUTPUT:
+## OUTPUT:
 <pre>The identifiers are:
 name;
 at;

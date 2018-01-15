@@ -1,13 +1,13 @@
-##AIM :Program to recognize strings 'aaab', 'abbb', 'ab' and 'a' using the grammar (anbn, n>= 0).
+## AIM :Program to recognize strings 'aaab', 'abbb', 'ab' and 'a' using the grammar (anbn, n>= 0).
 
 
-###DESCRIPTION : 
+## DESCRIPTION : 
 <p>The program has three parts defination section,rule section,subroutine section. The program accepts equal number of a's and b's as valid inputs. The grammar is S->A S B, A->a ,b->b . </p>
 
-###ALGORITHM :
+## ALGORITHM :
 
 
-###CODE :
+## CODE :
 
 <pre>%{
 #include<stdio.h>
@@ -33,7 +33,7 @@ main()
 
 
 
-###LEX SPECIFICATION
+## LEX SPECIFICATION
 
 <pre>
 %{
@@ -46,7 +46,7 @@ b return B;
 \n return 0;
 %%</pre>
 
-###OUTPUT :
+## OUTPUT :
 
 <pre>enter a string of a's and b's
 aaab

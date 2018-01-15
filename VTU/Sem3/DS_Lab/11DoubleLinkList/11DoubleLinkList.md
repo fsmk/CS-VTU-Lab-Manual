@@ -1,11 +1,11 @@
-##Program 11 : doublelinkedlist.c
-##Write a C program to support the following opearations on a doubly linked list where each node consists of integers.
+## Program 11 : doublelinkedlist.c
+## Write a C program to support the following opearations on a doubly linked list where each node consists of integers.
 ##a. Create a doubly linked list by adding each node at the front.
 ##b. Insert a new node to the left of the node whose key value is read as an input
 ##c. Delete the node of a given data,if it is found,otherwise display appropriate message.
 ##d. Display the contents of the list.
 
-##THEORY:
+## THEORY:
 A doubly linked list is a linked data structure that consists of a set of data records, each having two special
 link fields that contain references to the previous and to the next record in the sequence .It can be viewed as
 two singly-linked lists formed from the same data items, in two opposi orders.
@@ -21,7 +21,7 @@ linked
 linked
 pointers, but is sometimes simpler because there is no need to keep track of the address of the previous node.
 
-##ALGORITHM:
+## ALGORITHM:
 
 Algorithm for adding each node at the front
 
@@ -67,7 +67,7 @@ Algorithm for display
 3. while(temp!=NULL) print temp->info and then temp=temp->rlink
 
 
-##CODE: 
+## CODE: 
     #include <stdio.h>
     #include <stdlib.h>
 
@@ -250,7 +250,7 @@ Algorithm for display
          } 
     }
 
-##OUTPUT:
+## OUTPUT:
 ## compilation command:cc doublelinkedlist.c
 ## output command: ./a.out
 Choices:

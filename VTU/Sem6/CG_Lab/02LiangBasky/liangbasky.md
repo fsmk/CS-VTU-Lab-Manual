@@ -1,7 +1,7 @@
 ## Aim: 
 ### Program to implement Liang-Barsky line clipping algorithm.
 
-##Theory
+## Theory
 > In computer graphics, 'line clipping' is the process of removing lines or portions of lines outside of an area of interest. Typically, any line or part thereof which is outside of the viewing area is removed.
 >The Liang-Barsky algorithm uses the parametric equation of a line and inequalities describing the range of the clipping window to determine the intersections between the line and the clipping window. With these intersections it knows which portion of the line should be drawn.
 
