@@ -1,19 +1,19 @@
-## PROGRAM 9 : sparse.c
-## Aim:
-## Design, develop, and execute a program in C to read a sparse matrix of integer values and to search the sparse matrix for an element specified by the user. Print the result of the search appropriately. Use the triple <row, column, value> to represent an element in the sparse matrix.
+##PROGRAM 9 : sparse.c
+##Aim:
+##Design, develop, and execute a program in C to read a sparse matrix of integer values and to search the sparse matrix for an element specified by the user. Print the result of the search appropriately. Use the triple <row, column, value> to represent an element in the sparse matrix.
 
 ## Theory:
 A sparse matrix is a matrix populated primarily with zeros (Stoer & Bulirsch 2002, p. 619) as elements of the table. By contrast, if a larger number of elements differ from zero, then it is common to refer to the matrix as a dense matrix. The fraction of zero elements (non-zero elements) in a matrix is called the sparsity (density).
 
 
-## Algorithm:
+##Algorithm:
 1. Start.
 2. Insert elements into the matrix in such a way that it is populated with more number of zeors.
 3. Accept an element as key element.
 4. Check the sparse matrix for the specified key element. If the key element is present, then print a message for successful search, else print that the search unsuccessful or element is not found in the sparse matrix.
 5. Stop.
 
-## Code:
+##Code:
 
     #include<stdio.h>
     #define MAXSIZE 101
@@ -68,7 +68,7 @@ A sparse matrix is a matrix populated primarily with zeros (Stoer & Bulirsch 200
     printf("search unsuccessful");
     }
 
-## OUTPUT
+##OUTPUT
 compilation command:cc sparse.c
 output command: ./a.out
 enter the order of matrix

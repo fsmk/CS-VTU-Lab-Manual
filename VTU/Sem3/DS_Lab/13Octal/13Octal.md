@@ -1,10 +1,10 @@
-## AIM:
-## Write a C++ program to create a class called OCTAL which has the characteristics of an octal number. Implement the following operations by writing an appropriate constructor and an overloaded operator +.(i) OCTAL h = x; where x is an integer.(ii) int y = h + k; where h is an OCTAL object and k is an integerDisplay the OCTAL result by overloading the operator << . Also display the values of h and y. 
+##AIM:
+##Write a C++ program to create a class called OCTAL which has the characteristics of an octal number. Implement the following operations by writing an appropriate constructor and an overloaded operator +.(i) OCTAL h = x; where x is an integer.(ii) int y = h + k; where h is an OCTAL object and k is an integerDisplay the OCTAL result by overloading the operator << . Also display the values of h and y. 
 
-## THEORY: 
+##THEORY: 
   A constructor (sometimes shortened to ctor) in a class is a special type of subroutine called to create an object. It prepares the new object for use, often accepting arguments that the constructor uses to set member variables required.
 
-## ALGORITHM:
+##ALGORITHM:
 
 1. START
 2. Accept an input say x.
@@ -14,7 +14,7 @@
 6. The value of h+k in decimal notation is shown.
 7. The value of h+k in octal notation is shown.
 
-## CODE: octal.cpp
+##CODE: octal.cpp
     #include <iostream>
     #include <math.h>
     using namespace std;
@@ -86,7 +86,7 @@
     return 0;
     }
 
-## OUTPUT:
+##OUTPUT:
 Enter the value of x in decimal notation:100
 
 Corresponding value of x in octal notation: h = 144

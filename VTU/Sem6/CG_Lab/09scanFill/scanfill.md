@@ -165,7 +165,7 @@ int main(int argc, char **argv)
 }
 ```
 
-## Output:
+##Output:
 
 *Commands for execution:-*
 

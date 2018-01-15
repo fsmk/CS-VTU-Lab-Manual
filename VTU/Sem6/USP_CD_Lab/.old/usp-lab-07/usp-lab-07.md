@@ -1,9 +1,9 @@
 
-## Aim:
+##Aim:
 <blockquote>
-## Write a C/C++ program that creates a zombie and then calls system to execute the ps command to verify that the process is zombie.
+###Write a C/C++ program that creates a zombie and then calls system to execute the ps command to verify that the process is zombie.
 </blockquote>
-## Theory:
+##Theory:
 <blockquote>
 In unix terminology, a process that has terminated, but whose parent has not yet waited for it, is called a zombie.<br><br>
 *fork()*
@@ -38,7 +38,7 @@ Syntax:
 </blockquote>
 </blockquote>
 
-## Code:
+##Code:
 <code><pre> #include&lt;stdio.h&gt; 
  #include&lt;unistd.h&gt;
  #include&lt;stdlib.h&gt;
@@ -53,11 +53,11 @@ Syntax:
         system( "ps -o pid,ppid,state,tty,command");
         _exit(0);
      }</pre></code>
-## Output:
+##Output:
 <ul>
  <li>Open a terminal</li>
  <li>Change directory to the file location in the terminal</li>
  <li>Complile the program by using the command cc usp-lab-07.c -o usp07.out</li>
  <li>Run usp07.out</li>
-## Screenshots:
+##Screenshots:
 ![not avialable] (usp-lab-07.png)

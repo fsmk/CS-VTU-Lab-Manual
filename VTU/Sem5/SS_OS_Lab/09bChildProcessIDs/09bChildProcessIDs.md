@@ -1,11 +1,11 @@
-## Aim:
+###Aim:
 C program to do the following: Using fork( ) create a child process.The child process prints its own process-id and id of its parent and then exits. The parent process waits for its child to finish (by executing the wait( )) and prints its own process-id and the id of its child process and then exits.
 
-## Description:
+###Description:
 <p>pid_t:parent id of the process.
 <p>fork():it is a system call which forks a new child of a processs</p>
 
-## Code:
+###Code:
 <pre>`#`include&lt;stdio.h>
 `#`include&lt;unistd.h>
 `#`include&lt;stdlib.h>
@@ -33,7 +33,7 @@ int main()
 	return 0;
 }</pre>
 
-## Output:
+###Output:
 <pre>i am child process
 my parent process id is:4273
 my process id is:4274

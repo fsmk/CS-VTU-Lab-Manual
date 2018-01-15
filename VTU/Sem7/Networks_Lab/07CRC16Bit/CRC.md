@@ -1,5 +1,5 @@
 ## Aim:
-## Write a program for Error Detection using CRC-CCITT(16 bits)
+###Write a program for Error Detection using CRC-CCITT(16 bits)
 
 ## Description:
 
@@ -74,7 +74,7 @@ int main()
 }
 ```
 
-## Output:
+###Output:
 *Commands for execution:-*
 
 * Open a terminal.

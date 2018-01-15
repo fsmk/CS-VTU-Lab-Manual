@@ -1,10 +1,10 @@
-## Aim:
-## Design and develop a function rightrot(x,n) in C that returns the value of the integer x rotated to the right by n bit positions as an unsigned integer. Invoke the function from the main with different values for x and n and print the results with suitable headings. 
+##Aim:
+###Design and develop a function rightrot(x,n) in C that returns the value of the integer x rotated to the right by n bit positions as an unsigned integer. Invoke the function from the main with different values for x and n and print the results with suitable headings. 
 
-## Summary:
+##Summary:
 >Rightrot is a function used to right rotate a integer for specified number of times. This function shifts all the bits of the digit to next bit in right direction and places the LSB(least significant bit) in MSB(most significant bit) position, specified number of times and returns the value.
 
-## Algorithm:
+##Algorithm:
 1. Start.
 2. Take a input number below 65536 to rightrot.
 3. Take input for number of times of righrot.
@@ -24,7 +24,7 @@
 6. Return the value of x.
 7. Stop.
 
-## Program: rightrot.c
+##Program: rightrot.c
 	#include<stdio.h>
 	
        // function performing right rotate //

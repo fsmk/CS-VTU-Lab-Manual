@@ -1,8 +1,8 @@
-## Aim:Find Minimum Cost Spanning Tree of a given undirected graph using Prim's algorithm.
-## Description:
+##Aim:Find Minimum Cost Spanning Tree of a given undirected graph using Prim's algorithm.
+###Description:
 >The program uses prim's algorithm which is based on minimum spanning tree for a connected undirected graph.A predefinined cost adjecency matrix is the input.To find the minimum spanning tree, we choose the source node at random and in every step we find the node which is closest as well as having the least cost from the previously selected node.And also the cost of selected edge is being added to variable sum.Based on the value of sum, the presence of the minimum spanning tree is found.
 
-## Algorithm:
+###Algorithm:
 
  <pre>    Input: A non-empty connected weighted graph with vertices V and edges E (the weights can be negative).
     Initialize: Vnew = {x}, where x is an arbitrary node (starting point) from V, Enew = {}
@@ -11,7 +11,7 @@
         Add v to Vnew, and {u, v} to Enew
     Output: Vnew and Enew describe a minimal spanning tree</pre>
 
-## Code:
+###Code:
 
 	/******************************************************************************
 	*File		: Prim.cpp
@@ -161,7 +161,7 @@
 	}
 
 
-## Output Sample 2:
+###Output Sample 2:
 Enter the number of vertices : 5
 Enter the Cost Adjacency Matrix
 
@@ -188,7 +188,7 @@ The spanning tree exists and minimum cost spanning tree is
 
 The cost of the minimum cost spanning tree is 13
 
-## Output Sample 2:
+###Output Sample 2:
 
 Enter the number of vertices : 5
 

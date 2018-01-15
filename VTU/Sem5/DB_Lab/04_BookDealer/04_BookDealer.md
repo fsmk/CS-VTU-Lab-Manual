@@ -1,5 +1,5 @@
-## PROGRAM 4
-## DESCRIPTION:
+##PROGRAM 4
+###DESCRIPTION:
 The following tables are maintained by a book dealer.
 
 * AUTHOR (author-id:int, name:string, city:string, country:string)
@@ -9,7 +9,7 @@ The following tables are maintained by a book dealer.
 * CATEGORY (category-id:int, description:string)
 * ORDER-DETAILS (order-no:int, book-id:int, quantity:int)
 
-## Queries:
+###Queries:
 
 Write each of the following queries in SQL.
 
@@ -18,7 +18,7 @@ Write each of the following queries in SQL.
 
 
 
-## Create:
+###Create:
 
 <pre>mysql> CREATE DATABASE book_dealer;
 Query OK, 1 row affected (0.00 sec)</pre>
@@ -125,7 +125,7 @@ mysql> DESC orderdetails1;
 3 rows in set (0.00 sec)
 </pre>
 
-## INSERTIONS:
+###INSERTIONS:
 
 <pre>
 mysql> INSERT INTO author1 (author1_id,author1_name,author1_city,author1_country) VALUES
@@ -242,7 +242,7 @@ mysql> SELECT * FROM orderdetails1;
 +----------+---------+----------+
 8 rows in set (0.00 sec)</pre>
 
-## QUERIES:
+###QUERIES:
 
 ### 3: Give the details of the authors who have 2 or more books in the catalog and the price of the books is greater than the  average price of the books in the catalog and the year of  publication is after 2000
 

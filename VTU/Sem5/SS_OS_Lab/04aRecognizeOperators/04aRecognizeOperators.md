@@ -1,12 +1,12 @@
-## Program : 4a.y (Yacc Specification)
+##Program : 4a.y (Yacc Specification)
 ## AIM:
 Program to recognize a valid arithmetic expression that uses operators +, -, * and /.
 
-## Description:
+##Description:
 This program checks if the given arithmetic expression is valid or not.An arithmetic expression contains operators like +,-,* and /. For example : 12+23-8 or (a+b)*c etc are valid expressions.
 Example for invalid expressions are a+* or (23*3)/(78 etc.
 
-## Code:
+##Code:
     %{
     #include<stdio.h>
     #include<stdlib.h>
@@ -38,9 +38,9 @@ Example for invalid expressions are a+* or (23*3)/(78 etc.
 
 
 
-## Program :4a.l (Lex Specification)
+##Program :4a.l (Lex Specification)
 
-## Code:
+##Code:
     %{
     #include"y.tab.h"
     %}
@@ -53,7 +53,7 @@ Example for invalid expressions are a+* or (23*3)/(78 etc.
 
 
 
-## Output:
+##Output:
 
 1.Enter the expression
 

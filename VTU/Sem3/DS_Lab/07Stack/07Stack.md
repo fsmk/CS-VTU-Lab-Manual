@@ -1,15 +1,15 @@
-## PROGRAM 7 : stack.cpp
-## Design, develop, and execute a program in C++ to create a class called STACK using an array of integers and to implement the following operations by overloading the operators + and - :
+##PROGRAM 7 : stack.cpp
+##Design, develop, and execute a program in C++ to create a class called STACK using an array of integers and to implement the following operations by overloading the operators + and - :
 ##a) S1=S1 + element; where S1 is an object of the class STACK and element is an integer to be pushed on to top of the stack.
 ##b) S1=S1- ; where S1 is an object of the class STACK and - operator pops off the top element.
-## Handle the STACK Empty and STACK Full conditions. Also display the contents of the stack after each operation, by overloading the operator <<
+##Handle the STACK Empty and STACK Full conditions. Also display the contents of the stack after each operation, by overloading the operator <<
 
-## Theory:
+##Theory:
 A stack is a type of data structure 
 
 
 
-## Algorithm:
+##Algorithm:
 1.Start
 2.Check if the stack is full.The condition in which the stack is full is denoted by 'top=N-1', where N is the size of the stack(this known as stack overflow)
 3.If stack is not full, insert the element at the top of the stack.
@@ -77,7 +77,7 @@ A stack is a type of data structure
     return 0;
 }
 
-## OUTPUT
+##OUTPUT
 MAX: 20
 
 a.Enter your choice 

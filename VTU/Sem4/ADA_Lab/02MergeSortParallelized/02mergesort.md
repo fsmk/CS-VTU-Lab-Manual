@@ -1,10 +1,10 @@
-## AIM: 
+###AIM: 
 Program to sort an array using Merge Sort
 
-## DESCRIPTION: 
+###DESCRIPTION: 
 >Merge sort is an O(n log n) comparison-based sorting algorithm. Most implementations produce a stable sort, meaning that the implementation preserves the input order of equal elements in the sorted output. It is a divide and conquer algorithm.
 
-## ALGORITHM:
+###ALGORITHM:
 
 1. Mergesort(A[O .. n - 1])
 2. Sorts array A[O .. n - 1] by recursive mergesort
@@ -16,7 +16,7 @@ Program to sort an array using Merge Sort
 8. Output: Sorted array A[O .. p + q -1] of the elements of Band C
 
 
-## CODE:
+###CODE:
 	 #include <stdio.h>
 	 #include <stdlib.h>
 	 #include <sys/time.h>
@@ -150,6 +150,6 @@ This file is called       mergesort.gpl
 	set output "mergesort.png"
 	plot "mergesort.txt" t "Merge Sort" with lines
 
-## OUTPUT
+###OUTPUT
 
 ![ScreenShot of Output](mergesort.png)
