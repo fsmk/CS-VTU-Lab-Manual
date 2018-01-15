@@ -1,7 +1,7 @@
 ## Aim:
 ### Write a program for congestion control using Leaky bucket algorithm.
 
-## Description
+###Description
 
 >The congesting control algorithms are basically divided into two groups: open loop and closed
 loop. Open loop solutions attempt to solve the problem by good design, in essence, to make sure it
@@ -101,7 +101,7 @@ int main()
 
 ```
 
-## Output:
+###Output:
 *Commands for execution:-*
 
 * Open a terminal.
@@ -115,7 +115,7 @@ int main()
 ![ScreenShot of Output](leakybucket2.png)
 ![ScreenShot of Output](leakybucket3.png)
 
-## Alternate solution where we manually input each packet
+###Alternate solution where we manually input each packet
 ```c
 #include<stdio.h>
 

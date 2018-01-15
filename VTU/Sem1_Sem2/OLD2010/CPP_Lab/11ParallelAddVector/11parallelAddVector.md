@@ -1,10 +1,10 @@
-## Aim:
-## Design, develop and execute a parallel program in C to add, elementwise, two one dimensional arrays A and B of N integer elements and to store the result in another one dimensional array C of N integer elements.
+##Aim:
+###Design, develop and execute a parallel program in C to add, elementwise, two one dimensional arrays A and B of N integer elements and to store the result in another one dimensional array C of N integer elements.
 
-## Summary:
+##Summary:
 >The Program add elements of two one dimensional array elementwise and stores it in another one dimensional array.
 
-## Algorithm:
+##Algorithm:
 1. Start.
 2. Take input size of the arrays a[ ] and b[ ].
 3. Input the elements to these arrays.
@@ -16,7 +16,7 @@
 7. Print the resultant array.
 8. stop.  
 
-## Program: parallelprog.c
+##Program: parallelprog.c
 	#include<stdio.h>
 	#include<stdlib.h>
 	#include<omp.h>

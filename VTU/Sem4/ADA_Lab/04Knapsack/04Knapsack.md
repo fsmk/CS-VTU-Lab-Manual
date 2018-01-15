@@ -1,12 +1,12 @@
-## AIM:
+###AIM:
 To solve 0/1 Knapsack problem using Dynamic Programming.
-## DESCRIPTION:
+###DESCRIPTION:
 >The Knapsack problem is probably one of the most interesting and most popular in computer science, especially when we talk about dynamic programming.The knapsack problem is a problem in combinatorial optimization. Given a set of items, each with a weight and a value,
 determine the number of each item to include in a collection so that the total weight is less than or equal to a given limit and
 the total value is as large as possible. 
 It derives its name from the problem faced by someone who is constrained by a fixed-size knapsack and must fill it with the most valuable items.
 
-## Basic Algorithm:
+###Basic Algorithm:
 	Input: 
 	a set of items with weights and values
 	output: 
@@ -17,7 +17,7 @@ It derives its name from the problem faced by someone who is constrained by a fi
 	find the subset of B of greatest value such that the combined weight is less than W
 	keep track of the greatest combined value seen so far
 
-## ALGORITHM:
+###ALGORITHM:
 	Input:
 	 Values (stored in array v or profit)
 	 Weights (stored in array w or weight)
@@ -37,7 +37,7 @@ It derives its name from the problem faced by someone who is constrained by a fi
 	end for
 
 
-## CODE:
+###CODE:
 
 	#include <iostream>
 	#include <cstdlib>
@@ -184,7 +184,7 @@ It derives its name from the problem faced by someone who is constrained by a fi
 		}
 	}
 
-## OUTPUT:
+###OUTPUT:
 
 Enter the maxium number of objects : 4
 Enter the weights : 

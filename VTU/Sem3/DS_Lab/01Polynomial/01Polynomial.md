@@ -1,11 +1,11 @@
 ## Program 1 : polynomial.c
-## Aim:
-## Using circular representation for a polynomial, design, develop, and execute a program in C to accept two polynomials, add them, and then print the resulting polynomial
+##Aim:
+##Using circular representation for a polynomial, design, develop, and execute a program in C to accept two polynomials, add them, and then print the resulting polynomial
 
 ## Theory: 
 This program shows the operation of polynomial with the help of circulat linked list. Circulat linked list is a linked list in which the head element and the tail element's next pointer points to the head element.In the special case of a circular list with only one element, the element's previous and next pointers point to itself, and it is both the head and tail of the list. 
 
-## Algorithm
+##Algorithm
 
 1.Start
 
@@ -17,7 +17,7 @@ This program shows the operation of polynomial with the help of circulat linked 
 
 5.Stop.
  
-## Code:
+##Code:
 
     #include<stdio.h>
     #include<stdlib.h>
@@ -180,7 +180,7 @@ This program shows the operation of polynomial with the help of circulat linked 
       }
 
 
-## OUTPUT:
+##OUTPUT:
 ## compilation command: cc polynomial.c
 ## output command: ./a.out
 

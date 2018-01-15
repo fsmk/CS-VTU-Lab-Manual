@@ -1,13 +1,13 @@
 
-## AIM: Design, develop, and execute a program in C++ based on the following requirements:
+##AIM: Design, develop, and execute a program in C++ based on the following requirements:
 ##in EMPLOYEE class is to contain the following data members and member functions:
 
-## Data members: Employee_Number (an integer), Employee_Name (a string of characters),Basic_Salary (an integer) , All_Allowances(an integer), IT (an integer), Net_Salary (an integer).
+##Data members: Employee_Number (an integer), Employee_Name (a string of characters),Basic_Salary (an integer) , All_Allowances(an integer), IT (an integer), Net_Salary (an integer).
 
-## Member functions: to read the data of an employee,to calculate Net_Salary and to print the values of all the data members.
+##Member functions: to read the data of an employee,to calculate Net_Salary and to print the values of all the data members.
 ##(All_Allowances = 123% of Basic; Income Tax (IT) = 30% of the gross salary (= basic_Salary _ All_Allowance), Net_Salary = Basic_Salary + All_Allowances � IT)
 
-## THEORY: 
+##THEORY: 
 CREATE an employee class and insert the data members and member  function. That is,
  
 
@@ -23,7 +23,7 @@ Member functions: to read the data of an employee,to calculate Net_Salary and to
 3. create the functions getdata,display,cal_sal and getnum.
 4. end
 
-## CODE: emp.cpp
+##CODE: emp.cpp
     #include<iostream>
     using namespace std;
 
@@ -103,7 +103,7 @@ Member functions: to read the data of an employee,to calculate Net_Salary and to
     return 0;
     }
 
-## Output:
+##Output:
 
  Enter the number of Employees : 1
 

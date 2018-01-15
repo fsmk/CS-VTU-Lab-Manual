@@ -1,11 +1,11 @@
-## Aim:
+###Aim:
 C program to create a file with 16 bytes of arbitrary data from the beginning and another 16 bytes of arbitrary data from an offset of 48. Display the file contents to demonstrate how the hole in file is handled.
 
-## Description:
+####Description:
 <pre>  fd:file descriptor
   lseek:function is used to seek the memory offset
 </pre>
-## Code:
+####Code:
 <pre>`#`include&lt;stdio.h>
 `#`include&lt;stdlib.h>
 `#`include&lt;fcntl.h>
@@ -28,7 +28,7 @@ int main()
 	close(fd);
 }
 </pre>
-## Output:
+####Output:
 <pre>abcdefghijklmnop^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@ABCDEFGHIJKLMNOP
 ~                                                                               
 ~                                                                               

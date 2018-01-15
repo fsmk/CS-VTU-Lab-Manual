@@ -1,9 +1,9 @@
-## AIM: Program 12: Design, develop and run a program to implement the Bankers Algorithm. Demonstrate its Working with different data values
+##AIM: Program 12: Design, develop and run a program to implement the Bankers Algorithm. Demonstrate its Working with different data values
 
-## DESCRIPTION:
+###DESCRIPTION:
 The Banker's algorithm is a resource allocation and deadlock avoidance algorithm developed by Edsger Dijkstra that tests for safety by simulating the allocation of predetermined maximum possible amounts of all resources, and then makes an "s-state" check to test for possible deadlock conditions for all other pending activities, before deciding whether allocation should be allowed to continue.The Banker's algorithm is run by the operating system whenever a process requests resources.The algorithm avoids deadlock by denying or postponing the request if it determines that accepting the request could put the system in an unsafe state. When a new process enters a system, it must declare the maximum number of instances of each resource type that it may ever claim; clearly, that number may not exceed the total number of resources in the system. Also, when a process gets all its requested resources it must return them in a finite amount of time.
 
-## ALGORITHM:
+###ALGORITHM:
 <pre>
 Let n be the number processes in the system and m be the number of resource types. We need the following data structures:
 (1)Available 
@@ -19,7 +19,7 @@ If Max [i, j] = k, then process P. may request at most k instances of resource t
 4)Need: An n x m matrix indicates the remaining resource need of each process.
  If Need |i, j] = k, then process P. may need k more instances of resource type R, to complete its task. Need [i, j] - Allocation [i, j].
 </pre>
-## Safety algorithm: 
+####Safety algorithm: 
 Safety algorithm is used to find the state of the system: That is, system may be safe state or unsafe state. Method for this is as follows:
 <pre>
 1)Let work and finish be vector of length m and n respectively. Initialize work = Available and Finish [i] = False for i = 1, 2, 3, 4, … n.
@@ -30,7 +30,7 @@ If no such i exist, go to step 4.
 Finish [i] = true to step 2
 4)If Finish [i] = true for all i, then the system is in a safe state. 
 </pre>
-## Resource-request algorithm: 
+####Resource-request algorithm: 
 <pre>
 Let request, be the request vector for process P. If Request, fj] = k, then process P. wants k instances of resource type R. 
 When a request for resources is made by process P, the following actions are taken.
@@ -40,7 +40,7 @@ When a request for resources is made by process P, the following actions are tak
 
 If the resulting resource allocation stale is safe, the transaction is completed and process P. is allocated its resources. If the new state is unsafe, then P. must wait to the Request, and the old resource allocation state is restored.
 </pre>
-## CODE 1:
+###CODE 1:
 <pre>
     #include&lt;stdio.h&gt;
     #include&lt;string.h&gt;
@@ -222,7 +222,7 @@ If the resulting resource allocation stale is safe, the transaction is completed
      return 0;
     }
 </pre>
-## Output:
+###Output:
 <pre>
 $ cc 12.c
 $ ./a.out
@@ -322,8 +322,8 @@ avail:0	need: 4
  Process is not in safe state and hence request cannot be granted
 </pre>
 
-## OR
-## CODE 2:
+##OR
+###CODE 2:
 <pre>
  #include&lt;stdio.h&gt;
 struct process
@@ -509,7 +509,7 @@ printf("\n\n\t The system is Not in safe state");
 return 0;
 }
 </pre>
-## Output:
+###Output:
 <pre>
 $cc 12.c
 $./a.out

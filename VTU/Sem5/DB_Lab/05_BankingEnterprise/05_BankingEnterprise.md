@@ -1,5 +1,5 @@
-## PROGRAM 5
-## DESCRIPTION:
+##PROGRAM 5
+###DESCRIPTION:
 The following relations keep track of a banking enterprise.
 
 * BRANCH(branch-name:string, branch-city:string, assets:real)
@@ -9,7 +9,7 @@ The following relations keep track of a banking enterprise.
 * LOAN(loan-number:int, branch-name:string, amount:real)
 * BORROWER(customer-name:string, loan-number:int)
 
-## Queries:
+###Queries:
 
 Write each of the following queries in SQL.
 
@@ -17,7 +17,7 @@ Write each of the following queries in SQL.
 2. Enter at least five tuples for each relation.
 
 
-## Create:
+###Create:
 
 <pre>CREATE TABLE branch
      ( branch_name VARCHAR(15),
@@ -66,7 +66,7 @@ Write each of the following queries in SQL.
     );
 </pre>
 
-## INSERTIONS:
+###INSERTIONS:
 
 <pre>mysql> insert into branch (branch_name,branch_city,assets) values
     -> 		("b1","c1",10000),
@@ -210,7 +210,7 @@ Records: 5  Duplicates: 0  Warnings: 0</pre>
 +---------------+-------------+
 5 rows in set (0.00 sec)</pre>
 
-## QUERIES:
+###QUERIES:
 
 ###iii. Find all the customers who have at least two accounts at the Main branch.
 

@@ -1,13 +1,13 @@
-## AIM:
+##AIM:
 Program to recognize a valid arithmetic expression and to recognize 
 the identifiers and operators present. Print them separately.
 
-## DESCRIPTION:
+##DESCRIPTION:
 Following the syntax for defining an identifier we generate arithmetic expressions using basic arithmetic operators such as +, -, * & /.
 
-## FLEX:  flex - the fast lexical analyser generator.
+##FLEX:  flex - the fast lexical analyser generator.
 
-## CODE:
+##CODE:
 <pre>%{
 `#`include<stdio.h>
 int a[4]={0,0,0,0};
@@ -45,12 +45,12 @@ int main()
 	return 0;
 }</pre>		
 
-## COMPILE:
+##COMPILE:
 <pre>lex 2a.l
 gcc lex.yy.c -ll
 ./a.out </pre>
 
-## OUTPUT:
+##OUTPUT:
 <pre>Enter expression
 2+4*6+2/5-3*6     
 Expression is valid

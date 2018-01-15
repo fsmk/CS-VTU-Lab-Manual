@@ -1,6 +1,6 @@
-## AIM: Design, develop, and execute a program in C to convert a given valid parenthesized infixarithmetic expression to postfix expression and then to print both the expressions. Theexpression consists of single character operands and the binary operators + (plus), -(minus), * (multiply) and / (divide). 
+##AIM: Design, develop, and execute a program in C to convert a given valid parenthesized infixarithmetic expression to postfix expression and then to print both the expressions. Theexpression consists of single character operands and the binary operators + (plus), -(minus), * (multiply) and / (divide). 
 
-## THEORY:
+##THEORY:
 Infix Expression : Any expression in the standard form like "2*3-4/5" is an Infix(Inorder) expression.
 
 Postfix Expression : The Postfix(Postorder) form of the above expression is "23*45/-".
@@ -15,7 +15,7 @@ Infix to Postfix Conversion : In normal algebra we use the infix notation like a
     * (After all characters are scanned, we have to add any character that the stack may have to the Postfix string.) If stack is not empty add topStack to Postfix string and Pop the stack. Repeat this step as long as stack is not empty.
     * Return the Postfix string. 
 
-## ALGORITHM:
+##ALGORITHM:
 
 1. Start the program
 
@@ -32,7 +32,7 @@ if the scanned character is an Operand and the stack is not empty,compare the pr
 
 7. Terminate the program. 
     
-## CODE: post.cpp
+##CODE: post.cpp
 
 
     #include <stdio.h>
@@ -129,7 +129,7 @@ return p;
 }
 
 
-## Output:
+##Output:
 
 Conversion of infix to postfix expression
 

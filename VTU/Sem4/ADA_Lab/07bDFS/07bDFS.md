@@ -1,8 +1,8 @@
-## AIM:Program 7.b. Check whether a given graph is connected or not using DFS method.
-## DESCRIPTION:
+##AIM:Program 7.b. Check whether a given graph is connected or not using DFS method.
+###DESCRIPTION:
 >Depth-first search is a graph traversal algorithm, which has a very wide application area. This algorithm may be used for finding out number of components of a graph, topological order of its nodes or detection of cycles.Itis an algorithm for traversing or searching a tree, tree structure, or graph. One starts at the root (selecting some node as the root in the graph case) and explores as far as possible along each branch before backtracking.
 
-## ALGORITHM:
+###ALGORITHM:
 <pre>
  DFS(G,v)   ( v is the vertex where the search starts )
          Stack S := {};   ( start with an empty stack )
@@ -19,7 +19,7 @@
       END DFS()
 </pre>
 
-## CODE:
+###CODE:
 	#include <iostream>
 	#include <cstdlib>
 	using namespace std;
@@ -81,7 +81,7 @@
 		return 0;
 	}
 
-## OUTPUTS
+###OUTPUTS
 
 Enter the number of vertices : 4
 

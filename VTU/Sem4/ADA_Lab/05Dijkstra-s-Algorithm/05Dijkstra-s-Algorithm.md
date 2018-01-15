@@ -1,13 +1,13 @@
-## AIM:Program 5. From a given vertex in a weighted connected graph, find shortest paths to other vertices using Dijkstra's algorithm.
+##AIM:Program 5. From a given vertex in a weighted connected graph, find shortest paths to other vertices using Dijkstra's algorithm.
 
-## DESCRIPTION:
+###DESCRIPTION:
 1. To find the shortest path between points, the weight or length of a path is calculated as the sum of the  weights of the edges in the path.
 2. A path is a shortest path is there is no path from x to y with lower weight.
 3. Dijkstra's algorithm finds the shortest path from x to y in order of increasing distance from x. That is, it chooses the first minimum edge, stores this value and adds the next minimum value from the next edge it selects.
 4. It starts out at one vertex and branches out by selecting certain edges that lead to new vertices.
 5. It is similar to the minimum spanning tree algorithm, in that it is "greedy", always choosing the closest edge in hopes of an optimal solution. 
 
-## ALGORITHM:
+###ALGORITHM:
 
 	function Dijkstra(Graph, source):
 	      for each vertex v in Graph:                                // Initializations
@@ -39,7 +39,7 @@
 	      return dist;
 	end function
 
-## CODE:
+###CODE:
 
 	/********************************************************************************
 	*File		: Dijkstra.cpp
@@ -175,7 +175,7 @@
 
 
 
-## Output
+###Output
 
 Enter the number of nodes
 5

@@ -1,15 +1,15 @@
-## Aim:
+###Aim:
 To Sort a given set of elements using the Quicksort method and determine the time required to sort the elements. Repeat the experiment for different values of n, the number of elements in the list to be sorted and plot a graph of the time taken versus n. The elements can be read from a file or can be generated using the random number generator.
-## Description:
+###Description:
 >The program is based on the Quicksort algorithm which is an instatiation of divide and conquer method of solving the problem. Here the given array is partitioned every time and the sub-array is sorted.Dividing is based on an element called pivot. A divide and conquer algorithm works by recursively breaking down a problem into two or more sub-problems of the same (or related) type, until these become simple enough to be solved directly. The solutions to the sub-problems are then combined to give a solution to the original problem.
 
-## Algorithm:
+###Algorithm:
 
 1. Pick an element, called a pivot, from the list.
 2. Reorder the list so that all elements with values less than the pivot come before the pivot, while all elements with values greater than the pivot come after it (equal values can go either way). After this partitioning, the pivot is in its final position. This is called the partition operation.
 3. Recursively apply the above steps to the sub-list of elements with smaller values and separately the sub-list of elements with greater values.
 
-## Code:
+###Code:
 
 	#include <stdio.h>
 	#include <stdlib.h>
@@ -190,5 +190,5 @@ To Sort a given set of elements using the Quicksort method and determine the tim
 
 	}
 
-## OUTPUT:
+###OUTPUT:
 ![ScreenShot of Output](QuickPlot.png)

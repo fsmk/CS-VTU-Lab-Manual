@@ -1,10 +1,10 @@
-## Aim
+##Aim
 Implement message queues or FIFO's using IPC channels.
 
-## Problem statement:
+###Problem statement:
 Write a client - sever program to make the client send the file name and to make the server send back the contents of the requested file implementing it by FIFO's or message queues usong IPC channels.
 
-## Description
+##Description
 The program is implemented using a Server-Client model where the server-side 
 is being run on one terminal window and the client-side is run on another terminal
 window. Initially, server listens to the requests made by the client.
@@ -23,7 +23,7 @@ on the server side, the respective file is opened and contents read.
 The contents are then passed to the FIFO structure of the client side and thus the 
 contents are displayed. 
 
-## Algorithm:
+###Algorithm:
 
 ####	Server Side
 1. Create two string variables for file name and buffer.
@@ -47,7 +47,7 @@ contents are displayed.
 6. Close the request and response descriptors using closde function.
 
 
-## Code
+###Code
 
 #### 		Server side
 ```c
@@ -116,7 +116,7 @@ int main()
 }
 ```
 
-## Output
+###Output
 *Commands for execution:-*
 
 * Open a terminal.
