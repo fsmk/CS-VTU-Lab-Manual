@@ -1,12 +1,12 @@
-#AIM: 
+# AIM: 
 Implement All-Pairs Shortest Paths Problem using Floyd's algorithm. 
 Parallelize this algorithm, implement it using OpenMP and determine the 
 speed-up achieved.
 
-##DESCRIPTION:
+## DESCRIPTION:
 >The Floyd's algorithm is a graph analysis algorithm for finding shortest paths in a weighted graph with positive or negative edge weights (but with no negative cycles, see below) and also for finding transitive closure of a relation R. A single execution of the algorithm will find the lengths (summed weights) of the shortest paths between all pairs of vertices, though it does not return details of the paths themselves.
 
-##ALGORITHM:
+## ALGORITHM:
 	 let dist be a |V| x |V| array of minimum distances initialized to infinity
 	 for each vertex v
 	    dist[v][v] <- 0
@@ -21,7 +21,7 @@ speed-up achieved.
 
 
 
-##CODE:
+## CODE:
 	#include<stdio.h> 
 	#include<stdlib.h> 
 	#include<sys/time.h> 
@@ -67,7 +67,7 @@ speed-up achieved.
 	}
 
 
-##OUTPUT:
+## OUTPUT:
 Enter the number of nodes:3 
 
 Enter the cost matrix: 

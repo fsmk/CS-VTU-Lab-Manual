@@ -1,6 +1,6 @@
-##Lab Programs list for Networks Lab as specified by VTU for 7th Semester students:
+## Lab Programs list for Networks Lab as specified by VTU for 7th Semester students:
 
-###PART A - Simulation Exercises
+### PART A - Simulation Exercises
 
 The following experiments shall be conducted using either NS228/OPNET or 
 any other suitable simulator.
@@ -29,7 +29,7 @@ and plot congestion window for different source / destination.
 simulation and determine the performance with respect to transmission of
 packets.
 
-###PART-B
+### PART-B
 
 Implement the following in C/C++:
 

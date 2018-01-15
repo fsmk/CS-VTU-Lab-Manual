@@ -1,10 +1,10 @@
-##Aim:
-###Design, develop and execute a program in C to input N integer numbers into a single dimension array, sort them in to ascending order using bubble sort technique, and then to print both the given array and the sorted array with suitable headings.
+## Aim:
+### Design, develop and execute a program in C to input N integer numbers into a single dimension array, sort them in to ascending order using bubble sort technique, and then to print both the given array and the sorted array with suitable headings.
 
-##Summary:
+## Summary:
 >Bubble sort technique sorts the integers of the array in ascending order. This technique at first compares the first digit with all the remaining digits individually , if the first number is greater than the other number both the numbers are swapped. Then the second number is compared with all the remaining digits leaving the first digits, if it is greater than other number , both numbers are swapped. This process are done for all the numbers except the last digit. The resulting array of digits will be in ascending order.
 
-##Algorithm:
+## Algorithm:
 1. Start.
 2. Input the size of dimensional array(size=n).
 3. Take the input elements to the initialized array.
@@ -20,7 +20,7 @@
 8. Display sorted array.
 9. Stop. 
 
-##Program: bubblesort.c
+## Program: bubblesort.c
 	#include<stdio.h>
 	void main()
 	{

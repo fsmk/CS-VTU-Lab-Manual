@@ -1,10 +1,10 @@
-##Aim:
-###Design, develop and execute a program in C to reverse a given four    digit integer number and check whether it is a palindrome or not. Output the given number with suitable message.
+## Aim:
+### Design, develop and execute a program in C to reverse a given four    digit integer number and check whether it is a palindrome or not. Output the given number with suitable message.
 
-##Summary:
+## Summary:
 >Palindrome is a number, word, phrase, or sequence that reads the same backward as forward, e.g., "madam" or "malayalam" or 1221 or 10301.
 
-##Algorithm:
+## Algorithm:
 
 1. Start.
 2. Take a four digit number as input i.e. n.
@@ -21,7 +21,7 @@
 7. Print given number as not palindrome.  
 8. Stop.
 
-##Program: Palindrome.c
+## Program: Palindrome.c
    
 	#include<stdio.h>
 	void main()

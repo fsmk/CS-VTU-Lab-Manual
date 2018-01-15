@@ -1,7 +1,7 @@
-##Aim:
-###Design, develop and execute a program in C to evaluate the given polynomial    f(x) = a4x4 + a3x3 + a2x2+ a1x + a0   for given value of x and the coefficients using Horner's method.
+## Aim:
+### Design, develop and execute a program in C to evaluate the given polynomial    f(x) = a4x4 + a3x3 + a2x2+ a1x + a0   for given value of x and the coefficients using Horner's method.
 
-##Summary:
+## Summary:
 >Horner's method of polynomial evaluation is described below
 
 >The expression is broken down  in the following way
@@ -17,7 +17,7 @@
 >f(x) =  x (  x(   x (   x (  a4 )  +  a3 ) + a2 )  + a1 ) + a0
 
 
-###Example:
+### Example:
 
 >Input values:
 
@@ -34,7 +34,7 @@
 >sum =    ( sum + a1 )  * x 	->  ( 306  + 4 ) *6	->  1860
 
 
-##Algorithm:
+## Algorithm:
 1.  Start
 2.  Input the degree and value of x
 3.  Input Coefficients , upper limit is provided  by the value of degree
@@ -46,7 +46,7 @@
 9.  display sum
 10. Stop
 
-##Program: polynomial.c
+## Program: polynomial.c
 	
 	#include<stdio.h>
 	#include<stdlib.h>

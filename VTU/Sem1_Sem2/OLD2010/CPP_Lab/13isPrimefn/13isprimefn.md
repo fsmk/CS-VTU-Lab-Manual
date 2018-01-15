@@ -1,10 +1,10 @@
-##Aim:
-###Design and develop a function isprime (x) that accepts an integer argument and returns 1 if the argument is prime and 0 otherwise. The function is to use plain division checking approach to determine if a given number is prime. Invoke this function from the main with different values obtained from the user and print appropriate messages.
+## Aim:
+### Design and develop a function isprime (x) that accepts an integer argument and returns 1 if the argument is prime and 0 otherwise. The function is to use plain division checking approach to determine if a given number is prime. Invoke this function from the main with different values obtained from the user and print appropriate messages.
 
-##Summary:
+## Summary:
 >A Prime number is a number which can be divisible by 1 and itself, 1 is neither considered as prime nor non-prime(composite). Here a plain division checking approach is used to determine whether a given number is prime or not. The given number is check for divisibility from 1 to itself, if it is not divisible by any other number other than 1 and itself, then that number is a prime number or else it is not a prime number.  
 
-##Algorithm:
+## Algorithm:
 1. Start
 2. Take the input integer to be checked
 3. Call the isPrime function
@@ -16,7 +16,7 @@
 6. i.e. The return is 0, print number is not prime.
 7. Stop
 
-##Program: isprime.c
+## Program: isprime.c
 	#include<stdio.h>
 	#include<stdlib.h>
 	

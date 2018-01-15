@@ -1,11 +1,11 @@
-##Aim:
-###Design and develop a function reverses (s) in C to reverse the string s in place. Invoke this function from the main for different strings and print the original and reversed strings.
+## Aim:
+### Design and develop a function reverses (s) in C to reverse the string s in place. Invoke this function from the main for different strings and print the original and reversed strings.
 
 
-##Summary:
+## Summary:
 >Many operations on strings can be performed, reversing the string is one of the operations which can be performed. At first the given string is copied to another empty temporary string, then in the temporary string, first character of the string and the last character of the string is swapped or interchanged, then the second character and last but one character is swapped, this process is done until the middle element of the string ( In case if the string contains even number of characters , process is done until the middle two elements ). Then the reversed string and the original string are printed.
 
-##Algorithm: 
+## Algorithm: 
 
 1. Start.
 2. Take an input string.
@@ -22,7 +22,7 @@
 7. Stop.	
 
 
-##Program:reversestring.c
+## Program:reversestring.c
 
 	#include<stdio.h>
 	#include<string.h>
@@ -59,7 +59,7 @@
 		    j--;
 		}
 	}
-##Output:
+## Output:
 
 ###gcc reversestring.c
 ###./a.out 

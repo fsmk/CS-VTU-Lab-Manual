@@ -1,11 +1,11 @@
-##AIM : Compute the transitive closure of a given directed graph using Warshall's algorithm.
+## AIM : Compute the transitive closure of a given directed graph using Warshall's algorithm.
 
-###DESCRIPTION :
+### DESCRIPTION :
 >Warshall's algorithm determines whether there is a path between any two nodes in the graph. It does not give the number of the paths between two nodes. 
 According to Warshall's algorith,a path exists between two vertices i, j, iff there is a path from i to j or there is a path from i to j through 1,..,k intermadiate nodes.</pre>
 
 
-###ALGORITHM:
+### ALGORITHM:
 
 <pre>    n = |V|
 	t(0) = the adjacency matrix for G
@@ -24,7 +24,7 @@ According to Warshall's algorith,a path exists between two vertices i, j, iff th
 	end for
 	return t(n)</pre>
 
-###CODE :
+### CODE :
 
 	#include<stdio.h>
 	const int MAX = 100;
@@ -76,7 +76,7 @@ According to Warshall's algorith,a path exists between two vertices i, j, iff th
 		}
 	}
 
-###OUTPUT
+### OUTPUT
 Enter the number of vertices : 4
 Enter the adjacency matrix :-
 0 0 1 0
